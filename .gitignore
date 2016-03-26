@@ -1,0 +1,5 @@
+# Dependency directory
+node_modules
+
+# Secret Stuff lol!
+.env
