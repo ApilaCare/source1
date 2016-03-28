@@ -5,13 +5,13 @@
 
   <div class="row">
     <div class="col-xs-12 col-sm-12">
-      <label for="filter">Filter results</label>
+      <label for="filter">Filter Issue results</label>
       <input id="filter" type="text", name="filter", ng-model="textFilter">
       <div class="error">{{ vm.message }}</div>
       <div class="row list-group">
         <div class="col-xs-12 list-group-item" ng-repeat="issue in vm.data.issues | filter : textFilter">
           <h4>
-            <a href="#/issues/{{ issue._id }}">{{ issue.name }}</a>
+            <a href="#/issues/{{ issue._id }}">{{ issue.title }}</a>
             <span class="badge pull-right badge-default">{{ issue.resolutionTimeframe }}</span>
           </h4>
           <p class="address">{{ issue.responsibleParty }}</p>

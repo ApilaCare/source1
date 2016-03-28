@@ -14,7 +14,6 @@
     vm.message = "Checking your location";
 
     // function parameter for 'community'
-    vm.getData = function () {
       vm.message = "Searching for nearby places";
       loc8rData.issuesList()
         .success(function(data) {
@@ -25,7 +24,7 @@
         .error(function (e) {
           vm.message = "Sorry, something's gone wrong, please try again later";
         });
-    };
+
 
     vm.showError = function (error) {
       $scope.$apply(function() {

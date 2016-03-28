@@ -30,7 +30,7 @@
         controllerAs: 'vm'
       })
       .when('/issues', {
-        templateUrl: '/issueHome/issueHome.view.html',
+        templateUrl: '/issues/issueHome/issueHome.view.html',
         controller: 'issueHomeCtrl',
         controllerAs: 'vm'
       })
