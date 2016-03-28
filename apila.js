@@ -12,18 +12,21 @@ var passport = require('passport');
 require('./app_api/models/db');
 require('./app_api/config/passport');
 
-var routes = require('./app_server/routes/index');
+// (commented out because routes in the server are not used)
+// var routes = require('./app_server/routes/index');
 var routesApi = require('./app_api/routes/index');
 
 var app = express();
 
+// (commented out because not using jade to display anything in app_server/views)
 // view engine setup
-app.set('views', path.join(__dirname, 'app_server', 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'app_server', 'views'));
+// app.set('view engine', 'jade');
 
 var appClientFiles = [
   'app_client/app.js',
   'app_client/home/home.controller.js',
+  'app_client/issueHome/issueHome.controller.js',
   'app_client/about/about.controller.js',
   'app_client/auth/login/login.controller.js',
   'app_client/auth/register/register.controller.js',
@@ -50,7 +53,7 @@ fs.writeFile('public/angular/loc8r.min.js', uglified.code, function (err){
   }
 });
 
-// uncomment after placing your favicon in /public
+// (uncomment after placing your favicon in /public)
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -59,14 +62,20 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_client')));
 
+// (commented out because ...)
 //app.use(passport.initialize());
 
+// (commented out because not using any routing from app_server/routes)
 // app.use('/', routes);
 app.use('/api', routesApi);
 
+// says the next place to go?
 app.use(function(req, res) {
   res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
 });
+
+
+/* !!!! ERROR HANDLERS !!!! */
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -106,5 +115,5 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
+// exports all the app. stuff (to where?)
 module.exports = app;

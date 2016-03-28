@@ -7,9 +7,11 @@ var auth = jwt({
 });
 
 var ctrlLocations = require('../controllers/locations');
+var ctrlIssues = require('../controllers/issues');
 var ctrlReviews = require('../controllers/reviews');
 var ctrlAuth = require('../controllers/authentication');
 
+// locations
 router.get('/locations', ctrlLocations.locationsListByDistance);
 router.post('/locations', ctrlLocations.locationsCreate);
 router.get('/locations/:locationid', ctrlLocations.locationsReadOne);
@@ -25,5 +27,12 @@ router.delete('/locations/:locationid/reviews/:reviewid', auth, ctrlReviews.revi
 // authentication
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
+
+// issues
+router.get('/issues', ctrlIssues.issuesList);
+router.post('/issues', ctrlIssues.issuesCreate);
+router.get('/issues/:issueid', ctrlIssues.issuesReadOne);
+router.put('/issues/:issueid', ctrlIssues.issuesUpdateOne);
+router.delete('/issues/:issueid', ctrlIssues.issuesDeleteOne);
 
 module.exports = router;

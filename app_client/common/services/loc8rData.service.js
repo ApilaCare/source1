@@ -22,10 +22,15 @@
       });
     };
 
+    var issuesList = function () {
+      return $http.get('/api/issues');
+    };
+
     return {
       locationByCoords : locationByCoords,
       locationById : locationById,
-      addReviewById : addReviewById
+      addReviewById : addReviewById,
+      issuesList : issuesList
     };
   }
 

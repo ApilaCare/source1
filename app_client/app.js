@@ -29,6 +29,11 @@
         controller: 'loginCtrl',
         controllerAs: 'vm'
       })
+      .when('/issues', {
+        templateUrl: '/issueHome/issueHome.view.html',
+        controller: 'issueHomeCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
 
     // use the HTML5 History API
