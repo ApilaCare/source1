@@ -2,44 +2,44 @@
 
   angular
     .module('loc8rApp')
-    .controller('locationDetailCtrl', locationDetailCtrl);
+    .controller('issueDetailCtrl', issueDetailCtrl);
 
-  locationDetailCtrl.$inject = ['$routeParams', '$location', '$modal', 'loc8rData', 'authentication'];
-  function locationDetailCtrl ($routeParams, $location, $modal, loc8rData, authentication) {
+  issueDetailCtrl.$inject = ['$routeParams', '$issue', '$modal', 'loc8rData', 'authentication'];
+  function issueDetailCtrl ($routeParams, $issue, $modal, loc8rData, authentication) {
     var vm = this;
-    vm.locationid = $routeParams.locationid;
+    vm.issueid = $routeParams.issueid;
 
     vm.isLoggedIn = authentication.isLoggedIn();
 
-    vm.currentPath = $location.path();
+    vm.currentPath = $issue.path();
 
-    loc8rData.locationById(vm.locationid)
+    loc8rData.issueById(vm.issueid)
       .success(function(data) {
-        vm.data = { location: data };
+        vm.data = { issue: data };
         vm.pageHeader = {
-          title: vm.data.location.name
+          title: vm.data.issue.title
         };
       })
       .error(function (e) {
         console.log(e);
       });
 
-    vm.popupReviewForm = function () {
+    vm.popupIssueCommentForm = function () {
       var modalInstance = $modal.open({
-        templateUrl: '/reviewModal/reviewModal.view.html',
-        controller: 'reviewModalCtrl as vm',
+        templateUrl: '/issueCommentModal/issueCommentModal.view.html',
+        controller: 'issueCommentModalCtrl as vm',
         resolve : {
-          locationData : function () {
+          issueData : function () {
             return {
-              locationid : vm.locationid,
-              locationName : vm.data.location.name
+              issueid : vm.issueid,
+              issueTitle : vm.data.issue.title
             };
           }
         }
       });
 
       modalInstance.result.then(function (data) {
-        vm.data.location.reviews.push(data);
+        vm.data.issue.comments.push(data);
       });
     };
 

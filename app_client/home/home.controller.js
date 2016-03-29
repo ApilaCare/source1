@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', 'loc8rData', 'geolocation'];
-  function homeCtrl ($scope, loc8rData, geolocation) {
+  homeCtrl.$inject = ['$scope', 'loc8rData', 'geolocation', '$modal'];
+  function homeCtrl ($scope, loc8rData, geolocation, $modal) {
     var vm = this;
     console.log(window.location);
     vm.pageHeader = {
@@ -46,6 +46,12 @@
 
     geolocation.getPosition(vm.getData,vm.showError,vm.noGeo);
 
+    vm.popupNewLocationForm = function () {
+      var modalInstance = $modal.open({
+        templateUrl: '/addLocationModal/addLocationModal.view.html',
+        controller: 'newLocationModalCtrl as vm'
+      });
+    };
   }
 
 })();

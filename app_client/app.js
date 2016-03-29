@@ -34,6 +34,11 @@
         controller: 'issueHomeCtrl',
         controllerAs: 'vm'
       })
+      .when('/issues/:issueid', {
+        templateUrl: '/issues/issueDetail/issueDetail.view.html',
+        controller: 'issueDetailCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
 
     // use the HTML5 History API

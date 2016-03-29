@@ -23,10 +23,14 @@ var app = express();
 // app.set('views', path.join(__dirname, 'app_server', 'views'));
 // app.set('view engine', 'jade');
 
+// (commented out to debug better.  these are now in app_client/index.html)
 var appClientFiles = [
   'app_client/app.js',
   'app_client/home/home.controller.js',
+  'app_client/addLocationModal/addLocationModal.controller.js',
   'app_client/issues/issueHome/issueHome.controller.js',
+  'app_client/issues/issueDetail/issueDetail.controller.js',
+  'app_client/issues/newIssueModal/newIssueModal.controller.js',
   'app_client/about/about.controller.js',
   'app_client/auth/login/login.controller.js',
   'app_client/auth/register/register.controller.js',
@@ -52,6 +56,7 @@ fs.writeFile('public/angular/loc8r.min.js', uglified.code, function (err){
     console.log("Script generated and saved:", 'loc8r.min.js');
   }
 });
+
 
 // (uncomment after placing your favicon in /public)
 //app.use(favicon(__dirname + '/public/favicon.ico'));

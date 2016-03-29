@@ -4,9 +4,10 @@
     .module('loc8rApp')
     .controller('issueHomeCtrl', issueHomeCtrl);
 
-  issueHomeCtrl.$inject = ['$scope', 'loc8rData'];
-  function issueHomeCtrl ($scope, loc8rData) {
+  issueHomeCtrl.$inject = ['$scope', 'loc8rData', 'authentication', '$modal'];
+  function issueHomeCtrl ($scope, loc8rData, authentication, $modal) {
     var vm = this;
+    vm.isLoggedIn = authentication.isLoggedIn();
     vm.pageHeader = {
       title: 'Apila',
       strapline: 'its a website!'
@@ -29,6 +30,13 @@
     vm.showError = function (error) {
       $scope.$apply(function() {
         vm.message = error.message;
+      });
+    };
+
+    vm.popupNewIssueForm = function () {
+      var modalInstance = $modal.open({
+        templateUrl: '/newIssueModal/newIssueModal.view.html',
+        controller: 'newIssueModalCtrl as vm'
       });
     };
   }

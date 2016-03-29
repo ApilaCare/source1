@@ -22,15 +22,28 @@
       });
     };
 
+    var addLocation = function (data) {
+      return $http.post('/api/locations/', data, {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    };
+
     var issuesList = function () {
       return $http.get('/api/issues');
+    };
+
+    var issueById = function (issueid) {
+      return $http.get('/api/issues/' + issueid);
     };
 
     return {
       locationByCoords : locationByCoords,
       locationById : locationById,
       addReviewById : addReviewById,
-      issuesList : issuesList
+      issuesList : issuesList,
+      issueById : issueById,
     };
   }
 

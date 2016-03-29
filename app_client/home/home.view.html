@@ -1,12 +1,11 @@
 <navigation></navigation>
-
 <div class="container">
   <page-header content="vm.pageHeader"></page-header>
-
   <div class="row">
-    <div class="col-xs-12 col-sm-8">
+    <div class="col-xs-12 col-sm-12">
       <label for="filter">Filter results</label>
       <input id="filter" type="text", name="filter", ng-model="textFilter">
+      <a ng-click="vm.popupNewLocationForm()" class="btn btn-default pull-right new-location-btn">Add review</a>
       <div class="error">{{ vm.message }}</div>
       <div class="row list-group">
         <div class="col-xs-12 list-group-item" ng-repeat="location in vm.data.locations | filter : textFilter">
@@ -24,10 +23,6 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-4">
-      <p class="lead">{{ vm.sidebar.content }}</p>
-    </div>
   </div>
-
   <footer-generic></footer-generic>
 </div>
