@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('newIssueModalCtrl', newIssueModalCtrl);
 
-  newIssueModalCtrl.$inject = ['$modalInstance', 'loc8rData', 'locationData'];
-  function newIssueModalCtrl ($modalInstance, loc8rData, locationData) {
+  newIssueModalCtrl.$inject = ['$modalInstance'];
+  function newIssueModalCtrl ($modalInstance) {
     var vm = this;
 
     vm.modal = {

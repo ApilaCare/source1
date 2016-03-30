@@ -38,12 +38,22 @@
       return $http.get('/api/issues/' + issueid);
     };
 
+    var appointmentsList = function () {
+      return $http.get('/api/appointments');
+    };
+
+    var appointmentById = function (appointmentid) {
+      return $http.get('/api/appointments/' + appointmentid);
+    };
+
     return {
       locationByCoords : locationByCoords,
       locationById : locationById,
       addReviewById : addReviewById,
       issuesList : issuesList,
       issueById : issueById,
+      appointmentsList : appointmentsList,
+      appointmentById : appointmentById,
     };
   }
 

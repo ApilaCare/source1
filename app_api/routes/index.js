@@ -8,6 +8,7 @@ var auth = jwt({
 
 var ctrlLocations = require('../controllers/locations');
 var ctrlIssues = require('../controllers/issues');
+var ctrlAppointments = require('../controllers/appointments');
 var ctrlReviews = require('../controllers/reviews');
 var ctrlAuth = require('../controllers/authentication');
 
@@ -34,5 +35,12 @@ router.post('/issues', ctrlIssues.issuesCreate);
 router.get('/issues/:issueid', ctrlIssues.issuesReadOne);
 router.put('/issues/:issueid', ctrlIssues.issuesUpdateOne);
 router.delete('/issues/:issueid', ctrlIssues.issuesDeleteOne);
+
+// appointments
+router.get('/appointments', ctrlAppointments.appointmentsList);
+router.post('/appointments', ctrlAppointments.appointmentsCreate);
+router.get('/appointments/:appointmentid', ctrlAppointments.appointmentsReadOne);
+router.put('/appointments/:appointmentid', ctrlAppointments.appointmentsUpdateOne);
+router.delete('/appointments/:appointmentid', ctrlAppointments.appointmentsDeleteOne);
 
 module.exports = router;

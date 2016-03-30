@@ -39,6 +39,16 @@
         controller: 'issueDetailCtrl',
         controllerAs: 'vm'
       })
+      .when('/appointments', {
+        templateUrl: '/appointments/appointmentHome/appointmentHome.view.html',
+        controller: 'appointmentHomeCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/appointments/:appointmentsid', {
+        templateUrl: '/appointments/appointmentDetail/appointmentDetail.view.html',
+        controller: 'appointmentDetailCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
 
     // use the HTML5 History API

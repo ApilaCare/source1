@@ -48,6 +48,7 @@ process.on('SIGTERM', function() {
 // BRING IN YOUR SCHEMAS & MODELS
 require('./locations');
 require('./issues');
+require('./appointments');
 require('./users');
 
 /*

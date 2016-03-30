@@ -1,0 +1,25 @@
+<navigation></navigation>
+
+<div class="container">
+  <page-header content="vm.pageHeader"></page-header>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <a ng-click="vm.popupNewIssueForm()" class="btn btn-default pull-right">New appointment</a>
+      <label for="filter">Filter appointment results</label>
+      <input id="filter" type="text", name="filter", ng-model="textFilter">
+      <div class="error">{{ vm.message }}</div>
+      <div class="row list-group">
+        <div class="col-xs-12 list-group-item" ng-repeat="appointment in vm.data.appointments | filter : textFilter">
+          <h4>
+            <a href="appointments/{{ appointment._id }}">{{ appointment.reason }}</a>
+            <span class="badge pull-right badge-default">{{ appointment.time | date : 'd MMMM yyyy' }}</span>
+          </h4>
+          <p class="address">{{ appointment.residentGoing }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer-generic></footer-generic>
+</div>
