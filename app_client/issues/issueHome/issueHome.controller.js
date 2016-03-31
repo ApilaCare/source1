@@ -35,7 +35,7 @@
 
     vm.popupNewIssueForm = function () {
       var modalInstance = $modal.open({
-        templateUrl: '/newIssueModal/newIssueModal.view.html',
+        templateUrl: '/issues/newIssueModal/newIssueModal.view.html',
         controller: 'newIssueModalCtrl as vm'
       });
     };

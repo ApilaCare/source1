@@ -38,6 +38,14 @@
       return $http.get('/api/issues/' + issueid);
     };
 
+    var addIssueCommentById = function (issueid, data) {
+      return $http.post('/api/issues/' + issueid + '/comments', data, {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    };
+
     var appointmentsList = function () {
       return $http.get('/api/appointments');
     };
@@ -52,6 +60,7 @@
       addReviewById : addReviewById,
       issuesList : issuesList,
       issueById : issueById,
+      addIssueCommentById : addIssueCommentById,
       appointmentsList : appointmentsList,
       appointmentById : appointmentById,
     };

@@ -22,8 +22,16 @@
 
       vm.popupIssueCommentForm = function () {
         var modalInstance = $modal.open({
-          templateUrl: '/issueCommentModal/issueCommentModal.view.html',
-          controller: 'issueCommentModalCtrl as vm'
+          templateUrl: '/issues/issueCommentModal/issueCommentModal.view.html',
+          controller: 'issueCommentModalCtrl as vm',
+          resolve : {
+            issueData : function () {
+              return {
+                issueid : vm.issueid,
+                issueTitle : vm.data.issue.title
+              };
+            }
+          }
         });
       };
   }

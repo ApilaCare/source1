@@ -10,6 +10,7 @@ var ctrlLocations = require('../controllers/locations');
 var ctrlIssues = require('../controllers/issues');
 var ctrlAppointments = require('../controllers/appointments');
 var ctrlReviews = require('../controllers/reviews');
+var ctrlIssueComments = require('../controllers/issueComments');
 var ctrlAuth = require('../controllers/authentication');
 
 // locations
@@ -20,7 +21,7 @@ router.put('/locations/:locationid', ctrlLocations.locationsUpdateOne);
 router.delete('/locations/:locationid', ctrlLocations.locationsDeleteOne);
 
 // reviews
-router.post('/locations/:locationid/reviews', auth, ctrlReviews.reviewsCreate);
+router.post('/locations/:locationid/reviews',auth, ctrlReviews.reviewsCreate);
 router.get('/locations/:locationid/reviews/:reviewid', ctrlReviews.reviewsReadOne);
 router.put('/locations/:locationid/reviews/:reviewid', auth, ctrlReviews.reviewsUpdateOne);
 router.delete('/locations/:locationid/reviews/:reviewid', auth, ctrlReviews.reviewsDeleteOne);
@@ -35,6 +36,12 @@ router.post('/issues', ctrlIssues.issuesCreate);
 router.get('/issues/:issueid', ctrlIssues.issuesReadOne);
 router.put('/issues/:issueid', ctrlIssues.issuesUpdateOne);
 router.delete('/issues/:issueid', ctrlIssues.issuesDeleteOne);
+
+// issue comments
+router.post('/issues/:issueid/comments', ctrlIssueComments.issueCommentsCreate);
+router.get('/issues/:issueid/comments/:commentid', ctrlIssueComments.issueCommentsReadOne);
+router.put('/issues/:issueid/comments/:commentid', ctrlIssueComments.issueCommentsUpdateOne);
+router.delete('/issues/:issueid/comments/:commentid', ctrlIssueComments.issueCommentsDeleteOne);
 
 // appointments
 router.get('/appointments', ctrlAppointments.appointmentsList);
