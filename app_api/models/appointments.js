@@ -3,10 +3,7 @@ var mongoose = require('mongoose');
 var appointmentCommentSchema = new mongoose.Schema({
     author: {type: String, required: true},
     commentText: {type: String, required: true},
-    createdOn: {
-        type: Date,
-        "default": Date.now
-    }
+    createdOn: {type: Date, default: Date.now}
 });
 
 var locationSchema = new mongoose.Schema({
@@ -21,7 +18,7 @@ var appointmentSchema = new mongoose.Schema({
   location: [locationSchema],
   residentGoing: {type: String, required: true},
   time: {type: Date, required: true},
-  transportation: {type: String, default: 'guitarist'},
+  transportation: {type: String, default: 'The Hospital'},
   comments: [appointmentCommentSchema],
   submitDate: {type: Date, default: Date.now}
 });

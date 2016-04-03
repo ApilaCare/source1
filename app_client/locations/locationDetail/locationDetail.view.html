@@ -52,10 +52,10 @@
               <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default pull-right">Login to add review</a>
               <h2 class="panel-title">Customer reviews</h2>
             </div>
-            <div class="panel-body review-container">
+            <div class="panel-body comment-container">
               <div class="row">
-                <div class="review" ng-repeat="review in vm.data.location.reviews | orderBy:'createdOn':true">
-                  <div class="well well-sm review-header">
+                <div class="comment" ng-repeat="review in vm.data.location.reviews | orderBy:'createdOn':true">
+                  <div class="well well-sm comment-header">
                     <span class="rating" rating-stars rating="review.rating"></span>
                     <span class="reviewAuthor">{{ review.author }}</span>
                     <small class="reviewTimestamp pull-right">{{ review.createdOn | date : 'd MMMM yyyy' }}</small>

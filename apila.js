@@ -26,7 +26,7 @@ var app = express();
 // (commented out to debug better.  these are now in app_client/index.html)
 var appClientFiles = [
   'app_client/app.js',
-  'app_client/locations/home/home.controller.js',
+  'app_client/locations/locationsHome/locationsHome.controller.js',
   'app_client/locations/addLocationModal/addLocationModal.controller.js',
   'app_client/issues/issueHome/issueHome.controller.js',
   'app_client/issues/issueDetail/issueDetail.controller.js',
@@ -36,6 +36,7 @@ var appClientFiles = [
   'app_client/appointments/appointmentDetail/appointmentDetail.controller.js',
   'app_client/appointments/addAppointmentModal/addAppointmentModal.controller.js',
   'app_client/about/about.controller.js',
+  'app_client/home/home.controller.js',
   'app_client/auth/login/login.controller.js',
   'app_client/auth/register/register.controller.js',
   'app_client/locations/locationDetail/locationDetail.controller.js',

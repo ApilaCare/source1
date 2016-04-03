@@ -2,14 +2,14 @@
 
   angular
     .module('loc8rApp')
-    .controller('homeCtrl', homeCtrl);
+    .controller('locationHomeCtrl', locationHomeCtrl);
 
-  homeCtrl.$inject = ['$scope', 'apilaData', 'geolocation', '$modal'];
-  function homeCtrl ($scope, apilaData, geolocation, $modal) {
+  locationHomeCtrl.$inject = ['$scope', 'apilaData', 'geolocation', '$modal'];
+  function locationHomeCtrl ($scope, apilaData, geolocation, $modal) {
     var vm = this;
     console.log(window.location);
     vm.pageHeader = {
-      title: 'Loc8r',
+      title: 'Apila',
       strapline: 'Find places to work with wifi near you!'
     };
     vm.sidebar = {

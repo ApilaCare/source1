@@ -5,7 +5,7 @@
   function config ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '/locations/home/home.view.html',
+        templateUrl: '/common/views/home.view.html',
         controller: 'homeCtrl',
         controllerAs: 'vm'
       })
@@ -14,7 +14,12 @@
         controller: 'aboutCtrl',
         controllerAs: 'vm'
       })
-      .when('/location/:locationid', {
+      .when('/locations', {
+        templateUrl: '/locations/locationsHome/locationsHome.view.html',
+        controller: 'locationHomeCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/locations/:locationid', {
         templateUrl: '/locations/locationDetail/locationDetail.view.html',
         controller: 'locationDetailCtrl',
         controllerAs: 'vm'
