@@ -59,7 +59,6 @@ var getAuthor = function(req, res, callback) {
     });
     return;
   }
-
 };
 
 var doAddReview = function(req, res, location, author) {

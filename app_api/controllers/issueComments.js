@@ -59,18 +59,17 @@ var getAuthor = function(req, res, callback) {
     });
     return;
   }
-
 };
 
-var doAddComment = function(req, res, issue, author) {
+var doAddComment = function(req, res, issue) {
   if (!issue) {
     sendJSONresponse(res, 404, "issueid not found");
   } else {
     issue.comments.push({
-      author: author,
+      author: req.body.author,
       commentText: req.body.commentText
     });
-    comment.save(function(err, comment) {
+    issue.save(function(err, issue) {
       var thisComment;
       if (err) {
         sendJSONresponse(res, 400, err);
@@ -226,7 +225,7 @@ module.exports.issueCommentsDeleteOne = function(req, res) {
   );
 };
 
-/* adding subdocuments (reviews) to mongodb
+/* adding subdocuments (comments) to mongodb
 db.issues.update({
  "title" : "One More time???",
 }, {
@@ -234,7 +233,7 @@ db.issues.update({
    'comments' : {
        author: 'kyle boogen',
        _id: new ObjectId(),
-       reviewText: "more comments",
+       commentText: "more comments",
      }
   }
 });

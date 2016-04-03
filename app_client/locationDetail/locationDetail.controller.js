@@ -8,9 +8,7 @@
   function locationDetailCtrl ($routeParams, $location, $modal, loc8rData, authentication) {
     var vm = this;
     vm.locationid = $routeParams.locationid;
-
     vm.isLoggedIn = authentication.isLoggedIn();
-
     vm.currentPath = $location.path();
 
     loc8rData.locationById(vm.locationid)

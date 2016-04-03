@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('issueCommentModalCtrl', issueCommentModalCtrl);
 
-  issueCommentModalCtrl.$inject = ['$modalInstance', 'issueData'];
-  function issueCommentModalCtrl ($modalInstance, issueData) {
+  issueCommentModalCtrl.$inject = ['$modalInstance', 'issueData', 'loc8rData'];
+  function issueCommentModalCtrl ($modalInstance, issueData, loc8rData) {
     var vm = this;
     vm.issueData = issueData;
 
@@ -27,7 +27,7 @@
           vm.modal.close(data);
         })
         .error(function (data) {
-          vm.formError = "Your review has not been saved, please try again";
+          vm.formError = "Your comment has not been saved, please try again";
         });
       return false;
     };

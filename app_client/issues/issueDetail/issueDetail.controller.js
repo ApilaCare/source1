@@ -33,6 +33,10 @@
             }
           }
         });
+
+        modalInstance.result.then(function (data) {
+          vm.data.issue.comments.push(data);
+        });
       };
   }
 })();

@@ -38,10 +38,10 @@ router.put('/issues/:issueid', ctrlIssues.issuesUpdateOne);
 router.delete('/issues/:issueid', ctrlIssues.issuesDeleteOne);
 
 // issue comments
-router.post('/issues/:issueid/comments', ctrlIssueComments.issueCommentsCreate);
+router.post('/issues/:issueid/comments', auth, ctrlIssueComments.issueCommentsCreate);
 router.get('/issues/:issueid/comments/:commentid', ctrlIssueComments.issueCommentsReadOne);
-router.put('/issues/:issueid/comments/:commentid', ctrlIssueComments.issueCommentsUpdateOne);
-router.delete('/issues/:issueid/comments/:commentid', ctrlIssueComments.issueCommentsDeleteOne);
+router.put('/issues/:issueid/comments/:commentid', auth, ctrlIssueComments.issueCommentsUpdateOne);
+router.delete('/issues/:issueid/comments/:commentid', auth, ctrlIssueComments.issueCommentsDeleteOne);
 
 // appointments
 router.get('/appointments', ctrlAppointments.appointmentsList);
