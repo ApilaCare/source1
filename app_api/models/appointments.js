@@ -8,9 +8,9 @@ var appointmentCommentSchema = new mongoose.Schema({
 
 var locationSchema = new mongoose.Schema({
   name: {type: String, required: true},
-  doctor: {type: String, default: '1'},
-  phoneNumber: {type: String, default: '2'},
-  address: {type: String, default: '3'},
+  doctor: {type: String},
+  phoneNumber: {type: String},
+  address: {type: String},
 });
 
 var appointmentSchema = new mongoose.Schema({
@@ -18,9 +18,10 @@ var appointmentSchema = new mongoose.Schema({
   location: [locationSchema],
   residentGoing: {type: String, required: true},
   time: {type: Date, required: true},
-  transportation: {type: String, default: 'The Hospital'},
+  transportation: {type: String, default: 'We are Transporting'},
   comments: [appointmentCommentSchema],
-  submitDate: {type: Date, default: Date.now}
+  submitDate: {type: Date, default: Date.now, required: true},
+  submitBy: {type: String, required: true}
 });
 
 mongoose.model('Appointment', appointmentSchema);

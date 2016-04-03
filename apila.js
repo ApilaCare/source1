@@ -27,7 +27,6 @@ var app = express();
 var appClientFiles = [
   'app_client/app.js',
   'app_client/locations/locationsHome/locationsHome.controller.js',
-  'app_client/locations/addLocationModal/addLocationModal.controller.js',
   'app_client/issues/issueHome/issueHome.controller.js',
   'app_client/issues/issueDetail/issueDetail.controller.js',
   'app_client/issues/newIssueModal/newIssueModal.controller.js',
