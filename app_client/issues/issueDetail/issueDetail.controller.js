@@ -4,14 +4,14 @@
     .module('loc8rApp')
     .controller('issueDetailCtrl', issueDetailCtrl);
 
-  issueDetailCtrl.$inject = ['$routeParams', '$location', 'loc8rData', 'authentication', '$modal'];
-  function issueDetailCtrl ($routeParams, $location, loc8rData, authentication, $modal) {
+  issueDetailCtrl.$inject = ['$routeParams', '$location', 'apilaData', 'authentication', '$modal'];
+  function issueDetailCtrl ($routeParams, $location, apilaData, authentication, $modal) {
     var vm = this;
     vm.issueid = $routeParams.issueid;
     vm.isLoggedIn = authentication.isLoggedIn();
     vm.currentPath = $location.path();
 
-    loc8rData.issueById(vm.issueid)
+    apilaData.issueById(vm.issueid)
       .success(function(data) {
         vm.data = {issue:data};
         vm.pageHeader = {title:vm.data.issue.title};

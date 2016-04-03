@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('reviewModalCtrl', reviewModalCtrl);
 
-  reviewModalCtrl.$inject = ['$modalInstance', 'loc8rData', 'locationData'];
-  function reviewModalCtrl ($modalInstance, loc8rData, locationData) {
+  reviewModalCtrl.$inject = ['$modalInstance', 'apilaData', 'locationData'];
+  function reviewModalCtrl ($modalInstance, apilaData, locationData) {
     var vm = this;
     vm.locationData = locationData;
 
@@ -20,7 +20,7 @@
     };
 
     vm.doAddReview = function (locationid, formData) {
-      loc8rData.addReviewById(locationid, {
+      apilaData.addReviewById(locationid, {
         rating : formData.rating,
         reviewText : formData.reviewText
       })

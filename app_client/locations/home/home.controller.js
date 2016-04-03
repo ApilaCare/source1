@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', 'loc8rData', 'geolocation', '$modal'];
-  function homeCtrl ($scope, loc8rData, geolocation, $modal) {
+  homeCtrl.$inject = ['$scope', 'apilaData', 'geolocation', '$modal'];
+  function homeCtrl ($scope, apilaData, geolocation, $modal) {
     var vm = this;
     console.log(window.location);
     vm.pageHeader = {
@@ -21,7 +21,7 @@
       var lat = position.coords.latitude,
           lng = position.coords.longitude;
       vm.message = "Searching for nearby places";
-      loc8rData.locationByCoords(lat, lng)
+      apilaData.locationByCoords(lat, lng)
         .success(function(data) {
           vm.message = data.length > 0 ? "" : "No locations found nearby";
           vm.data = { locations: data };
@@ -48,7 +48,7 @@
 
     vm.popupNewLocationForm = function () {
       var modalInstance = $modal.open({
-        templateUrl: '/addLocationModal/addLocationModal.view.html',
+        templateUrl: '/locations/addLocationModal/addLocationModal.view.html',
         controller: 'newLocationModalCtrl as vm'
       });
     };

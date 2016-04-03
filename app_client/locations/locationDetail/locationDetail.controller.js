@@ -4,14 +4,14 @@
     .module('loc8rApp')
     .controller('locationDetailCtrl', locationDetailCtrl);
 
-  locationDetailCtrl.$inject = ['$routeParams', '$location', '$modal', 'loc8rData', 'authentication'];
-  function locationDetailCtrl ($routeParams, $location, $modal, loc8rData, authentication) {
+  locationDetailCtrl.$inject = ['$routeParams', '$location', '$modal', 'apilaData', 'authentication'];
+  function locationDetailCtrl ($routeParams, $location, $modal, apilaData, authentication) {
     var vm = this;
     vm.locationid = $routeParams.locationid;
     vm.isLoggedIn = authentication.isLoggedIn();
     vm.currentPath = $location.path();
 
-    loc8rData.locationById(vm.locationid)
+    apilaData.locationById(vm.locationid)
       .success(function(data) {
         vm.data = { location: data };
         vm.pageHeader = {
@@ -24,7 +24,7 @@
 
     vm.popupReviewForm = function () {
       var modalInstance = $modal.open({
-        templateUrl: '/reviewModal/reviewModal.view.html',
+        templateUrl: '/locations/reviewModal/reviewModal.view.html',
         controller: 'reviewModalCtrl as vm',
         resolve : {
           locationData : function () {

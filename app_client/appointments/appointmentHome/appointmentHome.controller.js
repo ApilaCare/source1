@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('appointmentHomeCtrl', appointmentHomeCtrl);
 
-  appointmentHomeCtrl.$inject = ['$scope', 'loc8rData'];
-  function appointmentHomeCtrl ($scope, loc8rData) {
+  appointmentHomeCtrl.$inject = ['$scope', 'apilaData', '$modal'];
+  function appointmentHomeCtrl ($scope, apilaData, $modal) {
     var vm = this;
     vm.pageHeader = {
       title: 'Apila',
@@ -15,7 +15,7 @@
 
     // function parameter for 'community'
       vm.message = "Searching for nearby places";
-      loc8rData.appointmentsList()
+      apilaData.appointmentsList()
         .success(function(data) {
           vm.message = data.length > 0 ? "" : "No locations found nearby";
           vm.data = { appointments: data };
@@ -29,6 +29,13 @@
     vm.showError = function (error) {
       $scope.$apply(function() {
         vm.message = error.message;
+      });
+    };
+
+    vm.popupNewAppointmentForm = function () {
+      var modalInstance = $modal.open({
+        templateUrl: '/appointments/addAppointmentModal/addAppointmentModal.view.html',
+        controller: 'newAppointmentModalCtrl as vm'
       });
     };
   }

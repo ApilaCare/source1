@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('issueHomeCtrl', issueHomeCtrl);
 
-  issueHomeCtrl.$inject = ['$scope', 'loc8rData', 'authentication', '$modal'];
-  function issueHomeCtrl ($scope, loc8rData, authentication, $modal) {
+  issueHomeCtrl.$inject = ['$scope', 'apilaData', 'authentication', '$modal'];
+  function issueHomeCtrl ($scope, apilaData, authentication, $modal) {
     var vm = this;
     vm.isLoggedIn = authentication.isLoggedIn();
     vm.pageHeader = {
@@ -16,7 +16,7 @@
 
     // function parameter for 'community'
       vm.message = "Searching for nearby places";
-      loc8rData.issuesList()
+      apilaData.issuesList()
         .success(function(data) {
           vm.message = data.length > 0 ? "" : "No locations found nearby";
           vm.data = { issues: data };

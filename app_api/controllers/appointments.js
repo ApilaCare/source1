@@ -10,19 +10,18 @@ module.exports.appointmentsCreate = function (req, res) {
   console.log(req.body);
   Appoint.create({
     reason: req.body.reason,
-    location: {
-      name: req.body.name,
-      doctor: req.body.doctor,
-      phoneNumber: req.body.phoneNumber,
-      address: {
-        street: req.body.street,
-        region: req.body.region,
-      },
-    },
+    location: [{
+      name: req.body.name1,
+      doctor: req.body.doctor1,
+      phoneNumber: req.body.phoneNumber1,
+      address: [{
+        street: req.body.street1,
+        region: req.body.region1,
+      }],
+    }],
     residentGoing: req.body.residentGoing,
     time: req.body.time,
     transportation: req.body.transportation,
-    accompaniedBy: req.body.accompaniedBy.split(","),
   }, function(err, appointment) {
     if (err) {
       console.log(err);
@@ -105,7 +104,6 @@ module.exports.appointmentsUpdateOne = function(req, res) {
         appointment.residentGoing = req.body.residentGoing,
         appointment.time = req.body.time,
         appointment.transportation = req.body.transportation,
-        appointment.accompaniedBy = req.body.accompaniedBy.split(","),
         appointment.save(function(err, appointment) {
           if (err) {
             sendJSONresponse(res, 404, err);

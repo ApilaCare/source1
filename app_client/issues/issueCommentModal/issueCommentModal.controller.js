@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('issueCommentModalCtrl', issueCommentModalCtrl);
 
-  issueCommentModalCtrl.$inject = ['$modalInstance', 'issueData', 'loc8rData'];
-  function issueCommentModalCtrl ($modalInstance, issueData, loc8rData) {
+  issueCommentModalCtrl.$inject = ['$modalInstance', 'issueData', 'apilaData'];
+  function issueCommentModalCtrl ($modalInstance, issueData, apilaData) {
     var vm = this;
     vm.issueData = issueData;
 
@@ -20,7 +20,7 @@
     };
 
     vm.doAddIssueComment = function (issueid, formData) {
-      loc8rData.addIssueCommentById(issueid, {
+      apilaData.addIssueCommentById(issueid, {
         commentText : formData.commentText
       })
         .success(function (data) {

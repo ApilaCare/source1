@@ -2,10 +2,10 @@
 
   angular
     .module('loc8rApp')
-    .service('loc8rData', loc8rData);
+    .service('apilaData', apilaData);
 
-  loc8rData.$inject = ['$http', 'authentication'];
-  function loc8rData ($http, authentication) {
+  apilaData.$inject = ['$http', 'authentication'];
+  function apilaData ($http, authentication) {
     var locationByCoords = function (lat, lng) {
       return $http.get('/api/locations?lng=' + lng + '&lat=' + lat + '&maxDistance=20');
     };
