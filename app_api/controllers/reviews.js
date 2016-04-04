@@ -7,10 +7,11 @@ var sendJSONresponse = function(res, status, content) {
   res.json(content);
 };
 
-/* POST a new review, providing a locationid */
-/* /api/locations/:locationid/reviews */
+// POST a new review, providing a locationid
+// /api/locations/:locationid/reviews
 module.exports.reviewsCreate = function(req, res) {
   console.log("Reviewing");
+  // call getAuthor function ans pass original controller code in as a callback; pass user's name into callback
   getAuthor(req, res, function (req, res, userName) {
     if (req.params.locationid) {
       Loc
@@ -21,6 +22,7 @@ module.exports.reviewsCreate = function(req, res) {
             if (err) {
               sendJSONresponse(res, 400, err);
             } else {
+              // pass in the userName when creating a review
               doAddReview(req, res, location, userName);
             }
           }
@@ -35,8 +37,10 @@ module.exports.reviewsCreate = function(req, res) {
 
 var getAuthor = function(req, res, callback) {
   console.log("Finding author with email " + req.payload.email);
+  // validate that JWT information is on request object
   if (req.payload.email) {
     User
+      // user email address to find user
       .findOne({ email : req.payload.email })
       .exec(function(err, user) {
         if (!user) {
@@ -50,6 +54,7 @@ var getAuthor = function(req, res, callback) {
           return;
         }
         console.log(user);
+        // run callback, passing user's name
         callback(req, res, user.name);
       });
 
@@ -60,6 +65,7 @@ var getAuthor = function(req, res, callback) {
     return;
   }
 };
+
 
 var doAddReview = function(req, res, location, author) {
   if (!location) {

@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var jwt = require('express-jwt');
 var auth = jwt({
+  // set secret using same environment variable as before
   secret: process.env.JWT_SECRET,
+  // define property on req to be payload
   userProperty: 'payload'
 });
 
@@ -21,7 +23,8 @@ router.put('/locations/:locationid', ctrlLocations.locationsUpdateOne);
 router.delete('/locations/:locationid', ctrlLocations.locationsDeleteOne);
 
 // reviews
-router.post('/locations/:locationid/reviews',auth, ctrlReviews.reviewsCreate);
+// only logged in users can post, put, or delete reviews
+router.post('/locations/:locationid/reviews', auth, ctrlReviews.reviewsCreate);
 router.get('/locations/:locationid/reviews/:reviewid', ctrlReviews.reviewsReadOne);
 router.put('/locations/:locationid/reviews/:reviewid', auth, ctrlReviews.reviewsUpdateOne);
 router.delete('/locations/:locationid/reviews/:reviewid', auth, ctrlReviews.reviewsDeleteOne);

@@ -7,12 +7,14 @@
   authentication.$inject = ['$http', '$window'];
   function authentication ($http, $window) {
 
+    // create a saveToken method to read a value from localStorage
     var saveToken = function (token) {
-      $window.localStorage['loc8r-token'] = token;
+      $window.localStorage['apila-token'] = token;
     };
 
+    // create a getToken method to read a value from localStorage
     var getToken = function () {
-      return $window.localStorage['loc8r-token'];
+      return $window.localStorage['apila-token'];
     };
 
     var isLoggedIn = function() {
@@ -51,9 +53,10 @@
     };
 
     logout = function() {
-      $window.localStorage.removeItem('loc8r-token');
+      $window.localStorage.removeItem('apila-token');
     };
 
+    // expose methods to application
     return {
       currentUser : currentUser,
       saveToken : saveToken,
