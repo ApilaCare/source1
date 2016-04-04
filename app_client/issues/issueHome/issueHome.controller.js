@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('issueHomeCtrl', issueHomeCtrl);
 
-  issueHomeCtrl.$inject = ['$scope', 'apilaData', 'authentication', '$modal'];
-  function issueHomeCtrl ($scope, apilaData, authentication, $modal) {
+  issueHomeCtrl.$inject = ['$scope', 'apilaData', 'authentication', '$uibModal'];
+  function issueHomeCtrl ($scope, apilaData, authentication, $uibModal) {
     var vm = this;
     vm.isLoggedIn = authentication.isLoggedIn();
     vm.pageHeader = {
@@ -34,7 +34,7 @@
     };
 
     vm.popupNewIssueForm = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         templateUrl: '/issues/newIssueModal/newIssueModal.view.html',
         controller: 'newIssueModalCtrl as vm'
       });

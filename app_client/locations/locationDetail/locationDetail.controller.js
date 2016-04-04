@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('locationDetailCtrl', locationDetailCtrl);
 
-  locationDetailCtrl.$inject = ['$routeParams', '$location', '$modal', 'apilaData', 'authentication'];
-  function locationDetailCtrl ($routeParams, $location, $modal, apilaData, authentication) {
+  locationDetailCtrl.$inject = ['$routeParams', '$location', '$uibModal', 'apilaData', 'authentication'];
+  function locationDetailCtrl ($routeParams, $location, $uibModal, apilaData, authentication) {
     var vm = this;
     vm.locationid = $routeParams.locationid;
     vm.isLoggedIn = authentication.isLoggedIn();
@@ -23,7 +23,7 @@
       });
 
     vm.popupReviewForm = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         templateUrl: '/locations/reviewModal/reviewModal.view.html',
         controller: 'reviewModalCtrl as vm',
         resolve : {

@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('issueDetailCtrl', issueDetailCtrl);
 
-  issueDetailCtrl.$inject = ['$routeParams', '$location', 'apilaData', 'authentication', '$modal'];
-  function issueDetailCtrl ($routeParams, $location, apilaData, authentication, $modal) {
+  issueDetailCtrl.$inject = ['$routeParams', '$location', 'apilaData', 'authentication', '$uibModal'];
+  function issueDetailCtrl ($routeParams, $location, apilaData, authentication, $uibModal) {
     var vm = this;
     vm.issueid = $routeParams.issueid;
     vm.isLoggedIn = authentication.isLoggedIn();
@@ -21,7 +21,7 @@
       });
 
       vm.popupIssueCommentForm = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
           templateUrl: '/issues/issueCommentModal/issueCommentModal.view.html',
           controller: 'issueCommentModalCtrl as vm',
           resolve : {

@@ -44,7 +44,7 @@ var appClientFiles = [
   'app_client/common/services/geolocation.service.js',
   'app_client/common/services/apilaData.service.js',
   'app_client/common/filters/formatDistance.filter.js',
-  'app_client/common/filters/addHtmlLineBreaks.filter.js',
+  'app_client/common/filters/addHtmlLinebreaks.filter.js',
   'app_client/common/directives/navigation/navigation.controller.js',
   'app_client/common/directives/navigation/navigation.directive.js',
   'app_client/common/directives/footerGeneric/footerGeneric.directive.js',
