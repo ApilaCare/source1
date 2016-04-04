@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('appointmentDetailCtrl', appointmentDetailCtrl);
 
-  appointmentDetailCtrl.$inject = ['$routeParams', '$location', '$modal', 'apilaData', 'authentication'];
-  function appointmentDetailCtrl ($routeParams, $location, $modal, apilaData, authentication) {
+  appointmentDetailCtrl.$inject = ['$routeParams', '$location', '$uibModal', 'apilaData', 'authentication'];
+  function appointmentDetailCtrl ($routeParams, $location, $uibModal, apilaData, authentication) {
     var vm = this;
     vm.appointmentid = $routeParams.appointmentid;
 

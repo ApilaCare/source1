@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('newAppointmentModalCtrl', newAppointmentModalCtrl);
 
-  newAppointmentModalCtrl.$inject = ['$modalInstance'];
-  function newAppointmentModalCtrl ($modalInstance) {
+  newAppointmentModalCtrl.$inject = ['$uibModalInstance'];
+  function newAppointmentModalCtrl ($uibModalInstance) {
     var vm = this;
 
     vm.onSubmit = function () {
@@ -33,10 +33,10 @@
 
     vm.modal = {
       close : function (result) {
-        $modalInstance.close(result);
+        $uibModalInstance.close(result);
       },
       cancel : function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
       }
     };
 

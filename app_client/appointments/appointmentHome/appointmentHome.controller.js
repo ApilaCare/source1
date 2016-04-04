@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('appointmentHomeCtrl', appointmentHomeCtrl);
 
-  appointmentHomeCtrl.$inject = ['$scope', 'apilaData', '$modal'];
-  function appointmentHomeCtrl ($scope, apilaData, $modal) {
+  appointmentHomeCtrl.$inject = ['$scope', 'apilaData', '$uibModal'];
+  function appointmentHomeCtrl ($scope, apilaData, $uibModal) {
     var vm = this;
     vm.pageHeader = {
       title: 'Apila',
@@ -33,7 +33,7 @@
     };
 
     vm.popupNewAppointmentForm = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         templateUrl: '/appointments/addAppointmentModal/addAppointmentModal.view.html',
         controller: 'newAppointmentModalCtrl as vm'
       });

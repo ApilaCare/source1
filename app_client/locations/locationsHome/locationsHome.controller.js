@@ -4,8 +4,8 @@
     .module('loc8rApp')
     .controller('locationHomeCtrl', locationHomeCtrl);
 
-  locationHomeCtrl.$inject = ['$scope', 'apilaData', 'geolocation', '$modal'];
-  function locationHomeCtrl ($scope, apilaData, geolocation, $modal) {
+  locationHomeCtrl.$inject = ['$scope', 'apilaData', 'geolocation', '$uibModal'];
+  function locationHomeCtrl ($scope, apilaData, geolocation, $uibModal) {
     var vm = this;
     console.log(window.location);
     vm.pageHeader = {
@@ -47,7 +47,7 @@
     geolocation.getPosition(vm.getData,vm.showError,vm.noGeo);
 
     vm.popupNewLocationForm = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         templateUrl: '/locations/addLocationModal/addLocationModal.view.html',
         controller: 'newLocationModalCtrl as vm'
       });
