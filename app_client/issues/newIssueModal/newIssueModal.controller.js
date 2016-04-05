@@ -4,16 +4,16 @@
     .module('loc8rApp')
     .controller('newIssueModalCtrl', newIssueModalCtrl);
 
-  newIssueModalCtrl.$inject = ['$modalInstance'];
-  function newIssueModalCtrl ($modalInstance) {
+  newIssueModalCtrl.$inject = ['$uibModalInstance'];
+  function newIssueModalCtrl ($uibModalInstance) {
     var vm = this;
 
     vm.modal = {
       close : function (result) {
-        $modalInstance.close(result);
+        $uibModalInstance.close(result);
       },
       cancel : function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
       }
     };
 

@@ -48,9 +48,10 @@ router.delete('/issues/:issueid/comments/:commentid', auth, ctrlIssueComments.is
 
 // appointments
 router.get('/appointments', ctrlAppointments.appointmentsList);
-router.post('/appointments', ctrlAppointments.appointmentsCreate);
+//router.post('/appointments', ctrlAppointments.appointmentsCreate);
 router.get('/appointments/:appointmentid', ctrlAppointments.appointmentsReadOne);
 router.put('/appointments/:appointmentid', ctrlAppointments.appointmentsUpdateOne);
 router.delete('/appointments/:appointmentid', ctrlAppointments.appointmentsDeleteOne);
+router.post('/appointments/new', auth, ctrlAppointments.appointmentsCreate);
 
 module.exports = router;
