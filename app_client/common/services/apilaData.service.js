@@ -53,6 +53,15 @@
     var appointmentById = function (appointmentid) {
       return $http.get('/api/appointments/' + appointmentid);
     };
+     
+    //makes a call to the api to add a new appointment
+    var addAppointment = function (data) {
+       return $http.post('/api/appointments/new', data, {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+        });    
+    }
 
     return {
       locationByCoords : locationByCoords,
@@ -63,6 +72,7 @@
       addIssueCommentById : addIssueCommentById,
       appointmentsList : appointmentsList,
       appointmentById : appointmentById,
+      addAppointment: addAppointment,
     };
   }
 

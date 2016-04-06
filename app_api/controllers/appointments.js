@@ -6,23 +6,30 @@ var sendJSONresponse = function(res, status, content) {
   res.json(content);
 };
 
+/* POST /api/appointments/new */
 module.exports.appointmentsCreate = function (req, res) {
-  console.log(req.body);
+  
+  //here we join the date&time that the user selected from the date&time pickers
+  var d = new Date(req.body.date);
+  var t = new Date(req.body.time);
+
+  d.setHours(t.getHours());
+  d.setMinutes(t.getMinutes());
+  d.setSeconds(t.getSeconds());
+
+  //create appointment from the inputed data
   Appoint.create({
     reason: req.body.reason,
     location: [{
-      name: req.body.name1,
-      doctor: req.body.doctor1,
-      phoneNumber: req.body.phoneNumber1,
-      address: [{
-        street: req.body.street1,
-        region: req.body.region1,
-      }],
+      name: req.body.location.name,
+      doctor: req.body.location.doctor,
+      phoneNumber: req.body.location.phone,
+      address: req.body.location.address
     }],
     residentGoing: req.body.residentGoing,
-    time: req.body.time,
-    transportation: req.body.transportation,
-  }, function(err, appointment) {
+    time: req.body.date,
+    submitBy: req.payload.name,
+  }, function(err, appointment) {      
     if (err) {
       console.log(err);
       sendJSONresponse(res, 400, err);
@@ -115,6 +122,7 @@ module.exports.appointmentsUpdateOne = function(req, res) {
   );
 };
 
+
 /* DELETE /api/appointments/:appointmentid */
 module.exports.appointmentsDeleteOne = function(req, res) {
   var appointmentid = req.params.appointmentid;
@@ -136,5 +144,36 @@ module.exports.appointmentsDeleteOne = function(req, res) {
     sendJSONresponse(res, 404, {
       "message": "No appointmentid"
     });
+  }
+};
+
+var getAuthor = function(req, res, callback) {
+  console.log("Finding author with email " + req.payload.email);
+  // validate that JWT information is on request object
+  if (req.payload.email) {
+    User
+      // user email address to find user
+      .findOne({ email : req.payload.email })
+      .exec(function(err, user) {
+        if (!user) {
+          sendJSONresponse(res, 404, {
+            "message": "User not found"
+          });
+          return;
+        } else if (err) {
+          console.log(err);
+          sendJSONresponse(res, 404, err);
+          return;
+        }
+        console.log(user);
+        // run callback, passing user's name
+        callback(req, res, user.name);
+      });
+
+  } else {
+    sendJSONresponse(res, 404, {
+      "message": "User not found"
+    });
+    return;
   }
 };
