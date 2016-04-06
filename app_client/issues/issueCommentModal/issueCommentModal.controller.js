@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .controller('issueCommentModalCtrl', issueCommentModalCtrl);
 
   issueCommentModalCtrl.$inject = ['$modalInstance', 'issueData', 'apilaData'];

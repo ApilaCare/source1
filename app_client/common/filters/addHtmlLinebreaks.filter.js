@@ -1,7 +1,7 @@
 (function () {
-  
+
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .filter('addHtmlLineBreaks', addHtmlLineBreaks);
 
   function addHtmlLineBreaks () {

@@ -1,14 +1,14 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .controller('appointmentDetailCtrl', appointmentDetailCtrl);
 
   appointmentDetailCtrl.$inject = ['$routeParams', '$location', '$uibModal', 'apilaData', 'authentication'];
   function appointmentDetailCtrl ($routeParams, $location, $uibModal, apilaData, authentication) {
     var vm = this;
     vm.appointmentid = $routeParams.appointmentid;
-
+    vm.isLoggedIn = authentication.isLoggedIn();
     vm.currentPath = $location.path();
 
     apilaData.appointmentById(vm.appointmentid)

@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .controller('aboutCtrl', aboutCtrl);
 
   function aboutCtrl() {

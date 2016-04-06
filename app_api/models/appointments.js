@@ -1,11 +1,5 @@
 var mongoose = require('mongoose');
 
-var appointmentCommentSchema = new mongoose.Schema({
-    author: {type: String, required: true},
-    commentText: {type: String, required: true},
-    createdOn: {type: Date, default: Date.now}
-});
-
 var locationSchema = new mongoose.Schema({
   name: {type: String, required: true},
   doctor: {type: String},
@@ -19,7 +13,6 @@ var appointmentSchema = new mongoose.Schema({
   residentGoing: {type: String, required: true},
   time: {type: Date, required: true},
   transportation: {type: String, default: 'We are Transporting'},
-  comments: [appointmentCommentSchema],
   submitDate: {type: Date, default: Date.now, required: true},
   submitBy: {type: String, required: true}
 });
@@ -27,7 +20,7 @@ var appointmentSchema = new mongoose.Schema({
 mongoose.model('Appointment', appointmentSchema);
 
 /* adding documents to mongodb
-db.appointment.save({
+db.appointments.save({
 
 })
 */

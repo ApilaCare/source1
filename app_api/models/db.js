@@ -54,10 +54,10 @@ require('./users');
 /*
 
 Restore from local to live database
-mongorestore -h ds061787.mlab.com:61787 -d heroku_2hcbl7gs -u heroku_2hcbl7gs -p HDFS9745Hfds324Hsdfkjs ~/documents/loc8r/mongodump/loc8r
+mongorestore -h ds061787.mlab.com:61787 -d heroku_2hcbl7gs -u heroku_2hcbl7gs -p randomPassword ~/documents/loc8r/mongodump/loc8r
 
 Connect using the mongo shell
-mongo ds061787.mlab.com:61787/heroku_2hcbl7gs -u heroku_silly2132 -p sdf097sfsdSDFsdf9fds
+mongo ds061787.mlab.com:61787/heroku_2hcbl7gs -u heroku_silly2132 -p randomPassword
 
 
 */

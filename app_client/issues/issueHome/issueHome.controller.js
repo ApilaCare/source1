@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .controller('issueHomeCtrl', issueHomeCtrl);
 
   issueHomeCtrl.$inject = ['$scope', 'apilaData', 'authentication', '$uibModal'];

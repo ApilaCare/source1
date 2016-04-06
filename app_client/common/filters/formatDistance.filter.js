@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .filter('formatDistance', formatDistance);
 
   var _isNumeric = function (n) {

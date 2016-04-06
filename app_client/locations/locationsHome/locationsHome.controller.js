@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .controller('locationHomeCtrl', locationHomeCtrl);
 
   locationHomeCtrl.$inject = ['$scope', 'apilaData', 'geolocation', '$uibModal'];

@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .controller('appointmentHomeCtrl', appointmentHomeCtrl);
 
   appointmentHomeCtrl.$inject = ['$scope', 'apilaData', '$uibModal'];
@@ -17,7 +17,7 @@
       vm.message = "Searching for nearby places";
       apilaData.appointmentsList()
         .success(function(data) {
-          vm.message = data.length > 0 ? "" : "No locations found nearby";
+          vm.message = data.length > 0 ? "" : "No appointments were found";
           vm.data = { appointments: data };
           console.log(vm.data);
         })
@@ -25,7 +25,7 @@
           vm.message = "Sorry, something's gone wrong, please try again later";
         });
 
-      
+
     vm.showError = function (error) {
       $scope.$apply(function() {
         vm.message = error.message;
