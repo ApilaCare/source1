@@ -35,8 +35,7 @@ module.exports.appointmentsCreate = function (req, res) {
       console.log(err);
       sendJSONresponse(res, 400, err);
     } else {
-      console.log(appointment);
-      sendJSONresponse(res, 201, appointment);
+      sendJSONresponse(res, 200, appointment);
     }
   });
 };
@@ -46,7 +45,6 @@ module.exports.appointmentsList = function(req, res) {
   Appoint.find({
     time: {$gte: new Date()}
   }, function(err, appointments){
-       console.log(appointments);
        sendJSONresponse(res, 200, appointments)
   });
 };

@@ -9,7 +9,7 @@
     var vm = this;
 
     vm.isLoggedIn = authentication.isLoggedIn();
-
+      
     vm.onSubmit = function () {
       vm.formError = "";
 
@@ -23,15 +23,20 @@
 
     vm.doAddAppointment = function (formData) {
         apilaData.addAppointment(formData)
-        .success(function (data) {
-          vm.modal.close(data);
+        .success(function (appoint) {
+
+          //add to list
+          apilaData.appointList.appointments.push(appoint);
+            
+          vm.modal.close(appoint);
         })
-        .error(function (data) {
+        .error(function (appoint) {
           vm.formError = "Something went wrong with the appointment, try again";
         });
       return false;
     };
 
+      
     //settings for the datepicker popup
     vm.popup = {
         opened: false

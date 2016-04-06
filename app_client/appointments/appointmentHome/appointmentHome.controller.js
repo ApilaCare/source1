@@ -18,8 +18,9 @@
       apilaData.appointmentsList()
         .success(function(data) {
           vm.message = data.length > 0 ? "" : "No appointments were found";
-          vm.data = { appointments: data };
-          console.log(vm.data);
+
+          apilaData.appointList = { appointments: data };
+          vm.data = apilaData.appointList;
         })
         .error(function (e) {
           vm.message = "Sorry, something's gone wrong, please try again later";
