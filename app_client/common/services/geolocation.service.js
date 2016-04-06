@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .service('geolocation', geolocation);
 
   function geolocation () {

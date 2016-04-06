@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .controller('appointmentHomeCtrl', appointmentHomeCtrl);
 
   appointmentHomeCtrl.$inject = ['$scope', 'apilaData', '$uibModal'];
@@ -25,7 +25,7 @@
           vm.message = "Sorry, something's gone wrong, please try again later";
         });
 
-      
+
     vm.showError = function (error) {
       $scope.$apply(function() {
         vm.message = error.message;

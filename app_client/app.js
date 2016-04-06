@@ -1,6 +1,6 @@
 (function () {
 
-  angular.module('loc8rApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap']);
+  angular.module('apilaApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap']);
 
   function config ($routeProvider, $locationProvider) {
     $routeProvider
@@ -61,7 +61,7 @@
   }
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .config(['$routeProvider', '$locationProvider', config]);
 
 })();

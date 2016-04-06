@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .controller('appointmentDetailCtrl', appointmentDetailCtrl);
 
   appointmentDetailCtrl.$inject = ['$routeParams', '$location', '$uibModal', 'apilaData', 'authentication'];

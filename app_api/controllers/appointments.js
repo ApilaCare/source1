@@ -8,7 +8,7 @@ var sendJSONresponse = function(res, status, content) {
 
 /* POST /api/appointments/new */
 module.exports.appointmentsCreate = function (req, res) {
-  
+
   //here we join the date&time that the user selected from the date&time pickers
   var d = new Date(req.body.date);
   var t = new Date(req.body.time);
@@ -29,7 +29,8 @@ module.exports.appointmentsCreate = function (req, res) {
     residentGoing: req.body.residentGoing,
     time: req.body.date,
     submitBy: req.payload.name,
-  }, function(err, appointment) {      
+    transportation: req.body.transportation,
+  }, function(err, appointment) {
     if (err) {
       console.log(err);
       sendJSONresponse(res, 400, err);

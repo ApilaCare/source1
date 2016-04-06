@@ -1,23 +1,31 @@
 <div class="modal-content">
   <form id="addComment" name="addAppointment" role="form" ng-submit="vm.onSubmit()" class="form-horizontal">
+
+<!-- header of the modal.  defines title that is centered and X button to close -->
     <div class="modal-header">
       <button type="button" ng-click="vm.modal.cancel()" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
       <h4 id="myModalLabel" class="modal-title text-center">Create New Appointment</h4>
     </div>
     <div class="modal-body">
       <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
+
+<!-- form group for the reason of the appointment -->
       <div class="form-group">
-        <label for="author" class="col-xs-10 col-sm-3 control-label">Reason</label>
+        <label for="reason" class="col-xs-10 col-sm-3 control-label">Reason</label>
         <div class="col-sm-9">
           <input type="author" class="form-control" id="author" ng-model="vm.formData.reason" placeholder="reason for the appointment">
         </div>
       </div>
+
+<!-- form group for the location name -->
       <div class="form-group">
-        <label for="address" class="col-xs-10 col-sm-3 control-label">Resident Going</label>
+        <label for="resident going" class="col-xs-10 col-sm-3 control-label">Resident Going</label>
         <div class="col-sm-9">
           <input type="address" class="form-control" id="address" ng-model="vm.formData.residentGoing" placeholder="Which Resident is going to this appointment">
         </div>
       </div>
+
+<!-- form group for the location name -->
       <div class="form-group">
         <label for="address" class="col-xs-10 col-sm-3 control-label">Location Name</label>
         <div class="col-sm-9">
@@ -25,20 +33,23 @@
         </div>
       </div>
 
+<!-- form group for the doctor of the location.  This is indented one column -->
       <div class="form-group">
-        <label for="address" class="col-xs-10 col-sm-3  col-sm-offset-1 control-label">Doctor</label>
+        <label for="doctor" class="col-xs-10 col-sm-3  col-sm-offset-1 control-label">Doctor</label>
         <div class="col-sm-8">
           <input type="address" class="form-control" id="address" ng-model="vm.formData.location.doctor" placeholder="Doctor">
         </div>
       </div>
 
-     <div class="form-group">
-        <label for="address" class="col-xs-10 col-sm-3 col-sm-offset-1 control-label">Phone number</label>
+<!-- form group for the phone number of the location.  This is indented one column -->
+      <div class="form-group">
+        <label for="phone number" class="col-xs-10 col-sm-3 col-sm-offset-1 control-label">Phone number</label>
         <div class="col-sm-8">
-          <input type="address" class="form-control" id="address" ng-model="vm.formData.location.phone" placeholder="Phone number">
+          <input type="phoneNumber" class="form-control" id="phoneNumber" ng-model="vm.formData.location.phone" placeholder="Phone number">
         </div>
       </div>
 
+<!-- form group for the address of the location.  This is indented one column -->
         <div class="form-group">
         <label for="address" class="col-xs-10 col-sm-3 col-sm-offset-1 control-label">Address</label>
         <div class="col-sm-8">
@@ -46,22 +57,32 @@
         </div>
       </div>
 
+<!-- form group for the "Time and Date" field.  Time is frist in the row then Date.  The date needs some CSS to get inline. -->
       <div class="form-group">
-        <label for="address" class="col-xs-10 col-sm-3 control-label">Time and Date</label>
+        <label for="time and date" class="col-xs-10 col-sm-3 control-label">Time and Date</label>
         <div class="col-sm-4">
            <uib-timepicker ng-model="vm.formData.time" ng-change="changed()" hour-step="1" minute-step="1"></uib-timepicker>
         </div>
         <div class="col-sm-5">
             <p class="input-group">
-                <input type="text" class="form-control" id="address" ng-model="vm.formData.date" placeholder="What time is the appointment" uib-datepicker-popup="{{format}}" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-             <span class="input-group-btn">
-               <button type="button" class="btn btn-default" ng-click="vm.open()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
-          </span>
+              <input type="text" class="form-control" id="date" ng-model="vm.formData.date" placeholder="Select Date from Popup" uib-datepicker-popup="{{format}}" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="vm.open()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
+              </span>
             </p>
         </div>
-        </div>
+      </div>
 
+<!-- form group for the "Transportation" field.  -->
+        <div class="form-group">
+          <label for="transportation" class="col-xs-10 col-sm-3 control-label">Transportation</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="transportation" ng-model="vm.formData.transportation" placeholder="defaults to we are transporting">
+          </div>
+        </div>
     </div>
+
+    <!-- footer that defines the cancel button and submit button  -->
     <div class="modal-footer">
       <button ng-click="vm.modal.cancel()" type="button" class="btn btn-default">Cancel</button>
       <button type="submit" class="btn btn-primary">Submit New Appointment</button>

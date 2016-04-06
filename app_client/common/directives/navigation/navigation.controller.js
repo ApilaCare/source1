@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('apilaApp')
     .controller('navigationCtrl', navigationCtrl);
 
   navigationCtrl.$inject = ['$location', 'authentication'];
