@@ -50,6 +50,7 @@ module.exports.appointmentsList = function(req, res) {
   });
 };
 
+// get a single appointment details
 module.exports.appointmentsReadOne = function (req, res) {
   console.log('Finding appointment details', req.params);
   if (req.params && req.params.appointmentid) {
@@ -58,7 +59,7 @@ module.exports.appointmentsReadOne = function (req, res) {
       .exec(function(err, appointment) {
         if (!appointment) {
           sendJSONresponse(res, 404, {
-            "message": "appointmentid not found"
+            "message": "appointmentid not found (from controller)"
           });
           return;
         } else if (err) {

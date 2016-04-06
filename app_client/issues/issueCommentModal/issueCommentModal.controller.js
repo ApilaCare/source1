@@ -4,8 +4,8 @@
     .module('apilaApp')
     .controller('issueCommentModalCtrl', issueCommentModalCtrl);
 
-  issueCommentModalCtrl.$inject = ['$modalInstance', 'issueData', 'apilaData'];
-  function issueCommentModalCtrl ($modalInstance, issueData, apilaData) {
+  issueCommentModalCtrl.$inject = ['$uibModalInstance', 'issueData', 'apilaData'];
+  function issueCommentModalCtrl ($uibModalInstance, issueData, apilaData) {
     var vm = this;
     vm.issueData = issueData;
 
@@ -34,10 +34,10 @@
 
     vm.modal = {
       close : function (result) {
-        $modalInstance.close(result);
+        $uibModalInstance.close(result);
       },
       cancel : function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
       }
     };
 

@@ -18,7 +18,7 @@
       vm.message = "Searching for nearby places";
       apilaData.issuesList()
         .success(function(data) {
-          vm.message = data.length > 0 ? "" : "No locations found nearby";
+          vm.message = data.length > 0 ? "" : "No issues found";
           vm.data = { issues: data };
           console.log(vm.data);
         })

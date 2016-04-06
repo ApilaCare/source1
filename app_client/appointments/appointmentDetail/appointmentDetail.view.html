@@ -1,4 +1,3 @@
-
 <navigation></navigation>
 
 <div class="container">
@@ -8,50 +7,75 @@
     <div class="col-xs-12 col-md-9">
       <div class="row">
         <div class="col-xs-12 col-sm-6">
-          <p> Time of Appointment: {{ vm.data.appointment.time }}</p>
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h2 class="panel-title">appointment information</h2>
+              <h2 class="panel-title">Appointment Information</h2>
             </div>
             <div class="panel-body">
               <p>
-                Resident that is Going:
+                Reason:
+                <span class="pull-right">{{ vm.data.appointment.reason }}</span>
+              </p>
+              <p>
+                Resident Going:
                 <span class="pull-right">{{ vm.data.appointment.residentGoing }}</span>
+              </p>
+              <p ng-repeat="spot in vm.data.appointment.location">
+                Location:
+                <span class="pull-right">{{ spot.name }}</span>
+              </p>
+              <p>
+                Time:
+                <span class="pull-right">{{ vm.data.appointment.time | date : 'h:mm a, MMMM d' }}</span>
+              </p>
+              <p>
+                Transportation:
+                <span class="pull-right">{{ vm.data.appointment.transportation }}</span>
               </p>
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-6 issue-map">
+        <div class="col-xs-12 col-sm-6 appointment-map">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h2 class="panel-title">picture of a monkey</h2>
+              <h2 class="panel-title">Location Information</h2>
             </div>
             <div class="panel-body">
-              <img src="http://www.themarysue.com/wp-content/uploads/2014/01/monkey.jpg" class="img-responsive img-rounded">
+              <p ng-repeat="spot in vm.data.appointment.location">
+                Name:
+                <span class="pull-right">{{ spot.name }}</span>
+              </p>
+              <p ng-repeat="spot in vm.data.appointment.location">
+                Doctor:
+                <span class="pull-right">{{ spot.doctor }}</span>
+              </p>
+              <p ng-repeat="spot in vm.data.appointment.location">
+                Phone Number:
+                <span class="pull-right">{{ spot.phoneNumber }}</span>
+              </p>
+              <p ng-repeat="spot in vm.data.appointment.location">
+                Address:
+                <span class="pull-right">{{ spot.address }}</span>
+              </p>
             </div>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
-          <div class="panel panel-primary comment-panel">
+        <div class="col-xs-12 col-sm-6">
+          <div class="panel panel-primary">
             <div class="panel-heading">
-              <a ng-show="vm.isLoggedIn" ng-click="vm.popupAppointmentCommentForm()" class="btn btn-default pull-right">Add comment</a>
-              <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default pull-right">Login to add comment</a>
-              <h2 class="panel-title">Comments</h2>
+              <h2 class="panel-title">Submit Information</h2>
             </div>
-            <div class="panel-body comment-container">
-              <div class="row">
-                <div class="comment" ng-repeat="comment in vm.data.appointment.comments | orderBy:'createdOn':true">
-                  <div class="well well-sm comment-header">
-                    <span class="commentAuthor">{{ comment.author }}</span>
-                    <small class="commentTimestamp pull-right">{{ comment.createdOn | date : 'd MMMM yyyy' }}</small>
-                  </div>
-                  <div class="col-xs-12">
-                    <p ng-bind-html="comment.commentText | addHtmlLineBreaks"></p>
-                  </div>
-                </div>
-              </div>
+            <div class="panel-body">
+              <p>
+                Submitted By:
+                <span class="pull-right">{{ vm.data.appointment.submitBy }}</span>
+              </p>
+              <p>
+                Submitted Time:
+                <span class="pull-right">{{ vm.data.appointment.submitDate | date : 'h:mm a, MMMM d' }}</span>
+              </p>
             </div>
           </div>
         </div>
@@ -60,4 +84,3 @@
   </div>
   <footer-generic></footer-generic>
 </div>
-

@@ -49,7 +49,7 @@
         controller: 'appointmentHomeCtrl',
         controllerAs: 'vm'
       })
-      .when('/appointments/:appointmentsid', {
+      .when('/appointments/:appointmentid', {
         templateUrl: '/appointments/appointmentDetail/appointmentDetail.view.html',
         controller: 'appointmentDetailCtrl',
         controllerAs: 'vm'
