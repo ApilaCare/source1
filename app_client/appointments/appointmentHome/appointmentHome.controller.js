@@ -17,7 +17,7 @@
       vm.message = "Searching for nearby places";
       apilaData.appointmentsList()
         .success(function(data) {
-          vm.message = data.length > 0 ? "" : "No locations found nearby";
+          vm.message = data.length > 0 ? "" : "No appointments were found";
           vm.data = { appointments: data };
           console.log(vm.data);
         })
