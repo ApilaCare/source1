@@ -27,7 +27,7 @@ module.exports.appointmentsCreate = function (req, res) {
       address: req.body.location.address
     }],
     residentGoing: req.body.residentGoing,
-    time: req.body.date,
+    time: d,
     submitBy: req.payload.name,
     transportation: req.body.transportation,
   }, function(err, appointment) {
@@ -35,6 +35,7 @@ module.exports.appointmentsCreate = function (req, res) {
       console.log(err);
       sendJSONresponse(res, 400, err);
     } else {
+      console.log(appointment);
       sendJSONresponse(res, 200, appointment);
     }
   });

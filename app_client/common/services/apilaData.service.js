@@ -10,7 +10,6 @@
       return $http.get('/api/locations?lng=' + lng + '&lat=' + lat + '&maxDistance=20');
     };
 
-      
     var appointList = null;
       
     var locationById = function (locationid) {
