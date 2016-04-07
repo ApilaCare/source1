@@ -40,6 +40,13 @@
         controller: 'newAppointmentModalCtrl as vm'
       });
     };
+
+    vm.popupUpdateAppointmentForm = function () {
+      var modalInstance = $uibModal.open({
+        templateUrl: '/appointments/updateAppointmentModal/updateAppointmentModal.view.html',
+        controller: 'updateAppointmentModalCtrl as vm'
+      });
+    };
   }
 
 })();

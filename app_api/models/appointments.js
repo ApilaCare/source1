@@ -1,18 +1,12 @@
 var mongoose = require('mongoose');
 
-var locationSchema = new mongoose.Schema({
-  name: {type: String, required: true},
-  doctor: {type: String},
-  phoneNumber: {type: String},
-  address: {type: String},
-});
-
 var appointmentSchema = new mongoose.Schema({
   reason: {type: String, required: true},
-  location: [locationSchema],
+  locationName: {type: String, required: true},
   residentGoing: {type: String, required: true},
   time: {type: Date, required: true},
   transportation: {type: String, default: 'We are Transporting'},
+  cancel: {type: Boolean, default: false},
   submitDate: {type: Date, default: Date.now, required: true},
   submitBy: {type: String, required: true}
 });

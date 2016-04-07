@@ -11,7 +11,7 @@
     };
 
     var appointList = null;
-      
+
     var locationById = function (locationid) {
       return $http.get('/api/locations/' + locationid);
     };
@@ -64,6 +64,10 @@
         }
       });
     }
+
+    var updateAppointment = function (appointmentid) {
+      return $http.put('/api/appointments/' + appointmentid);
+    };
 
     return {
       locationByCoords : locationByCoords,

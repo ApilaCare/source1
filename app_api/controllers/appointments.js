@@ -20,12 +20,7 @@ module.exports.appointmentsCreate = function (req, res) {
   //create appointment from the inputed data
   Appoint.create({
     reason: req.body.reason,
-    location: [{
-      name: req.body.location.name,
-      doctor: req.body.location.doctor,
-      phoneNumber: req.body.location.phone,
-      address: req.body.location.address
-    }],
+    locationName: req.body.locationName,
     residentGoing: req.body.residentGoing,
     time: d,
     submitBy: req.payload.name,
@@ -101,18 +96,11 @@ module.exports.appointmentsUpdateOne = function(req, res) {
           return;
         }
         appointment.reason = req.body.reason,
-        appointment.location = {
-          name: req.body.name,
-          doctor: req.body.doctor,
-          phoneNumber: req.body.phoneNumber,
-          address: {
-            street: req.body.street,
-            region: req.body.region,
-          },
-        },
+        appointment.locationName = req.body.locationName,
         appointment.residentGoing = req.body.residentGoing,
         appointment.time = req.body.time,
         appointment.transportation = req.body.transportation,
+        appointment.cancel = req.body.cancel,
         appointment.save(function(err, appointment) {
           if (err) {
             sendJSONresponse(res, 404, err);

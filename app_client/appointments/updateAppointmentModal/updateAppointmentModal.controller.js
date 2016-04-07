@@ -2,10 +2,10 @@
 
   angular
     .module('apilaApp')
-    .controller('newAppointmentModalCtrl', newAppointmentModalCtrl);
+    .controller('updateAppointmentModalCtrl', updateAppointmentModalCtrl);
 
-  newAppointmentModalCtrl.$inject = ['$scope', '$uibModalInstance', 'apilaData', 'authentication'];
-  function newAppointmentModalCtrl ($scope, $uibModalInstance, apilaData, authentication) {
+  updateAppointmentModalCtrl.$inject = ['$scope', '$uibModalInstance', 'apilaData', 'authentication'];
+  function updateAppointmentModalCtrl ($scope, $uibModalInstance, apilaData, authentication) {
     var vm = this;
 
     vm.isLoggedIn = authentication.isLoggedIn();

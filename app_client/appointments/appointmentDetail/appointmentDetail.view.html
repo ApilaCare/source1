@@ -20,9 +20,9 @@
                 Resident Going:
                 <span class="pull-right">{{ vm.data.appointment.residentGoing }}</span>
               </p>
-              <p ng-repeat="spot in vm.data.appointment.location">
+              <p>
                 Location:
-                <span class="pull-right">{{ spot.name }}</span>
+                <span class="pull-right">{{ vm.data.appointment.locationName }}</span>
               </p>
               <p>
                 Time:
@@ -35,33 +35,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-6 appointment-map">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h2 class="panel-title">Location Information</h2>
-            </div>
-            <div class="panel-body">
-              <p ng-repeat="spot in vm.data.appointment.location">
-                Name:
-                <span class="pull-right">{{ spot.name }}</span>
-              </p>
-              <p ng-repeat="spot in vm.data.appointment.location">
-                Doctor:
-                <span class="pull-right">{{ spot.doctor }}</span>
-              </p>
-              <p ng-repeat="spot in vm.data.appointment.location">
-                Phone Number:
-                <span class="pull-right">{{ spot.phoneNumber }}</span>
-              </p>
-              <p ng-repeat="spot in vm.data.appointment.location">
-                Address:
-                <span class="pull-right">{{ spot.address }}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
+
         <div class="col-xs-12 col-sm-6">
           <div class="panel panel-primary">
             <div class="panel-heading">

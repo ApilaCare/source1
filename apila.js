@@ -34,6 +34,7 @@ var appClientFiles = [
   'app_client/appointments/appointmentHome/appointmentHome.controller.js',
   'app_client/appointments/appointmentDetail/appointmentDetail.controller.js',
   'app_client/appointments/addAppointmentModal/addAppointmentModal.controller.js',
+  'app_client/appointments/updateAppointmentModal/updateAppointmentModal.controller.js',
   'app_client/about/about.controller.js',
   'app_client/home/home.controller.js',
   'app_client/auth/login/login.controller.js',
