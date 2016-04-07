@@ -3,27 +3,35 @@
 
 <div class="container">
   <page-header content="vm.pageHeader"></page-header>
-
   <div class="row">
     <div class="col-xs-12 col-sm-12">
       <a ng-show="vm.isLoggedIn" ng-click="vm.popupNewAppointmentForm()" class="btn btn-default pull-right">New appointment</a>
       <label for="filter">Filter appointment results</label>
       <input id="filter" type="text", name="filter", ng-model="textFilter">
       <div class="error">{{ vm.message }}</div>
-      <div class="row list-group">
-        <div class="col-xs-12 list-group-item" ng-repeat="appointment in vm.data.appointments | filter : textFilter | orderBy:'time':false">
-          <h4>
-            <a href="appointments/{{ appointment._id }}">{{ appointment.reason }}</a>
-            <span class="badge pull-right badge-default">{{ appointment.time | date : 'h:mm a, MMMM d' }}</span>
-          </h4>
-          <p class="address" ng-repeat="spot in appointment.location">
-            {{ appointment.residentGoing }}
-            <span class="pull-right">{{ spot.name }}</span>
-          </p>
-        </div>
+      <div class="col-xs-12">
+        <table class="table table-hover table-condensed">
+          <thead>
+            <tr>
+              <th>Reason</th>
+              <th>Time</th>
+              <th>Resident</th>
+              <th>Location</th>
+              <th>Transporting</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="appointment in vm.data.appointments | filter : textFilter | orderBy:'time':false">
+            <tr>
+              <td><a href="appointments/{{ appointment._id }}">{{ appointment.reason }}</a></td>
+              <td>{{ appointment.time | date : 'h:mm a, MMMM d' }}</td>
+              <td>{{ appointment.residentGoing }}</td>
+              <td ng-repeat="spot in appointment.location">{{ spot.name }}</td>
+              <td>{{ appointment.transportation }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-
   <footer-generic></footer-generic>
 </div>
