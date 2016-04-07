@@ -79,6 +79,7 @@
       appointmentsList : appointmentsList,
       appointmentById : appointmentById,
       addAppointment: addAppointment,
+      updateAppointment : updateAppointment,
     };
   }
 

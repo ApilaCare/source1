@@ -13,15 +13,15 @@
       <div class="form-group">
         <label for="reason" class="col-xs-10 col-sm-3 control-label">Reason</label>
         <div class="col-sm-9">
-          <input type="author" class="form-control" id="author" ng-model="vm.formData.reason" placeholder="reason for the appointment">
+          <input type="author" class="form-control" id="author" ng-model="vm.formData.reason" placeholder="">
         </div>
       </div>
 
-<!-- form group for the location name -->
+<!-- form group for the resident going-->
       <div class="form-group">
         <label for="resident going" class="col-xs-10 col-sm-3 control-label">Resident Going</label>
         <div class="col-sm-9">
-          <input type="address" class="form-control" id="address" ng-model="vm.formData.residentGoing" placeholder="Which Resident is going to this appointment">
+          <input type="address" class="form-control" id="address" ng-model="vm.formData.residentGoing" placeholder="">
         </div>
       </div>
 
@@ -29,7 +29,15 @@
       <div class="form-group">
         <label for="address" class="col-xs-10 col-sm-3 control-label">Location Name</label>
         <div class="col-sm-9">
-          <input type="address" class="form-control" id="address" ng-model="vm.formData.locationName" placeholder="Name of the location">
+          <input type="address" class="form-control" id="address" ng-model="vm.formData.locationName" placeholder="">
+        </div>
+      </div>
+
+<!-- form group for the location name -->
+      <div class="form-group">
+        <label for="address" class="col-xs-10 col-sm-3 control-label">Doctor</label>
+        <div class="col-sm-9">
+          <input type="address" class="form-control" id="address" ng-model="vm.formData.locationDoctor" placeholder="">
         </div>
       </div>
 
@@ -41,7 +49,7 @@
         </div>
         <div class="col-sm-5">
             <p class="input-group">
-              <input type="text" class="form-control" id="date" ng-model="vm.formData.date" placeholder="Select Date from Popup" uib-datepicker-popup="{{format}}" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+              <input type="text" class="form-control" id="date" ng-model="vm.formData.date" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="vm.open()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -53,7 +61,7 @@
         <div class="form-group">
           <label for="transportation" class="col-xs-10 col-sm-3 control-label">Transportation</label>
           <div class="col-sm-9">
-            <input class="form-control" id="transportation" ng-model="vm.formData.transportation" placeholder="defaults to we are transporting">
+            <input class="form-control" id="transportation" ng-model="vm.formData.transportation" placeholder="We are Transporting">
           </div>
         </div>
     </div>

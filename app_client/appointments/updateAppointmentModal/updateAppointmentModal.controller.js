@@ -12,16 +12,10 @@
 
     vm.onSubmit = function () {
       vm.formError = "";
-
-      if (!vm.formData.reason || !vm.formData.residentGoing || !vm.formData.locationName || !vm.formData.time || !vm.formData.date) {
-        vm.formError = "All fields required, please try again";
-        return false;
-      } else {
-        vm.doAddAppointment(vm.formData);
-      }
+      vm.updateAppointment(vm.formData);
     };
 
-    vm.doAddAppointment = function (formData) {
+    vm.updateAppointment = function (formData) {
         apilaData.addAppointment(formData)
         .success(function (appoint) {
 
@@ -31,7 +25,7 @@
           vm.modal.close(appoint);
         })
         .error(function (appoint) {
-          vm.formError = "Something went wrong with the appointment, try again";
+          vm.formError = "Something went wrong with updating the appointment, try again";
         });
       return false;
     };
