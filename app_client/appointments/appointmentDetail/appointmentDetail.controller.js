@@ -10,11 +10,12 @@
     vm.appointmentid = $routeParams.appointmentid;
     vm.isLoggedIn = authentication.isLoggedIn();
     vm.currentPath = $location.path();
+    vm.currentDate = new Date();
 
     apilaData.appointmentById(vm.appointmentid)
       .success(function(data) {
         vm.data = {appointment:data};
-        vm.pageHeader = {title:vm.data.appointment.reason};
+        vm.pageHeader = {title:vm.data.appointment.residentGoing + " going to " + vm.data.appointment.locationName};
       })
       .error(function (e) {
         console.log(e);
