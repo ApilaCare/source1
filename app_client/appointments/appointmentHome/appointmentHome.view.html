@@ -16,7 +16,10 @@
             <a href="appointments/{{ appointment._id }}">{{ appointment.reason }}</a>
             <span class="badge pull-right badge-default">{{ appointment.time | date : 'h:mm a, MMMM d' }}</span>
           </h4>
-          <p class="address">{{ appointment.residentGoing }}</p>
+          <p class="address" ng-repeat="spot in appointment.location">
+            {{ appointment.residentGoing }}
+            <span class="pull-right">{{ spot.name }}</span>
+          </p>
         </div>
       </div>
     </div>
