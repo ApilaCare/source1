@@ -49,7 +49,7 @@ router.delete('/issues/:issueid/comments/:commentid', auth, ctrlIssueComments.is
 // appointments
 router.get('/appointments', ctrlAppointments.appointmentsList);
 router.get('/appointments/:appointmentid', ctrlAppointments.appointmentsReadOne);
-router.put('/appointments/:appointmentid', ctrlAppointments.appointmentsUpdateOne);
+router.put('/appointments/update/:appointmentid',ctrlAppointments.appointmentsUpdateOne);
 router.delete('/appointments/:appointmentid', ctrlAppointments.appointmentsDeleteOne);
 router.post('/appointments/new', auth, ctrlAppointments.appointmentsCreate);
 

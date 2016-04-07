@@ -4,24 +4,36 @@
     .module('apilaApp')
     .controller('updateAppointmentModalCtrl', updateAppointmentModalCtrl);
 
-  updateAppointmentModalCtrl.$inject = ['$scope', '$uibModalInstance', 'apilaData', 'authentication'];
-  function updateAppointmentModalCtrl ($scope, $uibModalInstance, apilaData, authentication) {
+  updateAppointmentModalCtrl.$inject = ['$scope', '$uibModalInstance', 'apilaData', 'authentication', 
+                                        'getAppointment'];
+  function updateAppointmentModalCtrl ($scope, $uibModalInstance, apilaData, authentication, 
+                                        getAppointment) {
     var vm = this;
 
     vm.isLoggedIn = authentication.isLoggedIn();
+          
+    vm.formData = getAppointment;
+      
+    vm.formData.date = new Date(getAppointment.time);
+    vm.formData.modifiedBy = authentication.currentUser().name;
 
     vm.onSubmit = function () {
+        
+      vm.formData.modifiedDate = new Date();
       vm.formError = "";
-      vm.updateAppointment(vm.formData);
+        
+    if (!vm.formData.reason || !vm.formData.residentGoing || !vm.formData.locationName || !vm.formData.time || !vm.formData.date) {
+            vm.formError = "All fields required, please try again";
+            return false;
+    } else {
+          vm.updateAppointment(vm.formData._id, vm.formData);
+      }
     };
 
-    vm.updateAppointment = function (formData) {
-        apilaData.addAppointment(formData)
+    vm.updateAppointment = function (id, formData) {
+        apilaData.updateAppointment(id, formData)
         .success(function (appoint) {
-
-          //add to list
-          apilaData.appointList.appointments.push(appoint);
-
+         
           vm.modal.close(appoint);
         })
         .error(function (appoint) {
