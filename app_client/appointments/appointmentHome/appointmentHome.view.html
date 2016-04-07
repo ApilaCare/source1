@@ -6,7 +6,7 @@
 
   <div class="row">
     <div class="col-xs-12 col-sm-12">
-      <a ng-click="vm.popupNewAppointmentForm()" class="btn btn-default pull-right">New appointment</a>
+      <a ng-show="vm.isLoggedIn" ng-click="vm.popupNewAppointmentForm()" class="btn btn-default pull-right">New appointment</a>
       <label for="filter">Filter appointment results</label>
       <input id="filter" type="text", name="filter", ng-model="textFilter">
       <div class="error">{{ vm.message }}</div>

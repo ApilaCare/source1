@@ -4,9 +4,10 @@
     .module('apilaApp')
     .controller('appointmentHomeCtrl', appointmentHomeCtrl);
 
-  appointmentHomeCtrl.$inject = ['$scope', 'apilaData', '$uibModal'];
-  function appointmentHomeCtrl ($scope, apilaData, $uibModal) {
+  appointmentHomeCtrl.$inject = ['$scope', 'apilaData', '$uibModal', 'authentication'];
+  function appointmentHomeCtrl ($scope, apilaData, $uibModal, authentication) {
     var vm = this;
+    vm.isLoggedIn = authentication.isLoggedIn();
     vm.pageHeader = {
       title: 'Apila',
       strapline: 'its a website!'
