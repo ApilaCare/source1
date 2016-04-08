@@ -40,7 +40,7 @@ module.exports.appointmentsCreate = function (req, res) {
 /* GET list of appointments */
 module.exports.appointmentsList = function(req, res) {
   Appoint.find({
-    time: {$gte: new Date()}
+    time: {$gte: new Date()}, cancel: false
   }, function(err, appointments){
       console.log(appointments);
        sendJSONresponse(res, 200, appointments)

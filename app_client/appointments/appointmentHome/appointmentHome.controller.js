@@ -21,7 +21,7 @@
           vm.message = data.length > 0 ? "" : "No appointments were found";
 
           apilaData.appointList = { appointments: data };
- 
+
           vm.data = apilaData.appointList;
         })
         .error(function (e) {
@@ -42,18 +42,14 @@
       });
     };
 
-    vm.popupUpdateAppointmentForm = function (appointment) {
-        
+    vm.popupUpdateAppointmentForm = function (appointment) {    
       var modalInstance = $uibModal.open({
         templateUrl: '/appointments/updateAppointmentModal/updateAppointmentModal.view.html',
         controller: 'updateAppointmentModalCtrl as vm',
         resolve: {
             getAppointment: function() {
-                
               return appointment;
-            
             }
-            
         }
       });
     };

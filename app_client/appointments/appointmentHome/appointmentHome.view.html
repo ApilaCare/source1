@@ -5,7 +5,8 @@
   <page-header content="vm.pageHeader"></page-header>
   <div class="row">
     <div class="col-xs-12 col-sm-12">
-      <a ng-show="vm.isLoggedIn" ng-click="vm.popupNewAppointmentForm()" class="btn btn-primary pull-right">New appointment</a>
+      <a ng-show="vm.isLoggedIn" ng-click="vm.popupNewAppointmentForm()" class="btn btn-primary pull-right">New</a>
+      <a ng-show="vm.isLoggedIn" ng-click="" class="btn btn-success pull-right">Export</a>
       <label for="filter">Filter appointment results</label>
       <input id="filter" type="text", name="filter", ng-model="textFilter">
       <div class="error">{{ vm.message }}</div>

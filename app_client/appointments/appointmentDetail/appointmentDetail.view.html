@@ -2,13 +2,18 @@
 
 <div class="container">
   <page-header content="vm.pageHeader"></page-header>
-
   <div class="row">
     <div class="col-xs-12 col-md-12">
+      <div class="row">
+        <div class="col-xs-12">
+          <a ng-show="vm.isLoggedIn" ng-click="" class="btn btn-success pull-right">Export</a>
+        </div>
+      </div>
       <div class="row">
         <div class="col-xs-12 col-sm-6">
           <div class="panel panel-primary">
             <div class="panel-heading">
+              <a ng-show="vm.isLoggedIn" ng-click="vm.popupUpdateAppointmentForm()" class="btn btn-info btn-xs pull-right">Update</a>
               <h2 class="panel-title">Appointment Information</h2>
             </div>
             <div class="panel-body">
@@ -64,6 +69,31 @@
               <p ng-repeat="person in vm.data.appointment.updateInfo">
                 Modified by {{ person.updateBy }} on {{ person.updateDate | date : 'h:mm a, MMMM d' }}
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="panel panel-primary review-panel">
+            <div class="panel-heading">
+              <a ng-show="vm.isLoggedIn" ng-click="vm.popupAppointmentCommentForm()" class="btn btn-default btn-xs pull-right">Add Comment</a>
+              <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default btn-xs pull-right">Login to add review</a>
+              <h2 class="panel-title">Appointment Comments</h2>
+            </div>
+            <div class="panel-body comment-container">
+              <div class="row">
+                <div class="comment" ng-repeat="review in vm.data.location.reviews | orderBy:'createdOn':true">
+                  <div class="well well-sm comment-header">
+                    <span class="rating" rating-stars rating="review.rating"></span>
+                    <span class="reviewAuthor">{{ review.author }}</span>
+                    <small class="reviewTimestamp pull-right">{{ review.createdOn | date : 'd MMMM yyyy' }}</small>
+                  </div>
+                  <div class="col-xs-12">
+                    <p ng-bind-html="review.reviewText | addHtmlLineBreaks"></p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
