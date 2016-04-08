@@ -21,7 +21,7 @@ module.exports.appointmentsCreate = function (req, res) {
   Appoint.create({
     reason: req.body.reason,
     locationName: req.body.locationName,
-    locationName: req.body.locationDoctor,
+    locationDoctor: req.body.locationDoctor,
     residentGoing: req.body.residentGoing,
     time: d,
     submitBy: req.payload.name,
@@ -77,20 +77,20 @@ module.exports.appointmentsReadOne = function (req, res) {
 
 /* PUT /api/appointments/:appointmentid */
 module.exports.appointmentsUpdateOne = function(req, res) {
-      
+
   if (!req.params.appointmentid) {
     sendJSONresponse(res, 404, {
       "message": "Not found, appointmentid is required"
     });
     return;
   }
-    
+
   Appoint
     .findById(req.params.appointmentid)
     .exec(
       function(err, appointment) {
         if (!appointment) {
-             
+
           sendJSONresponse(res, 404, {
             "message": "appointmentid not found"
           });
@@ -101,13 +101,14 @@ module.exports.appointmentsUpdateOne = function(req, res) {
         }
         appointment.reason = req.body.reason,
         appointment.locationName = req.body.locationName,
-        //appointment.locationName = req.body.locationDoctor,
+        appointment.locationDoctor = req.body.locationDoctor,
         appointment.residentGoing = req.body.residentGoing,
         appointment.time = req.body.time,
         appointment.transportation = req.body.transportation,
         appointment.modifyBy.push(req.body.modifiedBy);
         appointment.modifyDate.push(req.body.modifiedDate);
         appointment.cancel = req.body.cancel,
+        appointment.updateInfo.push(req.body.updateBy, req.body.updateDate);
         appointment.save(function(err, appointment) {
           if (err) {
             sendJSONresponse(res, 404, err);

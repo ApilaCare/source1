@@ -1,5 +1,10 @@
 var mongoose = require('mongoose');
 
+var updateInfoSchema = new mongoose.Schema({
+    updateBy: {type: String},
+    updateDate: {type: Date},
+});
+
 var appointmentSchema = new mongoose.Schema({
   reason: {type: String, required: true},
   locationName: {type: String, required: true},
@@ -12,6 +17,7 @@ var appointmentSchema = new mongoose.Schema({
   submitBy: {type: String, required: true},
   modifyDate: [Date],
   modifyBy: [String],
+  updateInfo: [updateInfoSchema],
 });
 
 mongoose.model('Appointment', appointmentSchema);

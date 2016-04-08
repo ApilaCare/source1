@@ -56,6 +56,16 @@
               </p>
             </div>
           </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h2 class="panel-title">Modification Information</h2>
+            </div>
+            <div class="panel-body">
+              <p ng-repeat="time in vm.data.appointment.modifyDate" ng-repeat="person in vm.data.appointment.modifyBy">
+                Modified by {{ person }} on {{ time | date : 'h:mm a, MMMM d' }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@
       <div class="form-group">
         <label for="reason" class="col-xs-10 col-sm-3 control-label">Reason</label>
         <div class="col-sm-9">
-          <input type="author" class="form-control" id="author" ng-model="vm.formData.reason" placeholder="place holder for this appointment's reason">
+          <input type="author" class="form-control" id="author" ng-model="vm.formData.reason">
         </div>
       </div>
 
@@ -21,7 +21,7 @@
       <div class="form-group">
         <label for="resident going" class="col-xs-10 col-sm-3 control-label">Resident Going</label>
         <div class="col-sm-9">
-          <input type="address" class="form-control" id="address" ng-model="vm.formData.residentGoing" placeholder="place holder for this appointment's resident">
+          <input type="address" class="form-control" id="address" ng-model="vm.formData.residentGoing">
         </div>
       </div>
 
@@ -29,7 +29,15 @@
       <div class="form-group">
         <label for="address" class="col-xs-10 col-sm-3 control-label">Location Name</label>
         <div class="col-sm-9">
-          <input type="address" class="form-control" id="address" ng-model="vm.formData.locationName" placeholder="place holder for this appointment's location">
+          <input type="address" class="form-control" id="address" ng-model="vm.formData.locationName">
+        </div>
+      </div>
+
+<!-- form group for the location name -->
+      <div class="form-group">
+        <label for="address" class="col-xs-10 col-sm-3 control-label">Doctor</label>
+        <div class="col-sm-9">
+          <input type="address" class="form-control" id="address" ng-model="vm.formData.locationDoctor">
         </div>
       </div>
 
@@ -37,11 +45,11 @@
       <div class="form-group">
         <label for="time and date" class="col-xs-10 col-sm-3 control-label">Time and Date</label>
         <div class="col-sm-4">
-           <uib-timepicker ng-model="vm.formData.time" ng-change="changed()" hour-step="1" minute-step="1"></uib-timepicker>
+           <uib-timepicker ng-model="vm.formData.time" ng-change="changed()" hour-step="1" minute-step="5"></uib-timepicker>
         </div>
         <div class="col-sm-5">
             <p class="input-group">
-              <input type="text" class="form-control" id="date" ng-model="vm.formData.date" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+              <input type="text" class="form-control" id="date" ng-model="vm.formData.date" uib-datepicker-popup="{{format}}" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="vm.open()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -53,15 +61,15 @@
       <div class="form-group">
         <label for="transportation" class="col-xs-10 col-sm-3 control-label">Transportation</label>
         <div class="col-sm-9">
-          <input class="form-control" id="transportation" ng-model="vm.formData.transportation" placeholder="place holder for this appointment's location">
+          <input class="form-control" id="transportation" ng-model="vm.formData.transportation">
         </div>
       </div>
 
-<!-- form group for the "Transportation" field.  -->
+<!-- form group for the "Cancel" field.  -->
       <div class="form-group">
         <label for="transportation" class="col-xs-10 col-sm-3 control-label">Cancelled</label>
         <div class="checkbox col-sm-9">
-          <label><input type="checkbox" value=""></label>
+          <label><input type="checkbox" value="" ng-model="vm.formData.cancel"></label>
         </div>
       </div>
     </div>
