@@ -66,7 +66,6 @@
     }
 
     var updateAppointment = function (appointmentid, formData) {
-        console.log("Pozvao api");
       return $http.put('/api/appointments/update/' + appointmentid, 
                        formData);
         

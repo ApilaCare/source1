@@ -1,9 +1,5 @@
 var mongoose = require('mongoose');
 
-var updateInfoSchema = new mongoose.Schema({
-    updateBy: {type: String},
-    updateDate: {type: Date},
-});
 
 var appointmentSchema = new mongoose.Schema({
   reason: {type: String, required: true},
@@ -15,9 +11,7 @@ var appointmentSchema = new mongoose.Schema({
   cancel: {type: Boolean, default: false},
   submitDate: {type: Date, default: Date.now, required: true},
   submitBy: {type: String, required: true},
-  modifyDate: [Date],
-  modifyBy: [String],
-  updateInfo: [updateInfoSchema],
+  updateInfo: [mongoose.Schema.Types.Mixed],
 });
 
 mongoose.model('Appointment', appointmentSchema);
