@@ -4,8 +4,8 @@
     .module('apilaApp')
     .controller('appointmentHomeCtrl', appointmentHomeCtrl);
 
-  appointmentHomeCtrl.$inject = ['$scope', 'apilaData', '$uibModal', 'authentication'];
-  function appointmentHomeCtrl ($scope, apilaData, $uibModal, authentication) {
+  appointmentHomeCtrl.$inject = ['$scope', 'apilaData', '$uibModal', 'authentication', 'exportPdf'];
+  function appointmentHomeCtrl ($scope, apilaData, $uibModal, authentication, exportPdf) {
     var vm = this;
     vm.isLoggedIn = authentication.isLoggedIn();
     vm.pageHeader = {
@@ -34,7 +34,19 @@
         vm.message = error.message;
       });
     };
-
+      
+    vm.exportAppointments = function() {
+       var elem = $(".printable").clone();
+       elem.find(".non-printable").remove();
+        
+        var printable = elem.get(0);
+        var name = new Date().toDateString();
+        var header = {name : authentication.currentUser().name};
+        
+        exportPdf.exportAppointments(name, printable, header);
+        
+    }
+    
     vm.popupNewAppointmentForm = function () {
       var modalInstance = $uibModal.open({
         templateUrl: '/appointments/addAppointmentModal/addAppointmentModal.view.html',
