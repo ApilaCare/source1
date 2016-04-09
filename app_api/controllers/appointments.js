@@ -108,8 +108,6 @@ module.exports.appointmentsUpdateOne = function(req, res) {
         appointment.residentGoing = req.body.residentGoing,
         appointment.time = req.body.time,
         appointment.transportation = req.body.transportation,
-      //  appointment.modifyBy.push(req.body.modifiedBy);
-       // appointment.modifyDate.push(req.body.modifiedDate);
         appointment.cancel = req.body.cancel,
         appointment.updateInfo.push(updateInfo);
         appointment.save(function(err, appointment) {

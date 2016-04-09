@@ -12,10 +12,9 @@
       title: 'Apila',
       strapline: 'its a website!'
     };
-    vm.message = "Checking your location";
+    vm.message = "Loading Appointments";
 
     // function parameter for 'community'
-      vm.message = "Searching for nearby places";
       apilaData.appointmentsList()
         .success(function(data) {
           vm.message = data.length > 0 ? "" : "No appointments were found";
@@ -34,19 +33,22 @@
         vm.message = error.message;
       });
     };
-      
+
+    // links to common/services/exportPdf.service.js
     vm.exportAppointments = function() {
-       var elem = $(".printable").clone();
-       elem.find(".non-printable").remove();
-        
+      // adds the table element
+      var elem = $(".printable").clone();
+      // currently non-printable = [update button]
+      elem.find(".non-printable").remove();
+
         var printable = elem.get(0);
         var name = new Date().toDateString();
         var header = {name : authentication.currentUser().name};
-        
+
         exportPdf.exportAppointments(name, printable, header);
-        
+
     }
-    
+
     vm.popupNewAppointmentForm = function () {
       var modalInstance = $uibModal.open({
         templateUrl: '/appointments/addAppointmentModal/addAppointmentModal.view.html',
@@ -54,7 +56,7 @@
       });
     };
 
-    vm.popupUpdateAppointmentForm = function (appointment) {    
+    vm.popupUpdateAppointmentForm = function (appointment) {
       var modalInstance = $uibModal.open({
         templateUrl: '/appointments/updateAppointmentModal/updateAppointmentModal.view.html',
         controller: 'updateAppointmentModalCtrl as vm',

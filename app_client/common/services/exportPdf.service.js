@@ -1,14 +1,15 @@
 (function() {
-    
+
     angular.module("apilaApp").service("exportPdf", exportPdf);
-    
+
     function exportPdf() {
-        
+
         var exportAppointments = function(name, printable, header) {
             var doc = new jsPDF('p','pt','letter');
-            
+
             console.log(printable);
-            
+
+            // positions the table
             margins = {
                 top: 120,
                 bottom: 5,
@@ -31,10 +32,10 @@
                 doc.text(40, 50, "List of appointments for: " + header.name);
                 doc.text(40, 100, "Date: " + name);
                 doc.save(name);
-            }, margins);                       
+            }, margins);
 
         }
-        
+
         var exportAppointmentDetail = function(name, printable) {
             var doc = new jsPDF('p','pt','letter');
 
@@ -59,14 +60,14 @@
                 doc.setFontSize(22);
                 doc.text(100, 50, "List of appointments for Date");
                 doc.save(name);
-            }, margins);  
+            }, margins);
         }
-     
+
         return {
             exportAppointments: exportAppointments,
             exportAppointmentDetail: exportAppointmentDetail
         };
-            
+
     }
-    
+
 })();

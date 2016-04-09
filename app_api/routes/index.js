@@ -13,6 +13,7 @@ var ctrlIssues = require('../controllers/issues');
 var ctrlAppointments = require('../controllers/appointments');
 var ctrlReviews = require('../controllers/reviews');
 var ctrlIssueComments = require('../controllers/issueComments');
+var ctrlAppointmentComments = require('../controllers/appointmentComments');
 var ctrlAuth = require('../controllers/authentication');
 
 // locations
@@ -52,5 +53,11 @@ router.get('/appointments/:appointmentid', ctrlAppointments.appointmentsReadOne)
 router.put('/appointments/update/:appointmentid',ctrlAppointments.appointmentsUpdateOne);
 router.delete('/appointments/:appointmentid', ctrlAppointments.appointmentsDeleteOne);
 router.post('/appointments/new', auth, ctrlAppointments.appointmentsCreate);
+
+// appointment comments
+router.post('/appointments/:appointmentid/comments', ctrlAppointmentComments.appointmentCommentsCreate);
+router.get('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentComments.appointmentCommentsReadOne);
+router.put('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentComments.appointmentCommentsUpdateOne);
+router.delete('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentComments.appointmentCommentsDeleteOne);
 
 module.exports = router;
