@@ -27,11 +27,10 @@
 
       
       vm.exportAppointment = function() {
-        var printable = $(".printable").get(0);
         
         var name = new Date().toDateString();
-        
-        exportPdf.exportAppointmentDetail(name, printable);
+        console.log(vm.data);
+        exportPdf.exportAppointmentDetail(name, vm.data);
       }
       
       vm.popupUpdateAppointmentForm = function (appointment) {
