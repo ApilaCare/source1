@@ -13,6 +13,8 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  // _id of a community
+  // community: {type: String}
   hash: String,
   salt: String
 });
@@ -47,5 +49,5 @@ userSchema.methods.generateJwt = function() {
   }, process.env.JWT_SECRET); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };
 
-// export mongoose model 
+// export mongoose model
 mongoose.model('User', userSchema);
