@@ -72,6 +72,7 @@ var doAddComment = function(req, res, issue) {
     issue.save(function(err, issue) {
       var thisComment;
       if (err) {
+        console.log("this is the error point LOL");
         sendJSONresponse(res, 400, err);
       } else {
         thisComment = issue.comments[issue.comments.length - 1];
