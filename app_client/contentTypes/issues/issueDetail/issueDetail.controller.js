@@ -22,7 +22,7 @@
 
       vm.popupIssueCommentForm = function () {
         var modalInstance = $uibModal.open({
-          templateUrl: '/issues/issueCommentModal/issueCommentModal.view.html',
+          templateUrl: '/contentTypes/issues/issueCommentModal/issueCommentModal.view.html',
           controller: 'issueCommentModalCtrl as vm',
           resolve : {
             issueData : function () {

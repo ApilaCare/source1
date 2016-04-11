@@ -48,7 +48,7 @@
 
     vm.popupNewLocationForm = function () {
       var modalInstance = $uibModal.open({
-        templateUrl: '/locations/addLocationModal/addLocationModal.view.html',
+        templateUrl: '/contentTypes/locations/addLocationModal/addLocationModal.view.html',
         controller: 'newLocationModalCtrl as vm'
       });
     };

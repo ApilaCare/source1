@@ -10,7 +10,7 @@
       <label for="filter">Filter appointment results</label>
       <input id="filter" type="text", name="filter", ng-model="textFilter">
       <div class="error">{{ vm.message }}</div>
-       
+
       <div class="col-xs-12 printable">
         <table class="table  table-hover table-condensed">
           <thead>
@@ -21,14 +21,23 @@
               <th>Resident</th>
               <th>Location</th>
               <th>Transporting</th>
-             
+
             </tr>
           </thead>
-          <tbody>
-            <tr ng-repeat="appointment in vm.data.appointments | filter : textFilter | orderBy:'time':false">
+          <tbody ng-repeat="appointment in vm.data.appointments | filter : textFilter | orderBy:'time':false" ng-switch on="appointment.cancel">
+            <tr ng-switch-default>
               <td><a href="appointments/{{ appointment._id }}">{{ appointment.reason }}</a></td>
               <td>{{ appointment.time | date : 'h:mm a' }}</td>
-              <td>{{ appointment.time | date : 'EEEE, MMMM d' }}</td>
+              <td>{{ appointment.time | date : 'EEE, MMM d' }}</td>
+              <td>{{ appointment.residentGoing }}</td>
+              <td>{{ appointment.locationName }}</td>
+              <td>{{ appointment.transportation }}</td>
+              <td class="non-printable"><a ng-show="vm.isLoggedIn" class="btn btn-info btn-xs" ng-click="vm.popupUpdateAppointmentForm(appointment)">Update</a></td>
+            </tr>
+            <tr class="danger" ng-switch-when="true">
+              <td><a href="appointments/{{ appointment._id }}">{{ appointment.reason }}</a></td>
+              <td>{{ appointment.time | date : 'h:mm a' }}</td>
+              <td>{{ appointment.time | date : 'EEE, MMM d' }}</td>
               <td>{{ appointment.residentGoing }}</td>
               <td>{{ appointment.locationName }}</td>
               <td>{{ appointment.transportation }}</td>

@@ -51,14 +51,14 @@
 
     vm.popupNewAppointmentForm = function () {
       var modalInstance = $uibModal.open({
-        templateUrl: '/appointments/addAppointmentModal/addAppointmentModal.view.html',
+        templateUrl: '/contentTypes/appointments/addAppointmentModal/addAppointmentModal.view.html',
         controller: 'newAppointmentModalCtrl as vm'
       });
     };
 
     vm.popupUpdateAppointmentForm = function (appointment) {
       var modalInstance = $uibModal.open({
-        templateUrl: '/appointments/updateAppointmentModal/updateAppointmentModal.view.html',
+        templateUrl: '/contentTypes/appointments/updateAppointmentModal/updateAppointmentModal.view.html',
         controller: 'updateAppointmentModalCtrl as vm',
         resolve: {
             getAppointment: function() {

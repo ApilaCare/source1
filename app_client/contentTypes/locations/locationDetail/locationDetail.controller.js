@@ -24,7 +24,7 @@
 
     vm.popupReviewForm = function () {
       var modalInstance = $uibModal.open({
-        templateUrl: '/locations/reviewModal/reviewModal.view.html',
+        templateUrl: '/contentTypes/locations/reviewModal/reviewModal.view.html',
         controller: 'reviewModalCtrl as vm',
         resolve : {
           locationData : function () {

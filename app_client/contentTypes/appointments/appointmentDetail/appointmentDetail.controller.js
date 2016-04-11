@@ -25,17 +25,17 @@
         console.log(e);
       });
 
-      
+
       vm.exportAppointment = function() {
-        
+
         var name = new Date().toDateString();
         console.log(vm.data);
         exportPdf.exportAppointmentDetail(name, vm.data);
       }
-      
+
       vm.popupUpdateAppointmentForm = function (appointment) {
         var modalInstance = $uibModal.open({
-          templateUrl: '/appointments/updateAppointmentModal/updateAppointmentModal.view.html',
+          templateUrl: '/contentTypes/appointments/updateAppointmentModal/updateAppointmentModal.view.html',
           controller: 'updateAppointmentModalCtrl as vm',
           resolve: {
               getAppointment: function() {
