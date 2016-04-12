@@ -32,8 +32,7 @@
             </tr>
             <tr class="danger" ng-switch-when="true">
               <td><a href="appointments/{{ appointment._id }}">{{ appointment.reason }}</a></td>
-              <td>{{ appointment.time | date : 'h:mm a' }}</td>
-              <td>{{ appointment.time | date : 'EEE, MMM d' }}</td>
+              <td>{{ appointment.time | date : 'h:mm a EEE, MMM d' }}</td>
               <td>{{ appointment.residentGoing }}</td>
               <td>{{ appointment.locationName }}</td>
               <td>{{ appointment.transportation }}</td>
