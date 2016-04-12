@@ -4,12 +4,13 @@
   <page-header content="vm.pageHeader"></page-header>
 
   <div class="row">
-    <div class="col-xs-12 col-md-9">
+    <div class="col-xs-12 col-md-12">
       <div class="row">
         <div class="col-xs-12 col-sm-6">
           <p> Responsible Party: {{ vm.data.issue.responsibleParty }}</p>
           <div class="panel panel-primary">
             <div class="panel-heading">
+              <a ng-show="vm.isLoggedIn" ng-click="" class="btn btn-info btn-xs pull-right">Update</a>
               <h2 class="panel-title">issue information</h2>
             </div>
             <div class="panel-body">
@@ -23,7 +24,7 @@
         <div class="col-xs-12 col-sm-6 issue-map">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h2 class="panel-title">picture of a monkey</h2>
+              <h2 class="panel-title">Word Cloud Panel</h2>
             </div>
             <div class="panel-body">
               <img src="http://www.themarysue.com/wp-content/uploads/2014/01/monkey.jpg" class="img-responsive img-rounded">
@@ -35,7 +36,7 @@
         <div class="col-xs-12">
           <div class="panel panel-primary comment-panel">
             <div class="panel-heading">
-              <a ng-show="vm.isLoggedIn" ng-click="vm.popupIssueCommentForm()" class="btn btn-default pull-right">Add comment</a>
+              <a ng-show="vm.isLoggedIn" ng-click="vm.popupIssueCommentForm()" class="btn btn-default btn-xs pull-right">Add Comment</a>
               <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default pull-right">Login to add comment</a>
               <h2 class="panel-title">Customer comments</h2>
             </div>
