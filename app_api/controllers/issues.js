@@ -1,27 +1,29 @@
 var mongoose = require('mongoose');
 var Iss = mongoose.model('Issue');
+var User = mongoose.model('User');
 
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
 };
 
+// api/issues/new
 module.exports.issuesCreate = function (req, res) {
-  console.log(req.body);
+
+  //create issue from the inputed data
   Iss.create({
     title: req.body.title,
     responsibleParty: req.body.responsibleParty,
     resolutionTimeframe: req.body.resolutionTimeframe,
-    submitTime: req.body.submitTime,
-    submitBy: req.body.submitBy,
     description: req.body.description,
+    submitBy: req.payload.name,
   }, function(err, issue) {
     if (err) {
       console.log(err);
       sendJSONresponse(res, 400, err);
     } else {
       console.log(issue);
-      sendJSONresponse(res, 201, issue);
+      sendJSONresponse(res, 200, issue);
     }
   });
 };
@@ -125,13 +127,43 @@ module.exports.issuesDeleteOne = function(req, res) {
   }
 };
 
+var getAuthor = function(req, res, callback) {
+  console.log("Finding author with email " + req.payload.email);
+  // validate that JWT information is on request object
+  if (req.payload.email) {
+    User
+      // user email address to find user
+      .findOne({ email : req.payload.email })
+      .exec(function(err, user) {
+        if (!user) {
+          sendJSONresponse(res, 404, {
+            "message": "User not found"
+          });
+          return;
+        } else if (err) {
+          console.log(err);
+          sendJSONresponse(res, 404, err);
+          return;
+        }
+        console.log(user);
+        // run callback, passing user's name
+        callback(req, res, user.name);
+      });
+
+  } else {
+    sendJSONresponse(res, 404, {
+      "message": "User not found"
+    });
+    return;
+  }
+};
+
+
 /* adding documents to mongodb
 db.issues.save({
   title: 'It fell down, hard',
   responsibleParty: 'Carol Riggen',
   resolutionTimeframe: 'Weeks',
-  submitTime: new Date('March 6, 2016'),
-  submitBy: 'LindaFlower',
   description: 'One more silly issue to never ever resolve',
 })
 */

@@ -19,8 +19,8 @@
         .success(function(data) {
           vm.message = data.length > 0 ? "" : "No appointments were found";
 
+          // appointList defined in common/services/apilaData.service.js
           apilaData.appointList = { appointments: data };
-
           vm.data = apilaData.appointList;
         })
         .error(function (e) {
@@ -34,7 +34,6 @@
       });
     };
 
-    // links to common/services/exportPdf.service.js
     vm.exportAppointments = function() {
       // adds the table element
       var elem = $(".printable").clone();

@@ -6,6 +6,8 @@
     </div>
     <div class="modal-body">
       <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
+
+<!-- rating form group -->
       <div class="form-group">
         <label for="rating" class="col-xs-10 col-sm-2 control-label">Rating</label>
         <div class="col-xs-12 col-sm-2">
@@ -26,7 +28,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button ng-click="vm.modal.cancel()" type="button" class="btn btn-default">Cancel</button>
+      <button ng-click="vm.modal.cancel()" type="button" class="btn btn-warning">Cancel</button>
       <button type="submit" class="btn btn-primary">Submit review</button>
     </div>
   </form>

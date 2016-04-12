@@ -1,0 +1,55 @@
+<div class="modal-content">
+  <form id="addComment" name="addAppointment" role="form" ng-submit="vm.onSubmit()" class="form-horizontal">
+
+<!-- header of the modal.  defines title that is centered and X button to close -->
+    <div class="modal-header">
+      <button type="button" ng-click="vm.modal.cancel()" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+      <h4 id="myModalLabel" class="modal-title text-center">Create New Issue</h4>
+    </div>
+    <div class="modal-body">
+      <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
+
+<!-- form group for the title of the issue -->
+      <div class="form-group">
+        <label class="col-xs-10 col-sm-3 control-label">Title</label>
+        <div class="col-sm-9">
+          <input class="form-control" ng-model="vm.formData.title" placeholder="">
+        </div>
+      </div>
+
+<!-- form group for the responsible party of the issue-->
+      <div class="form-group">
+        <label class="col-xs-10 col-sm-3 control-label">Responsible Party</label>
+        <div class="col-sm-9">
+          <input class="form-control" ng-model="vm.formData.responsibleParty" placeholder="">
+        </div>
+      </div>
+
+<!-- form group for the resolution time frame of the issue -->
+      <div class="form-group">
+        <label class="col-xs-10 col-sm-3 control-label">Time Frame</label>
+        <div class="col-sm-9">
+          <select ng-model="vm.formData.resolutionTimeframe" class="form-control input-sm">
+            <option>Hours</option>
+            <option>Days</option>
+            <option>Weeks</option>
+            <option>Months</option>
+          </select>
+        </div>
+      </div>
+
+<!-- form group for the description of the issue -->
+      <div class="form-group">
+        <label for="address" class="col-xs-10 col-sm-3 control-label">Description</label>
+        <div class="col-sm-9">
+          <textarea rows="10" ng-model="vm.formData.description" class="form-control"></textarea>
+        </div>
+      </div>
+
+    <!-- footer that defines the cancel button and submit button  -->
+    <div class="modal-footer">
+      <button ng-click="vm.modal.cancel()" type="button" class="btn btn-warning">Cancel</button>
+      <button type="submit" class="btn btn-primary">Submit New Issue</button>
+    </div>
+  </form>
+</div>

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Appoint = mongoose.model('Appointment');
+var User = mongoose.model('User');
 
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
@@ -9,7 +10,7 @@ var sendJSONresponse = function(res, status, content) {
 /* POST /api/appointments/new */
 module.exports.appointmentsCreate = function (req, res) {
 
-  //here we join the date&time that the user selected from the date&time pickers
+  //here we join the date & time
   var d = new Date(req.body.date);
   var t = new Date(req.body.time);
 

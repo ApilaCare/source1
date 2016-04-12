@@ -10,7 +10,7 @@ var appointmentSchema = new mongoose.Schema({
   reason: {type: String, required: true},
   locationName: {type: String, required: true},
   locationDoctor: {type: String, default: ''},
-  residentGoing: {type: String, required: true},
+  residentGoing: {type: String, default: ''},
   time: {type: Date, required: true},
   transportation: {type: String, default: 'We are Transporting'},
   cancel: {type: Boolean, default: false},

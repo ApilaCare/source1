@@ -25,10 +25,10 @@ var app = express();
 
 // (commented out to debug better.  these are now in app_client/index.html)
 var appClientFiles = [
-  'app_client/app.js',
+  'app_client/routes.js',
   'app_client/contentTypes/issues/issueHome/issueHome.controller.js',
   'app_client/contentTypes/issues/issueDetail/issueDetail.controller.js',
-  'app_client/contentTypes/issues/newIssueModal/newIssueModal.controller.js',
+  'app_client/contentTypes/issues/addIssueModal/addIssueModal.controller.js',
   'app_client/contentTypes/issues/issueCommentModal/issueCommentModal.controller.js',
   'app_client/contentTypes/appointments/appointmentHome/appointmentHome.controller.js',
   'app_client/contentTypes/appointments/appointmentDetail/appointmentDetail.controller.js',

@@ -19,7 +19,10 @@
       apilaData.issuesList()
         .success(function(data) {
           vm.message = data.length > 0 ? "" : "No issues found";
-          vm.data = { issues: data };
+          
+          // issueList defined in common/services/apilaData.service.js
+          apilaData.issueList = { issues: data };
+          vm.data = apilaData.issueList;
           console.log(vm.data);
         })
         .error(function (e) {
@@ -35,7 +38,7 @@
 
     vm.popupNewIssueForm = function () {
       var modalInstance = $uibModal.open({
-        templateUrl: '/contentTypes/issues/newIssueModal/newIssueModal.view.html',
+        templateUrl: '/contentTypes/issues/addIssueModal/addIssueModal.view.html',
         controller: 'newIssueModalCtrl as vm'
       });
     };

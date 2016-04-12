@@ -11,6 +11,7 @@
     };
 
     var appointList = null;
+    var issueList = null;
 
     var locationById = function (locationid) {
       return $http.get('/api/locations/' + locationid);
@@ -40,6 +41,15 @@
       return $http.get('/api/issues/' + issueid);
     };
 
+    //makes a call to the api to add a new issue
+    var addIssue = function (data) {
+      return $http.post('/api/issues/new', data, {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    }
+
     var addIssueCommentById = function (issueid, data) {
       return $http.post('/api/issues/' + issueid + '/comments', data, {
         headers: {
@@ -66,9 +76,9 @@
     }
 
     var updateAppointment = function (appointmentid, formData) {
-      return $http.put('/api/appointments/update/' + appointmentid, 
+      return $http.put('/api/appointments/update/' + appointmentid,
                        formData);
-        
+
     };
 
     return {
@@ -77,6 +87,7 @@
       addReviewById : addReviewById,
       issuesList : issuesList,
       issueById : issueById,
+      addIssue : addIssue,
       addIssueCommentById : addIssueCommentById,
       appointmentsList : appointmentsList,
       appointmentById : appointmentById,

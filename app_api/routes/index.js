@@ -36,7 +36,7 @@ router.post('/login', ctrlAuth.login);
 
 // issues
 router.get('/issues', ctrlIssues.issuesList);
-router.post('/issues', ctrlIssues.issuesCreate);
+router.post('/issues/new', ctrlIssues.issuesCreate);
 router.get('/issues/:issueid', ctrlIssues.issuesReadOne);
 router.put('/issues/:issueid', ctrlIssues.issuesUpdateOne);
 router.delete('/issues/:issueid', ctrlIssues.issuesDeleteOne);

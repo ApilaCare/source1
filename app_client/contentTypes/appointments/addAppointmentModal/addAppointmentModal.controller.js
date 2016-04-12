@@ -13,8 +13,8 @@
     vm.onSubmit = function () {
       vm.formError = "";
 
-      if (!vm.formData.reason || !vm.formData.residentGoing || !vm.formData.locationName || !vm.formData.time || !vm.formData.date) {
-        vm.formError = "All fields required, please try again";
+      if (!vm.formData.reason || !vm.formData.locationName || !vm.formData.time || !vm.formData.date) {
+        vm.formError = "Reason, Location, Time, and Date is required. Please try again.";
         return false;
       } else {
         vm.doAddAppointment(vm.formData);
@@ -25,9 +25,8 @@
         apilaData.addAppointment(formData)
         .success(function (appoint) {
 
-          //add to list
+          // add to list
           apilaData.appointList.appointments.push(appoint);
-
           vm.modal.close(appoint);
         })
         .error(function (appoint) {
@@ -41,18 +40,15 @@
     vm.popup = {
         opened: false
     };
-
     vm.open = function() {
         vm.popup.opened = true;
     };
-
     vm.dateOptions = {
         formatYear: 'yy',
         maxDate: new Date(2020, 5, 22),
         minDate: new Date(),
         startingDay: 1
     };
-
     vm.open = function() {
         vm.popup.opened = true;
     };
