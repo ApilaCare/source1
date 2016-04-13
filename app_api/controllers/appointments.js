@@ -9,7 +9,7 @@ var sendJSONresponse = function(res, status, content) {
 
 /* POST /api/appointments/new */
 module.exports.appointmentsCreate = function (req, res) {
-    
+
   //here we join the date & time
   var d = new Date(req.body.date);
   var t = new Date(req.body.time);
@@ -40,8 +40,13 @@ module.exports.appointmentsCreate = function (req, res) {
 
 /* GET list of appointments */
 module.exports.appointmentsList = function(req, res) {
+
+  // change sensitivity to day rather than by minute
+  var start = new Date();
+  start.setHours(0,0,0,0);
+
   Appoint.find({
-    time: {$gte: new Date()}
+    time: {$gte: start}
   }, function(err, appointments){
       console.log(appointments);
        sendJSONresponse(res, 200, appointments)
