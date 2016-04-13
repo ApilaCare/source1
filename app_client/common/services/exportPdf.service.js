@@ -15,15 +15,15 @@
                 top: 120,
                 bottom: 5,
                 left: 40,
-                width: 22
+                width: 220
             };
 
             doc.fromHTML(printable, margins.left, margins.top, {
                 "width": margins.width
             },
             function(dispose) {
-                doc.setFontSize(22);
-                doc.text(40, 50, "List of appointments for: " + header.name);
+                doc.setFontSize(18);
+                doc.text(40, 50, "Apila Appointments");
                 doc.text(40, 100, "Date: " + name);
                 doc.save(name);
             }, margins);
