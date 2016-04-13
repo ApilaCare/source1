@@ -9,13 +9,14 @@
     var vm = this;
     vm.issueData = issueData;
 
-    vm.onSubmit = function () {
+    vm.onSubmit = function (type) {
       vm.formError = "";
       if (!vm.formData.commentText) {
         vm.formError = "All fields required, please try again";
         return false;
       } else {
-        vm.doAddIssueComment(vm.issueData.issueid, vm.formData);
+             vm.doAddIssueComment(vm.issueData.issueid, vm.formData); 
+        
       }
     };
 

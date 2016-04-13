@@ -14,7 +14,7 @@
         <div class="col-xs-12 col-sm-6">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <a ng-show="vm.isLoggedIn" ng-click="vm.popupUpdateAppointmentForm()" class="btn btn-info btn-xs pull-right">Update</a>
+              <a ng-show="vm.isLoggedIn" ng-click="vm.popupUpdateAppointmentForm(vm.data.appointment)" class="btn btn-info btn-xs pull-right">Update</a>
               <h2 class="panel-title">Appointment Information</h2>
             </div>
             <div class="panel-body">

@@ -10,7 +10,7 @@
           <p> Responsible Party: {{ vm.data.issue.responsibleParty }}</p>
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <a ng-show="vm.isLoggedIn" ng-click="" class="btn btn-info btn-xs pull-right">Update</a>
+              <a ng-show="vm.isLoggedIn" ng-click="vm.popupUpdateIssueForm(vm.data.issue)" class="btn btn-info btn-xs pull-right">Update</a>
               <h2 class="panel-title">issue information</h2>
             </div>
             <div class="panel-body">

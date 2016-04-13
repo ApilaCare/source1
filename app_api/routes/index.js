@@ -42,7 +42,7 @@ router.put('/issues/:issueid', ctrlIssues.issuesUpdateOne);
 router.delete('/issues/:issueid', ctrlIssues.issuesDeleteOne);
 
 // issue comments
-router.post('/issues/:issueid/comments/new', auth, ctrlIssueComments.issueCommentsCreate);
+router.post('/issues/:issueid/comments/', auth, ctrlIssueComments.issueCommentsCreate);
 router.get('/issues/:issueid/comments/:commentid', ctrlIssueComments.issueCommentsReadOne);
 router.put('/issues/:issueid/comments/:commentid', auth, ctrlIssueComments.issueCommentsUpdateOne);
 router.delete('/issues/:issueid/comments/:commentid', auth, ctrlIssueComments.issueCommentsDeleteOne);
