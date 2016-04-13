@@ -51,7 +51,7 @@
     }
 
     var addIssueCommentById = function (issueid, data) {
-      return $http.post('/api/issues/' + issueid + '/comments', data, {
+      return $http.post('/api/issues/' + issueid + '/comments/new', data, {
         headers: {
           Authorization: 'Bearer '+ authentication.getToken()
         }
@@ -68,7 +68,7 @@
 
     //makes a call to the api to add a new appointment
     var addAppointment = function (data) {
-      return $http.post('/api/appointments/new', data, {
+      return $http.post('/api/appointments/', data, {
         headers: {
           Authorization: 'Bearer '+ authentication.getToken()
         }

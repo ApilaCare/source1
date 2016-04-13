@@ -10,6 +10,8 @@ var sendJSONresponse = function(res, status, content) {
 // api/issues/new
 module.exports.issuesCreate = function (req, res) {
 
+    console.log(req.payload.name);
+    
   //create issue from the inputed data
   Iss.create({
     title: req.body.title,
