@@ -49,9 +49,13 @@
         }
       });
     }
+    
+    var updateIssue = function(issueid, data) {
+        return $http.put('/api/issues/' + issueid, data);
+    }
 
     var addIssueCommentById = function (issueid, data) {
-      return $http.post('/api/issues/' + issueid + '/comments', data, {
+      return $http.post('/api/issues/' + issueid + '/comments/new', data, {
         headers: {
           Authorization: 'Bearer '+ authentication.getToken()
         }
@@ -93,6 +97,7 @@
       appointmentById : appointmentById,
       addAppointment: addAppointment,
       updateAppointment : updateAppointment,
+      updateIssue : updateIssue
     };
   }
 

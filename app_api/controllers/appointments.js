@@ -9,7 +9,7 @@ var sendJSONresponse = function(res, status, content) {
 
 /* POST /api/appointments/new */
 module.exports.appointmentsCreate = function (req, res) {
-
+    
   //here we join the date & time
   var d = new Date(req.body.date);
   var t = new Date(req.body.time);

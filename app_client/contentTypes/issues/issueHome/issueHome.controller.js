@@ -37,11 +37,31 @@
     };
 
     vm.popupNewIssueForm = function () {
+     var issue = null;
       var modalInstance = $uibModal.open({
         templateUrl: '/contentTypes/issues/addIssueModal/addIssueModal.view.html',
-        controller: 'newIssueModalCtrl as vm'
+        controller: 'newIssueModalCtrl as vm',
+        resolve: {
+            getIssue: function() {
+              return issue;
+            }
+        }
       });
     };
+      
+   
+    vm.popupUpdateIssueForm = function (issue) {
+      var modalInstance = $uibModal.open({
+        templateUrl: '/contentTypes/issues/addIssueModal/addIssueModal.view.html',
+        controller: 'newIssueModalCtrl as vm',
+        resolve: {
+            getIssue: function() {
+              return issue;
+            }
+        }
+      });
+    };
+      
   }
 
 })();

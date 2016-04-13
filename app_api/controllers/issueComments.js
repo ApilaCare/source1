@@ -61,12 +61,13 @@ var getAuthor = function(req, res, callback) {
   }
 };
 
-var doAddComment = function(req, res, issue) {
+var doAddComment = function(req, res, issue, username) {
+    
   if (!issue) {
     sendJSONresponse(res, 404, "issueid not found");
   } else {
     issue.comments.push({
-      author: req.body.author,
+      author: req.payload.name,
       commentText: req.body.commentText
     });
     issue.save(function(err, issue) {

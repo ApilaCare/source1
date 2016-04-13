@@ -10,6 +10,8 @@ var sendJSONresponse = function(res, status, content) {
 // api/issues/new
 module.exports.issuesCreate = function (req, res) {
 
+    console.log(req.payload.name);
+    
   //create issue from the inputed data
   Iss.create({
     title: req.body.title,
@@ -66,6 +68,10 @@ module.exports.issuesReadOne = function (req, res) {
 
 /* PUT /api/issue/:issueid */
 module.exports.issuesUpdateOne = function(req, res) {
+  console.log("We hit the backend");
+
+ console.log(req.body);
+    
   if (!req.params.issueid) {
     sendJSONresponse(res, 404, {
       "message": "Not found, issueid is required"
@@ -74,7 +80,6 @@ module.exports.issuesUpdateOne = function(req, res) {
   }
   Iss
     .findById(req.params.issueid)
-    .select('-comments')
     .exec(
       function(err, issue) {
         if (!issue) {
@@ -89,7 +94,6 @@ module.exports.issuesUpdateOne = function(req, res) {
         issue.title = req.body.title;
         issue.responsibleParty = req.body.responsibleParty;
         issue.resolutionTimeframe = req.body.resolutionTimeframe;
-        issue.submitTime = req.body.submitTime;
         issue.submitBy = req.body.submitBy;
         issue.description = req.body.description;
         issue.save(function(err, issue) {
