@@ -8,17 +8,16 @@ var sendJSONresponse = function(res, status, content) {
 };
 
 module.exports.appointmentCommentsCreate = function(req, res) {
-  console.log("Commenting");
     if (req.params.appointmentid) {
       Appoint
         .findById(req.params.appointmentid)
-        .select('comments')
+        .select('appointmentComment')
         .exec(
           function(err, appointment) {
             if (err) {
               sendJSONresponse(res, 400, err);
             } else {
-              doAddComment(req, res, appointment);
+              doAddComment(req, res, appointment, req.payload.name);
             }
           }
       );
@@ -62,15 +61,19 @@ var getAuthor = function(req, res, callback) {
 
 
 var doAddComment = function(req, res, appointment, author) {
-  if (!appointment) {
+    if (!appointment) {
     sendJSONresponse(res, 404, "appointmentid not found");
   } else {
-    appointment.save(function(err, appointment) {
+    appointment.appointmentComment.push({
+      author: author,
+      commentText: req.body.commentText
+    });
+    appointment.save(function(err, issue) {
       var thisComment;
       if (err) {
         sendJSONresponse(res, 400, err);
       } else {
-        thisComment = appointment.comments[appointment.comments.length - 1];
+        thisComment = appointment.appointmentComment[appointment.appointmentComment.length - 1];
         sendJSONresponse(res, 201, thisComment);
       }
     });

@@ -84,6 +84,14 @@
                        formData);
 
     };
+      
+    var addAppointmentCommentById = function (appointmentid, data) {
+      return $http.post('/api/appointments/' + appointmentid + '/comments/', data, {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    };
 
     return {
       locationByCoords : locationByCoords,
@@ -97,6 +105,7 @@
       appointmentById : appointmentById,
       addAppointment: addAppointment,
       updateAppointment : updateAppointment,
+      addAppointmentCommentById: addAppointmentCommentById, 
       updateIssue : updateIssue
     };
   }
