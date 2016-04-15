@@ -8,7 +8,7 @@
            var fill = d3.scale.category20();
               d3.layout.cloud().size([300, 300])
                   .words(wordArr.map(function(d) {
-                    return {text: d, size: 10 + Math.random() * 90};
+                    return {text: d, size: 15};
                   }))
                   .rotate(function() { return ~~(Math.random() * 2) * 90; })
                   .font("Impact")

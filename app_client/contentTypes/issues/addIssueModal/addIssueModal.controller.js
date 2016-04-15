@@ -17,6 +17,7 @@
       
     if(vm.isUpdate === true) {
         vm.formData = getIssue;
+         vm.originalData = JSON.parse(JSON.stringify(vm.formData));
         vm.submitText = "Submit Updated issue";
     }
       
@@ -32,9 +33,19 @@
         console.log('onSubmit else');
         
         if(vm.isUpdate === true) {
-            vm.updateIssue(vm.formData._id, vm.formData);
+            
+          var changedFields = checkChangedFields(vm.originalData, vm.formData);
+        
+          if(changedFields.length > 0) {
+              vm.formData.updateField = changedFields;
+              vm.updateIssue(vm.formData._id, vm.formData);
+          } else {
+              vm.modal.close();
+          }
+            
         } else {
-            vm.doAddIssue(vm.formData);
+              vm.doAddIssue(vm.formData);
+          
         } 
           
         
@@ -78,6 +89,25 @@
       }
     };
 
+      
+       //checks what fields changed in the updates
+    function checkChangedFields(oldData, newData) {
+
+        var diff = [];
+        var attributeArr = ["title", "resolutionTimeframe", "responsibleParty", "description"];
+        
+        for(var i = 0; i < attributeArr.length; ++i) {
+            
+            if(oldData[attributeArr[i]] !== newData[attributeArr[i]] ) {
+                
+                diff.push({"field": attributeArr[i], "old": oldData[attributeArr[i]] , 
+                           "new": newData[attributeArr[i]]});
+            }
+        }
+        
+        return diff;
+    }
+      
   }
 
 })();

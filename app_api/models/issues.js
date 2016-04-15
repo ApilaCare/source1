@@ -13,7 +13,8 @@ var issueSchema = new mongoose.Schema({
   submitTime: {type: Date, default: Date.now},
   submitBy: {type: String, required: true},
   description: {type: String, required: true},
-  comments: [issueCommentSchema]
+  comments: [issueCommentSchema],
+  updateInfo: [mongoose.Schema.Types.Mixed]
 });
 
 mongoose.model('Issue', issueSchema);

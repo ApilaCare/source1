@@ -25,6 +25,7 @@
         apilaData.addAppointment(formData)
         .success(function (appoint) {
 
+         console.log(appoint);
           // add to list
           apilaData.appointList.appointments.push(appoint);
           vm.modal.close(appoint);
