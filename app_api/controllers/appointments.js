@@ -24,9 +24,7 @@ module.exports.appointmentsCreate = function (req, res) {
     locationName: req.body.locationName,
     locationDoctor: req.body.locationDoctor,
     residentGoing: req.body.residentGoing,
-    time: req.body.time,
-    date: req.body.date,
-    dateAndTime: d,
+    time: d,
     submitBy: req.payload.name,
     transportation: req.body.transportation,
   }, function(err, appointment) {
@@ -122,9 +120,7 @@ module.exports.appointmentsUpdateOne = function(req, res) {
         appointment.locationName = req.body.locationName,
         appointment.locationDoctor = req.body.locationDoctor,
         appointment.residentGoing = req.body.residentGoing,
-        appointment.time = req.body.time,
-        appointment.date = req.body.date,
-        appointment.dateAndTime = d,
+        appointment.time = d,
         appointment.transportation = req.body.transportation,
         appointment.cancel = req.body.cancel,
         appointment.updateInfo.push(updateInfo);

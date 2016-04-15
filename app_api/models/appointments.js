@@ -12,8 +12,6 @@ var appointmentSchema = new mongoose.Schema({
   locationDoctor: {type: String, default: ''},
   residentGoing: {type: String, default: ''},
   time: {type: Date, required: true},
-  date: {type: Date, required: false},
-  dateAndTime: {type: Date, required: false},
   transportation: {type: String, default: 'We are Transporting'},
   cancel: {type: Boolean, default: false},
   appointmentComment: [appointmentCommentSchema],

@@ -91,6 +91,8 @@
         var d1 = new Date(oldData.date);
         var d2 = new Date(newData.date);
         
+        console.log(oldData.date + " : " + newData.date);
+        
         var diff = [];
         var attributeArr = ["reason", "residentGoing", "locationName", "locationDoctor", 
                             "time", "transportation", "cancel"];
