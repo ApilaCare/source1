@@ -16,7 +16,7 @@
         vm.data = {issue:data};
         vm.pageHeader = {title:vm.data.issue.title};
      
-        console.log(createWordArray(vm.data));
+        //console.log(createWordArray(vm.data));
         
         wordCloud.drawWordCloud(createWordArray(vm.data));
       })

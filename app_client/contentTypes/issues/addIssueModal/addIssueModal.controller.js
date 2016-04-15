@@ -17,16 +17,15 @@
       
     if(vm.isUpdate === true) {
         vm.formData = getIssue;
+        vm.formData.modifiedDate = new Date();
+      vm.formData.updateInfo.updateDate = new Date(); 
          vm.originalData = JSON.parse(JSON.stringify(vm.formData));
         vm.submitText = "Submit Updated issue";
     }
       
       
     vm.onSubmit = function () {
-      vm.formError = "";   
-        
-      vm.formData.modifiedDate = new Date();
-      vm.formData.updateInfo.updateDate = new Date();    
+      vm.formError = "";     
     
       if (!vm.formData.title || !vm.formData.responsibleParty || !vm.formData.resolutionTimeframe || !vm.formData.description) {
         vm.formError = "All the fields are required. Please try again.";
