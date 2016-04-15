@@ -4,8 +4,8 @@
     .module('apilaApp')
     .controller('issueDetailCtrl', issueDetailCtrl);
 
-  issueDetailCtrl.$inject = ['$routeParams', '$location', 'apilaData', 'authentication', '$uibModal'];
-  function issueDetailCtrl ($routeParams, $location, apilaData, authentication, $uibModal) {
+  issueDetailCtrl.$inject = ['$routeParams', '$location', 'apilaData', 'authentication', '$uibModal', 'wordCloud'];
+  function issueDetailCtrl ($routeParams, $location, apilaData, authentication, $uibModal, wordCloud) {
     var vm = this;
     vm.issueid = $routeParams.issueid;
     vm.isLoggedIn = authentication.isLoggedIn();
@@ -15,6 +15,10 @@
       .success(function(data) {
         vm.data = {issue:data};
         vm.pageHeader = {title:vm.data.issue.title};
+     
+        console.log(createWordArray(vm.data));
+        
+        wordCloud.drawWordCloud(createWordArray(vm.data));
       })
       .error(function (e) {
         console.log(e);
@@ -51,5 +55,21 @@
             }
           });
         };
+      
+      
+      //gets all the comments and issue desction senteces and converts them to word array
+      function createWordArray(data) {
+          
+          var commentText;
+          for(var i = 0; i < data.issue.comments.length; ++i) {
+              commentText += " " + data.issue.comments[i].commentText;
+          }
+          
+          commentText += " " + data.issue.description;
+          
+          return commentText.split(" ");
+          
+      }
+      
   }
 })();

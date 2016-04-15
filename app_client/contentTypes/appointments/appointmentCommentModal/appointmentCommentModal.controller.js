@@ -2,28 +2,28 @@
 
   angular
     .module('apilaApp')
-    .controller('reviewModalCtrl', reviewModalCtrl);
+    .controller('appointmentCommentModalCtrl', appointmentCommentModalCtrl);
 
-  reviewModalCtrl.$inject = ['$uibModalInstance', 'apilaData', 'locationData'];
-  function reviewModalCtrl ($uibModalInstance, apilaData, locationData) {
+ appointmentCommentModalCtrl.$inject = ['$uibModalInstance', 'apilaData', 'appointmentData'];
+  function appointmentCommentModalCtrl ($uibModalInstance, apilaData, appointmentData) {
     var vm = this;
-    vm.locationData = locationData;
 
+      
+    vm.appointmentData = appointmentData;
+      
     vm.onSubmit = function () {
       vm.formError = "";
-      if (!vm.formData.rating || !vm.formData.reviewText) {
+      if (!vm.formData.commentText) {
         vm.formError = "All fields required, please try again";
         return false;
       } else {
-        vm.doAddReview(vm.locationData.locationid, vm.formData);
+          
+        vm.doAddComment(vm.appointmentData._id, vm.formData);
       }
     };
 
-    vm.doAddReview = function (locationid, formData) {
-      apilaData.addReviewById(locationid, {
-        rating : formData.rating,
-        reviewText : formData.reviewText
-      })
+    vm.doAddComment = function (appointmentid, formData) {
+      apilaData.addAppointmentCommentById(appointmentid, formData)
         .success(function (data) {
           vm.modal.close(data);
         })
@@ -31,8 +31,8 @@
           vm.formError = "Your review has not been saved, please try again";
         });
       return false;
-    };
-
+    };   
+      
     vm.modal = {
       close : function (result) {
         $uibModalInstance.close(result);

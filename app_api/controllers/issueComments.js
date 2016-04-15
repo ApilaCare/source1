@@ -10,7 +10,7 @@ var sendJSONresponse = function(res, status, content) {
 /* POST a new comment, providing a issueid */
 /* /api/issues/:issueid/comments */
 module.exports.issueCommentsCreate = function(req, res) {
-  console.log("Commenting");
+  console.log("Commenting max kek");
   getAuthor(req, res, function (req, res, userName) {
     if (req.params.issueid) {
       Iss
@@ -21,6 +21,7 @@ module.exports.issueCommentsCreate = function(req, res) {
             if (err) {
               sendJSONresponse(res, 400, err);
             } else {
+                
               doAddComment(req, res, issue, userName);
             }
           }

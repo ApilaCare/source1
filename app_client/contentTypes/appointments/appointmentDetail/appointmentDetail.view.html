@@ -79,20 +79,20 @@
         <div class="col-xs-12">
           <div class="panel panel-primary review-panel">
             <div class="panel-heading">
-              <a ng-show="vm.isLoggedIn" ng-click="vm.popupAppointmentCommentForm()" class="btn btn-default btn-xs pull-right">Add Comment</a>
+              <a ng-show="vm.isLoggedIn" ng-click="vm.popupAppointmentCommentForm(vm.data.appointment)" class="btn btn-default btn-xs pull-right">Add Comment</a>
               <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default btn-xs pull-right">Login to add review</a>
               <h2 class="panel-title">Appointment Comments</h2>
             </div>
             <div class="panel-body comment-container">
               <div class="row">
-                <div class="comment" ng-repeat="review in vm.data.location.reviews | orderBy:'createdOn':true">
+                <div class="comment" ng-repeat="comment in vm.data.appointment.appointmentComment | orderBy:'createdOn':true">
                   <div class="well well-sm comment-header">
-                    <span class="rating" rating-stars rating="review.rating"></span>
-                    <span class="reviewAuthor">{{ review.author }}</span>
-                    <small class="reviewTimestamp pull-right">{{ review.createdOn | date : 'd MMMM yyyy' }}</small>
+                    <span class="rating" rating-stars rating="comment.rating"></span>
+                    <span class="reviewAuthor">{{ comment.author }}</span>
+                    <small class="reviewTimestamp pull-right">{{ comment.createdOn | date : 'd MMMM yyyy' }}</small>
                   </div>
                   <div class="col-xs-12">
-                    <p ng-bind-html="review.reviewText | addHtmlLineBreaks"></p>
+                    <p ng-bind-html="comment.commentText | addHtmlLineBreaks"></p>
                   </div>
                 </div>
               </div>

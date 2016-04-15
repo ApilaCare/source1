@@ -42,7 +42,7 @@ router.put('/issues/:issueid', ctrlIssues.issuesUpdateOne);
 router.delete('/issues/:issueid', ctrlIssues.issuesDeleteOne);
 
 // issue comments
-router.post('/issues/:issueid/comments/', auth, ctrlIssueComments.issueCommentsCreate);
+router.post('/issues/:issueid/comments/new', auth, ctrlIssueComments.issueCommentsCreate);
 router.get('/issues/:issueid/comments/:commentid', ctrlIssueComments.issueCommentsReadOne);
 router.put('/issues/:issueid/comments/:commentid', auth, ctrlIssueComments.issueCommentsUpdateOne);
 router.delete('/issues/:issueid/comments/:commentid', auth, ctrlIssueComments.issueCommentsDeleteOne);
@@ -55,7 +55,7 @@ router.delete('/appointments/:appointmentid', ctrlAppointments.appointmentsDelet
 router.post('/appointments/new', auth, ctrlAppointments.appointmentsCreate);
 
 // appointment comments
-router.post('/appointments/:appointmentid/comments', ctrlAppointmentComments.appointmentCommentsCreate);
+router.post('/appointments/:appointmentid/comments', auth, ctrlAppointmentComments.appointmentCommentsCreate);
 router.get('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentComments.appointmentCommentsReadOne);
 router.put('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentComments.appointmentCommentsUpdateOne);
 router.delete('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentComments.appointmentCommentsDeleteOne);
