@@ -4,17 +4,35 @@
 
     function wordCloud() {
 
+      // returns an where property is the name of the word and a atribute is the number of time the word repeats
+      function count(arr){
+        return arr.reduce(function(m,e){
+          m[e] = (+m[e]||0)+1;
+            return m;
+        },{});
+      }
+
         function drawWordCloud(wordArr) {
-           var fill = d3.scale.category20();
-              d3.layout.cloud().size([500, 300])
-                  .words(wordArr.map(function(d) {
-                    return {text: d, size: 10 + Math.random() * 90};
-                  }))
-                  .rotate(function() { return ~~(Math.random() * 2) * 90; })
-                  .font("Impact")
-                  .fontSize(function(d) { return d.size; })
-                  .on("end", draw)
-                  .start();
+          var wordFreq = count(wordArr);
+          var wordsArr = [];
+
+          for (var property in wordFreq) {
+            if (wordFreq.hasOwnProperty(property)) {
+              wordsArr.push({"text": property, "count": wordFreq[property]});
+            }
+          }
+
+          var fill = d3.scale.category20();
+            d3.layout.cloud().size([500, 300])
+              .words(wordsArr.map(function(d) {
+                console.log(d);
+                return {text: d.text, size: 12 + d.count*2};
+              }))
+              .rotate(function() { return ~~(Math.random() * 2) * 90; })
+              .font("Impact")
+              .fontSize(function(d) { return d.size; })
+              .on("end", draw)
+              .start();
 
               function draw(words) {
                 d3.select("#wordcloud").append("svg")
