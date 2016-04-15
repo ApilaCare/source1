@@ -26,8 +26,8 @@
             <div class="panel-heading">
               <h2 class="panel-title">Word Cloud Panel</h2>
             </div>
-            <div class="panel-body" id="wordcloud">
-              
+            <div class="panel-body responsive" id="wordcloud">
+
             </div>
           </div>
         </div>
@@ -44,7 +44,6 @@
               <div class="row">
                 <div class="comment" ng-repeat="comment in vm.data.issue.comments | orderBy:'createdOn':true">
                   <div class="well well-sm comment-header">
-                    <span class="rating" rating-stars rating="comment.rating"></span>
                     <span class="commentAuthor">{{ comment.author }}</span>
                     <small class="commentTimestamp pull-right">{{ comment.createdOn | date : 'd MMMM yyyy' }}</small>
                   </div>

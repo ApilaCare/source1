@@ -1,12 +1,12 @@
 (function() {
 
     angular.module("apilaApp").service("wordCloud", wordCloud);
-    
+
     function wordCloud() {
-        
+
         function drawWordCloud(wordArr) {
            var fill = d3.scale.category20();
-              d3.layout.cloud().size([300, 300])
+              d3.layout.cloud().size([500, 300])
                   .words(wordArr.map(function(d) {
                     return {text: d, size: 10 + Math.random() * 90};
                   }))
@@ -15,7 +15,7 @@
                   .fontSize(function(d) { return d.size; })
                   .on("end", draw)
                   .start();
-            
+
               function draw(words) {
                 d3.select("#wordcloud").append("svg")
                     .attr("width", 700)
@@ -33,13 +33,13 @@
                       return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
                     })
                     .text(function(d) { return d.text; });
-              } 
+              }
         }
-        
-        
+
+
         return {
-            drawWordCloud: drawWordCloud
+            drawWordCloud : drawWordCloud
         }
     }
-    
+
 })();
