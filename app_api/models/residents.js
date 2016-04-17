@@ -8,7 +8,7 @@ var residentSchema = new mongoose.Schema({
   lastName: {type: String, required: true},
   maidenName: {type: String},
   birthDate: {type: Date, required: true},
-  addmissionDate: {type: Date, required: true},
+  addmissionDate: {type: Date},
   sex: {type: String, required: true},
 
   // bathing information
@@ -18,16 +18,16 @@ var residentSchema = new mongoose.Schema({
   acceptanceOfBathing: {type: String}, // likes, dislikes
 
   // mobility information
-  insideApartment: [
+  insideApartment: {
     useOfAssistiveDevice: {type: String}, // walker, cane, wheelchair
     assitanceWithDevice: {type: String},
     specialAmbulationNeeds: {type: String},
-  ],
-  outsideApartment: [
+  },
+  outsideApartment: {
     useOfAssistiveDevice: {type: String}, // walker, cane, wheelchair
     assitanceWithDevice: {type: String},
     specialAmbulationNeeds: {type: String},
-  ],
+  },
   transfers: {type: String}, // standby, independent, full assist, transfer pole
   fallRisk: {type: String},
   bedReposition: {type: Boolean},
@@ -67,23 +67,23 @@ var residentSchema = new mongoose.Schema({
   foodDislikes: [String],
 
   // physical condition information
-  height: {type: Number, required: true},
+  height: {type: Number},
   skinCondition: {type: String},
   wearsHearingAid: {type: String}, // yes, no, never
-  hearing: [
+  hearing: {
     rightEar: {type: String}, // adequate, adequate with aid, poor
     leftEar: {type: String}, // adequate, adequate with aid, poor
-  ],
-  vision: [
+  },
+  vision: {
     rightEye: {type: String}, // adequate, adequate with aid, poor
     leftEye: {type: String}, // adequate, adequate with aid, poor
-  ],
-  teeth: [
+  },
+  teeth: {
     upperDentureFit: {type: Boolean},
     upperTeeth: {type: String}, // Has own, Has dentures, neither, has partial
     lowerDentureFit: {type: Boolean},
     lowerTeeth: {type: String}, // Has own, Has dentures, neither, has partial
-  ],
+  },
   teethCondition: {type: String}, // poor, fair, good, excellent
 
   // psychosocial information
@@ -91,11 +91,11 @@ var residentSchema = new mongoose.Schema({
   responsiveness: {type: String},
   mood: {type: String}, //
   comprehension: {type: String}, // slow, moderate, quick
-  personalHabits: [
+  personalHabits: {
     smokes: {type: Boolean},
     alcohol: {type: Boolean},
     other: {type: String},
-  ],
+  },
   generalActivityParticipation: {type: String},
   diningRoomParticipation: {type: String}, // scale that is from: alone > minor > major > amazing
   busRideParticipation: {type: String},

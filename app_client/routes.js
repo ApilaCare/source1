@@ -4,6 +4,8 @@
 
   function config ($routeProvider, $locationProvider) {
     $routeProvider
+
+      // boring pages routes
       .when('/', {
         templateUrl: '/contentTypes/home/home.view.html',
         controller: 'homeCtrl',
@@ -14,6 +16,8 @@
         controller: 'aboutCtrl',
         controllerAs: 'vm'
       })
+
+      // location routes
       .when('/locations', {
         templateUrl: '/contentTypes/locations/locationsHome/locationsHome.view.html',
         controller: 'locationHomeCtrl',
@@ -24,6 +28,8 @@
         controller: 'locationDetailCtrl',
         controllerAs: 'vm'
       })
+
+      // user routes
       .when('/register', {
         templateUrl: '/auth/register/register.view.html',
         controller: 'registerCtrl',
@@ -34,6 +40,8 @@
         controller: 'loginCtrl',
         controllerAs: 'vm'
       })
+
+      // issue routes
       .when('/issues', {
         templateUrl: '/contentTypes/issues/issueHome/issueHome.view.html',
         controller: 'issueHomeCtrl',
@@ -44,6 +52,8 @@
         controller: 'issueDetailCtrl',
         controllerAs: 'vm'
       })
+
+      // appointment routes
       .when('/appointments', {
         templateUrl: '/contentTypes/appointments/appointmentHome/appointmentHome.view.html',
         controller: 'appointmentHomeCtrl',
@@ -52,6 +62,18 @@
       .when('/appointments/:appointmentid', {
         templateUrl: '/contentTypes/appointments/appointmentDetail/appointmentDetail.view.html',
         controller: 'appointmentDetailCtrl',
+        controllerAs: 'vm'
+      })
+
+      // resident routes
+      .when('/residents', {
+        templateUrl: '/contentTypes/residents/residentHome/residentHome.view.html',
+        controller: 'residentHomeCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/residents/:residentid', {
+        templateUrl: '/contentTypes/residents/residentDetail/residentDetail.view.html',
+        controller: 'residentDetailCtrl',
         controllerAs: 'vm'
       })
       .otherwise({redirectTo: '/'});

@@ -46,6 +46,7 @@ process.on('SIGTERM', function() {
 });
 
 // BRING IN YOUR SCHEMAS & MODELS
+require('./residents');
 require('./locations');
 require('./issues');
 require('./appointments');

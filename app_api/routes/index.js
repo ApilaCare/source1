@@ -10,6 +10,7 @@ var auth = jwt({
 
 var ctrlLocations = require('../controllers/locations');
 var ctrlIssues = require('../controllers/issues');
+var ctrlResidents = require('../controllers/residents');
 var ctrlAppointments = require('../controllers/appointments');
 var ctrlReviews = require('../controllers/reviews');
 var ctrlIssueComments = require('../controllers/issueComments');
@@ -59,5 +60,12 @@ router.post('/appointments/:appointmentid/comments', auth, ctrlAppointmentCommen
 router.get('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentComments.appointmentCommentsReadOne);
 router.put('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentComments.appointmentCommentsUpdateOne);
 router.delete('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentComments.appointmentCommentsDeleteOne);
+
+// residents
+router.get('/residents', ctrlResidents.residentsList);
+router.get('/residents/:residentid', ctrlResidents.residentsReadOne);
+router.put('/residents/update/:residentid',ctrlResidents.residentsUpdateOne);
+router.delete('/residents/:residentid', ctrlResidents.residentsDeleteOne);
+router.post('/residents/new', auth, ctrlResidents.residentsCreate);
 
 module.exports = router;
