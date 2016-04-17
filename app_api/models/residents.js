@@ -122,6 +122,8 @@ var bathingSchema = new mongoose.Schema({
 });
 
 var residentSchema = new mongoose.Schema({
+
+  // administrative information
   firstName: {type: String, required: true},
   middleName: {type: String},
   lastName: {type: String, required: true},
@@ -133,6 +135,12 @@ var residentSchema = new mongoose.Schema({
   skinCondition: {type: String, required: true},
   vitals: [vitalsSchema],
   pain: [painSchema],
+
+  // bathing information
+  type: {type: String}, // shower, tub, spit bath
+  time: {type: String}, // morning, evening, before breakfast, after breakfast, after supper, before supper?
+  frequency: {type: String}, // 1 per week, twice a week, everyday,
+  acceptanceOfBathing: {type: String}, // likes, dislikes
 });
 
 mongoose.model('Resident', residentSchema);
