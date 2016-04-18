@@ -25,30 +25,54 @@ var app = express();
 
 // (commented out to debug better.  these are now in app_client/index.html)
 var appClientFiles = [
+
+  // route files
   'app_client/routes.js',
+
+  // issue controller files
   'app_client/contentTypes/issues/issueHome/issueHome.controller.js',
   'app_client/contentTypes/issues/issueDetail/issueDetail.controller.js',
   'app_client/contentTypes/issues/addIssueModal/addIssueModal.controller.js',
   'app_client/contentTypes/issues/issueCommentModal/issueCommentModal.controller.js',
+
+  // appointment controller files
   'app_client/contentTypes/appointments/appointmentHome/appointmentHome.controller.js',
   'app_client/contentTypes/appointments/appointmentDetail/appointmentDetail.controller.js',
   'app_client/contentTypes/appointments/addAppointmentModal/addAppointmentModal.controller.js',
   'app_client/contentTypes/appointments/updateAppointmentModal/updateAppointmentModal.controller.js',
   'app_client/contentTypes/appointments/appointmentCommentModal/appointmentCommentModal.controller.js',
+
+  // resident controller files
+  'app_client/contentTypes/residents/addResidentModal/addResidentModal.controller.js',
+  'app_client/contentTypes/residents/residentDetail/residentDetail.controller.js',
+  'app_client/contentTypes/residents/residentHome/residentHome.controller.js',
+  'app_client/contentTypes/residents/updateResidentModal/updateResidentModal.controller.js',
+
+  // boring pages controller files
   'app_client/contentTypes/about/about.controller.js',
   'app_client/contentTypes/home/home.controller.js',
+
+  // user controller files
   'app_client/auth/login/login.controller.js',
   'app_client/auth/register/register.controller.js',
+
+  // location controller files
   'app_client/contentTypes/locations/locationsHome/locationsHome.controller.js',
   'app_client/contentTypes/locations/locationDetail/locationDetail.controller.js',
   'app_client/contentTypes/locations/reviewModal/reviewModal.controller.js',
+
+  // service files
   'app_client/common/services/authentication.service.js',
   'app_client/common/services/geolocation.service.js',
   'app_client/common/services/apilaData.service.js',
   'app_client/common/services/exportPdf.service.js',
   'app_client/common/services/wordCloud.service.js',
+
+  // custom filter files
   'app_client/common/filters/formatDistance.filter.js',
   'app_client/common/filters/addHtmlLinebreaks.filter.js',
+
+  // directive files
   'app_client/common/directives/navigation/navigation.controller.js',
   'app_client/common/directives/navigation/navigation.directive.js',
   'app_client/common/directives/footerGeneric/footerGeneric.directive.js',

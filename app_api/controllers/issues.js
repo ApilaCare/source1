@@ -11,7 +11,7 @@ var sendJSONresponse = function(res, status, content) {
 module.exports.issuesCreate = function (req, res) {
 
     console.log(req.payload.name);
-    
+
   //create issue from the inputed data
   Iss.create({
     title: req.body.title,
@@ -68,19 +68,21 @@ module.exports.issuesReadOne = function (req, res) {
 
 /* PUT /api/issue/:issueid */
 module.exports.issuesUpdateOne = function(req, res) {
-    
+
   if (!req.params.issueid) {
     sendJSONresponse(res, 404, {
       "message": "Not found, issueid is required"
     });
     return;
   }
-    
- var updateInfo = {"updateBy":req.body.modifiedBy, "updateDate":req.body.modifiedDate, 
-                   "updateField": req.body.updateField};
 
- console.log(req.body);
-    
+  var updateInfo = {
+    "updateBy":req.body.modifiedBy,
+    "updateDate":req.body.modifiedDate,
+    "updateField": req.body.updateField
+  };
+
+
   Iss
     .findById(req.params.issueid)
     .exec(

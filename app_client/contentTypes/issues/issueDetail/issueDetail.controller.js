@@ -15,9 +15,9 @@
       .success(function(data) {
         vm.data = {issue:data};
         vm.pageHeader = {title:vm.data.issue.title};
-     
-        //console.log(createWordArray(vm.data));
-        
+
+        // console.log(createWordArray(vm.data));
+
         wordCloud.drawWordCloud(createWordArray(vm.data));
       })
       .error(function (e) {
@@ -37,13 +37,13 @@
             }
           }
         });
-          
+
         modalInstance.result.then(function (data) {
           vm.data.issue.comments.push(data);
         });
       };
-      
-      
+
+
        vm.popupUpdateIssueForm = function (issue) {
           var modalInstance = $uibModal.open({
             templateUrl: '/contentTypes/issues/addIssueModal/addIssueModal.view.html',
@@ -55,21 +55,21 @@
             }
           });
         };
-      
-      
-      //gets all the comments and issue desction senteces and converts them to word array
+
+
+      // gets all the comments and issue description and converts them to word array
       function createWordArray(data) {
-          
+
           var commentText;
-          for(var i = 0; i < data.issue.comments.length; ++i) {
+          for (var i = 0; i < data.issue.comments.length; ++i) {
               commentText += " " + data.issue.comments[i].commentText;
           }
-          
+
           commentText += " " + data.issue.description;
-          
+
           return commentText.split(" ");
-          
+
       }
-      
+
   }
 })();

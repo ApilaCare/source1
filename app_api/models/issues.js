@@ -10,7 +10,7 @@ var issueSchema = new mongoose.Schema({
   title: {type: String, required: true},
   responsibleParty: {type: String, required: true},
   resolutionTimeframe: {type: String, required: true},
-  submitTime: {type: Date, default: Date.now},
+  submitDate: {type: Date, default: Date.now},
   submitBy: {type: String, required: true},
   description: {type: String, required: true},
   comments: [issueCommentSchema],

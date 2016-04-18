@@ -67,23 +67,9 @@
               <h2 class="panel-title">Modification Information</h2>
             </div>
             <div class="panel-body">
-              <div class="well well-sm" ng-repeat="update in vm.data.appointment.updateInfo">
-                <p class="">
-                  {{ update.updateBy }}
-                  <span class="pull-right">{{ update.updateDate | date : 'h:mm a, MMMM d' }}</span>
-                </p>
-                  <div class="well well-sm inside" ng-repeat="spot in update.updateField">
-                    <p>
-                      <span class="capitalize">{{ spot.field }}</span>
-                      <br>
-                      from
-                      <span class="pull-right">{{ spot.old }}</span>
-                      <br>
-                      to
-                      <span class="pull-right">{{ spot.new }}</span>
-                    </p>
-                </div>
-              </div>
+              <p ng-repeat="person in vm.data.appointment.updateInfo">
+                Modified by {{ person.updateBy }} on {{ person.updateDate | date : 'h:mm a, MMMM d' }}
+              </p>
             </div>
           </div>
         </div>
@@ -95,12 +81,13 @@
             <div class="panel-heading">
               <a ng-show="vm.isLoggedIn" ng-click="vm.popupAppointmentCommentForm(vm.data.appointment)" class="btn btn-default btn-xs pull-right">Add Comment</a>
               <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default btn-xs pull-right">Login to add review</a>
-              <h2 class="panel-title">Comments for {{ vm.data.appointment.residentGoing }} going to {{ vm.data.appointment.locationName }}</h2>
+              <h2 class="panel-title">Appointment Comments</h2>
             </div>
             <div class="panel-body comment-container">
               <div class="row">
                 <div class="comment" ng-repeat="comment in vm.data.appointment.appointmentComment | orderBy:'createdOn':true">
                   <div class="well well-sm comment-header">
+                    <span class="rating" rating-stars rating="comment.rating"></span>
                     <span class="reviewAuthor">{{ comment.author }}</span>
                     <small class="reviewTimestamp pull-right">{{ comment.createdOn | date : 'd MMMM yyyy' }}</small>
                   </div>

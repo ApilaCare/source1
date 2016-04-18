@@ -112,10 +112,14 @@ module.exports.appointmentsUpdateOne = function(req, res) {
         d.setHours(t.getHours());
         d.setMinutes(t.getMinutes());
         d.setSeconds(t.getSeconds());
-   
-        var updateInfo = {"updateBy":req.body.modifiedBy, "updateDate":req.body.modifiedDate, 
-                        "updateField": req.body.updateField};
-          
+
+        var updateInfo = {
+          "updateBy":req.body.modifiedBy,
+          "updateDate":req.body.modifiedDate,
+          "updateField": req.body.updateField
+        };
+
+
         appointment.reason = req.body.reason,
         appointment.locationName = req.body.locationName,
         appointment.locationDoctor = req.body.locationDoctor,

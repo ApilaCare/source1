@@ -49,7 +49,7 @@
         }
       });
     }
-    
+
     var updateIssue = function(issueid, data) {
         return $http.put('/api/issues/' + issueid, data);
     }
@@ -84,7 +84,7 @@
                        formData);
 
     };
-      
+
     var addAppointmentCommentById = function (appointmentid, data) {
       return $http.post('/api/appointments/' + appointmentid + '/comments/', data, {
         headers: {
@@ -103,9 +103,9 @@
       addIssueCommentById : addIssueCommentById,
       appointmentsList : appointmentsList,
       appointmentById : appointmentById,
-      addAppointment: addAppointment,
+      addAppointment : addAppointment,
       updateAppointment : updateAppointment,
-      addAppointmentCommentById: addAppointmentCommentById, 
+      addAppointmentCommentById : addAppointmentCommentById,
       updateIssue : updateIssue
     };
   }
