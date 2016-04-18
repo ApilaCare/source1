@@ -21,6 +21,7 @@
         vm.submitText = "Submit Updated issue";
         vm.formData.modifiedDate = new Date();
         vm.formData.updateInfo.updateDate = new Date();
+        vm.formData.modifiedBy = authentication.currentUser().name;
     }
 
 

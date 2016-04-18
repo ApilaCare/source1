@@ -1,6 +1,6 @@
 (function () {
 
-  angular.module('apilaApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap']);
+  angular.module('apilaApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap', 'ngMaterial']);
 
   function config ($routeProvider, $locationProvider) {
     $routeProvider
