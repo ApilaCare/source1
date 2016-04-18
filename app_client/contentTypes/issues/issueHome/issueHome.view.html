@@ -1,27 +1,27 @@
 <navigation></navigation>
 
 <div class="container">
-  <page-header content="vm.pageHeader"></page-header>
+    <page-header content="vm.pageHeader"></page-header>
 
-  <div class="row">
-    <div class="col-xs-12 col-sm-12">
-      <a ng-show="vm.isLoggedIn" ng-click="vm.popupNewIssueForm()" class="btn btn-primary pull-right">New</a>
-      <label for="filter">Filter Issue results</label>
-      <input id="filter" type="text", name="filter", ng-model="textFilter">
-      <div class="error">{{ vm.message }}</div>
-      <div class="row list-group">
-        <div class="col-xs-12 list-group-item" ng-repeat="issue in vm.data.issues | filter : textFilter">
-          <h4>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <a ng-show="vm.isLoggedIn" ng-click="vm.popupNewIssueForm()" class="btn btn-primary pull-right">New</a>
+            <label for="filter">Filter Issue results</label>
+            <input id="filter" type="text" , name="filter" , ng-model="textFilter">
+            <div class="error">{{ vm.message }}</div>
+            <div class="row list-group">
+                <div class="col-xs-12 list-group-item" ng-repeat="issue in vm.data.issues | filter : textFilter">
+                    <h4>
             <a href="issues/{{ issue._id }}">{{ issue.title }}</a>
             <span class="badge pull-right badge-default">{{ issue.resolutionTimeframe }}</span>
           </h4>
-          <p class="address">{{ issue.responsibleParty }}
-            <a ng-show="vm.isLoggedIn" class="btn btn-info btn-xs pull-right" ng-click="vm.popupUpdateIssueForm(issue)">Update</a>
-          </p>
+                    <p class="address">{{ issue.responsibleParty }}
+                        <a ng-show="vm.isLoggedIn" class="btn btn-info btn-xs pull-right" ng-click="vm.popupUpdateIssueForm(issue)">Update</a>
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <footer-generic></footer-generic>
+    <footer-generic></footer-generic>
 </div>

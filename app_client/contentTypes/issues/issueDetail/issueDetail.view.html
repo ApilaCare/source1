@@ -1,102 +1,100 @@
 <navigation></navigation>
 
 <div class="container">
-  <page-header content="vm.pageHeader"></page-header>
+    <page-header content="vm.pageHeader"></page-header>
 
-  <div class="row">
-    <div class="col-xs-12 col-md-12">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <a ng-show="vm.isLoggedIn" ng-click="vm.popupUpdateIssueForm(vm.data.issue)" class="btn btn-info btn-xs pull-right">Update</a>
-              <h2 class="panel-title">issue information</h2>
-            </div>
-            <div class="panel-body">
-              <p>
-                Responsible Party:
-                <span class="pull-right">{{ vm.data.issue.responsibleParty }}</span>
-              </p>
-              <p>
-                Resolution Time Frame:
-                <span class="pull-right">{{ vm.data.issue.resolutionTimeframe }}</span>
-              </p>
-              <p>
-                Description:
-                <span class="pull-right">{{ vm.data.issue.description }}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6">
-          <div class="panel panel-primary issue-map">
-            <div class="panel-heading">
-              <h2 class="panel-title">Word Cloud</h2>
-            </div>
-            <div class="panel-body responsive" id="wordcloud">
-
-            </div>
-          </div>
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h2 class="panel-title">Submit Information</h2>
-            </div>
-            <div class="panel-body">
-              <p>
-                Submitted By:
-                <span class="pull-right">{{ vm.data.issue.submitBy }}</span>
-              </p>
-              <p>
-                Submitted Time:
-                <span class="pull-right">{{ vm.data.issue.submitDate | date : 'h:mm a, MMMM d' }}</span>
-              </p>
-            </div>
-          </div>
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h2 class="panel-title">Modification Information</h2>
-            </div>
-            <div class="panel-body">
-              <div class="well well-sm" ng-repeat="update in vm.data.issue.updateInfo">
-                <p class="" ng-repeat="spot in update.updateField">
-                  {{ update.updateBy }} on {{ update.updateDate | date : 'h:mm a, MMMM d' }} changed <span class="capitalize">{{ spot.field }}</span>
-                  <br>
-                  from
-                  <span class="pull-right">{{ spot.old }}</span>
-                  <br>
-                  to
-                  <span class="pull-right">{{ spot.new }}</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="panel panel-primary comment-panel">
-            <div class="panel-heading">
-              <a ng-show="vm.isLoggedIn" ng-click="vm.popupIssueCommentForm()" class="btn btn-default btn-xs pull-right">Add Comment</a>
-              <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default pull-right">Login to add comment</a>
-              <h2 class="panel-title">Comments on {{ vm.data.issue.title }}</h2>
-            </div>
-            <div class="panel-body comment-container">
-              <div class="row">
-                <div class="comment" ng-repeat="comment in vm.data.issue.comments | orderBy:'createdOn':true">
-                  <div class="well well-sm comment-header">
-                    <span class="commentAuthor">{{ comment.author }}</span>
-                    <small class="commentTimestamp pull-right">{{ comment.createdOn | date : 'd MMMM yyyy' }}</small>
-                  </div>
-                  <div class="col-xs-12">
-                    <p ng-bind-html="comment.commentText | addHtmlLineBreaks"></p>
-                  </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <a ng-show="vm.isLoggedIn" ng-click="vm.popupUpdateIssueForm(vm.data.issue)" class="btn btn-info btn-xs pull-right">Update</a>
+                            <h2 class="panel-title">issue information</h2>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                Responsible Party:
+                                <span class="pull-right">{{ vm.data.issue.responsibleParty }}</span>
+                            </p>
+                            <p>
+                                Resolution Time Frame:
+                                <span class="pull-right">{{ vm.data.issue.resolutionTimeframe }}</span>
+                            </p>
+                            <p>
+                                Description:
+                                <span class="pull-right">{{ vm.data.issue.description }}</span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="panel panel-primary issue-map">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">Word Cloud</h2>
+                        </div>
+                        <div class="panel-body responsive" id="wordcloud">
+
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">Submit Information</h2>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                Submitted By:
+                                <span class="pull-right">{{ vm.data.issue.submitBy }}</span>
+                            </p>
+                            <p>
+                                Submitted Time:
+                                <span class="pull-right">{{ vm.data.issue.submitDate | date : 'h:mm a, MMMM d' }}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">Modification Information</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="well well-sm" ng-repeat="update in vm.data.issue.updateInfo">
+                                <p class="" ng-repeat="spot in update.updateField">
+                                    {{ update.updateBy }} on {{ update.updateDate | date : 'h:mm a, MMMM d' }} changed <span class="capitalize">{{ spot.field }}</span>
+                                    <br> from
+                                    <span class="pull-right">{{ spot.old }}</span>
+                                    <br> to
+                                    <span class="pull-right">{{ spot.new }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary comment-panel">
+                        <div class="panel-heading">
+                            <a ng-show="vm.isLoggedIn" ng-click="vm.popupIssueCommentForm()" class="btn btn-default btn-xs pull-right">Add Comment</a>
+                            <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default pull-right">Login to add comment</a>
+                            <h2 class="panel-title">Comments on {{ vm.data.issue.title }}</h2>
+                        </div>
+                        <div class="panel-body comment-container">
+                            <div class="row">
+                                <div class="comment" ng-repeat="comment in vm.data.issue.comments | orderBy:'createdOn':true">
+                                    <div class="well well-sm comment-header">
+                                        <span class="commentAuthor">{{ comment.author }}</span>
+                                        <small class="commentTimestamp pull-right">{{ comment.createdOn | date : 'd MMMM yyyy' }}</small>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <p ng-bind-html="comment.commentText | addHtmlLineBreaks"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <footer-generic></footer-generic>
+    <footer-generic></footer-generic>
 </div>

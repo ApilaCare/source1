@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 var jwt = require('express-jwt');
 var auth = jwt({
-  // set secret using same environment variable as before
-  secret: process.env.JWT_SECRET,
-  // define property on req to be payload
-  userProperty: 'payload'
+    // set secret using same environment variable as before
+    secret: process.env.JWT_SECRET,
+    // define property on req to be payload
+    userProperty: 'payload'
 });
 
 var ctrlLocations = require('../controllers/locations');
@@ -51,7 +51,7 @@ router.delete('/issues/:issueid/comments/:commentid', auth, ctrlIssueComments.is
 // appointments
 router.get('/appointments', ctrlAppointments.appointmentsList);
 router.get('/appointments/:appointmentid', ctrlAppointments.appointmentsReadOne);
-router.put('/appointments/update/:appointmentid',ctrlAppointments.appointmentsUpdateOne);
+router.put('/appointments/update/:appointmentid', ctrlAppointments.appointmentsUpdateOne);
 router.delete('/appointments/:appointmentid', ctrlAppointments.appointmentsDeleteOne);
 router.post('/appointments/new', auth, ctrlAppointments.appointmentsCreate);
 
@@ -64,7 +64,7 @@ router.delete('/appointments/:appointmentid/comments/:commentid', ctrlAppointmen
 // residents
 router.get('/residents', ctrlResidents.residentsList);
 router.get('/residents/:residentid', ctrlResidents.residentById);
-router.put('/residents/update/:residentid',ctrlResidents.residentsUpdateOne);
+router.put('/residents/update/:residentid', ctrlResidents.residentsUpdateOne);
 router.delete('/residents/:residentid', ctrlResidents.residentsDeleteOne);
 router.post('/residents/new', auth, ctrlResidents.residentsCreate);
 

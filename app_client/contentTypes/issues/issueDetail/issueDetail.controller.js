@@ -1,75 +1,80 @@
-(function () {
+(function() {
 
-  angular
-    .module('apilaApp')
-    .controller('issueDetailCtrl', issueDetailCtrl);
+    angular
+        .module('apilaApp')
+        .controller('issueDetailCtrl', issueDetailCtrl);
 
-  issueDetailCtrl.$inject = ['$routeParams', '$location', 'apilaData', 'authentication', '$uibModal', 'wordCloud'];
-  function issueDetailCtrl ($routeParams, $location, apilaData, authentication, $uibModal, wordCloud) {
-    var vm = this;
-    vm.issueid = $routeParams.issueid;
-    vm.isLoggedIn = authentication.isLoggedIn();
-    vm.currentPath = $location.path();
+    issueDetailCtrl.$inject = ['$routeParams', '$location', 'apilaData', 'authentication', '$uibModal', 'wordCloud'];
 
-    apilaData.issueById(vm.issueid)
-      .success(function(data) {
-        vm.data = {issue:data};
-        vm.pageHeader = {title:vm.data.issue.title};
+    function issueDetailCtrl($routeParams, $location, apilaData, authentication, $uibModal, wordCloud) {
+        var vm = this;
+        vm.issueid = $routeParams.issueid;
+        vm.isLoggedIn = authentication.isLoggedIn();
+        vm.currentPath = $location.path();
 
-        // console.log(createWordArray(vm.data));
+        apilaData.issueById(vm.issueid)
+            .success(function(data) {
+                vm.data = {
+                    issue: data
+                };
+                vm.pageHeader = {
+                    title: vm.data.issue.title
+                };
 
-        wordCloud.drawWordCloud(createWordArray(vm.data));
-      })
-      .error(function (e) {
-        console.log(e);
-      });
+                // console.log(createWordArray(vm.data));
 
-      vm.popupIssueCommentForm = function () {
-        var modalInstance = $uibModal.open({
-          templateUrl: '/contentTypes/issues/issueCommentModal/issueCommentModal.view.html',
-          controller: 'issueCommentModalCtrl as vm',
-          resolve : {
-            issueData : function () {
-              return {
-                issueid : vm.issueid,
-                issueTitle : vm.data.issue.title
-              };
-            }
-          }
-        });
+                wordCloud.drawWordCloud(createWordArray(vm.data));
+            })
+            .error(function(e) {
+                console.log(e);
+            });
 
-        modalInstance.result.then(function (data) {
-          vm.data.issue.comments.push(data);
-        });
-      };
+        vm.popupIssueCommentForm = function() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/contentTypes/issues/issueCommentModal/issueCommentModal.view.html',
+                controller: 'issueCommentModalCtrl as vm',
+                resolve: {
+                    issueData: function() {
+                        return {
+                            issueid: vm.issueid,
+                            issueTitle: vm.data.issue.title
+                        };
+                    }
+                }
+            });
 
-
-       vm.popupUpdateIssueForm = function (issue) {
-          var modalInstance = $uibModal.open({
-            templateUrl: '/contentTypes/issues/addIssueModal/addIssueModal.view.html',
-            controller: 'newIssueModalCtrl as vm',
-            resolve: {
-            getIssue: function() {
-              return issue;
-            }
-            }
-          });
+            modalInstance.result.then(function(data) {
+                vm.data.issue.comments.push(data);
+            });
         };
 
 
-      // gets all the comments and issue description and converts them to word array
-      function createWordArray(data) {
+        vm.popupUpdateIssueForm = function(issue) {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/contentTypes/issues/addIssueModal/addIssueModal.view.html',
+                controller: 'newIssueModalCtrl as vm',
+                resolve: {
+                    getIssue: function() {
+                        return issue;
+                    }
+                }
+            });
+        };
 
-          var commentText;
-          for (var i = 0; i < data.issue.comments.length; ++i) {
-              commentText += " " + data.issue.comments[i].commentText;
-          }
 
-          commentText += " " + data.issue.description;
+        // gets all the comments and issue description and converts them to word array
+        function createWordArray(data) {
 
-          return commentText.split(" ");
+            var commentText;
+            for (var i = 0; i < data.issue.comments.length; ++i) {
+                commentText += " " + data.issue.comments[i].commentText;
+            }
 
-      }
+            commentText += " " + data.issue.description;
 
-  }
+            return commentText.split(" ");
+
+        }
+
+    }
 })();

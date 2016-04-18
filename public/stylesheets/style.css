@@ -1,21 +1,35 @@
-.comment {padding-bottom: 5px;}
-.panel-body.comment-container {padding-top: 0;}
-.comment-header {margin-bottom: 20px;}
-.reviewAuthor {margin: 0 5px;}
-.reviewTimestamp {color: #ccc;}
-
-.label-facility {margin-right: 2px}
-.rating-stars {margin-left: 3px;}
-#filter {margin-left: 4px;}
-
-.new-location-btn {z-index: 0;}
-
-.capitalize {
-   text-transform: capitalize;
+.comment {
+    padding-bottom: 5px;
 }
-
-.inside{
-	background-color: #ffffff;
-	/*border-bottom	: 2px groove black;
+.panel-body.comment-container {
+    padding-top: 0;
+}
+.comment-header {
+    margin-bottom: 20px;
+}
+.reviewAuthor {
+    margin: 0 5px;
+}
+.reviewTimestamp {
+    color: #ccc;
+}
+.label-facility {
+    margin-right: 2px
+}
+.rating-stars {
+    margin-left: 3px;
+}
+#filter {
+    margin-left: 4px;
+}
+.new-location-btn {
+    z-index: 0;
+}
+.capitalize {
+    text-transform: capitalize;
+}
+.inside {
+    background-color: #ffffff;
+    /*border-bottom	: 2px groove black;
 	height: 100px;*/
 }

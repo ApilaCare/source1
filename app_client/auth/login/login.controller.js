@@ -1,47 +1,48 @@
-(function () {
+(function() {
 
-  angular
-    .module('apilaApp')
-    .controller('loginCtrl', loginCtrl);
+    angular
+        .module('apilaApp')
+        .controller('loginCtrl', loginCtrl);
 
-  loginCtrl.$inject = ['$location','authentication'];
-  function loginCtrl($location, authentication) {
-    var vm = this;
+    loginCtrl.$inject = ['$location', 'authentication'];
 
-    vm.pageHeader = {
-      title: 'Sign in to Loc8r'
-    };
+    function loginCtrl($location, authentication) {
+        var vm = this;
 
-    vm.credentials = {
-      email : "",
-      password : ""
-    };
+        vm.pageHeader = {
+            title: 'Sign in to Loc8r'
+        };
 
-    vm.returnPage = $location.search().page || '/';
+        vm.credentials = {
+            email: "",
+            password: ""
+        };
 
-    vm.onSubmit = function () {
-      vm.formError = "";
-      if (!vm.credentials.email || !vm.credentials.password) {
-        vm.formError = "All fields required, please try again";
-        return false;
-      } else {
-        vm.doLogin();
-      }
-    };
+        vm.returnPage = $location.search().page || '/';
 
-    vm.doLogin = function() {
-      vm.formError = "";
-      authentication
-        .login(vm.credentials)
-        .error(function(err){
-          vm.formError = err;
-        })
-        .then(function(){
-          $location.search('page', null);
-          $location.path(vm.returnPage);
-        });
-    };
+        vm.onSubmit = function() {
+            vm.formError = "";
+            if (!vm.credentials.email || !vm.credentials.password) {
+                vm.formError = "All fields required, please try again";
+                return false;
+            } else {
+                vm.doLogin();
+            }
+        };
 
-  }
+        vm.doLogin = function() {
+            vm.formError = "";
+            authentication
+                .login(vm.credentials)
+                .error(function(err) {
+                    vm.formError = err;
+                })
+                .then(function() {
+                    $location.search('page', null);
+                    $location.path(vm.returnPage);
+                });
+        };
+
+    }
 
 })();

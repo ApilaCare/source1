@@ -1,47 +1,48 @@
-(function () {
+(function() {
 
-  angular
-    .module('apilaApp')
-    .controller('reviewModalCtrl', reviewModalCtrl);
+    angular
+        .module('apilaApp')
+        .controller('reviewModalCtrl', reviewModalCtrl);
 
-  reviewModalCtrl.$inject = ['$uibModalInstance', 'apilaData', 'locationData'];
-  function reviewModalCtrl ($uibModalInstance, apilaData, locationData) {
-    var vm = this;
-    vm.locationData = locationData;
+    reviewModalCtrl.$inject = ['$uibModalInstance', 'apilaData', 'locationData'];
 
-    vm.onSubmit = function () {
-      vm.formError = "";
-      if (!vm.formData.rating || !vm.formData.reviewText) {
-        vm.formError = "All fields required, please try again";
-        return false;
-      } else {
-        vm.doAddReview(vm.locationData.locationid, vm.formData);
-      }
-    };
+    function reviewModalCtrl($uibModalInstance, apilaData, locationData) {
+        var vm = this;
+        vm.locationData = locationData;
 
-    vm.doAddReview = function (locationid, formData) {
-      apilaData.addReviewById(locationid, {
-        rating : formData.rating,
-        reviewText : formData.reviewText
-      })
-        .success(function (data) {
-          vm.modal.close(data);
-        })
-        .error(function (data) {
-          vm.formError = "Your review has not been saved, please try again";
-        });
-      return false;
-    };
+        vm.onSubmit = function() {
+            vm.formError = "";
+            if (!vm.formData.rating || !vm.formData.reviewText) {
+                vm.formError = "All fields required, please try again";
+                return false;
+            } else {
+                vm.doAddReview(vm.locationData.locationid, vm.formData);
+            }
+        };
 
-    vm.modal = {
-      close : function (result) {
-        $uibModalInstance.close(result);
-      },
-      cancel : function () {
-        $uibModalInstance.dismiss('cancel');
-      }
-    };
+        vm.doAddReview = function(locationid, formData) {
+            apilaData.addReviewById(locationid, {
+                    rating: formData.rating,
+                    reviewText: formData.reviewText
+                })
+                .success(function(data) {
+                    vm.modal.close(data);
+                })
+                .error(function(data) {
+                    vm.formError = "Your review has not been saved, please try again";
+                });
+            return false;
+        };
 
-  }
+        vm.modal = {
+            close: function(result) {
+                $uibModalInstance.close(result);
+            },
+            cancel: function() {
+                $uibModalInstance.dismiss('cancel');
+            }
+        };
+
+    }
 
 })();
