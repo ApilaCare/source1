@@ -10,6 +10,13 @@
 
     vm.isLoggedIn = authentication.isLoggedIn();
 
+    vm.resident= {name: "Choose a resident", id: "-1"};
+    
+    vm.selectResident = function(name, id) {
+        vm.resident.name = name;
+        vm.resident.id = id;
+    }
+      
     vm.onSubmit = function () {
       vm.formError = "";
 
@@ -17,6 +24,7 @@
         vm.formError = "Reason, Location, Time, and Date is required. Please try again.";
         return false;
       } else {
+        vm.formData.residentId = vm.resident.id;
         vm.doAddAppointment(vm.formData);
       }
     };
@@ -36,6 +44,15 @@
       return false;
     };
 
+      
+    apilaData.residentsList()
+        .success(function (residentList) {
+            console.log(residentList);
+            vm.residentList = residentList;
+        })
+        .error(function (residentList) {
+           console.log("Error retriving the list of residents"); 
+        });
 
     //settings for the datepicker popup
     vm.popup = {

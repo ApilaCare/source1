@@ -8,6 +8,7 @@
   function appointmentHomeCtrl ($scope, apilaData, $uibModal, authentication, exportPdf) {
     var vm = this;
     vm.isLoggedIn = authentication.isLoggedIn();
+      
     vm.pageHeader = {
       title: 'Apila',
       strapline: 'its a website!'

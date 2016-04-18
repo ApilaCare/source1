@@ -1,75 +1,95 @@
 <div class="modal-content">
-  <form name="addAppointment" role="form" ng-submit="vm.onSubmit()" class="form-horizontal">
+  <form name="addResident" role="form" ng-submit="vm.onSubmit()" class="form-horizontal">
 
 <!-- header of the modal.  defines title that is centered and X button to close -->
     <div class="modal-header">
       <button type="button" ng-click="vm.modal.cancel()" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-      <h4 class="modal-title text-center">Create New Appointment</h4>
+      <h4 class="modal-title text-center">Add New Resident</h4>
     </div>
     <div class="modal-body">
       <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
 
-<!-- form group for the reason of the appointment -->
+<!-- form group for the first name of the resident -->
       <div class="form-group">
-        <label for="reason" class="col-xs-10 col-sm-3 control-label">Reason</label>
+        <label for="firstname" class="col-xs-10 col-sm-3 control-label">First name</label>
         <div class="col-sm-9">
-          <input type="author" class="form-control" ng-model="vm.formData.reason" placeholder="">
+          <input type="firstname" class="form-control" ng-model="vm.formData.firstName" placeholder="">
         </div>
       </div>
 
-<!-- form group for the resident going-->
+<!-- form group for the middle name -->
       <div class="form-group">
-        <label for="resident going" class="col-xs-10 col-sm-3 control-label">Resident Going</label>
+        <label for="middlename" class="col-xs-10 col-sm-3 control-label">Middle name</label>
         <div class="col-sm-9">
-          <input type="address" class="form-control" ng-model="vm.formData.residentGoing" placeholder="">
+          <input type="middlename" class="form-control" ng-model="vm.formData.middleName" placeholder="">
+        </div>
+      </div>
+        
+<!-- form group for the last name of resident-->
+      <div class="form-group">
+        <label for="lastname" class="col-xs-10 col-sm-3 control-label">Last name</label>
+        <div class="col-sm-9">
+          <input type="address" class="form-control" ng-model="vm.formData.lastName" placeholder="">
         </div>
       </div>
 
-<!-- form group for the location name -->
+<!-- form group for the maiden name of resident -->
       <div class="form-group">
-        <label for="address" class="col-xs-10 col-sm-3 control-label">Location Name</label>
+        <label for="maiden name" class="col-xs-10 col-sm-3 control-label">Maiden name</label>
         <div class="col-sm-9">
-          <input type="address" class="form-control" ng-model="vm.formData.locationName" placeholder="">
+          <input type="maiden name" class="form-control" ng-model="vm.formData.maidenName" placeholder="">
         </div>
       </div>
-
-<!-- form group for the location name -->
+        
+<!-- form group for the date birth of resident -->
       <div class="form-group">
-        <label for="address" class="col-xs-10 col-sm-3 control-label">Doctor</label>
+        <label for="date birth" class="col-xs-10 col-sm-3 control-label">Birth date</label>
         <div class="col-sm-9">
-          <input type="address" class="form-control" ng-model="vm.formData.locationDoctor" placeholder="">
-        </div>
-      </div>
-
-<!-- form group for the "Time and Date" field.  Time is frist in the row then Date.  The date needs some CSS to get inline. -->
-      <div class="form-group">
-        <label for="time and date" class="col-xs-10 col-sm-3 control-label">Time and Date</label>
-        <div class="col-sm-4">
-           <uib-timepicker ng-model="vm.formData.time" ng-change="changed()" hour-step="1" minute-step="5"></uib-timepicker>
-        </div>
-        <div class="col-sm-5">
-            <p class="input-group">
-              <input type="text" class="form-control" ng-model="vm.formData.date" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <p class="input-group">
+              <input type="text" class="form-control" ng-model="vm.formData.birthDate" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="vm.open()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
               </span>
-            </p>
+          </p>
+        </div>
+      </div>
+        
+<!-- form group for the date addmission of resident -->
+      <div class="form-group">
+        <label for="addmission" class="col-xs-10 col-sm-3 control-label">Addmission date</label>
+        <div class="col-sm-9">
+          <p class="input-group">
+              <input type="text" class="form-control" ng-model="vm.formData.addmissionDate" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.addmissionOpened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="vm.openAddmission()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
+              </span>
+          </p>
+        </div>
+      </div>
+        
+<!-- form group for the last name of resident-->
+      <div class="form-group">
+        <label for="buildingStatus" class="col-xs-10 col-sm-3 control-label">Building status</label>
+        <div class="col-sm-9">
+          <input type="address" class="form-control" ng-model="vm.formData.buildingStatus" placeholder="">
         </div>
       </div>
 
-<!-- form group for the "Transportation" field.  -->
-        <div class="form-group">
-          <label for="transportation" class="col-xs-10 col-sm-3 control-label">Transportation</label>
-          <div class="col-sm-9">
-            <input class="form-control" ng-model="vm.formData.transportation" placeholder="We are Transporting">
-          </div>
+<!-- form group for sex of resident -->
+      <div class="form-group">
+        <label for="maiden name" class="col-xs-10 col-sm-3 control-label">Sex</label>
+        <div class="col-sm-9">
+          <input type="maiden name" class="form-control" ng-model="vm.formData.sex" placeholder="">
         </div>
+      </div>
+
+
     </div>
 
     <!-- footer that defines the cancel button and submit button  -->
     <div class="modal-footer">
       <button ng-click="vm.modal.cancel()" type="button" class="btn btn-warning">Cancel</button>
-      <button type="submit" class="btn btn-primary">Submit New Appointment</button>
+      <button type="submit" class="btn btn-primary">Add new resident</button>
     </div>
   </form>
 </div>

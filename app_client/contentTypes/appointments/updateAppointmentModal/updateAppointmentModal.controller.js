@@ -17,7 +17,20 @@
     vm.formData.date = new Date(getAppointment.time);
     vm.formData.modifiedBy = authentication.currentUser().name;
     vm.formData.updateInfo.updateBy = authentication.currentUser().name;
-
+    
+       console.log("kiasd");  
+      
+    vm.resident.name = vm.formData.residentGoing.firstName;
+    vm.resident.id = vm.formData.residentGoing._id;
+      
+   
+    console.log(vm.resident.name + " : " +  vm.resident.id);
+      
+   /* vm.selectResident = function(name, id) {
+        vm.resident.name = name;
+        vm.resident.id = id;
+    }*/
+      
     vm.onSubmit = function () {
 
       vm.formData.modifiedDate = new Date();
@@ -30,6 +43,7 @@
     } else {
           var changedFields = checkChangedFields(vm.originalData, vm.formData);
 
+          vm.formData.residentId = vm.resident.id;
           if(changedFields.length > 0) {
               vm.formData.updateField = changedFields;
               vm.updateAppointment(vm.formData._id, vm.formData);
@@ -53,6 +67,16 @@
     };
 
 
+     apilaData.residentsList()
+        .success(function (residentList) {
+            console.log("Nesto??");
+            vm.residentList = residentList;
+           
+        })
+        .error(function (residentList) {
+           console.log("Error retriving the list of residents"); 
+        });
+      
     //settings for the datepicker popup
     vm.popup = {
         opened: false

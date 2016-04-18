@@ -2,10 +2,10 @@
 
   angular
     .module('apilaApp')
-    .controller('newAppointmentModalCtrl', newAppointmentModalCtrl);
+    .controller('addResidentModalCtrl', addResidentModalCtrl);
 
-  newAppointmentModalCtrl.$inject = ['$scope', '$uibModalInstance', 'apilaData', 'authentication'];
-  function newAppointmentModalCtrl ($scope, $uibModalInstance, apilaData, authentication) {
+  addResidentModalCtrl.$inject = ['$scope', '$uibModalInstance', 'apilaData', 'authentication'];
+  function addResidentModalCtrl ($scope, $uibModalInstance, apilaData, authentication) {
     var vm = this;
 
     vm.isLoggedIn = authentication.isLoggedIn();
@@ -13,31 +13,31 @@
     vm.onSubmit = function () {
       vm.formError = "";
 
-      if (!vm.formData.reason || !vm.formData.locationName || !vm.formData.time || !vm.formData.date) {
-        vm.formError = "Reason, Location, Time, and Date is required. Please try again.";
+      if (!vm.formData.firstName || !vm.formData.lastName || !vm.formData.birthDate || !vm.formData.buildingStatus || !vm.formData.sex ) {
+        vm.formError = "First name, last name, birth date, building status and sex are required";
         return false;
       } else {
-        vm.doAddAppointment(vm.formData);
+        console.log(vm.formData);
+        vm.doAddResident(vm.formData);
       }
     };
 
-    vm.doAddAppointment = function (formData) {
-        apilaData.addAppointment(formData)
-        .success(function (appoint) {
+    vm.doAddResident = function (formData) {
+        apilaData.addResident(formData)
+        .success(function (resident) {
 
-          console.log(appoint);
-          // add to list
-          apilaData.appointList.appointments.push(appoint);
-          vm.modal.close(appoint);
+
+          apilaData.residentList.residents.push(resident);
+          vm.modal.close(resident);
         })
-        .error(function (appoint) {
+        .error(function (resident) {
           vm.formError = "Something went wrong with the appointment, try again";
         });
       return false;
     };
 
 
-    //settings for the datepicker popup
+    //settings for the birth datepicker popup
     vm.popup = {
         opened: false
     };
@@ -50,9 +50,15 @@
         minDate: new Date(),
         startingDay: 1
     };
-    vm.open = function() {
-        vm.popup.opened = true;
+
+      
+    //settings for the addmission datepicker popup
+    vm.addmissionOpened = false;
+      
+    vm.openAddmission = function() {
+        vm.addmissionOpened = true;
     };
+
 
 
     vm.modal = {

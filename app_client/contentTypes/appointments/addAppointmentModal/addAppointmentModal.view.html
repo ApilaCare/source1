@@ -20,8 +20,18 @@
 <!-- form group for the resident going-->
       <div class="form-group">
         <label for="resident going" class="col-xs-10 col-sm-3 control-label">Resident Going</label>
-        <div class="col-sm-9">
-          <input type="address" class="form-control" ng-model="vm.formData.residentGoing" placeholder="">
+          <!-- <input type="address" class"form-control" ng-model="vm.formData.residentGoing" placeholder=""> -->
+          <div class="col-sm-9">
+         <div uib-dropdown is-open="status.isopen">
+          <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+            {{ vm.resident.name }} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" >
+            <li ng-repeat="resident in vm.residentList">
+               <a ng-click="vm.selectResident(resident.firstName, resident._id)" >{{resident.firstName + " " + resident.lastName}} </a>
+            </li>
+          </ul>
+        </div>
         </div>
       </div>
 

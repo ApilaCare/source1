@@ -63,9 +63,10 @@ router.delete('/appointments/:appointmentid/comments/:commentid', ctrlAppointmen
 
 // residents
 router.get('/residents', ctrlResidents.residentsList);
-router.get('/residents/:residentid', ctrlResidents.residentsReadOne);
+router.get('/residents/:residentid', ctrlResidents.residentById);
 router.put('/residents/update/:residentid',ctrlResidents.residentsUpdateOne);
 router.delete('/residents/:residentid', ctrlResidents.residentsDeleteOne);
 router.post('/residents/new', auth, ctrlResidents.residentsCreate);
+//router.get('/residents/', ctrlResidents.residentById);
 
 module.exports = router;
