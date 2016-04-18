@@ -11,14 +11,14 @@
     vm.isLoggedIn = authentication.isLoggedIn();
     vm.currentPath = $location.path();
 
-
+    console.log("safdf");
 
     apilaData.appointmentById(vm.appointmentid)
       .success(function(data) {
         vm.data = {appointment:data};
-        
+
         vm.pageHeader = {
-          title: vm.data.appointment.residentGoing + " going to " + vm.data.appointment.locationName,
+          title: vm.data.appointment.residentGoing.firstName + " going to " + vm.data.appointment.locationName,
         };
       })
       .error(function (e) {
@@ -28,11 +28,11 @@
 
       vm.exportAppointment = function() {
 
-        var name = vm.data.appointment.residentGoing + " to " + vm.data.appointment.locationName;
+        var name = vm.data.appointment.residentGoing.firstName + " to " + vm.data.appointment.locationName;
         exportPdf.exportAppointmentDetail(name, vm.data);
       }
 
-      
+
       vm.popupAppointmentCommentForm = function(appointment) {
          var modalInstance = $uibModal.open({
           templateUrl: '/contentTypes/appointments/appointmentCommentModal/appointmentCommentModal.view.html',
@@ -42,15 +42,15 @@
                 return appointment;
               }
           }
-        
+
         });
-          
-          
+
+
         modalInstance.result.then(function (data) {
           vm.data.appointment.appointmentComment.push(data);
         });
       }
-      
+
       vm.popupUpdateAppointmentForm = function (appointment) {
         var modalInstance = $uibModal.open({
           templateUrl: '/contentTypes/appointments/updateAppointmentModal/updateAppointmentModal.view.html',
@@ -62,7 +62,7 @@
           }
         });
       };
-      
+
   }
-  
+
 })();

@@ -9,13 +9,16 @@ var sendJSONresponse = function(res, status, content) {
 
 // api/residents/new
 module.exports.residentsCreate = function (req, res) {
-  console.log(req.payload.name);
+  console.log(req.body);
 
   // create resident from the inputed data
   Resid.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     birthDate: req.body.birthDate,
+    maidenName: req.body.maidenName,
+    addmissionDate: req.body.addmissionDate,
+    buildingStatus: req.body.buildingStatus,
     sex: req.body.sex,
     submitBy: req.payload.name,
   }, function(err, resident) {
@@ -65,6 +68,27 @@ module.exports.residentsReadOne = function (req, res) {
     });
   }
 };
+
+module.exports.residentById = function(req, res) {
+      console.log("pozvao" + req.params.residentid);
+
+    Resid
+    .findById(req.params.residentid)
+    .exec(
+      function(err, resident) {
+
+        console.log(resident);
+        if(!resident) {
+            sendJSONresponse(res, 404, {
+            "message": "resident not found"
+            });
+        } else {
+
+           sendJSONresponse(res, 200, resident);
+        }
+    });
+ };
+
 
 // PUT /api/residents/update/:residentid
 module.exports.residentsUpdateOne = function(req, res) {

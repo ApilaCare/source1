@@ -24,7 +24,7 @@
               </p>
               <p>
                 Resident Going:
-                <span class="pull-right">{{ vm.data.appointment.residentGoing }}</span>
+                <span class="pull-right">{{ vm.data.appointment.residentGoing.firstName + " "  + vm.data.appointment.residentGoing.lastName }}</span>
               </p>
               <p>
                 Location:
@@ -95,7 +95,7 @@
             <div class="panel-heading">
               <a ng-show="vm.isLoggedIn" ng-click="vm.popupAppointmentCommentForm(vm.data.appointment)" class="btn btn-default btn-xs pull-right">Add Comment</a>
               <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default btn-xs pull-right">Login to add review</a>
-              <h2 class="panel-title">Comments for {{ vm.data.appointment.residentGoing }} going to {{ vm.data.appointment.locationName }}</h2>
+              <h2 class="panel-title">Comments for {{  vm.data.appointment.residentGoing.firstName + " "  + vm.data.appointment.residentGoing.lastName  }} going to {{ vm.data.appointment.locationName }}</h2>
             </div>
             <div class="panel-body comment-container">
               <div class="row">

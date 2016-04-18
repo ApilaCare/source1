@@ -93,6 +93,24 @@
       });
     };
 
+    //residents
+
+    var residentsList = function () {
+       return $http.get('/api/residents');
+     };
+
+    var addResident = function (data) {
+      return $http.post('/api/residents/new', data, {
+         headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+       });
+     };
+
+     var residentById = function (residentid) {
+       return $http.get('/api/residents/' + residentid);
+     };
+
     return {
       locationByCoords : locationByCoords,
       locationById : locationById,
@@ -106,7 +124,10 @@
       addAppointment : addAppointment,
       updateAppointment : updateAppointment,
       addAppointmentCommentById : addAppointmentCommentById,
-      updateIssue : updateIssue
+      updateIssue : updateIssue,
+       residentsList : residentsList,
+      addResident : addResident,
+       residentById: residentById
     };
   }
 

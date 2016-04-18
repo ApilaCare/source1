@@ -23,7 +23,7 @@ module.exports.appointmentsCreate = function (req, res) {
     reason: req.body.reason,
     locationName: req.body.locationName,
     locationDoctor: req.body.locationDoctor,
-    residentGoing: req.body.residentGoing,
+    residentGoing: req.body.residentId,
     time: d,
     submitBy: req.payload.name,
     transportation: req.body.transportation,
@@ -47,9 +47,9 @@ module.exports.appointmentsList = function(req, res) {
 
   Appoint.find({
     time: {$gte: start}
-  }, function(err, appointments){
-      console.log(appointments);
-       sendJSONresponse(res, 200, appointments)
+  }).populate("residentGoing").exec( function(err, appointments){
+    console.log(appointments);
+    sendJSONresponse(res, 200, appointments)
   });
 };
 
@@ -59,6 +59,7 @@ module.exports.appointmentsReadOne = function (req, res) {
   if (req.params && req.params.appointmentid) {
     Appoint
       .findById(req.params.appointmentid)
+      .populate("residentGoing")
       .exec(function(err, appointment) {
         if (!appointment) {
           sendJSONresponse(res, 404, {
@@ -123,7 +124,7 @@ module.exports.appointmentsUpdateOne = function(req, res) {
         appointment.reason = req.body.reason,
         appointment.locationName = req.body.locationName,
         appointment.locationDoctor = req.body.locationDoctor,
-        appointment.residentGoing = req.body.residentGoing,
+        appointment.residentGoing = req.body.residentId,
         appointment.time = d,
         appointment.transportation = req.body.transportation,
         appointment.cancel = req.body.cancel,

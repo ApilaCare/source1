@@ -5,7 +5,7 @@
   <page-header content="vm.pageHeader"></page-header>
   <div class="row">
     <div class="col-xs-12 col-sm-12">
-      <a ng-show="vm.isLoggedIn" ng-click="vm.popupNewAppointmentForm()" class="btn btn-primary pull-right">New</a>
+      <a ng-show="vm.isLoggedIn" ng-click="vm.popupNewResidentForm()" class="btn btn-primary pull-right">New</a>
       <a ng-show="vm.isLoggedIn" ng-click="vm.exportAppointments()" class="btn btn-success pull-right">Export</a>
       <label for="filter">Filter Results</label>
       <input id="filter" type="text", name="filter", ng-model="textFilter">
@@ -14,28 +14,20 @@
         <table class="table  table-hover table-condensed">
           <thead>
             <tr>
-              <th>Reason</th>
-              <th>Time</th>
-              <th>Resident</th>
-              <th>Location</th>
-              <th>Transporting</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Addmission Date</th>
+              <th>Birth Date</th>
+              <th>Sex</th>
             </tr>
           </thead>
-          <tbody ng-repeat="appointment in vm.data.appointments | filter : textFilter | orderBy:'time':false" ng-switch on="appointment.cancel">
-            <tr ng-switch-default>
-              <td><a href="appointments/{{ appointment._id }}">{{ appointment.reason }}</a></td>
-              <td>{{ appointment.time | date : 'h:mm a EEE, MMM d' }}</td>
-              <td>{{ appointment.residentGoing }}</td>
-              <td>{{ appointment.locationName }}</td>
-              <td>{{ appointment.transportation }}</td>
-              <td class="non-printable"><a ng-show="vm.isLoggedIn" class="btn btn-info btn-xs" ng-click="vm.popupUpdateAppointmentForm(appointment)">Update</a></td>
-            </tr>
-            <tr class="danger non-printable" ng-switch-when="true">
-              <td><a href="appointments/{{ appointment._id }}">{{ appointment.reason }}</a></td>
-              <td>{{ appointment.time | date : 'h:mm a EEE, MMM d' }}</td>
-              <td>{{ appointment.residentGoing }}</td>
-              <td>{{ appointment.locationName }}</td>
-              <td>{{ appointment.transportation }}</td>
+          <tbody ng-repeat="resident in vm.data.residents">
+             <tr>
+              <td><a href="residents/{{ resident._id }}">{{ resident.firstName }}</a></td>
+               <td>{{ resident.lastName}}</td>
+               <td>{{ resident.addmissionDate | date }}</td>
+               <td>{{ resident.birthDate | date }}</td>
+               <td>{{ resident.sex }}</td>
               <td class="non-printable"><a ng-show="vm.isLoggedIn" class="btn btn-info btn-xs" ng-click="vm.popupUpdateAppointmentForm(appointment)">Update</a></td>
             </tr>
           </tbody>
