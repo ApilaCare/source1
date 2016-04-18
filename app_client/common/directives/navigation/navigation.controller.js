@@ -1,23 +1,24 @@
-(function () {
+(function() {
 
-  angular
-    .module('apilaApp')
-    .controller('navigationCtrl', navigationCtrl);
+    angular
+        .module('apilaApp')
+        .controller('navigationCtrl', navigationCtrl);
 
-  navigationCtrl.$inject = ['$location', 'authentication'];
-  function navigationCtrl($location, authentication) {
-    var vm = this;
+    navigationCtrl.$inject = ['$location', 'authentication'];
 
-    vm.currentPath = $location.path();
+    function navigationCtrl($location, authentication) {
+        var vm = this;
 
-    vm.isLoggedIn = authentication.isLoggedIn();
+        vm.currentPath = $location.path();
 
-    vm.currentUser = authentication.currentUser();
+        vm.isLoggedIn = authentication.isLoggedIn();
 
-    vm.logout = function() {
-      authentication.logout();
-      $location.path('/');
-    };
+        vm.currentUser = authentication.currentUser();
 
-  }
+        vm.logout = function() {
+            authentication.logout();
+            $location.path('/');
+        };
+
+    }
 })();

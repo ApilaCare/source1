@@ -1,122 +1,121 @@
 <navigation></navigation>
 
 <div class="container">
-  <page-header content="vm.pageHeader"></page-header>
-  <div class="row">
-    <div class="col-xs-12 col-md-12">
-      <div class="row">
-        <div class="col-xs-12">
-          <a ng-show="vm.isLoggedIn" ng-click="vm.exportAppointment()" class="btn btn-success pull-right">Export</a>
-        </div>
-      </div>
-      <div class="printable">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <a ng-show="vm.isLoggedIn" ng-click="vm.popupUpdateAppointmentForm(vm.data.appointment)" class="btn btn-info btn-xs pull-right">Update</a>
-              <h2 class="panel-title">Appointment Information</h2>
-            </div>
-            <div class="panel-body">
-              <p>
-                Reason:
-                <span class="pull-right">{{ vm.data.appointment.reason }}</span>
-              </p>
-              <p>
-                Resident Going:
-                <span class="pull-right">{{ vm.data.appointment.residentGoing.firstName + " "  + vm.data.appointment.residentGoing.lastName }}</span>
-              </p>
-              <p>
-                Location:
-                <span class="pull-right">{{ vm.data.appointment.locationName }}</span>
-              </p>
-              <p>
-                Doctor:
-                <span class="pull-right">{{ vm.data.appointment.locationDoctor }}</span>
-              </p>
-              <p>
-                Time:
-                <span class="pull-right">{{ vm.data.appointment.time | date : 'h:mm a, MMMM d' }}</span>
-              </p>
-              <p>
-                Transportation:
-                <span class="pull-right">{{ vm.data.appointment.transportation }}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-6">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h2 class="panel-title">Submit Information</h2>
-            </div>
-            <div class="panel-body">
-              <p>
-                Submitted By:
-                <span class="pull-right">{{ vm.data.appointment.submitBy }}</span>
-              </p>
-              <p>
-                Submitted Time:
-                <span class="pull-right">{{ vm.data.appointment.submitDate | date : 'h:mm a, MMMM d' }}</span>
-              </p>
-            </div>
-          </div>
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h2 class="panel-title">Modification Information</h2>
-            </div>
-            <div class="panel-body">
-              <div class="well well-sm" ng-repeat="update in vm.data.appointment.updateInfo">
-                <p class="">
-                  {{ update.updateBy }}
-                  <span class="pull-right">{{ update.updateDate | date : 'h:mm a, MMMM d' }}</span>
-                </p>
-                  <div class="well well-sm inside" ng-repeat="spot in update.updateField">
-                    <p>
-                      <span class="capitalize">{{ spot.field }}</span>
-                      <br>
-                      from
-                      <span class="pull-right">{{ spot.old }}</span>
-                      <br>
-                      to
-                      <span class="pull-right">{{ spot.new }}</span>
-                    </p>
+    <page-header content="vm.pageHeader"></page-header>
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a ng-show="vm.isLoggedIn" ng-click="vm.exportAppointment()" class="btn btn-success pull-right">Export</a>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-       </div> <!-- End of printable -->
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="panel panel-primary review-panel">
-            <div class="panel-heading">
-              <a ng-show="vm.isLoggedIn" ng-click="vm.popupAppointmentCommentForm(vm.data.appointment)" class="btn btn-default btn-xs pull-right">Add Comment</a>
-              <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default btn-xs pull-right">Login to add review</a>
-              <h2 class="panel-title">Comments for {{  vm.data.appointment.residentGoing.firstName + " "  + vm.data.appointment.residentGoing.lastName  }} going to {{ vm.data.appointment.locationName }}</h2>
-            </div>
-            <div class="panel-body comment-container">
-              <div class="row">
-                <div class="comment" ng-repeat="comment in vm.data.appointment.appointmentComment | orderBy:'createdOn':true">
-                  <div class="well well-sm comment-header">
-                    <span class="reviewAuthor">{{ comment.author }}</span>
-                    <small class="reviewTimestamp pull-right">{{ comment.createdOn | date : 'd MMMM yyyy' }}</small>
-                  </div>
-                  <div class="col-xs-12">
-                    <p ng-bind-html="comment.commentText | addHtmlLineBreaks"></p>
-                  </div>
+            <div class="printable">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <a ng-show="vm.isLoggedIn" ng-click="vm.popupUpdateAppointmentForm(vm.data.appointment)" class="btn btn-info btn-xs pull-right">Update</a>
+                                <h2 class="panel-title">Appointment Information</h2>
+                            </div>
+                            <div class="panel-body">
+                                <p>
+                                    Reason:
+                                    <span class="pull-right">{{ vm.data.appointment.reason }}</span>
+                                </p>
+                                <p>
+                                    Resident Going:
+                                    <span class="pull-right">{{ vm.data.appointment.residentGoing.firstName + " "  + vm.data.appointment.residentGoing.lastName }}</span>
+                                </p>
+                                <p>
+                                    Location:
+                                    <span class="pull-right">{{ vm.data.appointment.locationName }}</span>
+                                </p>
+                                <p>
+                                    Doctor:
+                                    <span class="pull-right">{{ vm.data.appointment.locationDoctor }}</span>
+                                </p>
+                                <p>
+                                    Time:
+                                    <span class="pull-right">{{ vm.data.appointment.time | date : 'h:mm a, MMMM d' }}</span>
+                                </p>
+                                <p>
+                                    Transportation:
+                                    <span class="pull-right">{{ vm.data.appointment.transportation }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Submit Information</h2>
+                            </div>
+                            <div class="panel-body">
+                                <p>
+                                    Submitted By:
+                                    <span class="pull-right">{{ vm.data.appointment.submitBy }}</span>
+                                </p>
+                                <p>
+                                    Submitted Time:
+                                    <span class="pull-right">{{ vm.data.appointment.submitDate | date : 'h:mm a, MMMM d' }}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Modification Information</h2>
+                            </div>
+                            <div class="panel-body">
+                                <div class="well well-sm" ng-repeat="update in vm.data.appointment.updateInfo">
+                                    <p class="">
+                                        {{ update.updateBy }}
+                                        <span class="pull-right">{{ update.updateDate | date : 'h:mm a, MMMM d' }}</span>
+                                    </p>
+                                    <div class="well well-sm inside" ng-repeat="spot in update.updateField">
+                                        <p>
+                                            <span class="capitalize">{{ spot.field }}</span>
+                                            <br> from
+                                            <span class="pull-right">{{ spot.old }}</span>
+                                            <br> to
+                                            <span class="pull-right">{{ spot.new }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+            <!-- End of printable -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary review-panel">
+                        <div class="panel-heading">
+                            <a ng-show="vm.isLoggedIn" ng-click="vm.popupAppointmentCommentForm(vm.data.appointment)" class="btn btn-default btn-xs pull-right">Add Comment</a>
+                            <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default btn-xs pull-right">Login to add review</a>
+                            <h2 class="panel-title">Comments for {{  vm.data.appointment.residentGoing.firstName + " "  + vm.data.appointment.residentGoing.lastName  }} going to {{ vm.data.appointment.locationName }}</h2>
+                        </div>
+                        <div class="panel-body comment-container">
+                            <div class="row">
+                                <div class="comment" ng-repeat="comment in vm.data.appointment.appointmentComment | orderBy:'createdOn':true">
+                                    <div class="well well-sm comment-header">
+                                        <span class="reviewAuthor">{{ comment.author }}</span>
+                                        <small class="reviewTimestamp pull-right">{{ comment.createdOn | date : 'd MMMM yyyy' }}</small>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <p ng-bind-html="comment.commentText | addHtmlLineBreaks"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
-      </div>
-
-
-
     </div>
-  </div>
-  <footer-generic></footer-generic>
+    <footer-generic></footer-generic>
 </div>

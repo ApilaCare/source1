@@ -4,58 +4,74 @@
 
     function wordCloud() {
 
-      // returns an where property is the name of the word and a atribute is the number of time the word repeats
-      function count(arr){
-        return arr.reduce(function(m,e){
-          m[e] = (+m[e]||0)+1;
-            return m;
-        },{});
-      }
+        // returns an where property is the name of the word and a atribute is the number of time the word repeats
+        function count(arr) {
+            return arr.reduce(function(m, e) {
+                m[e] = (+m[e] || 0) + 1;
+                return m;
+            }, {});
+        }
 
         function drawWordCloud(wordArr) {
-          var wordFreq = count(wordArr);
-          var wordsArr = [];
+            var wordFreq = count(wordArr);
+            var wordsArr = [];
 
-          for (var property in wordFreq) {
-            if (wordFreq.hasOwnProperty(property)) {
-              wordsArr.push({"text": property, "count": wordFreq[property]});
+            for (var property in wordFreq) {
+                if (wordFreq.hasOwnProperty(property)) {
+                    wordsArr.push({
+                        "text": property,
+                        "count": wordFreq[property]
+                    });
+                }
             }
-          }
 
-          var filteredElements = wordsArr.filter(function(word) {
-            if(!wordInList(word.text))
-              return word;
-          });
+            var filteredElements = wordsArr.filter(function(word) {
+                if (!wordInList(word.text))
+                    return word;
+            });
 
-          var fill = d3.scale.category20();
+            var fill = d3.scale.category20();
             d3.layout.cloud().size([300, 300])
-              .words(filteredElements.map(function(d) {
-                return {text: d.text, size: 12 + d.count*2};
-              }))
-              .rotate(function() { return ~~(Math.random() * 2) * 0; })
-              .font("Impact")
-              .fontSize(function(d) { return d.size; })
-              .on("end", draw)
-              .start();
+                .words(filteredElements.map(function(d) {
+                    return {
+                        text: d.text,
+                        size: 12 + d.count * 2
+                    };
+                }))
+                .rotate(function() {
+                    return ~~(Math.random() * 2) * 0;
+                })
+                .font("Impact")
+                .fontSize(function(d) {
+                    return d.size;
+                })
+                .on("end", draw)
+                .start();
 
-              function draw(words) {
+            function draw(words) {
                 d3.select("#wordcloud").append("svg")
                     .attr("width", 700)
                     .attr("height", 300)
-                  .append("g")
+                    .append("g")
                     .attr("transform", "translate(250,150)")
-                  .selectAll("text")
+                    .selectAll("text")
                     .data(words)
-                  .enter().append("text")
-                    .style("font-size", function(d) { return d.size + "px"; })
+                    .enter().append("text")
+                    .style("font-size", function(d) {
+                        return d.size + "px";
+                    })
                     .style("font-family", "Impact")
-                    .style("fill", function(d, i) { return fill(i); })
+                    .style("fill", function(d, i) {
+                        return fill(i);
+                    })
                     .attr("text-anchor", "middle")
                     .attr("transform", function(d) {
-                      return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
                     })
-                    .text(function(d) { return d.text; });
-              }
+                    .text(function(d) {
+                        return d.text;
+                    });
+            }
         }
 
         var stopWords = "a,able,about,above,abst,accordance,according,accordingly,across,act,actually,added,adj,\
@@ -95,18 +111,18 @@
  yourselves,you've,z,zero";
 
         function wordInList(word) {
-          stopWordsArray = stopWords.split(",");
-          for(var i = 0; i < stopWordsArray.length; ++i) {
-            if(word === stopWordsArray[i]) {
-              return true;
+            stopWordsArray = stopWords.split(",");
+            for (var i = 0; i < stopWordsArray.length; ++i) {
+                if (word === stopWordsArray[i]) {
+                    return true;
+                }
             }
-          }
-          return false;
-       }
+            return false;
+        }
 
 
         return {
-            drawWordCloud : drawWordCloud
+            drawWordCloud: drawWordCloud
         }
     }
 
