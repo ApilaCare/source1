@@ -10,6 +10,7 @@ var residentSchema = new mongoose.Schema({
   birthDate: {type: Date, required: true},
   addmissionDate: {type: Date},
   sex: {type: String, required: true},
+  buildingStatus: {type: String, required: true}, // in the building, hospital, rehad, dead
 
   // bathing information
   type: {type: String}, // shower, tub, spit bath
@@ -114,13 +115,13 @@ var residentSchema = new mongoose.Schema({
   painDecreasedBy: {type: String},
 
   // vitals information
-  temperature: {type: Number},
-  bloodPressureSystolic: {type: Number},
-  bloodPressureDiastolic: {type: Number},
-  oxygenSat: {type: Number},
-  pulse: {type: Number},
-  vitalsPain: {type: Number, min: 0, max: 10},
-  respiration: {type: Number}
+  temperature: [Number],
+  bloodPressureSystolic: [Number],
+  bloodPressureDiastolic: [Number],
+  oxygenSat: [Number],
+  pulse: [Number],
+  vitalsPain: [Number],
+  respiration: [Number],
 });
 
 mongoose.model('Resident', residentSchema);

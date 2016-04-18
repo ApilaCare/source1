@@ -43,6 +43,10 @@ var appClientFiles = [
   'app_client/contentTypes/appointments/appointmentCommentModal/appointmentCommentModal.controller.js',
 
   // resident controller files
+  'app_client/contentTypes/residents/addResidentModal/addResidentModal.controller.js',
+  'app_client/contentTypes/residents/residentDetail/residentDetail.controller.js',
+  'app_client/contentTypes/residents/residentHome/residentHome.controller.js',
+  'app_client/contentTypes/residents/updateResidentModal/updateResidentModal.controller.js',
 
   // boring pages controller files
   'app_client/contentTypes/about/about.controller.js',

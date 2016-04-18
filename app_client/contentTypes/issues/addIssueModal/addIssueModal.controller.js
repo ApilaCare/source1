@@ -69,10 +69,9 @@
     vm.updateIssue = function(issueid, formData) {
         apilaData.updateIssue(issueid, formData)
         .success(function (iss) {
-            console.log("Updated issue");
-
-            vm.modal.close(iss);
-
+          console.log("Updated issue");
+          vm.formData.updateInfo.push(iss.updateInfo[iss.updateInfo.length - 1]);
+          vm.modal.close(iss);
         })
         .error(function (iss) {
             vm.formError = "Something went wrong while updating the issue, try again";

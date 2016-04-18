@@ -9,3 +9,13 @@
 #filter {margin-left: 4px;}
 
 .new-location-btn {z-index: 0;}
+
+.capitalize {
+   text-transform: capitalize;
+}
+
+.inside{
+	background-color: #ffffff;
+	/*border-bottom	: 2px groove black;
+	height: 100px;*/
+}
