@@ -43,25 +43,27 @@
 
             <!-- form group for the birth date of resident -->
             <div class="form-group">
-                <label for="date birth" class="col-xs-10 col-sm-3 control-label">Birth date</label>
+                <label for="birthDate" class="col-xs-10 col-sm-3 control-label">Birth date</label>
                 <div class="col-sm-9">
                     <p class="input-group">
+                        <input type="text" class="form-control" ng-model="vm.formData.birthDate" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.birthDateOpened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+                        />
                         <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="vm.open()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
-              </span>
+                             <button type="button" class="btn btn-default" ng-click="vm.openBirthDate()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
+                        </span>
                     </p>
                 </div>
             </div>
 
-            <!-- form group for the date addmission of resident -->
+            <!-- form group for the date admission of resident -->
             <div class="form-group">
-                <label for="addmission" class="col-xs-10 col-sm-3 control-label">Addmission date</label>
+                <label for="admission" class="col-xs-10 col-sm-3 control-label">Admission date</label>
                 <div class="col-sm-9">
                     <p class="input-group">
-                        <input type="text" class="form-control" ng-model="vm.formData.addmissionDate" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.addmissionOpened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+                        <input type="text" class="form-control" ng-model="vm.formData.admissionDate" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.admissionOpened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
                         />
                         <span class="input-group-btn">
-                             <button type="button" class="btn btn-default" ng-click="vm.openAddmission()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
+                             <button type="button" class="btn btn-default" ng-click="vm.openAdmission()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
                         </span>
                     </p>
                 </div>

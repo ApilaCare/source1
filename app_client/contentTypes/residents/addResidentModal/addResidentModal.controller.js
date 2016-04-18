@@ -35,12 +35,11 @@
             return false;
         };
 
-
         //settings for the birth date picker popup
-        vm.popup = {
+        vm.birthDateOpened = {
             opened: false
         };
-        vm.open = function() {
+        vm.openBirthDate = function() {
             vm.popup.opened = true;
         };
         vm.dateOptions = {
@@ -49,11 +48,12 @@
             minDate: new Date(),
             startingDay: 1
         };
-        //settings for the addmission datepicker popup
-        vm.addmissionOpened = false;
 
-        vm.openAddmission = function() {
-            vm.addmissionOpened = true;
+        //settings for the admission datepicker popup
+        vm.admissionOpened = false;
+
+        vm.openAdmission = function() {
+            vm.admissionOpened = true;
         };
 
 
