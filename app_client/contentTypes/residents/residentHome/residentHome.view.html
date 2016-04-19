@@ -6,32 +6,71 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12">
             <a ng-show="vm.isLoggedIn" ng-click="vm.popupNewResidentForm()" class="btn btn-primary pull-right">New</a>
-            <a ng-show="vm.isLoggedIn" ng-click="vm.exportAppointments()" class="btn btn-success pull-right">Export</a>
+
+            <!-- The main selection box -->
+            <div class="btn-group pull-right" uib-dropdown ng-show="vm.isLoggedIn">
+              <button id="single-button" type="button" class="btn btn-success" uib-dropdown-toggle ng-disabled="disabled">
+                {{vm.selectedView }} <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                <li  ng-repeat="v in vm.views"><a ng-click="vm.selectedView(v)">{{ v }}</a></li>
+              </ul>
+            </div>
+
             <label for="filter">Filter Results</label>
             <input id="filter" type="text" , name="filter" , ng-model="textFilter">
             <div class="error">{{ vm.message }}</div>
             <div class="col-xs-12 printable">
-                <table class="table  table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Admission Date</th>
-                            <th>Birth Date</th>
-                            <th>Sex</th>
-                        </tr>
-                    </thead>
-                    <tbody ng-repeat="resident in vm.data.residents">
-                        <tr>
-                            <td><a href="residents/{{ resident._id }}">{{ resident.firstName }}</a></td>
-                            <td>{{ resident.lastName}}</td>
-                            <td>{{ resident.admissionDate | date }}</td>
-                            <td>{{ resident.birthDate | date }}</td>
-                            <td>{{ resident.sex }}</td>
-                            <td class="non-printable"><a ng-show="vm.isLoggedIn" class="btn btn-info btn-xs" ng-click="vm.popupUpdateResidentForm(resident)">Update</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+
+              <div ng-switch on="vm.selectedView">
+
+                  <!-- Administrative View -->
+                  <div ng-switch-when="Administrative">
+                       <div ng-include src="'/contentTypes/residents/residentHome/views/administrative.view.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Allergy">
+                       <div ng-include src="'/contentTypes/residents/residentHome/views/allergy.view.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Bathing">
+                       <div ng-include src="'/contentTypes/residents/residentHome/views/bathing.view.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Continent">
+                       <div ng-include src="'/contentTypes/residents/residentHome/views/continent.view.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Mobility">
+                       <div ng-include src="'/contentTypes/residents/residentHome/views/mobility.view.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Nutrition">
+                       <div ng-include src="'/contentTypes/residents/residentHome/views/nutrition.view.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Pain">
+                       <div ng-include src="'/contentTypes/residents/residentHome/views/pain.view.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Physical Condition">
+                       <div ng-include src="'/contentTypes/residents/residentHome/views/physicalCondition.view.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Psychosocial">
+                       <div ng-include src="'/contentTypes/residents/residentHome/views/psychosocial.view.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Sleep">
+                       <div ng-include src="'/contentTypes/residents/residentHome/views/sleep.view.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Vitals">
+                       <div ng-include src="'/contentTypes/residents/residentHome/views/vitals.view.html'"></div>
+                  </div>
+              </div>
+
             </div>
         </div>
     </div>
