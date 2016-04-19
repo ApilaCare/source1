@@ -2,23 +2,25 @@
 
     angular
         .module('apilaApp')
-        .controller('updateAppointmentModalCtrl', updateAppointmentModalCtrl);
+        .controller('updateResidentModalCtrl', updateResidentModalCtrl);
 
-    updateAppointmentModalCtrl.$inject = ['$scope', '$uibModalInstance', 'apilaData', 'authentication', 'getAppointment'];
+    updateResidentModalCtrl.$inject = ['$scope', '$uibModalInstance', 'apilaData', 'authentication', 'getResident'];
 
-    function updateAppointmentModalCtrl($scope, $uibModalInstance, apilaData, authentication, getAppointment) {
+    function updateResidentModalCtrl($scope, $uibModalInstance, apilaData, authentication, getResident) {
         var vm = this;
 
         vm.isLoggedIn = authentication.isLoggedIn();
 
-        vm.formData = getAppointment;
+        vm.formData = getResident;
 
-        vm.originalData = JSON.parse(JSON.stringify(vm.formData));
-
-        vm.formData.date = new Date(getAppointment.time);
-        vm.formData.modifiedBy = authentication.currentUser().name;
-        vm.formData.updateInfo.updateBy = authentication.currentUser().name;
-
+        vm.forms = ['Administrative', 'Bathing', 'Mobility', 'Allergy', 'Sleep', 'Continent', 'Nutrition', 'Physical Condition', 'Psychosocial', 'Pain', 'Vitals'];
+        
+        vm.selectedForm = vm.forms[1];
+        
+        vm.selectForm = function(name) {
+            vm.selectedForm = name;
+        }
+        
         vm.onSubmit = function() {
 
             vm.formData.modifiedDate = new Date();
@@ -39,20 +41,6 @@
                 }
             }
         };
-
-        vm.updateAppointment = function(id, formData) {
-            apilaData.updateAppointment(id, formData)
-                .success(function(appoint) {
-                    vm.formData.updateInfo.push(appoint.updateInfo[appoint.updateInfo.length - 1]);
-
-                    vm.modal.close(appoint);
-                })
-                .error(function(appoint) {
-                    vm.formError = "Something went wrong with updating the appointment, try again";
-                });
-            return false;
-        };
-
 
         //settings for the datepicker popup
         vm.popup = {
@@ -84,47 +72,7 @@
             }
         };
 
-        //checks what fields changed in the updates
-        function checkChangedFields(oldData, newData) {
-            var d1 = new Date(oldData.date);
-            var d2 = new Date(newData.date);
-
-            console.log(oldData.date + " : " + newData.date);
-
-            var diff = [];
-            var attributeArr = [
-                "reason",
-                "residentGoing",
-                "locationName",
-                "locationDoctor",
-                "time",
-                "transportation",
-                "cancel"
-            ];
-
-            for (var i = 0; i < attributeArr.length; ++i) {
-
-                if (oldData[attributeArr[i]] !== newData[attributeArr[i]]) {
-
-                    diff.push({
-                        "field": attributeArr[i],
-                        "old": oldData[attributeArr[i]],
-                        "new": newData[attributeArr[i]]
-                    });
-                }
-            }
-
-            if (d1.getMonth() !== d2.getMonth() || d1.getYear() !== d2.getYear() || d1.getDay() !== d2.getDay()) {
-
-                diff.push({
-                    "field": "date",
-                    "old": oldData.date,
-                    "new": newData.date
-                });
-            }
-
-            return diff;
-        }
+     
 
     }
 

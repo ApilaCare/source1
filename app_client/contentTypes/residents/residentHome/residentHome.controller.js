@@ -40,6 +40,19 @@
                 controller: 'addResidentModalCtrl as vm'
             });
         };
+        
+        
+        vm.popupUpdateResidentForm = function(resident) {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/contentTypes/residents/updateResidentModal/updateResidentModal.view.html',
+                controller: 'updateResidentModalCtrl as vm',
+                resolve: {
+                    getResident: function() {
+                        return resident;
+                    }
+                }
+            });
+        };
     }
 
 })();
