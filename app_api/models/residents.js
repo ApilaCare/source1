@@ -91,8 +91,8 @@ var residentSchema = new mongoose.Schema({
     teethCondition: {type: String}, // poor, fair, good, excellent
 
     // psychosocial information
-    status: [String], // alert, friendly
-    responsiveness: {type: String},
+    psychosocialStatus: [String], // alert, friendly
+    psychosocialResponsiveness: {type: String},
     mood: {type: String}, //
     comprehension: {type: String}, // slow, moderate, quick
     personalHabits: {
