@@ -12,6 +12,10 @@
         vm.isLoggedIn = authentication.isLoggedIn();
 
         vm.formData = getResident;
+        console.log(getResident);
+        
+        vm.formData.admissionDate = new Date(getResident.admissionDate);
+        vm.formData.birthDate = new Date(getResident.birthDate);
 
         vm.forms = ['Administrative', 'Bathing', 'Mobility', 'Allergy', 'Sleep', 'Continent', 'Nutrition', 'Physical Condition', 'Psychosocial', 'Pain', 'Vitals'];
 
@@ -27,27 +31,29 @@
             vm.formData.updateInfo.updateDate = new Date();
             vm.formError = "";
 
-            if (!vm.formData.reason || !vm.formData.residentGoing || !vm.formData.locationName || !vm.formData.time || !vm.formData.date) {
-                vm.formError = "All fields required, please try again";
-                return false;
-            } else {
-                var changedFields = checkChangedFields(vm.originalData, vm.formData);
+            vm.updateResident(vm.formData._id, vm.formData);
+ 
+            
+        };
+        
+        vm.updateResident = function(id, formData) {
+            apilaData.updateResident(id, formData)
+                .success(function(resident) {
+                    //vm.formData.updateInfo.push(appoint.updateInfo[appoint.updateInfo.length - 1]);
 
-                if (changedFields.length > 0) {
-                    vm.formData.updateField = changedFields;
-                    vm.updateAppointment(vm.formData._id, vm.formData);
-                } else {
-                    vm.modal.close();
-                }
-            }
+                    vm.modal.close(resident);
+                })
+                .error(function(appoint) {
+                    vm.formError = "Something went wrong with updating the appointment, try again";
+                });
+            return false;
         };
 
-        //settings for the birthDate datepicker popup
-        vm.birthOpened = {
-            opened: false
-        };
+         //settings for the birth date picker popup
+        vm.birthDateOpened = false;
+        
         vm.openBirthDate = function() {
-            vm.birthOpened.opened = true;
+            vm.birthDateOpened = true;
         };
         vm.dateOptions = {
             formatYear: 'yy',
@@ -56,18 +62,21 @@
             startingDay: 1
         };
 
-        //settings for the admissionDate datepicker popup
-        vm.admissionOpened = {
-            opened: false
-        };
+        //settings for the admission datepicker popup
+        vm.admissionOpened = false;
+
         vm.openAdmission = function() {
-            vm.admissionOpened.opened = true;
+            vm.admissionOpened = true;
         };
-        vm.dateOptions = {
-            formatYear: 'yy',
-            maxDate: new Date(2020, 5, 22),
-            minDate: new Date(),
-            startingDay: 1
+
+
+        vm.modal = {
+            close: function(result) {
+                $uibModalInstance.close(result);
+            },
+            cancel: function() {
+                $uibModalInstance.dismiss('cancel');
+            }
         };
 
 

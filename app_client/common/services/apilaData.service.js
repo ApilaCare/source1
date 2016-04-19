@@ -111,6 +111,12 @@
         var residentById = function(residentid) {
             return $http.get('/api/residents/' + residentid);
         };
+        
+        var updateResident = function(residentid, formData) {
+            return $http.put('/api/residents/update/' + residentid,
+                formData);
+
+        };
 
         return {
             locationByCoords : locationByCoords,
@@ -128,7 +134,8 @@
             updateIssue : updateIssue,
             residentsList : residentsList,
             addResident : addResident,
-            residentById : residentById
+            residentById : residentById,
+            updateResident: updateResident
         };
     }
 

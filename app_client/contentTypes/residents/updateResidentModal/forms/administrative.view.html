@@ -43,7 +43,7 @@
     <label for="admission" class="col-xs-10 col-sm-3 control-label">Date of Birth</label>
     <div class="col-sm-9">
         <p class="input-group">
-            <input type="text" class="form-control" ng-model="vm.formData.birthDate" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.birthOpened.opened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+            <input type="text" class="form-control" ng-model="vm.formData.birthDate" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.birthDateOpened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats"
             />
             <span class="input-group-btn">
                  <button type="button" class="btn btn-default" ng-click="vm.openBirthDate()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
@@ -57,7 +57,7 @@
     <label for="admission" class="col-xs-10 col-sm-3 control-label">Admission date</label>
     <div class="col-sm-9">
         <p class="input-group">
-            <input type="text" class="form-control" ng-model="vm.formData.admissionDate" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.admissionOpened.opened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+            <input type="text" class="form-control" ng-model="vm.formData.admissionDate" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.admissionOpened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats"
             />
             <span class="input-group-btn">
                  <button type="button" class="btn btn-default" ng-click="vm.openAdmission()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>

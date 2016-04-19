@@ -105,7 +105,7 @@ module.exports.residentsUpdateOne = function(req, res) {
         "updateField": req.body.updateField
     };
 
-    console.log(req.body);
+    console.log(req.params.residentid);
 
     Resid
         .findById(req.params.residentid)
