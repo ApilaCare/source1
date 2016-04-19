@@ -44,7 +44,8 @@
             doc.setFont("times");
             doc.setFontSize(12);
             doc.text(50, 156, "Resident Going:");
-            doc.text(140, 156, data.appointment.residentGoing);
+            doc.text(140, 156, data.appointment.residentGoing.firstName + "  " + 
+                     data.appointment.residentGoing.lastName);
             doc.text(50, 173, "Reason:");
             doc.text(140, 173, data.appointment.reason);
 
@@ -60,7 +61,28 @@
             doc.text(430, 238, "Time:");
             doc.text(470, 238, filteredTime);
 
-            //we'll add comments here
+            //grab all the comments
+            for(var i = 0; i < data.appointment.appointmentComment.length; ++i) {
+                var comment = data.appointment.appointmentComment[i];
+                
+                doc.text(250, 310 + i*25, "Author: " + comment.author);
+                doc.text(250 , 325 + i*25, "Text: " + comment.commentText);
+            }
+            
+            //second page for resident details
+            doc.addPage('p', 'pt', 'letter');
+            
+            doc.text(50, 120, "First Name: " + data.appointment.residentGoing.firstName);
+            
+            doc.text(50, 140, "Last Name: " + data.appointment.residentGoing.lastName);
+            
+            doc.text(50, 160, "Admission date: " + data.appointment.residentGoing.admissionDate);
+            
+            doc.text(50, 180, "Birth date: " + data.appointment.residentGoing.birthDate);
+            
+            doc.text(50, 200, "Sex: " + data.appointment.residentGoing.sex);
+            
+            doc.text(50, 220, "Building Status: " + data.appointment.residentGoing.buildingStatus);
 
             doc.save(name);
 

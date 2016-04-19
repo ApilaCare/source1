@@ -13,7 +13,7 @@
                 {{vm.selectedView }} <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                <li  ng-repeat="v in vm.views"><a ng-click="vm.selectedView(v)">{{ v }}</a></li>
+                <li  ng-repeat="v in vm.views"><a ng-click="vm.selectView(v)">{{ v }}</a></li>
               </ul>
             </div>
 
