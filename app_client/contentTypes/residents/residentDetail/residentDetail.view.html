@@ -4,43 +4,38 @@
     <page-header content="vm.pageHeader"></page-header>
     <div class="row">
         <div class="col-xs-12 col-md-12">
-            <div class="row">
-                <div class="col-xs-12">
-                    <a ng-show="vm.isLoggedIn" ng-click="vm.exportAppointment()" class="btn btn-success pull-right">Export</a>
-                </div>
-            </div>
             <div class="printable">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <a ng-show="vm.isLoggedIn" ng-click="vm.popupUpdateAppointmentForm(vm.data.appointment)" class="btn btn-info btn-xs pull-right">Update</a>
-                                <h2 class="panel-title">Appointment Information</h2>
+                                <a ng-show="vm.isLoggedIn" ng-click="vm.popupUpdateResidentForm(vm.data.resident)" class="btn btn-info btn-xs pull-right">Update</a>
+                                <h2 class="panel-title">resident Information</h2>
                             </div>
                             <div class="panel-body">
                                 <p>
-                                    Reason:
-                                    <span class="pull-right">{{ vm.data.appointment.reason }}</span>
+                                    Name:
+                                    <span class="pull-right">{{ vm.data.resident.firstName }} {{ vm.data.resident.middleName }} {{ vm.data.resident.lastName }}</span>
                                 </p>
                                 <p>
-                                    Resident Going:
-                                    <span class="pull-right">{{ vm.data.appointment.residentGoing }}</span>
+                                    Maiden Name:
+                                    <span class="pull-right">{{ vm.data.resident.maidenName }}</span>
                                 </p>
                                 <p>
-                                    Location:
-                                    <span class="pull-right">{{ vm.data.appointment.locationName }}</span>
+                                    Date of Birth:
+                                    <span class="pull-right">{{ vm.data.resident.birthDate | date : 'h:mm a, MMMM d yyyy' }}</span>
                                 </p>
                                 <p>
-                                    Doctor:
-                                    <span class="pull-right">{{ vm.data.appointment.locationDoctor }}</span>
+                                    Admission Date:
+                                    <span class="pull-right">{{ vm.data.resident.admissionDate | date : 'h:mm a, MMMM d yyyy' }}</span>
                                 </p>
                                 <p>
-                                    Time:
-                                    <span class="pull-right">{{ vm.data.appointment.time | date : 'h:mm a, MMMM d' }}</span>
+                                    Prefered Sex:
+                                    <span class="pull-right">{{ vm.data.resident.sex }}</span>
                                 </p>
                                 <p>
-                                    Transportation:
-                                    <span class="pull-right">{{ vm.data.appointment.transportation }}</span>
+                                    Building Status:
+                                    <span class="pull-right">{{ vm.data.resident.buildingStatus }}</span>
                                 </p>
                             </div>
                         </div>
@@ -54,11 +49,11 @@
                             <div class="panel-body">
                                 <p>
                                     Submitted By:
-                                    <span class="pull-right">{{ vm.data.appointment.submitBy }}</span>
+                                    <span class="pull-right">{{ vm.data.resident.submitBy }}</span>
                                 </p>
                                 <p>
                                     Submitted Time:
-                                    <span class="pull-right">{{ vm.data.appointment.submitDate | date : 'h:mm a, MMMM d' }}</span>
+                                    <span class="pull-right">{{ vm.data.resident.submitDate | date : 'h:mm a, MMMM d' }}</span>
                                 </p>
                             </div>
                         </div>
@@ -67,7 +62,7 @@
                                 <h2 class="panel-title">Modification Information</h2>
                             </div>
                             <div class="panel-body">
-                                <p ng-repeat="person in vm.data.appointment.updateInfo">
+                                <p ng-repeat="person in vm.data.resident.updateInfo">
                                     Modified by {{ person.updateBy }} on {{ person.updateDate | date : 'h:mm a, MMMM d' }}
                                 </p>
                             </div>
@@ -76,34 +71,6 @@
                 </div>
             </div>
             <!-- End of printable -->
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="panel panel-primary review-panel">
-                        <div class="panel-heading">
-                            <a ng-show="vm.isLoggedIn" ng-click="vm.popupAppointmentCommentForm(vm.data.appointment)" class="btn btn-default btn-xs pull-right">Add Comment</a>
-                            <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-default btn-xs pull-right">Login to add review</a>
-                            <h2 class="panel-title">Appointment Comments</h2>
-                        </div>
-                        <div class="panel-body comment-container">
-                            <div class="row">
-                                <div class="comment" ng-repeat="comment in vm.data.appointment.appointmentComment | orderBy:'createdOn':true">
-                                    <div class="well well-sm comment-header">
-                                        <span class="rating" rating-stars rating="comment.rating"></span>
-                                        <span class="reviewAuthor">{{ comment.author }}</span>
-                                        <small class="reviewTimestamp pull-right">{{ comment.createdOn | date : 'd MMMM yyyy' }}</small>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <p ng-bind-html="comment.commentText | addHtmlLineBreaks"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
         </div>
     </div>
     <footer-generic></footer-generic>

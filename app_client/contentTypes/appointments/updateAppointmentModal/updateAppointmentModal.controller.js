@@ -19,18 +19,15 @@
         vm.formData.modifiedBy = authentication.currentUser().name;
         vm.formData.updateInfo.updateBy = authentication.currentUser().name;
 
-        console.log("kiasd");
-
+        vm.resident = {};
+        
         vm.resident.name = vm.formData.residentGoing.firstName;
         vm.resident.id = vm.formData.residentGoing._id;
 
-
-        console.log(vm.resident.name + " : " + vm.resident.id);
-
-        /* vm.selectResident = function(name, id) {
+         vm.selectResident = function(name, id) {
              vm.resident.name = name;
              vm.resident.id = id;
-        }*/
+        }
 
         vm.onSubmit = function() {
 
@@ -42,9 +39,11 @@
                 vm.formError = "All fields required, please try again";
                 return false;
             } else {
-                var changedFields = checkChangedFields(vm.originalData, vm.formData);
-
+                vm.formData.residentGoing.firstName = vm.resident.name;
                 vm.formData.residentId = vm.resident.id;
+                
+                var changedFields = checkChangedFields(vm.originalData, vm.formData);
+                
                 if (changedFields.length > 0) {
                     vm.formData.updateField = changedFields;
                     vm.updateAppointment(vm.formData._id, vm.formData);
@@ -69,7 +68,6 @@
 
         apilaData.residentsList()
             .success(function(residentList) {
-                console.log("Nesto??");
                 vm.residentList = residentList;
 
             })
@@ -112,12 +110,11 @@
             var d1 = new Date(oldData.date);
             var d2 = new Date(newData.date);
 
-            console.log(oldData.date + " : " + newData.date);
+            console.log(oldData["residentGoing"].firstName + " : " + newData["residentGoing"].firstName);
 
             var diff = [];
             var attributeArr = [
                 "reason",
-                "residentGoing",
                 "locationName",
                 "locationDoctor",
                 "time",
@@ -136,6 +133,15 @@
                     });
                 }
             }
+            
+             
+             if(oldData["residentGoing"].firstName !== newData["residentGoing"].firstName) {
+                 diff.push({
+                     "field": "residentGoing",
+                     "old": oldData["residentGoing"].firstName,
+                     "new": newData["residentGoing"].firstName
+                 });
+             }
 
             if (d1.getMonth() !== d2.getMonth() || d1.getYear() !== d2.getYear() || d1.getDay() !== d2.getDay()) {
 

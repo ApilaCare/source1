@@ -18,59 +18,55 @@
                 <li  ng-repeat="f in vm.forms"><a ng-click="vm.selectForm(f)">{{f}}</a></li>
               </ul>
             </div>
-            
-            
+
+
             <div ng-switch on="vm.selectedForm">
-            
+
                 <!-- Administrative form -->
                 <div ng-switch-when="Administrative">
                      <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/administrative.view.html'"></div>
                 </div>
-                
+
                 <div ng-switch-when="Allergy">
                      <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/allergy.view.html'"></div>
                 </div>
-                
+
                 <div ng-switch-when="Bathing">
                      <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/bathing.view.html'"></div>
                 </div>
-                
+
                 <div ng-switch-when="Continent">
                      <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/continent.view.html'"></div>
                 </div>
-                
+
                 <div ng-switch-when="Mobility">
                      <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/mobility.view.html'"></div>
                 </div>
-                
+
                 <div ng-switch-when="Nutrition">
                      <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/nutrition.view.html'"></div>
                 </div>
-                
+
                 <div ng-switch-when="Pain">
                      <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/pain.view.html'"></div>
                 </div>
-                
+
                 <div ng-switch-when="Physical Condition">
                      <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/physicalCondition.view.html'"></div>
                 </div>
-                
+
                 <div ng-switch-when="Psychosocial">
                      <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/psychosocial.view.html'"></div>
                 </div>
-                
+
                 <div ng-switch-when="Sleep">
                      <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/sleep.view.html'"></div>
                 </div>
-                
+
                 <div ng-switch-when="Vitals">
                      <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/vitals.view.html'"></div>
-                </div>
-            
-            
+                </div>  
             </div>
-
-
         </div>
 
         <!-- footer that defines the cancel button and submit button  -->

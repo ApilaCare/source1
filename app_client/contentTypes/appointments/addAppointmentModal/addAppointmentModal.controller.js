@@ -37,6 +37,7 @@
             apilaData.addAppointment(formData)
                 .success(function(appoint) {
 
+                    console.log("Odje");
                     console.log(appoint);
                     // add to list
                     apilaData.appointList.appointments.push(appoint);
@@ -50,7 +51,6 @@
 
         apilaData.residentsList()
             .success(function(residentList) {
-                console.log(residentList);
                 vm.residentList = residentList;
             })
             .error(function(residentList) {

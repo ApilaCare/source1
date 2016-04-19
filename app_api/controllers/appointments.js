@@ -32,8 +32,7 @@ module.exports.appointmentsCreate = function(req, res) {
             console.log(err);
             sendJSONresponse(res, 400, err);
         } else {
-            console.log(appointment);
-            sendJSONresponse(res, 200, appointment);
+            getFullAppointment(req, res, appointment._id);
         }
     });
 };
@@ -166,6 +165,27 @@ module.exports.appointmentsDeleteOne = function(req, res) {
         });
     }
 };
+
+var getFullAppointment = function(req, res, appointId) {
+      Appoint
+            .findById(appointId)
+            .populate("residentGoing")
+            .exec(function(err, appointment) {
+                if (!appointment) {
+                    sendJSONresponse(res, 404, {
+                        "message": "appointmentid not found (from controller)"
+                    });
+                    return;
+                } else if (err) {
+                    console.log(err);
+                    sendJSONresponse(res, 404, err);
+                    return;
+                }
+                console.log(appointment);
+                sendJSONresponse(res, 200, appointment);
+            });
+}
+
 
 var getAuthor = function(req, res, callback) {
     console.log("Finding author with email " + req.payload.email);

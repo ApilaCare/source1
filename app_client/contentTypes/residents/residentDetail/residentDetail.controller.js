@@ -2,65 +2,39 @@
 
     angular
         .module('apilaApp')
-        .controller('appointmentDetailCtrl', appointmentDetailCtrl);
+        .controller('residentDetailCtrl', residentDetailCtrl);
 
-    appointmentDetailCtrl.$inject = ['$routeParams', '$location', 'apilaData', 'authentication', '$uibModal', 'exportPdf'];
+    residentDetailCtrl.$inject = ['$routeParams', '$location', 'apilaData', 'authentication', '$uibModal', 'exportPdf'];
 
-    function appointmentDetailCtrl($routeParams, $location, apilaData, authentication, $uibModal, exportPdf) {
+    function residentDetailCtrl($routeParams, $location, apilaData, authentication, $uibModal, exportPdf) {
         var vm = this;
-        vm.appointmentid = $routeParams.appointmentid;
+        vm.residentid = $routeParams.residentid;
         vm.isLoggedIn = authentication.isLoggedIn();
         vm.currentPath = $location.path();
 
 
 
-        apilaData.appointmentById(vm.appointmentid)
+        apilaData.residentById(vm.residentid)
             .success(function(data) {
                 vm.data = {
-                    appointment: data
+                    resident : data
                 };
 
                 vm.pageHeader = {
-                    title: vm.data.appointment.residentGoing + " going to " + vm.data.appointment.locationName,
+                    title: vm.data.resident.firstName + " " + vm.data.resident.lastName + "'s Details Page",
                 };
             })
             .error(function(e) {
                 console.log(e);
             });
 
-
-        vm.exportAppointment = function() {
-
-            var name = vm.data.appointment.residentGoing + " to " + vm.data.appointment.locationName;
-            exportPdf.exportAppointmentDetail(name, vm.data);
-        }
-
-
-        vm.popupAppointmentCommentForm = function(appointment) {
+        vm.popupUpdateResidentForm = function(resident) {
             var modalInstance = $uibModal.open({
-                templateUrl: '/contentTypes/appointments/appointmentCommentModal/appointmentCommentModal.view.html',
-                controller: 'appointmentCommentModalCtrl as vm',
+                templateUrl: '/contentTypes/residents/updateResidentModal/updateResidentModal.view.html',
+                controller: 'updateResidentModalCtrl as vm',
                 resolve: {
-                    appointmentData: function() {
-                        return appointment;
-                    }
-                }
-
-            });
-
-
-            modalInstance.result.then(function(data) {
-                vm.data.appointment.appointmentComment.push(data);
-            });
-        }
-
-        vm.popupUpdateAppointmentForm = function(appointment) {
-            var modalInstance = $uibModal.open({
-                templateUrl: '/contentTypes/appointments/updateAppointmentModal/updateAppointmentModal.view.html',
-                controller: 'updateAppointmentModalCtrl as vm',
-                resolve: {
-                    getAppointment: function() {
-                        return appointment;
+                    getResident: function() {
+                        return resident;
                     }
                 }
             });

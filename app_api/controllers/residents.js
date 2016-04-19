@@ -17,7 +17,7 @@ module.exports.residentsCreate = function(req, res) {
         lastName: req.body.lastName,
         birthDate: req.body.birthDate,
         maidenName: req.body.maidenName,
-        addmissionDate: req.body.addmissionDate,
+        admissionDate: req.body.admissionDate,
         buildingStatus: req.body.buildingStatus,
         sex: req.body.sex,
         submitBy: req.payload.name,

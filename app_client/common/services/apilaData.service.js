@@ -113,22 +113,22 @@
         };
 
         return {
-            locationByCoords: locationByCoords,
-            locationById: locationById,
-            addReviewById: addReviewById,
-            issuesList: issuesList,
-            issueById: issueById,
-            addIssue: addIssue,
-            addIssueCommentById: addIssueCommentById,
-            appointmentsList: appointmentsList,
-            appointmentById: appointmentById,
-            addAppointment: addAppointment,
-            updateAppointment: updateAppointment,
-            addAppointmentCommentById: addAppointmentCommentById,
-            updateIssue: updateIssue,
-            residentsList: residentsList,
-            addResident: addResident,
-            residentById: residentById
+            locationByCoords : locationByCoords,
+            locationById : locationById,
+            addReviewById : addReviewById,
+            issuesList : issuesList,
+            issueById : issueById,
+            addIssue : addIssue,
+            addIssueCommentById : addIssueCommentById,
+            appointmentsList : appointmentsList,
+            appointmentById : appointmentById,
+            addAppointment : addAppointment,
+            updateAppointment : updateAppointment,
+            addAppointmentCommentById : addAppointmentCommentById,
+            updateIssue : updateIssue,
+            residentsList : residentsList,
+            addResident : addResident,
+            residentById : residentById
         };
     }
 
