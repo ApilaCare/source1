@@ -1,1 +1,83 @@
-<h3>Administrative</h3>
+<!-- form group for the first name-->
+<div class="form-group">
+    <label class="col-xs-10 col-sm-3 control-label">First Name</label>
+    <div class="col-sm-9">
+        <input class="form-control" ng-model="vm.formData.firstName" placeholder="">
+    </div>
+</div>
+
+<!-- form group for the middle name-->
+<div class="form-group">
+    <label class="col-xs-10 col-sm-3 control-label">Middle Name</label>
+    <div class="col-sm-9">
+        <input class="form-control" ng-model="vm.formData.middleName" placeholder="">
+    </div>
+</div>
+
+<!-- form group for the last name-->
+<div class="form-group">
+    <label class="col-xs-10 col-sm-3 control-label">Last Name</label>
+    <div class="col-sm-9">
+        <input class="form-control" ng-model="vm.formData.lastName" placeholder="">
+    </div>
+</div>
+
+<!-- form group for the maiden name-->
+<div class="form-group">
+    <label class="col-xs-10 col-sm-3 control-label">Maiden Name</label>
+    <div class="col-sm-9">
+        <input class="form-control" ng-model="vm.formData.maidenName" placeholder="">
+    </div>
+</div>
+
+<!-- form group for the maiden name-->
+<div class="form-group">
+    <label class="col-xs-10 col-sm-3 control-label">Maiden Name</label>
+    <div class="col-sm-9">
+        <input class="form-control" ng-model="vm.formData.maidenName" placeholder="">
+    </div>
+</div>
+
+<!-- form group for the date of birth of resident -->
+<div class="form-group">
+    <label for="admission" class="col-xs-10 col-sm-3 control-label">Date of Birth</label>
+    <div class="col-sm-9">
+        <p class="input-group">
+            <input type="text" class="form-control" ng-model="vm.formData.birthDate" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.birthOpened.opened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+            />
+            <span class="input-group-btn">
+                 <button type="button" class="btn btn-default" ng-click="vm.openBirthDate()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </p>
+    </div>
+</div>
+
+<!-- form group for the date admission of resident -->
+<div class="form-group">
+    <label for="admission" class="col-xs-10 col-sm-3 control-label">Admission date</label>
+    <div class="col-sm-9">
+        <p class="input-group">
+            <input type="text" class="form-control" ng-model="vm.formData.admissionDate" placeholder="" uib-datepicker-popup="{{format}}" is-open="vm.admissionOpened.opened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+            />
+            <span class="input-group-btn">
+                 <button type="button" class="btn btn-default" ng-click="vm.openAdmission()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </p>
+    </div>
+</div>
+
+<!-- form group for the sex-->
+<div class="form-group">
+    <label class="col-xs-10 col-sm-3 control-label">Sex</label>
+    <div class="col-sm-9">
+        <input class="form-control" ng-model="vm.formData.sex" placeholder="">
+    </div>
+</div>
+
+<!-- form group for the building status-->
+<div class="form-group">
+    <label class="col-xs-10 col-sm-3 control-label">Building Status</label>
+    <div class="col-sm-9">
+        <input class="form-control" ng-model="vm.formData.buildingStatus" placeholder="">
+    </div>
+</div>

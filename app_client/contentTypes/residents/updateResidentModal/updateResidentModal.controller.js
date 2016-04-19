@@ -14,13 +14,13 @@
         vm.formData = getResident;
 
         vm.forms = ['Administrative', 'Bathing', 'Mobility', 'Allergy', 'Sleep', 'Continent', 'Nutrition', 'Physical Condition', 'Psychosocial', 'Pain', 'Vitals'];
-        
+
         vm.selectedForm = vm.forms[1];
-        
+
         vm.selectForm = function(name) {
             vm.selectedForm = name;
         }
-        
+
         vm.onSubmit = function() {
 
             vm.formData.modifiedDate = new Date();
@@ -42,15 +42,13 @@
             }
         };
 
-        //settings for the datepicker popup
-        vm.popup = {
+        //settings for the birthDate datepicker popup
+        vm.birthOpened = {
             opened: false
         };
-
-        vm.open = function() {
-            vm.popup.opened = true;
+        vm.openBirthDate = function() {
+            vm.birthOpened.opened = true;
         };
-
         vm.dateOptions = {
             formatYear: 'yy',
             maxDate: new Date(2020, 5, 22),
@@ -58,9 +56,20 @@
             startingDay: 1
         };
 
-        vm.open = function() {
-            vm.popup.opened = true;
+        //settings for the admissionDate datepicker popup
+        vm.admissionOpened = {
+            opened: false
         };
+        vm.openAdmission = function() {
+            vm.admissionOpened.opened = true;
+        };
+        vm.dateOptions = {
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            minDate: new Date(),
+            startingDay: 1
+        };
+
 
 
         vm.modal = {
@@ -72,7 +81,7 @@
             }
         };
 
-     
+
 
     }
 

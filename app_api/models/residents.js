@@ -16,9 +16,9 @@ var residentSchema = new mongoose.Schema({
     submitBy: {type: String,required: true},
 
     // bathing information
-    type: {type: String}, // shower, tub, spit bath
-    time: {type: String}, // morning, evening, before breakfast, after breakfast, after supper, before supper?
-    frequency: {type: String}, // 1 per week, twice a week, everyday,
+    typeOfBathing: {type: String}, // shower, tub, spit bath
+    timeOfBathing: {type: String}, // morning, evening, before breakfast, after breakfast, after supper, before supper?
+    frequencyOfBathing: {type: String}, // 1 per week, twice a week, everyday,
     acceptanceOfBathing: {type: String}, // likes, dislikes
 
     // mobility information
@@ -37,8 +37,8 @@ var residentSchema = new mongoose.Schema({
     bedReposition: {type: Boolean},
 
     // allergy information
-    foodAlergies: [String],
-    medicationAlergies: [String],
+    foodAllergies: [String],
+    medicationAllergies: [String],
 
     // sleep information
     usualBedTime: {type: String},
