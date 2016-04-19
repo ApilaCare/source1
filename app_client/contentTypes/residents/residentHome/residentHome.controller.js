@@ -4,9 +4,9 @@
         .module('apilaApp')
         .controller('residentHomeCtrl', residentHomeCtrl);
 
-    residentHomeCtrl.$inject = ['$scope', 'apilaData', '$uibModal', 'authentication', 'exportPdf'];
+    residentHomeCtrl.$inject = ['$scope', 'apilaData', '$uibModal', 'authentication'];
 
-    function residentHomeCtrl($scope, apilaData, $uibModal, authentication, exportPdf) {
+    function residentHomeCtrl($scope, apilaData, $uibModal, authentication) {
         var vm = this;
         vm.isLoggedIn = authentication.isLoggedIn();
         vm.pageHeader = {
@@ -14,6 +14,13 @@
             strapline: 'its a website!'
         };
         vm.message = "Loading Residents";
+
+        // selceting the views
+        vm.views = ['Administrative', 'Bathing', 'Mobility', 'Allergy', 'Sleep', 'Continent', 'Nutrition', 'Physical Condition', 'Psychosocial', 'Pain', 'Vitals'];
+        vm.selectedView = vm.views[0];
+        vm.selectView = function(name) {
+            vm.selectedView = name;
+        }
 
         apilaData.residentsList()
             .success(function(data) {
@@ -40,8 +47,8 @@
                 controller: 'addResidentModalCtrl as vm'
             });
         };
-        
-        
+
+
         vm.popupUpdateResidentForm = function(resident) {
             var modalInstance = $uibModal.open({
                 templateUrl: '/contentTypes/residents/updateResidentModal/updateResidentModal.view.html',
