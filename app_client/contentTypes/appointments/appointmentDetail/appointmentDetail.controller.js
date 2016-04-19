@@ -30,6 +30,7 @@
         vm.exportAppointment = function() {
 
             var name = vm.data.appointment.residentGoing.firstName + " to " + vm.data.appointment.locationName;
+            console.log(vm.data);
             exportPdf.exportAppointmentDetail(name, vm.data);
         }
 
