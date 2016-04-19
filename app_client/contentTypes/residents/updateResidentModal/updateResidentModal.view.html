@@ -1,79 +1,76 @@
 <div class="modal-content">
-    <form id="addComment" name="addAppointment" role="form" ng-submit="vm.onSubmit()" class="form-horizontal">
+    <form id="updateResident" name="updateResident" role="form" ng-submit="vm.onSubmit()" class="form-horizontal">
 
         <!-- header of the modal.  defines title that is centered and X button to close -->
         <div class="modal-header">
             <button type="button" ng-click="vm.modal.cancel()" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            <h4 id="myModalLabel" class="modal-title text-center">Update Appointment</h4>
+            <h4 id="myModalLabel" class="modal-title text-center">Update Resident</h4>
         </div>
         <div class="modal-body">
             <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
 
-            <!-- form group for the reason of the appointment -->
-            <div class="form-group">
-                <label for="reason" class="col-xs-10 col-sm-3 control-label">Reason</label>
-                <div class="col-sm-9">
-                    <input type="author" class="form-control" id="author" ng-model="vm.formData.reason">
+            <!-- The main selection box -->
+            <div class="btn-group" uib-dropdown>
+              <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                {{vm.selectedForm }} <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                <li  ng-repeat="f in vm.forms"><a ng-click="vm.selectForm(f)">{{f}}</a></li>
+              </ul>
+            </div>
+            
+            
+            <div ng-switch on="vm.selectedForm">
+            
+                <!-- Administrative form -->
+                <div ng-switch-when="Administrative">
+                     <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/administrative.view.html'"></div>
                 </div>
+                
+                <div ng-switch-when="Allergy">
+                     <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/allergy.view.html'"></div>
+                </div>
+                
+                <div ng-switch-when="Bathing">
+                     <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/bathing.view.html'"></div>
+                </div>
+                
+                <div ng-switch-when="Continent">
+                     <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/continent.view.html'"></div>
+                </div>
+                
+                <div ng-switch-when="Mobility">
+                     <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/mobility.view.html'"></div>
+                </div>
+                
+                <div ng-switch-when="Nutrition">
+                     <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/nutrition.view.html'"></div>
+                </div>
+                
+                <div ng-switch-when="Pain">
+                     <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/pain.view.html'"></div>
+                </div>
+                
+                <div ng-switch-when="Physical Condition">
+                     <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/physicalCondition.view.html'"></div>
+                </div>
+                
+                <div ng-switch-when="Psychosocial">
+                     <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/psychosocial.view.html'"></div>
+                </div>
+                
+                <div ng-switch-when="Sleep">
+                     <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/sleep.view.html'"></div>
+                </div>
+                
+                <div ng-switch-when="Vitals">
+                     <div ng-include src="'/contentTypes/residents/updateResidentModal/forms/vitals.view.html'"></div>
+                </div>
+            
+            
             </div>
 
-            <!-- form group for the location name -->
-            <div class="form-group">
-                <label for="resident going" class="col-xs-10 col-sm-3 control-label">Resident Going</label>
-                <div class="col-sm-9">
-                    <input type="address" class="form-control" id="address" ng-model="vm.formData.residentGoing">
-                </div>
-            </div>
 
-            <!-- form group for the location name -->
-            <div class="form-group">
-                <label for="address" class="col-xs-10 col-sm-3 control-label">Location Name</label>
-                <div class="col-sm-9">
-                    <input type="address" class="form-control" id="address" ng-model="vm.formData.locationName">
-                </div>
-            </div>
-
-            <!-- form group for the location name -->
-            <div class="form-group">
-                <label for="address" class="col-xs-10 col-sm-3 control-label">Doctor</label>
-                <div class="col-sm-9">
-                    <input type="address" class="form-control" id="address" ng-model="vm.formData.locationDoctor">
-                </div>
-            </div>
-
-            <!-- form group for the "Time and Date" field.  Time is frist in the row then Date.  The date needs some CSS to get inline. -->
-            <div class="form-group">
-                <label for="time and date" class="col-xs-10 col-sm-3 control-label">Time and Date</label>
-                <div class="col-sm-4">
-                    <uib-timepicker ng-model="vm.formData.time" ng-change="changed()" hour-step="1" minute-step="5"></uib-timepicker>
-                </div>
-                <div class="col-sm-5">
-                    <p class="input-group">
-                        <input type="text" class="form-control" id="date" ng-model="vm.formData.date" uib-datepicker-popup="{{format}}" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-                        <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="vm.open()"><i class="glyphicon glyphicon glyphicon-calendar"></i></button>
-              </span>
-                    </p>
-                </div>
-            </div>
-
-            <!-- form group for the "Transportation" field.  -->
-            <div class="form-group">
-                <label for="transportation" class="col-xs-10 col-sm-3 control-label">Transportation</label>
-                <div class="col-sm-9">
-                    <input class="form-control" id="transportation" ng-model="vm.formData.transportation">
-                </div>
-            </div>
-
-            <!-- form group for the "Cancel" field.  -->
-            <div class="form-group">
-                <label for="transportation" class="col-xs-10 col-sm-3 control-label">Cancelled</label>
-                <div class="checkbox col-sm-9">
-                    <label>
-                        <input type="checkbox" value="" ng-model="vm.formData.cancel">
-                    </label>
-                </div>
-            </div>
         </div>
 
         <!-- footer that defines the cancel button and submit button  -->
