@@ -11,6 +11,9 @@ var residentSchema = new mongoose.Schema({
     admissionDate: {type: Date},
     sex: {type: String,required: true},
     buildingStatus: {type: String,required: true}, // in the building, hospital, rehad, dead
+    updateInfo: [mongoose.Schema.Types.Mixed],
+    submitDate: {type: Date, default: Date.now},
+    submitBy: {type: String,required: true},
 
     // bathing information
     type: {type: String}, // shower, tub, spit bath
