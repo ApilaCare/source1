@@ -36,11 +36,10 @@
         };
 
         //settings for the birth date picker popup
-        vm.birthDateOpened = {
-            opened: false
-        };
+        vm.birthDateOpened = false;
+        
         vm.openBirthDate = function() {
-            vm.popup.opened = true;
+            vm.birthDateOpened = true;
         };
         vm.dateOptions = {
             formatYear: 'yy',

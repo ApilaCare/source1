@@ -12,8 +12,6 @@
         vm.isLoggedIn = authentication.isLoggedIn();
         vm.currentPath = $location.path();
 
-        console.log("safdf");
-
         apilaData.appointmentById(vm.appointmentid)
             .success(function(data) {
                 vm.data = {
