@@ -41,7 +41,7 @@ var residentSchema = new mongoose.Schema({
     medicationAllergies: [String],
 
     // sleep information
-    usualBedTime: {type: String},
+    usualBedtime: {type: String},
     usualArisingTime: {type: String},
     nap: {type: Boolean},
     assistanceToBed: {type: String}, // medication, positioning, pillows, drink, alcohol, hot tea, warm milk
@@ -121,7 +121,7 @@ var residentSchema = new mongoose.Schema({
     temperature: [Number],
     bloodPressureSystolic: [Number],
     bloodPressureDiastolic: [Number],
-    oxygenSat: [Number],
+    oxygenSaturation: [Number],
     pulse: [Number],
     vitalsPain: [Number],
     respiration: [Number],
