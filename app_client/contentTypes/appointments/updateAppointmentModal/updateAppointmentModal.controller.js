@@ -107,17 +107,17 @@
 
         //checks what fields changed in the updates
         function checkChangedFields(oldData, newData) {
-            var d1 = new Date(oldData.date);
+            var d1 = new Date(oldData.time);
             var d2 = new Date(newData.date);
+            var t1 = new Date(newData.time);
 
-            console.log(oldData["residentGoing"].firstName + " : " + newData["residentGoing"].firstName);
+            console.log(oldData.time + " : " + newData.time);
 
             var diff = [];
             var attributeArr = [
                 "reason",
                 "locationName",
                 "locationDoctor",
-                "time",
                 "transportation",
                 "cancel"
             ];
@@ -143,15 +143,30 @@
                  });
              }
 
-            if (d1.getMonth() !== d2.getMonth() || d1.getYear() !== d2.getYear() || d1.getDay() !== d2.getDay()) {
-
+            var timeChanged = false;
+            
+            //checking the date portion
+            if(d1.toDateString() !== d2.toDateString()) {
+                 timeChanged = true;
+             }
+            
+            //check the time portion
+            if(d1.getHours() !== t1.getHours() || d1.getMinutes() !== t1.getMinutes()) {
+                timeChanged = true;
+             }
+                
+            if(timeChanged === true) {
+                d2.setHours(t1.getHours());
+                d2.setMinutes(t1.getMinutes());
+                d2.setSeconds(t1.getSeconds());
+                
                 diff.push({
-                    "field": "date",
-                    "old": oldData.date,
-                    "new": newData.date
-                });
-            }
-
+                     "field": "time",
+                     "old": d1,
+                     "new": d2
+                 });
+            } 
+            
             return diff;
         }
 

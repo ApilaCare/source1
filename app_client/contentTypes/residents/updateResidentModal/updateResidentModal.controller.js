@@ -23,8 +23,13 @@
 
         // select between forms
         vm.forms = ['Administrative', 'Bathing', 'Mobility', 'Allergy', 'Sleep', 'Continent', 'Nutrition', 'Physical Condition', 'Psychosocial', 'Pain', 'Vitals'];
+<<<<<<< HEAD
 
         vm.formData.newrespiration = vm.formData.respiration[vm.formData.respiration.length - 1];
+=======
+        
+       /* vm.formData.newrespiration = vm.formData.respiration[vm.formData.respiration.length - 1];
+>>>>>>> 79959074d84cef8d31c5da2a6cac32fc72c2081f
         vm.formData.newvitalsPain = vm.formData.vitalsPain[vm.formData.vitalsPain.length - 1];
         vm.formData.newpulse = vm.formData.pulse[vm.formData.pulse.length - 1];
         vm.formData.newoxygenSaturation = vm.formData.oxygenSaturation[vm.formData.oxygenSaturation.length - 1];
@@ -34,7 +39,7 @@
 
         vm.formData.newpsychosocialStatus = vm.formData.psychosocialStatus[vm.formData.psychosocialStatus.length - 1];
         vm.formData.newmedicationAllergies = vm.formData.medicationAllergies[vm.formData.medicationAllergies.length - 1];
-        vm.formData.newfoodAllergies = vm.formData.foodAllergies[vm.formData.foodAllergies.length - 1];
+        vm.formData.newfoodAllergies = vm.formData.foodAllergies[vm.formData.foodAllergies.length - 1];*/
 
         vm.selectedForm = vm.forms[0];
         vm.selectForm = function(name) {
@@ -106,7 +111,7 @@
 
             var diff = [];
             var attributeArr = [
-                "firstName", "lastName", "middleName", "maidenName", "birthDate", "sex", "admissionDate",
+                "firstName", "lastName", "middleName", "maidenName", "sex",
                 "buildingStatus", "newfoodAllergies", "newmedicationAllergies", "typeOfBathing", "timeOfBathing",
                 "frequencyOfBathing", "acceptanceOfBathing", "bowelContinent", "constipated", "laxative",
                 "bladderContinent", "dribbles", "catheter", "toiletingDevice", "transfers", "fallRisk",
@@ -133,7 +138,26 @@
                     });
                 }
             }
+<<<<<<< HEAD
 
+=======
+            
+            //handling for date fields
+            var dateAttributes = ["admissionDate", "birthDate"];
+            
+            for (var i = 0; i < dateAttributes.length; ++i) {
+
+                if (new Date(oldData[dateAttributes[i]]).toDateString() !== new Date(newData[dateAttributes[i]]).toDateString()) {
+
+                    diff.push({
+                        "field": dateAttributes[i],
+                        "old": oldData[dateAttributes[i]],
+                        "new": newData[dateAttributes[i]]
+                    });
+                }
+            }
+            
+>>>>>>> 79959074d84cef8d31c5da2a6cac32fc72c2081f
             //handling of nested strings
 
             var nestedAtributes = [{f:"personalHabits", s:"smokes"}, {f:"personalHabits", s:"alcohol"},
@@ -143,21 +167,51 @@
                                   {f: "teeth", s:"upperTeeth"}, {f: "teeth", s:"lowerTeeth"},
                                    {f:"insideApartment", s:"useOfAssistiveDevice"}, {f:"insideApartment", s:"assitanceWithDevice"}, {f:"insideApartment", s:"specialAmbulationNeeds"},
                                   {f:"outsideApartment", s:"useOfAssistiveDevice"}, {f:"outsideApartment", s:"assitanceWithDevice"}, {f:"outsideApartment", s:"specialAmbulationNeeds"}];
+<<<<<<< HEAD
 
 
             /*
+=======
+            
+            
+            
+>>>>>>> 79959074d84cef8d31c5da2a6cac32fc72c2081f
             for (var i = 0; i < nestedAtributes.length; ++i) {
-                if (oldData[nestedAtributes[i].f][nestedAtributes[i].s] !== newData[nestedAtributes[i].f][nestedAtributes[i].s]) {
+                
+                var oldValue = nestedArguments(oldData, nestedAtributes[i].f + "." + nestedAtributes[i].s);
+                
+                var newValue = nestedArguments(newData, nestedAtributes[i].f + "." + nestedAtributes[i].s);
+                
+                if(oldValue == undefined || newValue == undefined) {
+                    continue;
+                }
+                
+                if (oldValue !== newValue) {
 
                     diff.push({
                         "field": oldData[nestedAtributes[i].f] + " " +[nestedAtributes[i].s],
-                        "old": oldData[nestedAtributes[i].f][nestedAtributes[i].s],
-                        "new": newData[nestedAtributes[i].f][nestedAtributes[i].s]
+                        "old": oldValue,
+                        "new": newValue
                     });
                 }
-            }*/
+            }
 
             return diff;
+        }
+        
+        var nestedArguments = function(o, s) {
+            s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+            s = s.replace(/^\./, '');           // strip a leading dot
+            var a = s.split('.');
+            for (var i = 0, n = a.length; i < n; ++i) {
+                var k = a[i];
+                if (k in o) {
+                    o = o[k];
+                } else {
+                    return;
+                }
+            }
+            return o;
         }
 
     }
