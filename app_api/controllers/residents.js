@@ -98,12 +98,13 @@ function isNumber(obj) {
 function addToArray(arr, value) {
 
     if (value != undefined) {
-        console.log(value);
-        arr.push(value);
-        return true;
-    } else {
-        return false;
+        if(value != "") {
+            console.log(value);
+            arr.push(value);
+        }
+       
     }
+    
 
 }
 
@@ -127,15 +128,6 @@ module.exports.residentsUpdateOne = function(req, res) {
 
     var isValidData = true;
 
-    /*if(!isNumber(req.body.newrespiration) || !isNumber(req.body.newvitalsPain) ||
-      !isNumber(req.body.newpulse) || !isNumber(req.body.newoxygenSaturation) ||
-      !isNumber(req.body.newbloodPressureDiastolic) || !isNumber(req.body.newbloodPressureSystolic) ||
-      !isNumber(req.body.newtemperature))
-        {
-            isValidData = false;
-        }
-
- */
 
     if (isValidData === false) {
         console.log("invalid data");
