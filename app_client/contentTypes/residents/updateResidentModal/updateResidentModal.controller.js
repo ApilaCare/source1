@@ -24,18 +24,6 @@
         // select between forms
         vm.forms = ['Administrative', 'Bathing', 'Mobility', 'Allergy', 'Sleep', 'Continent', 'Nutrition', 'Physical Condition', 'Psychosocial', 'Pain', 'Vitals'];
 
-       /* vm.formData.newrespiration = vm.formData.respiration[vm.formData.respiration.length - 1];
-        vm.formData.newvitalsPain = vm.formData.vitalsPain[vm.formData.vitalsPain.length - 1];
-        vm.formData.newpulse = vm.formData.pulse[vm.formData.pulse.length - 1];
-        vm.formData.newoxygenSaturation = vm.formData.oxygenSaturation[vm.formData.oxygenSaturation.length - 1];
-        vm.formData.newbloodPressureDiastolic = vm.formData.bloodPressureDiastolic[vm.formData.bloodPressureDiastolic.length - 1];
-        vm.formData.newbloodPressureSystolic = vm.formData.bloodPressureSystolic[vm.formData.bloodPressureSystolic.length - 1];
-        vm.formData.newtemperature = vm.formData.temperature[vm.formData.temperature.length - 1];
-
-        vm.formData.newpsychosocialStatus = vm.formData.psychosocialStatus[vm.formData.psychosocialStatus.length - 1];
-        vm.formData.newmedicationAllergies = vm.formData.medicationAllergies[vm.formData.medicationAllergies.length - 1];
-        vm.formData.newfoodAllergies = vm.formData.foodAllergies[vm.formData.foodAllergies.length - 1];*/
-
         vm.selectedForm = vm.forms[0];
         vm.selectForm = function(name) {
             vm.selectedForm = name;
@@ -55,15 +43,15 @@
                 } else {
                     vm.modal.close();
                 }
-
-            vm.updateResident(vm.formData._id, vm.formData);
         };
 
         vm.updateResident = function(id, formData) {
             apilaData.updateResident(id, formData)
                 .success(function(resident) {
                     //vm.formData.updateInfo.push(appoint.updateInfo[appoint.updateInfo.length - 1]);
-
+                    pushNewValues();
+                    resetFields();
+                
                     vm.modal.close(resident);
                 })
                 .error(function(appoint) {
@@ -194,6 +182,53 @@
                 }
             }
             return o;
+        }
+        
+        var resetFields = function() {
+            vm.formData.newrespiration = "";
+            vm.formData.newvitalsPain = "";
+            vm.formData.newpulse = "";
+            vm.formData.newoxygenSaturation = "";
+            vm.formData.newbloodPressureDiastolic = "";
+            vm.formData.newbloodPressureSystolic = "";
+            vm.formData.newtemperature = "";
+
+            vm.formData.newpsychosocialStatus = "";
+            vm.formData.newmedicationAllergies = "";
+            vm.formData.newfoodAllergies = "";
+        }
+        
+        var pushNewValues = function() {
+            addToArray(vm.formData.respiration, vm.formData.newrespiration);
+            addToArray(vm.formData.vitalsPain, vm.formData.newvitalsPain);
+            addToArray(vm.formData.pulse, vm.formData.newpulse);
+            addToArray(vm.formData.oxygenSaturation, vm.formData.newoxygenSaturation);
+            addToArray(vm.formData.bloodPressureDiastolic, vm.formData.newbloodPressureDiastolic);
+            addToArray(vm.formData.bloodPressureSystolic, vm.formData.newbloodPressureSystolic);
+            addToArray(vm.formData.temperature, vm.formData.newtemperature);
+
+            addToArray(vm.formData.foodAllergies, vm.formData.newfoodAllergies);
+            addToArray(vm.formData.medicationAllergies, vm.formData.newmedicationAllergies);
+
+            addToArray(vm.formData.psychosocialStatus, vm.formData.newpsychosocialStatus);
+
+            addToArray(vm.formData.foodLikes, vm.formData.newfoodLikes);
+            addToArray(vm.formData.foodDislikes, vm.formData.newfoodDislikes);
+        }
+        
+        
+        //when pushing to array make sure we aren't adding invalid data
+        function addToArray(arr, value) {
+
+            if (value != undefined) {
+                if(value != ""){
+                    arr.push(value);
+                    return true;
+                }
+            } else {
+                return false;
+            }
+
         }
 
     }
