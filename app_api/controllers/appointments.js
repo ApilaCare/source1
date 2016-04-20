@@ -120,12 +120,8 @@ module.exports.appointmentsUpdateOne = function(req, res) {
                     "updateDate": req.body.modifiedDate,
                     "updateField": req.body.updateField
                 };
-
-<<<<<<< HEAD
-=======
                 console.log(updateInfo);
 
->>>>>>> 79959074d84cef8d31c5da2a6cac32fc72c2081f
                 appointment.reason = req.body.reason,
                     appointment.locationName = req.body.locationName,
                     appointment.locationDoctor = req.body.locationDoctor,

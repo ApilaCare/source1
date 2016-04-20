@@ -90,20 +90,21 @@ module.exports.residentById = function(req, res) {
 
 
 //small heplper functio to check if the fields is a number
-function isNumber(obj) { return !isNaN(parseFloat(obj)) }
+function isNumber(obj) {
+    return !isNaN(parseFloat(obj))
+}
 
 //when pushing to array make sure we aren't adding invalid data
 function addToArray(arr, value) {
 
-    if(value != undefined) {
+    if (value != undefined) {
         console.log(value);
         arr.push(value);
         return true;
-    }
-    else {
+    } else {
         return false;
     }
-    
+
 }
 
 // PUT /api/residents/update/:residentid
@@ -121,11 +122,11 @@ module.exports.residentsUpdateOne = function(req, res) {
         "updateDate": req.body.modifiedDate,
         "updateField": req.body.updateField
     };
-    
+
     req.body.updateInfo.push(updateInfo);
-    
+
     var isValidData = true;
-    
+
     /*if(!isNumber(req.body.newrespiration) || !isNumber(req.body.newvitalsPain) ||
       !isNumber(req.body.newpulse) || !isNumber(req.body.newoxygenSaturation) ||
       !isNumber(req.body.newbloodPressureDiastolic) || !isNumber(req.body.newbloodPressureSystolic) ||
@@ -133,46 +134,48 @@ module.exports.residentsUpdateOne = function(req, res) {
         {
             isValidData = false;
         }
-    
+
  */
-    
-    if(isValidData === false) {
+
+    if (isValidData === false) {
         console.log("invalid data");
         sendJSONresponse(res, 404, err);
     }
-        
-        addToArray(req.body.respiration, req.body.newrespiration);
-        addToArray(req.body.vitalsPain, req.body.newvitalsPain);
-        addToArray(req.body.pulse , req.body.newpulse);
-        addToArray(req.body.oxygenSaturation , req.body.newoxygenSaturation);
-        addToArray(req.body.bloodPressureDiastolic , req.body.newbloodPressureDiastolic);
-        addToArray(req.body.bloodPressureSystolic , req.body.newbloodPressureSystolic);
-        addToArray(req.body.temperature , req.body.newtemperature);   
 
-        addToArray(req.body.foodAllergies , req.body.newfoodAllergies);
-        addToArray(req.body.medicationAllergies , req.body.newmedicationAllergies);
+    addToArray(req.body.respiration, req.body.newrespiration);
+    addToArray(req.body.vitalsPain, req.body.newvitalsPain);
+    addToArray(req.body.pulse, req.body.newpulse);
+    addToArray(req.body.oxygenSaturation, req.body.newoxygenSaturation);
+    addToArray(req.body.bloodPressureDiastolic, req.body.newbloodPressureDiastolic);
+    addToArray(req.body.bloodPressureSystolic, req.body.newbloodPressureSystolic);
+    addToArray(req.body.temperature, req.body.newtemperature);
 
-        addToArray(req.body.psychosocialStatus , req.body.newpsychosocialStatus);
+    addToArray(req.body.foodAllergies, req.body.newfoodAllergies);
+    addToArray(req.body.medicationAllergies, req.body.newmedicationAllergies);
 
-        addToArray(req.body.foodLikes , req.body.newfoodLikes);
-        addToArray(req.body.foodDislikes , req.body.newfoodDislikes);
+    addToArray(req.body.psychosocialStatus, req.body.newpsychosocialStatus);
 
-        
-     console.log(req.body);
-    
-    Resid.findOneAndUpdate({_id : req.params.residentid}, req.body, 
-          function(err, resident) {
-        
-          if (err) {
-            console.log(err);
-            sendJSONresponse(res, 404, err);
-          } else {
-            sendJSONresponse(res, 200, resident);
-            //console.log(resident);
-          }
-        
-    });
-    
+    addToArray(req.body.foodLikes, req.body.newfoodLikes);
+    addToArray(req.body.foodDislikes, req.body.newfoodDislikes);
+
+
+    console.log(req.body);
+
+    Resid.findOneAndUpdate({
+            _id: req.params.residentid
+        }, req.body,
+        function(err, resident) {
+
+            if (err) {
+                console.log(err);
+                sendJSONresponse(res, 404, err);
+            } else {
+                sendJSONresponse(res, 200, resident);
+                //console.log(resident);
+            }
+
+        });
+
 };
 
 // DELETE /api/resident/:residentid

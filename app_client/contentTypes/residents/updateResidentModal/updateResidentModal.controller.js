@@ -23,13 +23,8 @@
 
         // select between forms
         vm.forms = ['Administrative', 'Bathing', 'Mobility', 'Allergy', 'Sleep', 'Continent', 'Nutrition', 'Physical Condition', 'Psychosocial', 'Pain', 'Vitals'];
-<<<<<<< HEAD
 
-        vm.formData.newrespiration = vm.formData.respiration[vm.formData.respiration.length - 1];
-=======
-        
        /* vm.formData.newrespiration = vm.formData.respiration[vm.formData.respiration.length - 1];
->>>>>>> 79959074d84cef8d31c5da2a6cac32fc72c2081f
         vm.formData.newvitalsPain = vm.formData.vitalsPain[vm.formData.vitalsPain.length - 1];
         vm.formData.newpulse = vm.formData.pulse[vm.formData.pulse.length - 1];
         vm.formData.newoxygenSaturation = vm.formData.oxygenSaturation[vm.formData.oxygenSaturation.length - 1];
@@ -138,13 +133,10 @@
                     });
                 }
             }
-<<<<<<< HEAD
 
-=======
-            
             //handling for date fields
             var dateAttributes = ["admissionDate", "birthDate"];
-            
+
             for (var i = 0; i < dateAttributes.length; ++i) {
 
                 if (new Date(oldData[dateAttributes[i]]).toDateString() !== new Date(newData[dateAttributes[i]]).toDateString()) {
@@ -156,10 +148,8 @@
                     });
                 }
             }
-            
->>>>>>> 79959074d84cef8d31c5da2a6cac32fc72c2081f
-            //handling of nested strings
 
+            //handling of nested strings
             var nestedAtributes = [{f:"personalHabits", s:"smokes"}, {f:"personalHabits", s:"alcohol"},
                                   {f: "personalHabits", s:"other"}, {f:"hearing", s:"rightEar"},
                                   {f:"hearing", s:"leftEar"}, {f:"vision", s:"rightEye"},{f:"vision", s:"leftEye"},
@@ -167,25 +157,17 @@
                                   {f: "teeth", s:"upperTeeth"}, {f: "teeth", s:"lowerTeeth"},
                                    {f:"insideApartment", s:"useOfAssistiveDevice"}, {f:"insideApartment", s:"assitanceWithDevice"}, {f:"insideApartment", s:"specialAmbulationNeeds"},
                                   {f:"outsideApartment", s:"useOfAssistiveDevice"}, {f:"outsideApartment", s:"assitanceWithDevice"}, {f:"outsideApartment", s:"specialAmbulationNeeds"}];
-<<<<<<< HEAD
 
-
-            /*
-=======
-            
-            
-            
->>>>>>> 79959074d84cef8d31c5da2a6cac32fc72c2081f
             for (var i = 0; i < nestedAtributes.length; ++i) {
-                
+
                 var oldValue = nestedArguments(oldData, nestedAtributes[i].f + "." + nestedAtributes[i].s);
-                
+
                 var newValue = nestedArguments(newData, nestedAtributes[i].f + "." + nestedAtributes[i].s);
-                
+
                 if(oldValue == undefined || newValue == undefined) {
                     continue;
                 }
-                
+
                 if (oldValue !== newValue) {
 
                     diff.push({
@@ -198,7 +180,7 @@
 
             return diff;
         }
-        
+
         var nestedArguments = function(o, s) {
             s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
             s = s.replace(/^\./, '');           // strip a leading dot
