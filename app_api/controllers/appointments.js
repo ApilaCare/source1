@@ -121,6 +121,7 @@ module.exports.appointmentsUpdateOne = function(req, res) {
                     "updateField": req.body.updateField
                 };
 
+                console.log(updateInfo);
 
                 appointment.reason = req.body.reason,
                     appointment.locationName = req.body.locationName,
