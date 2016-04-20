@@ -81,7 +81,6 @@ module.exports.issuesUpdateOne = function(req, res) {
         "updateField": req.body.updateField
     };
 
-
     Iss
         .findById(req.params.issueid)
         .exec(

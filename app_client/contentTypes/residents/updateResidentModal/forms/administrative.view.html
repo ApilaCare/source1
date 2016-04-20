@@ -61,15 +61,25 @@
 <!-- form group for the sex-->
 <div class="form-group">
     <label class="col-xs-10 col-sm-3 control-label">Sex</label>
-    <div class="col-sm-9">
-        <input class="form-control" ng-model="vm.formData.sex" placeholder="">
+    <div class="col-sm-3">
+        <select id="rating" name="rating" ng-model="vm.formData.sex" class="form-control input-sm">
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
     </div>
 </div>
 
-<!-- form group for the building status-->
+<!-- form group for the sex-->
 <div class="form-group">
     <label class="col-xs-10 col-sm-3 control-label">Building Status</label>
-    <div class="col-sm-9">
-        <input class="form-control" ng-model="vm.formData.buildingStatus" placeholder="">
+    <div class="col-sm-3">
+        <select id="rating" name="rating" ng-model="vm.formData.buildingStatus" class="form-control input-sm">
+            <option>In Building</option>
+            <option>Hospital</option>
+            <option>Rehab</option>
+            <option>Dead</option>
+            <option>Moved Out</option>
+        </select>
     </div>
 </div>

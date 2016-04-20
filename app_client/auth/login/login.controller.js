@@ -10,7 +10,7 @@
         var vm = this;
 
         vm.pageHeader = {
-            title: 'Sign in to Loc8r'
+            title: 'Sign in to Apila'
         };
 
         vm.credentials = {
