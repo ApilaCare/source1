@@ -95,21 +95,36 @@
             var diff = [];
             var attributeArr = [
                 "firstName", "lastName", "middleName", "maidenName", "sex",
-                "buildingStatus", "newfoodAllergies", "newmedicationAllergies", "typeOfBathing", "timeOfBathing",
+                "buildingStatus", "typeOfBathing", "timeOfBathing",
                 "frequencyOfBathing", "acceptanceOfBathing", "bowelContinent", "constipated", "laxative",
                 "bladderContinent", "dribbles", "catheter", "toiletingDevice", "transfers", "fallRisk",
                 "bedReposition", "overallNutrition", "poorNutritionIntervention", "diabetic", "diabeticType",
                 "regularBloodSugarMonitoring", "bedtimeSnack", "adaptiveEquipment", "needsFoodInSmallPeices",
-                "typeOfDiet", "newfoodLikes", "newfoodDislikes", "havePain", "painLocation", "painDescription",
+                "typeOfDiet", "havePain", "painLocation", "painDescription",
                 "maxPainTime", "painIncreasedBy", "painDecreasedBy", "height", "skinCondition", "wearsHearingAid",
-                "teethCondition", "newpsychosocialStatus", "psychosocialResponsiveness", "mood", "comprehension",
+                "teethCondition", "psychosocialResponsiveness", "mood", "comprehension",
                 "generalActivityParticipation", "diningRoomParticipation", "busRideParticipation",
                 "fitnessClassParticipation", "timeInRoom", "preferedActivites", "useFitnessEquipmentIndependently",
                 "familyInvolvement", "usualBedtime", "usualArisingTime", "nap", "assistanceToBed",
-                "sleepsThroughNight", "sleepDisturbance", "newtemperature", "newbloodPressureSystolic",
-                "newbloodPressureDiastolic", "newoxygenSaturation", "newpulse", "newvitalsPain", "newrespiration"
+                "sleepsThroughNight", "sleepDisturbance"
             ];
 
+            var arrayFields = [ "newbloodPressureSystolic",
+                "newbloodPressureDiastolic", "newoxygenSaturation", "newpulse", "newvitalsPain", "newrespiration",
+                "newfoodAllergies", "newmedicationAllergies", "newpsychosocialStatus", "newtemperature", "newtemperature"
+                              ];
+            
+            for (var i = 0; i < arrayFields.length; ++i) {
+
+                if (oldData[arrayFields[i]] !== newData[arrayFields[i]]) {
+
+                    diff.push({
+                        "field": arrayFields[i],
+                        "value": newData[arrayFields[i]]
+                    });
+                }
+            }
+            
             for (var i = 0; i < attributeArr.length; ++i) {
 
                 if (oldData[attributeArr[i]] !== newData[attributeArr[i]]) {
