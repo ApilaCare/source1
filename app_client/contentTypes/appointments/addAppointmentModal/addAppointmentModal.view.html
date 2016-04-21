@@ -27,7 +27,7 @@
                             {{ vm.resident.name }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                            <li ng-repeat="resident in vm.residentList">
+                            <li ng-repeat="resident in vm.residentList | orderBy:'firstName':false">
                                 <a ng-click="vm.selectResident(resident.firstName, resident._id)">{{resident.firstName + " " + resident.lastName}} </a>
                             </li>
                         </ul>

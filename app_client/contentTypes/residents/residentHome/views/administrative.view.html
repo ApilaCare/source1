@@ -9,7 +9,7 @@
             <th ng-show="vm.isLoggedIn">Update</th>
         </tr>
     </thead>
-    <tbody ng-repeat="resident in vm.data.residents">
+    <tbody ng-repeat="resident in vm.data.residents | filter : textFilter | orderBy:'firstName':false">
         <tr>
             <td><a href="residents/{{ resident._id }}">{{ resident.firstName }} {{ resident.lastName }}</a></td>
             <td>{{ resident.admissionDate | date }}</td>
