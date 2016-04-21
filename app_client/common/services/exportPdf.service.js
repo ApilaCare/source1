@@ -74,6 +74,8 @@
                 doc.text(50 , 325 + i*35, "Text: " + comment.commentText);
             }
 
+/* comment out second page
+
             //second page for resident details
             doc.addPage('p', 'pt', 'letter');
 
@@ -83,7 +85,7 @@
             doc.text(50, 180, "Birth date: " + data.appointment.residentGoing.birthDate);
             doc.text(50, 200, "Sex: " + data.appointment.residentGoing.sex);
             doc.text(50, 220, "Building Status: " + data.appointment.residentGoing.buildingStatus);
-
+*/
             doc.save(name);
 
 
