@@ -19,8 +19,17 @@
 
             // Quick panel
             'app.quick-panel',
-
-            // Sample
-            'app.sample'
+        
+            // Appoitments
+            'app.appointments',
+        
+            // Residents
+            'app.residents',
+        
+            // Locations
+            'app.locations',
+        
+            // Issues
+            'app.issues'
         ]);
 })();
