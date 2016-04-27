@@ -61,6 +61,8 @@ router.get('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentCo
 router.put('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentComments.appointmentCommentsUpdateOne);
 router.delete('/appointments/:appointmentid/comments/:commentid', ctrlAppointmentComments.appointmentCommentsDeleteOne);
 
+router.get('/testCall', ctrlAppointments.testCall);
+
 // residents
 router.get('/residents', ctrlResidents.residentsList);
 router.get('/residents/:residentid', ctrlResidents.residentById);

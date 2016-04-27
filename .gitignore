@@ -1,5 +1,5 @@
 # Dependency directory
-node_modules
+**/node_modules
 
 # Secret authentication
-.env
+**/.env
