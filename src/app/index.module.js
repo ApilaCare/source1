@@ -19,24 +19,27 @@
 
             // Quick panel
             'app.quick-panel',
-        
+
             // Appoitments
             'app.appointments',
-        
+
             // Residents
             'app.residents',
-        
+
             // Locations
             'app.locations',
-        
+
             // Issues
             'app.issues',
-        
-            // Login 
+
+            // Login
             'app.pages.auth.login',
-        
+
             // Register
-            'app.pages.auth.register'
-        
+            'app.pages.auth.register',
+
+            // Calendar
+            'app.calendar',
+
         ]);
 })();
