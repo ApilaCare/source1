@@ -1,0 +1,12 @@
+<div class="md-inline-form">
+    <div layout="column" layout-gt-xs="row" flex>
+        <md-input-container flex="100">
+            <label>Address</label>
+            <textarea ng-model="vm.stepper.step2.address" columns="1" md-maxlength="150" rows="5"></textarea>
+            <div ng-messages="step2.address.$error"
+                 ng-show="step2.address.$touched"
+                 role="alert">
+            </div>
+        </md-input-container>
+    </div>
+</div>

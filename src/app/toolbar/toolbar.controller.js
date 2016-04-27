@@ -7,7 +7,8 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $mdSidenav, $translate, $mdToast)
+    function ToolbarController($rootScope, $mdSidenav, $translate, $mdToast,
+                              $location, authentication)
     {
         var vm = this;
 
@@ -15,6 +16,13 @@
         $rootScope.global = {
             search: ''
         };
+
+        vm.username = "";
+
+        if(authentication.currentUser().name == undefined) {
+          $location.open("/login");
+        }
+          vm.username = authentication.currentUser().name;
 
         vm.bodyEl = angular.element('body');
         vm.userStatusOptions = [
@@ -114,6 +122,9 @@
         function logout()
         {
             // Do logout here..
+            console.log("Logout");
+            authentication.logout();
+            $location.path('/auth/login');
         }
 
         /**

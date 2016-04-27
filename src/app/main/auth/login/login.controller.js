@@ -7,9 +7,9 @@
         .controller('LoginController', LoginController);
 
     /** @ngInject */
-    function LoginController(authentication)
+    function LoginController(authentication, $location)
     {
-        
+
         var vm = this;
 
         // Methods
@@ -17,11 +17,11 @@
         vm.login = function() {
             console.log("in login method");
             console.log(vm.form);
-            
+
             vm.doLogin();
-            
+
         }
-        
+
         vm.doLogin = function() {
             authentication
                 .login(vm.form)
@@ -30,9 +30,12 @@
                 })
                 .then(function() {
                     console.log("success login: " + authentication.currentUser().name);
+                    console.log(authentication.getToken());
+
+                    $location.path('/appointments');
                 });
         };
-        
+
         //////////
     }
 })();
