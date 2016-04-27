@@ -7,6 +7,10 @@ var sendJSONresponse = function(res, status, content) {
     res.json(content);
 };
 
+module.exports.testCall = function(req, res) {
+    sendJSONresponse(res, 200, {status:"cool"});
+}
+
 /* POST /api/appointments/new */
 module.exports.appointmentsCreate = function(req, res) {
 

@@ -19,7 +19,7 @@
             retro : true
         };
 
-        msApi.request('quickPanel.activities@get', {},
+      /*  msApi.request('quickPanel.activities@get', {},
             // Success
             function (response)
             {
@@ -41,7 +41,7 @@
             {
                 vm.notes = response.data;
             }
-        );
+        );*/
 
         // Methods
 

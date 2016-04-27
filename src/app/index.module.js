@@ -30,6 +30,13 @@
             'app.locations',
         
             // Issues
-            'app.issues'
+            'app.issues',
+        
+            // Login 
+            'app.pages.auth.login',
+        
+            // Register
+            'app.pages.auth.register'
+        
         ]);
 })();

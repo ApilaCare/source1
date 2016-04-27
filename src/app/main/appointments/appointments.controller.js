@@ -7,7 +7,7 @@
         .controller('AppointmentsController', AppointmentsController);
 
     /** @ngInject */
-    function AppointmentsController()
+    function AppointmentsController(api)
     {
         var vm = this;
 
@@ -15,7 +15,19 @@
         vm.helloText = "Hello appoitments";
 
         // Methods
-
+        
+        api.getTestCall.get({},
+            // Success
+            function (response)
+            {
+                console.log(response);
+            },
+            // Error
+            function (response)
+            {
+                console.error(response);
+            }
+    );        
         //////////
     }
 })();

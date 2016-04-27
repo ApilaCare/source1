@@ -8,6 +8,9 @@ var sendJSONresponse = function(res, status, content) {
 };
 
 module.exports.register = function(req, res) {
+    
+    console.log("usli u registar");
+    
     // respond with an error status if not al required fields are found
     if (!req.body.name || !req.body.email || !req.body.password) {
         sendJSONresponse(res, 400, {
@@ -29,6 +32,7 @@ module.exports.register = function(req, res) {
     user.save(function(err) {
         var token;
         if (err) {
+            console.log("Neuspesno sacuvali");
             sendJSONresponse(res, 404, err);
         } else {
             // generate a JWT using schema method and send it to browser
@@ -50,6 +54,8 @@ module.exports.login = function(req, res) {
         return;
     }
 
+    console.log(req.body);
+    
     // pass name of strategy and a callback to authenticate method
     passport.authenticate('local', function(err, user, info) {
         var token;
