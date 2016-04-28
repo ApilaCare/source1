@@ -38,8 +38,5 @@
             // Register
             'app.pages.auth.register',
 
-            // Calendar
-            'app.calendar',
-
         ]);
 })();
