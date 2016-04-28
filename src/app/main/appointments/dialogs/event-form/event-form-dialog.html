@@ -23,22 +23,17 @@
           </md-input-container>
 
           <!-- Resident going -->
-            <md-dialog-content ms-scroll>
           <md-input-container class="md-block">
                 <label translate="CALENDAR.RESIDENT_GOING">Resident going</label>
-                <input name="resident_going" ng-model="vm.calendarEvent.resident_going" required>
-                <div ng-messages="eventForm.resident_going.$error" ng-show="eventForm.resident_going.$touched" role="alert">
-                    <div ng-message="required">
-                        <span translate="CALENDAR.ERRORS.RESIDENT_GOING_REQUIRED">Resident going field is required</span>
-                    </div>
-                </div>
+                <md-select ng-model="selectedUser">
+                  <md-option ng-value="user" ng-repeat="user in vm.residentList">{{ user.firstName }}</md-option>
+                </md-select>
             </md-input-container>
 
             <!-- Location name -->
-            <md-dialog-content ms-scroll>
                 <md-input-container class="md-block">
                     <label translate="CALENDAR.LOCATION">Location</label>
-                    <input name="location" ng-model="vm.calendarEvent.location" required>
+                    <input name="location" ng-model="vm.calendarEvent.locationName" required>
                     <div ng-messages="eventForm.location.$error" ng-show="eventForm.location.$touched" role="alert">
                         <div ng-message="required">
                             <span translate="CALENDAR.ERRORS.LOCATION_REQUIRED">Location field is required</span>
@@ -47,10 +42,9 @@
               </md-input-container>
 
               <!-- Doctor -->
-              <md-dialog-content ms-scroll>
                   <md-input-container class="md-block">
                       <label translate="CALENDAR.DOCTOR">Reason</label>
-                      <input name="doctor" ng-model="vm.calendarEvent.doctor" required>
+                      <input name="doctor" ng-model="vm.calendarEvent.locationDoctor" required>
                       <div ng-messages="eventForm.doctor.$error" ng-show="eventForm.doctor.$touched" role="alert">
                           <div ng-message="required">
                               <span translate="CALENDAR.ERRORS.DOCTOR_REQUIRED">Doctor field is required</span>
@@ -60,10 +54,10 @@
 
             <!-- Time and date -->
             <div layout="row" class="date-row">
-                <md-datepicker ng-model="vm.calendarEvent.start" md-placeholder="Start Date"></md-datepicker>
+                <md-datepicker ng-model="vm.calendarEvent.date" md-placeholder="Start Date"></md-datepicker>
 
                 <md-input-container flex md-no-float>
-                    <input ng-model="vm.calendarEvent.startTime" placeholder="Start Time" translate
+                    <input ng-model="vm.calendarEvent.time" placeholder="Start Time" translate
                            translate-attr-placeholder="CALENDAR.START_TIME">
                 </md-input-container>
             </div>
@@ -93,5 +87,6 @@
                 <md-tooltip><span translate="CALENDAR.DELETE">Delete</span></md-tooltip>
             </md-button>
         </md-dialog-actions>
+          </md-dialog-content>
     </form>
 </md-dialog>

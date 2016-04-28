@@ -49,11 +49,12 @@ module.exports.appointmentsList = function(req, res) {
     start.setHours(0, 0, 0, 0);
 
     Appoint.find({
-        time: {
+      /*  time: {
             $gte: start
-        }
+        }*/
     }).populate("residentGoing").exec(function(err, appointments) {
         console.log(appointments);
+        console.log("In appointment list");
         sendJSONresponse(res, 200, appointments)
     });
 };

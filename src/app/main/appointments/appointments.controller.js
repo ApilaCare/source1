@@ -7,7 +7,7 @@
         .controller('AppoitmentsController', AppoitmentsController);
 
     /** @ngInject */
-    function AppoitmentsController($mdDialog, $document)
+    function AppoitmentsController($mdDialog, $document, apilaData)
     {
         var vm = this;
 
@@ -16,6 +16,16 @@
         var d = date.getDate();
         var m = date.getMonth();
         var y = date.getFullYear();
+
+
+        //load all the events and show them on the callendar
+        apilaData.appointmentsList()
+               .success(function(data) {
+                   console.log("Odje " + data);
+               })
+               .error(function(e) {
+                   console.log("error loading appointments");
+               });
 
         vm.events = [
             [
