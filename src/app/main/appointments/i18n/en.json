@@ -11,7 +11,7 @@
         "ADD_EVENT": "Add event",
         "EDIT_EVENT": "Edit event",
         "CLOSE_DIALOG": "Close dialog",
-        "TITLE": "Title",
+        "REASON": "Reason",
         "ALL_DAY": "All day",
         "START_DATE": "Start Date",
         "START_TIME": "Start Time",
@@ -27,8 +27,16 @@
         "30_MIN_BEFORE": "30 minutes before",
         "15_MIN_BEFORE": "15 minutes before",
         "30_MIN_LATER": "30 minutes later",
+        "RESIDENT_GOING": "Resident going",
+        "LOCATION": "Location",
+        "DOCTOR": "Doctor",
+        "TRANSPORTATION": "Transportation",
         "ERRORS": {
-            "TITLE_REQUIRED": "Title field is required"
+            "REASON_REQUIRED": "Reason field is required",
+            "RESIDENT_GOING_REQUIRED" : "Resident going field is required",
+            "LOCATION_REQUIRED" : "Location field is required",
+            "DOCTOR_REQUIRED" : "Doctor field is required",
+            "TRANSPORTATION_REQUIRED" : "Transportation field is required"
         }
     }
 }

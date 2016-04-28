@@ -28,18 +28,7 @@
         // Translation
         $translatePartialLoaderProvider.addPart('app/main/auth/login');
 
-        // Navigation
-        msNavigationServiceProvider.saveItem('pages.auth', {
-            title : 'Authentication',
-            icon  : 'icon-lock',
-            weight: 1
-        });
-
-        msNavigationServiceProvider.saveItem('pages.auth.login', {
-            title : 'Login',
-            state : 'app.pages_auth_login',
-            weight: 1
-        });
+    
     }
 
 })();

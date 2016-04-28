@@ -27,7 +27,7 @@
          */
         function init()
         {
-            vm.dialogTitle = (vm.dialogData.type === 'add' ? 'Add Event' : 'Edit Event');
+            vm.dialogTitle = (vm.dialogData.type === 'add' ? 'Add Appointment' : 'Edit Appointment');
 
             // Edit
             if ( vm.dialogData.calendarEvent )

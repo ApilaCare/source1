@@ -26,9 +26,6 @@
             // Residents
             'app.residents',
 
-            // Locations
-            'app.locations',
-
             // Issues
             'app.issues',
 
