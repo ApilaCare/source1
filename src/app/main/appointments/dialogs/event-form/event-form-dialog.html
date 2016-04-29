@@ -25,7 +25,7 @@
           <!-- Resident going -->
           <md-input-container class="md-block">
                 <label translate="CALENDAR.RESIDENT_GOING">Resident going</label>
-                <md-select ng-model="selectedUser">
+                <md-select ng-model="vm.selectedUser">
                   <md-option ng-value="user" ng-repeat="user in vm.residentList">{{ user.firstName }}</md-option>
                 </md-select>
             </md-input-container>
@@ -54,18 +54,36 @@
 
             <!-- Time and date -->
             <div layout="row" class="date-row">
-                <md-datepicker ng-model="vm.calendarEvent.date" md-placeholder="Start Date"></md-datepicker>
+              <!-- <input mdc-datetime-picker="" date="true" time="true" type="text" id="datetime"
+placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
+                 <md-datepicker ng-model="vm.date" md-placeholder="Start Date"></md-datepicker>
 
-                <md-input-container flex md-no-float>
+                 <!-- Hours -->
+                 <md-input-container class="md-block">
+                   <label>Hours: </label>
+                   <input name="hours" ng-model="vm.calendarEvent.hours" required>
+                 </md-input-container>
+
+                 <!-- Minutes -->
+                 <md-input-container class="md-block">
+                   <label>Minutes: </label>
+                   <input name="minutes" ng-model="vm.calendarEvent.minutes" required>
+                 </md-input-container>
+
+                 <!-- AM/PM -->
+                 <md-switch ng-model="vm.dayTimeSwitch"  ng-true-value="'AM'" ng-false-value="'PM'">
+                     {{ vm.dayTimeSwitch }}
+                  </md-switch>
+                <!-- <md-input-container flex md-no-float>
                     <input ng-model="vm.calendarEvent.time" placeholder="Start Time" translate
                            translate-attr-placeholder="CALENDAR.START_TIME">
-                </md-input-container>
+                </md-input-container>  -->
             </div>
 
             <!-- Transportation -->
                 <md-input-container class="md-block">
                     <label translate="CALENDAR.TRANSPORTATION">Transporation</label>
-                    <input name="transportation" ng-model="vm.calendarEvent.transportation" required>
+                    <input name="transportation" placeholder="We are transporting" ng-model="vm.transportation" required>
                     <div ng-messages="eventForm.transportation.$error" ng-show="eventForm.transportation.$touched" role="alert">
                         <div ng-message="required">
                             <span translate="CALENDAR.ERRORS.TRANSPORTATION_REQUIRED">Transporation field is required</span>

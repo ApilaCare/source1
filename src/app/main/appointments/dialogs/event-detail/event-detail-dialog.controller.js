@@ -13,6 +13,8 @@
         // Data
         vm.calendarEvent = calendarEvent;
 
+        console.log(vm.calendarEvent);
+
         // Methods
         vm.editEvent = editEvent;
         vm.closeDialog = closeDialog;

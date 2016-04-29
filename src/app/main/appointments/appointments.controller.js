@@ -21,106 +21,42 @@
         //load all the events and show them on the callendar
         apilaData.appointmentsList()
                .success(function(data) {
-                   console.log("Odje " + data);
+                 var i = 1;
+                   angular.forEach(data, function(value, key) {
+                     var dateObj = new Date(value.time);
+
+                     var timeSwitch = false;
+
+                     if(dateObj.getHours > 12) {
+                       timeSwitch = true;
+                     }
+
+                     var calEvent = {
+                       id: i,
+                       title: value.reason,
+                       start: value.time,
+                       end: null,
+                       transportation: value.transportation,
+                       reason: value.reason,
+                       dayTimeSwitch: timeSwitch,
+                       minutes: dateObj.getMinutes(),
+                       hours: dateObj.getHours(),
+                       locationDoctor: value.locationDoctor,
+                       locationName: value.locationName,
+                       date: value.time,
+                       currentUser: value.residentGoing
+                     }
+                     i++;
+
+                     vm.events[0].push(calEvent);
+
+                   });
                })
                .error(function(e) {
                    console.log("error loading appointments");
                });
 
-        vm.events = [
-            [
-                {
-                    id   : 1,
-                    title: 'All Day Event',
-                    start: new Date(y, m, 1),
-                    end  : null
-                },
-                {
-                    id   : 2,
-                    title: 'Long Event',
-                    start: new Date(y, m, d - 5),
-                    end  : new Date(y, m, d - 2)
-                },
-                {
-                    id   : 3,
-                    title: 'Some Event',
-                    start: new Date(y, m, d - 3, 16, 0),
-                    end  : null
-                },
-                {
-                    id   : 4,
-                    title: 'Repeating Event',
-                    start: new Date(y, m, d + 4, 16, 0),
-                    end  : null
-                },
-                {
-                    id   : 5,
-                    title: 'Birthday Party',
-                    start: new Date(y, m, d + 1, 19, 0),
-                    end  : new Date(y, m, d + 1, 22, 30)
-                },
-                {
-                    id   : 6,
-                    title: 'All Day Event',
-                    start: new Date(y, m, d + 8, 16, 0),
-                    end  : null
-                },
-                {
-                    id   : 7,
-                    title: 'Long Event',
-                    start: new Date(y, m, d + 12, 16, 0),
-                    end  : null
-                },
-                {
-                    id   : 8,
-                    title: 'Repeating Event',
-                    start: new Date(y, m, d + 14, 2, 0),
-                    end  : null
-                },
-                {
-                    id   : 9,
-                    title: 'Repeating Event',
-                    start: new Date(y, m, d + 14, 4, 0),
-                    end  : null
-                },
-                {
-                    id   : 10,
-                    title: 'Repeating Event',
-                    start: new Date(y, m, d + 14, 2, 0),
-                    end  : null
-                },
-                {
-                    id   : 11,
-                    title: 'Repeating Event',
-                    start: new Date(y, m, d + 14, 4, 0),
-                    end  : null
-                },
-                {
-                    id   : 12,
-                    title: 'Repeating Event',
-                    start: new Date(y, m, d + 14, 2, 0),
-                    end  : null
-                },
-                {
-                    id   : 13,
-                    title: 'Repeating Event',
-                    start: new Date(y, m, d + 14, 4, 0),
-                    end  : null
-                },
-                {
-                    id   : 14,
-                    title: 'Conference',
-                    start: new Date(y, m, d + 17, 4, 0),
-                    end  : null
-                },
-                {
-                    id   : 15,
-                    title: 'Meeting',
-                    start: new Date(y, m, d + 22, 4, 0),
-                    end  : new Date(y, m, d + 24, 4, 0)
-                }
-            ]
-        ];
+        vm.events = [[]];
 
         vm.calendarUiConfig = {
             calendar: {
@@ -262,12 +198,32 @@
             {
                 if ( response.type === 'add' )
                 {
+                    console.log(response.calendarEvent);
+
+                    var dateObj = new Date(response.calendarEvent.time);
+
+                    var timeSwitch = false;
+
+                    if(dateObj.getHours > 12) {
+                      timeSwitch = true;
+                    }
+
                     // Add new
                     vm.events[0].push({
-                        id   : vm.events[0].length + 20,
+                        id   : vm.events[0].length + 80,
                         title: response.calendarEvent.title,
-                        start: response.calendarEvent.start,
-                        end  : response.calendarEvent.end
+                        start: response.calendarEvent.time,
+                        end  : null,
+                        transportation: response.calendarEvent.transportation,
+                        reason: response.calendarEvent.reason,
+                        dayTimeSwitch: timeSwitch,
+                        minutes: dateObj.getMinutes(),
+                        hours: dateObj.getHours(),
+                        locationDoctor: response.calendarEvent.locationDoctor,
+                        locationName: response.calendarEvent.locationName,
+                        date: response.calendarEvent.time,
+                        currentUser: response.calendarEvent.residentGoing
+
                     });
                 }
                 else

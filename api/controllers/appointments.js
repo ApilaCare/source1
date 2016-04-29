@@ -18,9 +18,10 @@ module.exports.appointmentsCreate = function(req, res) {
     var d = new Date(req.body.date);
     var t = new Date(req.body.time);
 
+    console.log(d);
+
     d.setHours(t.getHours());
     d.setMinutes(t.getMinutes());
-    d.setSeconds(t.getSeconds());
 
     //create appointment from the inputed data
     Appoint.create({
