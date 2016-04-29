@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title>Fuse - Admin Theme</title>
+        <title>Apila</title>
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -14,6 +14,7 @@
         <link rel='stylesheet' href='../bower_components/fullcalendar/dist/fullcalendar.css' />
         <link rel='stylesheet' href='../bower_components/perfect-scrollbar/css/perfect-scrollbar.css' />
         <link rel='stylesheet' href='../bower_components/toastr/toastr.css' />
+        <link rel='stylesheet' href='../bower_components/angular-material-datetimepicker/css/material-datetimepicker.min.css' />
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -40,7 +41,7 @@
         <ms-splash-screen id="splash-screen">
             <div class="center">
                 <div class="logo">
-                    <span>F</span>
+                    <span>A</span>
                 </div>
                 <!-- Material Design Spinner -->
                 <div class="spinner-wrapper">
@@ -85,6 +86,8 @@
         <script src="../bower_components/mobile-detect/mobile-detect.js"></script>
         <script src="../bower_components/perfect-scrollbar/js/perfect-scrollbar.js"></script>
         <script src="../bower_components/toastr/toastr.js"></script>
+        <script src="../bower_components/momentjs/moment.js"></script>
+        <script src="../bower_components/angular-material-datetimepicker/js/angular-material-datetimepicker.min.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -118,9 +121,9 @@
         <script src="app/main/ui/page-layouts/carded/fullwidth/fullwidth.controller.js"></script>
         <script src="app/main/ui/page-layouts/blank/blank.module.js"></script>
         <script src="app/main/ui/page-layouts/blank/blank.controller.js"></script>
-        <script src="app/main/calendar/calendar.module.js"></script>
-        <script src="app/main/calendar/dialogs/event-form/event-form-dialog.controller.js"></script>
-        <script src="app/main/calendar/dialogs/event-detail/event-detail-dialog.controller.js"></script>
+        <script src="app/main/appointments/appointments.module.js"></script>
+        <script src="app/main/appointments/dialogs/event-form/event-form-dialog.controller.js"></script>
+        <script src="app/main/appointments/dialogs/event-detail/event-detail-dialog.controller.js"></script>
         <script src="app/quick-panel/quick-panel.module.js"></script>
         <script src="app/quick-panel/tabs/chat/chat-tab.controller.js"></script>
         <script src="app/main/ui/typography/typography.module.js"></script>
@@ -163,12 +166,8 @@
         <script src="app/core/directives/ms-card/ms-card.directive.js"></script>
         <script src="app/main/residents/residents.module.js"></script>
         <script src="app/main/residents/residents.controller.js"></script>
-        <script src="app/main/locations/locations.module.js"></script>
-        <script src="app/main/locations/locations.controller.js"></script>
         <script src="app/main/issues/issues.module.js"></script>
         <script src="app/main/issues/issues.controller.js"></script>
-        <script src="app/main/calendar/calendar.controller.js"></script>
-        <script src="app/main/appointments/appointments.module.js"></script>
         <script src="app/main/appointments/appointments.controller.js"></script>
         <script src="app/core/theming/fuse-theming.provider.js"></script>
         <script src="app/core/theming/fuse-theming.config.js"></script>
@@ -182,6 +181,7 @@
         <script src="app/core/services/geolocation.service.js"></script>
         <script src="app/core/services/exportPdf.service.js"></script>
         <script src="app/core/services/authentication.service.js"></script>
+        <script src="app/core/services/apilaData.service.js"></script>
         <script src="app/core/services/api-resolver.service.js"></script>
         <script src="app/core/filters/tag.filter.js"></script>
         <script src="app/core/filters/basic.filter.js"></script>

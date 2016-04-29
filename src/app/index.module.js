@@ -26,9 +26,6 @@
             // Residents
             'app.residents',
 
-            // Locations
-            'app.locations',
-
             // Issues
             'app.issues',
 
@@ -37,9 +34,6 @@
 
             // Register
             'app.pages.auth.register',
-
-            // Calendar
-            'app.calendar',
 
         ]);
 })();

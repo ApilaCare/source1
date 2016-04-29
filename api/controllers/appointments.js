@@ -18,9 +18,10 @@ module.exports.appointmentsCreate = function(req, res) {
     var d = new Date(req.body.date);
     var t = new Date(req.body.time);
 
+    console.log(d);
+
     d.setHours(t.getHours());
     d.setMinutes(t.getMinutes());
-    d.setSeconds(t.getSeconds());
 
     //create appointment from the inputed data
     Appoint.create({
@@ -49,11 +50,12 @@ module.exports.appointmentsList = function(req, res) {
     start.setHours(0, 0, 0, 0);
 
     Appoint.find({
-        time: {
+      /*  time: {
             $gte: start
-        }
+        }*/
     }).populate("residentGoing").exec(function(err, appointments) {
         console.log(appointments);
+        console.log("In appointment list");
         sendJSONresponse(res, 200, appointments)
     });
 };

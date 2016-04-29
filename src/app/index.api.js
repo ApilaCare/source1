@@ -178,7 +178,9 @@
         var api = {};
 
         api.getTestCall = $resource('http://localhost:3300/api/testCall/');
+
         
+
         // Base Url
         api.baseUrl = 'app/data/';
 
