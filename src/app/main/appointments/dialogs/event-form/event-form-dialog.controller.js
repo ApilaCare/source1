@@ -33,7 +33,7 @@
 
     apilaData.residentsList()
       .success(function(residentList) {
-        console.log(residentList);
+        //console.log(residentList);
         vm.residentList = residentList;
       })
       .error(function(residentList) {
@@ -102,15 +102,16 @@
       var parseDate = new Date(vm.calendarEvent.date);
 
       if (vm.dayTimeSwitch === false || vm.dayTimeSwitch === "PM") {
-        parseDate.setHours(parseInt(vm.calendarEvent.hours) + 12);
+        parseDate.setUTCHours(parseInt(vm.calendarEvent.hours) + 12);
       } else {
-        parseDate.setHours(parseInt(vm.calendarEvent.hours));
+        parseDate.setUTCHours(parseInt(vm.calendarEvent.hours));
       }
 
       parseDate.setMinutes(vm.calendarEvent.minutes);
 
       vm.calendarEvent.time = parseDate;
 
+      console.log(vm.calendarEvent.time + "  :  " + vm.calendarEvent.date);
 
       apilaData.addAppointment(vm.calendarEvent)
         .success(function(appoint) {
