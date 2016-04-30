@@ -26,9 +26,11 @@
                      var dateObj = new Date(value.time);
 
                      var timeSwitch = false;
+                     var hours = dateObj.getUTCHours();
 
-                     if(dateObj.getHours > 12) {
+                     if(dateObj.getUTCHours() > 12) {
                        timeSwitch = true;
+                       hours -= 12;
                      }
 
                      var calEvent = {
@@ -40,11 +42,12 @@
                        reason: value.reason,
                        dayTimeSwitch: timeSwitch,
                        minutes: dateObj.getMinutes(),
-                       hours: dateObj.getHours(),
+                       hours: hours,
                        locationDoctor: value.locationDoctor,
                        locationName: value.locationName,
                        date: value.time,
-                       currentUser: value.residentGoing
+                       currentUser: value.residentGoing,
+                       appointId: value._id
                      }
                      i++;
 
@@ -196,17 +199,19 @@
                 }
             }).then(function (response)
             {
+
+              var dateObj = new Date(response.calendarEvent.time);
+
+              var timeSwitch = false;
+              var hours = dateObj.getUTCHours();
+
+              if(dateObj.getUTCHours() > 12) {
+                timeSwitch = true;
+                hours -= 12;
+              }
+
                 if ( response.type === 'add' )
                 {
-                    console.log(response.calendarEvent);
-
-                    var dateObj = new Date(response.calendarEvent.time);
-
-                    var timeSwitch = false;
-
-                    if(dateObj.getHours > 12) {
-                      timeSwitch = true;
-                    }
 
                     // Add new
                     vm.events[0].push({
@@ -218,25 +223,39 @@
                         reason: response.calendarEvent.reason,
                         dayTimeSwitch: timeSwitch,
                         minutes: dateObj.getMinutes(),
-                        hours: dateObj.getHours(),
+                        hours: hours,
                         locationDoctor: response.calendarEvent.locationDoctor,
                         locationName: response.calendarEvent.locationName,
                         date: response.calendarEvent.time,
-                        currentUser: response.calendarEvent.residentGoing
+                        currentUser: response.calendarEvent.residentGoing,
+                        appointId: response.calendarEvent.appointId
 
                     });
                 }
                 else
                 {
+
                     for ( var i = 0; i < vm.events[0].length; i++ )
                     {
                         // Update
-                        if ( vm.events[0][i].id === response.calendarEvent.id )
+                        if ( vm.events[0][i]._id === response.calendarEvent.calId )
                         {
+                          console.log("Updejtovo");
+
                             vm.events[0][i] = {
-                                title: response.calendarEvent.title,
-                                start: response.calendarEvent.start,
-                                end  : response.calendarEvent.end
+                              title: response.calendarEvent.title,
+                              start: response.calendarEvent.time,
+                              end  : null,
+                              transportation: response.calendarEvent.transportation,
+                              reason: response.calendarEvent.reason,
+                              dayTimeSwitch: timeSwitch,
+                              minutes: dateObj.getMinutes(),
+                              hours: hours,
+                              locationDoctor: response.calendarEvent.locationDoctor,
+                              locationName: response.calendarEvent.locationName,
+                              date: response.calendarEvent.time,
+                              currentUser: response.calendarEvent.currentUser,
+                              appointId: response.calendarEvent.appointId
                             };
 
                             break;

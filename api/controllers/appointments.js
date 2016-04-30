@@ -92,6 +92,8 @@ module.exports.appointmentsReadOne = function(req, res) {
 /* PUT /api/appointments/:appointmentid */
 module.exports.appointmentsUpdateOne = function(req, res) {
 
+    console.log("In update appointment");
+
     if (!req.params.appointmentid) {
         sendJSONresponse(res, 404, {
             "message": "Not found, appointmentid is required"
