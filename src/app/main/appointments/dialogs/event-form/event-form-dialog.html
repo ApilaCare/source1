@@ -44,7 +44,7 @@
               <!-- Doctor -->
                   <md-input-container class="md-block">
                       <label translate="CALENDAR.DOCTOR">Reason</label>
-                      <input name="doctor" ng-model="vm.calendarEvent.locationDoctor" required>
+                      <input name="doctor" ng-model="vm.calendarEvent.locationDoctor">
                       <div ng-messages="eventForm.doctor.$error" ng-show="eventForm.doctor.$touched" role="alert">
                           <div ng-message="required">
                               <span translate="CALENDAR.ERRORS.DOCTOR_REQUIRED">Doctor field is required</span>

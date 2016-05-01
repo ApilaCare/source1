@@ -35,7 +35,6 @@
             "REASON_REQUIRED": "Reason field is required",
             "RESIDENT_GOING_REQUIRED" : "Resident going field is required",
             "LOCATION_REQUIRED" : "Location field is required",
-            "DOCTOR_REQUIRED" : "Doctor field is required",
             "TRANSPORTATION_REQUIRED" : "Transportation field is required"
         }
     }
