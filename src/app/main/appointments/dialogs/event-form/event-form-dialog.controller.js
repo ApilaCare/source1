@@ -23,9 +23,12 @@
     //////////
 
     vm.dayTimeSwitch = "AM";
+    vm.showCancel = false;
 
+    //If we are in the add dialog
     if (!vm.dialogData.calendarEvent) {
           vm.transportation = "We are transporting";
+          vm.showCancel = true;
       }
 
 
@@ -71,6 +74,7 @@
         vm.calendarEvent = angular.copy(vm.dialogData.calendarEvent);
 
         vm.calendarEvent.reason = vm.calendarEvent.title;
+        vm.isCancel = vm.calendarEvent.cancel;
         vm.date = new Date(vm.calendarEvent.date);
         //vm.date.setHours(parseInt(vm.calendarEvent.hours) + parseInt(vm.date.getTimezoneOffset()/60));
         vm.transportation = vm.calendarEvent.transportation;
@@ -116,6 +120,8 @@
       vm.calendarEvent.transportation = vm.transportation;
       vm.calendarEvent.residentId = vm.selectedUser._id;
       vm.calendarEvent.date = vm.date;
+
+      vm.calendarEvent.cancel = vm.isCancel;
 
       var parseDate = new Date(vm.calendarEvent.date);
 

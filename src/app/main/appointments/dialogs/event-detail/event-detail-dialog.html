@@ -46,6 +46,32 @@
                 </div>
             </div>
 
+            <md-divider ></md-divider>
+
+            <!-- Comments input -->
+              <md-input-container>
+                <label>Comments</label>
+                <textarea ng-model="vm.formData.commentText"></textarea>
+
+
+              <md-button ng-click="vm.submitComment()"  aria-label="Add comment">
+                  <md-icon md-font-icon="icon-comment"></md-icon>
+                  <md-tooltip><span>Add comment</span></md-tooltip>
+              </md-button>
+            </md-input-container>
+
+            <!-- Comments list -->
+            <md-list>
+              <md-subheader class="md-no-sticky">Comments</md-subheader>
+                    <md-list-item class="md-3-line" ng-repeat="item in vm.calendarEvent.appointmentComment">
+                      <div class="md-list-item-text" layout="column">
+                        <h4>{{ item.author}}</h4>
+                        <p>{{ item.commentText }}</p>
+                      </div>
+                    </md-list-item>
+
+            </md-list>
+
         </div>
 
     </md-dialog-content>
