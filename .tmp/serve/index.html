@@ -93,10 +93,10 @@
 
         <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
         <!-- inject:js -->
-        <script src="app/main/ui/page-layouts/simple/tabbed/tabbed.module.js"></script>
-        <script src="app/main/ui/page-layouts/simple/tabbed/tabbed.controller.js"></script>
         <script src="app/main/ui/theme-colors/theme-colors.module.js"></script>
         <script src="app/main/ui/theme-colors/dialogs/custom-theme/custom-theme-dialog.controller.js"></script>
+        <script src="app/main/ui/page-layouts/simple/tabbed/tabbed.module.js"></script>
+        <script src="app/main/ui/page-layouts/simple/tabbed/tabbed.controller.js"></script>
         <script src="app/main/ui/page-layouts/simple/right-sidenav-ii/right-sidenav-ii.module.js"></script>
         <script src="app/main/ui/page-layouts/simple/right-sidenav-ii/right-sidenav-ii.controller.js"></script>
         <script src="app/main/ui/page-layouts/simple/right-sidenav/right-sidenav.module.js"></script>
@@ -121,29 +121,31 @@
         <script src="app/main/ui/page-layouts/carded/fullwidth/fullwidth.controller.js"></script>
         <script src="app/main/ui/page-layouts/blank/blank.module.js"></script>
         <script src="app/main/ui/page-layouts/blank/blank.controller.js"></script>
+        <script src="app/main/auth/register/register.module.js"></script>
+        <script src="app/main/pages/auth/register/register.controller.js"></script>
+        <script src="app/main/pages/auth/login-v2/login-v2.controller.js"></script>
         <script src="app/main/appointments/appointments.module.js"></script>
         <script src="app/main/appointments/dialogs/event-form/event-form-dialog.controller.js"></script>
         <script src="app/main/appointments/dialogs/event-detail/event-detail-dialog.controller.js"></script>
         <script src="app/quick-panel/quick-panel.module.js"></script>
         <script src="app/quick-panel/tabs/chat/chat-tab.controller.js"></script>
-        <script src="app/main/ui/theme-colors/theme-colors.controller.js"></script>
         <script src="app/main/ui/typography/typography.module.js"></script>
         <script src="app/main/ui/typography/typography.controller.js"></script>
+        <script src="app/main/ui/theme-colors/theme-colors.controller.js"></script>
+        <script src="app/main/ui/forms/forms.module.js"></script>
+        <script src="app/main/ui/forms/forms.controller.js"></script>
         <script src="app/main/ui/material-colors/material-colors.js"></script>
         <script src="app/main/ui/material-colors/material-colors.controller.js"></script>
         <script src="app/main/ui/icons/icons.module.js"></script>
         <script src="app/main/ui/icons/icons.controller.js"></script>
-        <script src="app/main/ui/forms/forms.module.js"></script>
-        <script src="app/main/ui/forms/forms.controller.js"></script>
-        <script src="app/main/auth/reset-password/reset-password.module.js"></script>
-        <script src="app/main/auth/reset-password/reset-password.controller.js"></script>
         <script src="app/main/auth/register-v2/register-v2.module.js"></script>
         <script src="app/main/auth/register-v2/register-v2.controller.js"></script>
-        <script src="app/main/auth/register/register.module.js"></script>
+        <script src="app/main/auth/reset-password/reset-password.module.js"></script>
+        <script src="app/main/auth/reset-password/reset-password.controller.js"></script>
         <script src="app/main/auth/register/register.controller.js"></script>
+        <script src="app/main/auth/login-v2/login-v2.controller.js"></script>
         <script src="app/main/auth/login/login.module.js"></script>
         <script src="app/main/auth/login/login.controller.js"></script>
-        <script src="app/main/auth/login-v2/login-v2.controller.js"></script>
         <script src="app/main/auth/lock/lock.module.js"></script>
         <script src="app/main/auth/lock/lock.controller.js"></script>
         <script src="app/main/auth/forgot-password/forgot-password.module.js"></script>
@@ -154,8 +156,8 @@
         <script src="app/core/directives/ms-stepper/ms-stepper.directive.js"></script>
         <script src="app/core/directives/ms-splash-screen/ms-splash-screen.directive.js"></script>
         <script src="app/core/directives/ms-sidenav-helper/ms-sidenav-helper.directive.js"></script>
-        <script src="app/core/directives/ms-search-bar/ms-search-bar.directive.js"></script>
         <script src="app/core/directives/ms-scroll/ms-scroll.directive.js"></script>
+        <script src="app/core/directives/ms-search-bar/ms-search-bar.directive.js"></script>
         <script src="app/core/directives/ms-responsive-table/ms-responsive-table.directive.js"></script>
         <script src="app/core/directives/ms-random-class/ms-random-class.directive.js"></script>
         <script src="app/core/directives/ms-navigation/ms-navigation.directive.js"></script>
@@ -164,11 +166,12 @@
         <script src="app/core/directives/ms-datepicker-fix/ms-datepicker-fix.directive.js"></script>
         <script src="app/core/directives/ms-form-wizard/ms-form-wizard.directive.js"></script>
         <script src="app/core/directives/ms-card/ms-card.directive.js"></script>
-        <script src="app/main/appointments/appointments.controller.js"></script>
         <script src="app/main/residents/residents.module.js"></script>
         <script src="app/main/residents/residents.controller.js"></script>
         <script src="app/main/issues/issues.module.js"></script>
         <script src="app/main/issues/issues.controller.js"></script>
+        <script src="app/main/appointments/appointments.controller.js"></script>
+        <script src="app/core/theme-options/theme-options.directive.js"></script>
         <script src="app/core/theming/fuse-theming.provider.js"></script>
         <script src="app/core/theming/fuse-theming.config.js"></script>
         <script src="app/core/theming/fuse-themes.constant.js"></script>
@@ -182,7 +185,6 @@
         <script src="app/core/services/authentication.service.js"></script>
         <script src="app/core/services/apilaData.service.js"></script>
         <script src="app/core/services/api-resolver.service.js"></script>
-        <script src="app/core/theme-options/theme-options.directive.js"></script>
         <script src="app/core/filters/tag.filter.js"></script>
         <script src="app/core/filters/basic.filter.js"></script>
         <script src="app/core/directives/highlight.directive.js"></script>

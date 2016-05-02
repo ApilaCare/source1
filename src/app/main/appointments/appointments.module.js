@@ -28,7 +28,7 @@
 
         // Navigation
         msNavigationServiceProvider.saveItem('fuse.appointments', {
-            title : 'appointments',
+            title : 'Appointments',
             icon  : 'icon-calendar-today',
             state : 'app.appointments',
             weight: 1

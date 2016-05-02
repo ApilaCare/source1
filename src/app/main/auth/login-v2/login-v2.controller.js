@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.pages.auth.login')
+        .module('app.pages.auth.loginv2')
         .controller('LoginV2Controller', LoginV2Controller);
 
     /** @ngInject */
