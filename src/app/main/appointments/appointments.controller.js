@@ -49,7 +49,8 @@
                        currentUser: value.residentGoing,
                        appointId: value._id,
                        cancel: value.cancel,
-                       appointmentComment: value.appointmentComment
+                       appointmentComment: value.appointmentComment,
+                       residentGoing: value.residentGoing
                      }
                      i++;
 
@@ -232,7 +233,8 @@
                         currentUser: response.calendarEvent.residentGoing,
                         appointId: response.calendarEvent.appointId,
                         cancel: response.calendarEvent.cancel,
-                        appointmentComment: response.calendarEvent.appointmentComment
+                        appointmentComment: response.calendarEvent.appointmentComment,
+                        residentGoing: response.calendarEvent.residentGoing
 
                     });
                 }
@@ -261,7 +263,8 @@
                               currentUser: response.calendarEvent.currentUser,
                               appointId: response.calendarEvent.appointId,
                               cancel: response.calendarEvent.cancel,
-                              appointmentComment: response.calendarEvent.appointmentComment
+                              appointmentComment: response.calendarEvent.appointmentComment,
+                              residentGoing: response.calendarEvent.residentGoing
                             };
 
                             break;

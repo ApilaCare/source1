@@ -73,14 +73,14 @@
 
         vm.calendarEvent = angular.copy(vm.dialogData.calendarEvent);
 
+        console.log(vm.calendarEvent);
+
         vm.calendarEvent.reason = vm.calendarEvent.title;
         vm.isCancel = vm.calendarEvent.cancel;
         vm.date = new Date(vm.calendarEvent.date);
         //vm.date.setHours(parseInt(vm.calendarEvent.hours) + parseInt(vm.date.getTimezoneOffset()/60));
         vm.transportation = vm.calendarEvent.transportation;
 
-
-        console.log("Id appoint: " + vm.calendarEvent.appointId);
 
         // Convert moment.js dates to javascript date object
         if (moment.isMoment(vm.calendarEvent.date)) {
@@ -154,8 +154,10 @@
           .success(function(appoint) {
 
             var calId = vm.dialogData.calendarEvent._id;
+            var residentGoing = vm.dialogData.calendarEvent.residentGoing;
 
             vm.calendarEvent = appoint;
+            vm.calendarEvent.residentGoing = residentGoing;
             vm.calendarEvent.appointId = appoint._id;
             vm.calendarEvent.title = appoint.reason;
             vm.calendarEvent.calId = calId;
