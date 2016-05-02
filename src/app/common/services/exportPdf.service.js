@@ -37,6 +37,8 @@
 
             var appointmentDate = new Date(data.date);
 
+	    var commentLength = 90;
+
             var residentBirthDate = new Date(data.residentGoing.birthDate);
 
             var dateFilter = $filter('date');
@@ -67,12 +69,34 @@
             doc.text(415, 238, "Time:");
             doc.text(490, 238, appointmentFilteredTime);
 
+	   var leftofPoint = 0;
+
             //grab all the comments
             for(var i = 0; i < data.appointmentComment.length; ++i) {
                 var comment = data.appointmentComment[i];
 
-                doc.text(50, 310 + i*35, "Author: " + comment.author);
-                doc.text(50 , 325 + i*35, "Text: " + comment.commentText);
+                doc.text(50, 310 + i*35 + leftofPoint, "Author: " + comment.author);
+		
+		if(comment.commentText.length > commentLength) {
+		   var numTimes = Math.floor(comment.commentText.length / commentLength);
+
+		  
+
+		   for(var j = 0; j < numTimes; ++j) {
+			var txt = "";
+			if(j === 0){
+			  txt = "Text: ";
+			}
+			
+			doc.text(50 , 325 + i*35 + j*15 + leftofPoint, txt + comment.commentText.substr(j*(commentLength), commentLength));
+			
+	           }
+			 leftofPoint =  numTimes*15;
+
+		} else {
+		  doc.text(50 , 325 + i*35 + leftofPoint, "Text: " + comment.commentText);
+		}
+
             }
 
 /* comment out second page
