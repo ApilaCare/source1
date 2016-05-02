@@ -23,9 +23,12 @@
     //////////
 
     vm.dayTimeSwitch = "AM";
+    vm.showCancel = false;
 
+    //If we are in the add dialog
     if (!vm.dialogData.calendarEvent) {
           vm.transportation = "We are transporting";
+          vm.showCancel = true;
       }
 
 
@@ -70,13 +73,14 @@
 
         vm.calendarEvent = angular.copy(vm.dialogData.calendarEvent);
 
+        console.log(vm.calendarEvent);
+
         vm.calendarEvent.reason = vm.calendarEvent.title;
+        vm.isCancel = vm.calendarEvent.cancel;
         vm.date = new Date(vm.calendarEvent.date);
         //vm.date.setHours(parseInt(vm.calendarEvent.hours) + parseInt(vm.date.getTimezoneOffset()/60));
         vm.transportation = vm.calendarEvent.transportation;
 
-
-        console.log("Id appoint: " + vm.calendarEvent.appointId);
 
         // Convert moment.js dates to javascript date object
         if (moment.isMoment(vm.calendarEvent.date)) {
@@ -98,12 +102,16 @@
         };
 
 
-            vm.date = dialogData.start._d;
+            vm.date = dateToUTC(dialogData.start._d);
+            console.log(vm.date);
 
       }
     }
 
-
+    function dateToUTC(date) {
+      return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
+      date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+    }
 
 
     function saveEvent() {
@@ -112,6 +120,8 @@
       vm.calendarEvent.transportation = vm.transportation;
       vm.calendarEvent.residentId = vm.selectedUser._id;
       vm.calendarEvent.date = vm.date;
+
+      vm.calendarEvent.cancel = vm.isCancel;
 
       var parseDate = new Date(vm.calendarEvent.date);
 
@@ -144,8 +154,10 @@
           .success(function(appoint) {
 
             var calId = vm.dialogData.calendarEvent._id;
+            var residentGoing = vm.dialogData.calendarEvent.residentGoing;
 
             vm.calendarEvent = appoint;
+            vm.calendarEvent.residentGoing = residentGoing;
             vm.calendarEvent.appointId = appoint._id;
             vm.calendarEvent.title = appoint.reason;
             vm.calendarEvent.calId = calId;

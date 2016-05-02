@@ -87,6 +87,11 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
                     </div>
               </md-input-container>
 
+              <!-- Cancel -->
+              <md-checkbox ng-model="vm.isCancel" ng-hide="vm.showCancel" aria-label="Cancel Appointment">
+                Cancel Appointment
+              </md-checkbox>
+
 
         <md-dialog-actions layout="row" layout-align="space-between center">
             <md-button ng-click="vm.saveEvent()" class="save-button md-accent md-raised" aria-label="SAVE"

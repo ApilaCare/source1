@@ -47,7 +47,10 @@
                        locationName: value.locationName,
                        date: value.time,
                        currentUser: value.residentGoing,
-                       appointId: value._id
+                       appointId: value._id,
+                       cancel: value.cancel,
+                       appointmentComment: value.appointmentComment,
+                       residentGoing: value.residentGoing
                      }
                      i++;
 
@@ -228,7 +231,10 @@
                         locationName: response.calendarEvent.locationName,
                         date: response.calendarEvent.time,
                         currentUser: response.calendarEvent.residentGoing,
-                        appointId: response.calendarEvent.appointId
+                        appointId: response.calendarEvent.appointId,
+                        cancel: response.calendarEvent.cancel,
+                        appointmentComment: response.calendarEvent.appointmentComment,
+                        residentGoing: response.calendarEvent.residentGoing
 
                     });
                 }
@@ -255,7 +261,10 @@
                               locationName: response.calendarEvent.locationName,
                               date: response.calendarEvent.time,
                               currentUser: response.calendarEvent.currentUser,
-                              appointId: response.calendarEvent.appointId
+                              appointId: response.calendarEvent.appointId,
+                              cancel: response.calendarEvent.cancel,
+                              appointmentComment: response.calendarEvent.appointmentComment,
+                              residentGoing: response.calendarEvent.residentGoing
                             };
 
                             break;
