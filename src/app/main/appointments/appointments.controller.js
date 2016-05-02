@@ -18,6 +18,7 @@
         var y = date.getFullYear();
 
 
+      var loadAppoitnments = function() {
         //load all the events and show them on the callendar
         apilaData.appointmentsList()
                .success(function(data) {
@@ -61,6 +62,7 @@
                .error(function(e) {
                    console.log("error loading appointments");
                });
+             };
 
         vm.events = [[]];
 
@@ -75,6 +77,7 @@
                 dayNamesShort     : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                 viewRender        : function (view)
                 {
+                    loadAppoitnments();
                     vm.calendarView = view;
                     vm.calendar = vm.calendarView.calendar;
                     vm.currentMonthShort = vm.calendar.getDate().format('MMM');
@@ -104,6 +107,7 @@
         function next()
         {
             vm.calendarView.calendar.next();
+
         }
 
         /**
