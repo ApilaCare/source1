@@ -98,12 +98,16 @@
         };
 
 
-            vm.date = dialogData.start._d;
+            vm.date = dateToUTC(dialogData.start._d);
+            console.log(vm.date);
 
       }
     }
 
-
+    function dateToUTC(date) {
+      return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
+      date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+    }
 
 
     function saveEvent() {
