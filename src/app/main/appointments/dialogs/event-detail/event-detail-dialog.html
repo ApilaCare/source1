@@ -47,7 +47,8 @@
                 <md-icon md-font-icon="icon-account"></md-icon>
                 <div layout="column" flex>
                     <!-- resident going -->
-                      <span class="h4">Resident: {{ vm.calendarEvent.currentUser.firstName }}</span>
+                      <span class="h4">Resident: {{ vm.calendarEvent.currentUser.firstName + " " + 
+                                                    vm.calendarEvent.currentUser.lastName}}</span>
                     <span class="h4">Transportation: {{ vm.calendarEvent.transportation}}</span>
                 </div>
             </div>

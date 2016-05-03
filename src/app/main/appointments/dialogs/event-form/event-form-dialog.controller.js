@@ -32,10 +32,14 @@
       }
 
          vm.getMatches = function (text) {
+           if(text === null) {
+             return;
+           }
            var textLower = text.toLowerCase();
 
              var ret = vm.residentList.filter(function (d) {
-                 return d.display.toLowerCase().startsWith(text);
+                 if(d.display != null)
+                 return d.display.toLowerCase().indexOf(text) > -1;
              });
              return ret;
          }
@@ -48,7 +52,7 @@
       .success(function(residentList) {
         //console.log(residentList);
         vm.residentList = residentList.map(function(elem) {
-          return {value: elem._id, display: elem.firstName};
+          return {value: elem._id, display: elem.firstName + " " + elem.lastName};
         });
       })
       .error(function(residentList) {
@@ -67,8 +71,12 @@
           vm.dayTimeSwitch = "AM";
         }
 
+        var fullName = vm.calendarEvent.currentUser.firstName + " " +
+                       vm.calendarEvent.currentUser.lastName;
+
         vm.selectedItem = {value: vm.calendarEvent.currentUser._id,
-                           display: vm.calendarEvent.currentUser.firstName};
+                           display: fullName
+                             };
 
         vm.selectedUser = vm.calendarEvent.currentUser;
 
@@ -114,7 +122,7 @@
         };
 
 
-            vm.date = dateToUTC(dialogData.start._d);
+            vm.date = dialogData.start._d;
             console.log(vm.date);
 
       }

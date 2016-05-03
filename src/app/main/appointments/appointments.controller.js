@@ -18,14 +18,8 @@
         var y = date.getFullYear();
 
 
-      var loadAppoitnments = function(data) {
+      var loadAppoitnments = function() {
 
-        var month = data.split(" ");
-
-        if(month.length < 1) {
-          console.log("Month not parsed correctly while loading appointments");
-          return;
-        }
 
         //load all the events and show them on the callendar
         apilaData.appointmentsList()
@@ -78,6 +72,8 @@
                });
              };
 
+               loadAppoitnments();
+
         vm.events = [[]];
 
         vm.calendarUiConfig = {
@@ -92,15 +88,13 @@
                 viewRender        : function (view)
                 {
 
-                  if(vm.events[0].length == 0) {
+
                     vm.calendarView = view;
                     vm.calendar = vm.calendarView.calendar;
                     vm.currentMonthShort = vm.calendar.getDate().format('MMM');
 
 
-                        console.log("ucitavamo opet");
-                        loadAppoitnments(view.title);
-                    }
+
                 },
                 columnFormat      : {
                     month: 'ddd',
