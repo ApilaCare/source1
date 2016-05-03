@@ -18,9 +18,17 @@
         var y = date.getFullYear();
 
 
-      var loadAppoitnments = function() {
+      var loadAppoitnments = function(data) {
+
+        var month = data.split(" ");
+
+        if(month.length < 1) {
+          console.log("Month not parsed correctly while loading appointments");
+          return;
+        }
+
         //load all the events and show them on the callendar
-        apilaData.appointmentsList()
+        apilaData.appointmentsListByMonth(month[0])
                .success(function(data) {
                  var i = 1;
                    angular.forEach(data, function(value, key) {
@@ -77,7 +85,11 @@
                 dayNamesShort     : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                 viewRender        : function (view)
                 {
-                    loadAppoitnments();
+
+                    if(view.intervalUnit === "month") {
+                        loadAppoitnments(view.title);
+                    }
+
                     vm.calendarView = view;
                     vm.calendar = vm.calendarView.calendar;
                     vm.currentMonthShort = vm.calendar.getDate().format('MMM');

@@ -69,6 +69,11 @@
             return $http.get(apiUrl + '/api/appointments');
         };
 
+        var appointmentsListByMonth = function(month) {
+            return $http.get(apiUrl + '/api/appointments/' +  month);
+        };
+
+
         var appointmentById = function(appointmentid) {
             return $http.get(apiUrl + '/api/appointments/' + appointmentid);
         };
@@ -137,7 +142,8 @@
             residentsList : residentsList,
             addResident : addResident,
             residentById : residentById,
-            updateResident: updateResident
+            updateResident: updateResident,
+            appointmentsListByMonth: appointmentsListByMonth
         };
     }
 
