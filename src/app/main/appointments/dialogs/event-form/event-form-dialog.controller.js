@@ -32,8 +32,10 @@
       }
 
          vm.getMatches = function (text) {
+           var textLower = text.toLowerCase();
+
              var ret = vm.residentList.filter(function (d) {
-                 return d.display.startsWith(text);
+                 return d.display.toLowerCase().startsWith(text);
              });
              return ret;
          }
