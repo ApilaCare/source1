@@ -28,7 +28,7 @@
         }
 
         //load all the events and show them on the callendar
-        apilaData.appointmentsListByMonth(month[0])
+        apilaData.appointmentsList()
                .success(function(data) {
                  var i = 1;
                    angular.forEach(data, function(value, key) {
@@ -59,8 +59,14 @@
                        appointId: value._id,
                        cancel: value.cancel,
                        appointmentComment: value.appointmentComment,
-                       residentGoing: value.residentGoing
+                       residentGoing: value.residentGoing,
+                       stick: true
                      }
+
+                     if(value.cancel === true) {
+                       calEvent.color = "#f00";
+                     }
+
                      i++;
 
                      vm.events[0].push(calEvent);
@@ -77,7 +83,7 @@
         vm.calendarUiConfig = {
             calendar: {
                 editable          : true,
-                eventLimit        : true,
+                eventLimit        : false,
                 header            : '',
                 handleWindowResize: false,
                 aspectRatio       : 1,
@@ -86,13 +92,15 @@
                 viewRender        : function (view)
                 {
 
-                    if(view.intervalUnit === "month") {
-                        loadAppoitnments(view.title);
-                    }
-
+                  if(vm.events[0].length == 0) {
                     vm.calendarView = view;
                     vm.calendar = vm.calendarView.calendar;
                     vm.currentMonthShort = vm.calendar.getDate().format('MMM');
+
+
+                        console.log("ucitavamo opet");
+                        loadAppoitnments(view.title);
+                    }
                 },
                 columnFormat      : {
                     month: 'ddd',
@@ -250,7 +258,8 @@
                         appointId: response.calendarEvent.appointId,
                         cancel: response.calendarEvent.cancel,
                         appointmentComment: response.calendarEvent.appointmentComment,
-                        residentGoing: response.calendarEvent.residentGoing
+                        residentGoing: response.calendarEvent.residentGoing,
+                        stick: true
 
                     });
                 }
@@ -264,7 +273,7 @@
                         {
                           console.log("Updejtovo");
 
-                            vm.events[0][i] = {
+                            var currEvent = {
                               title: response.calendarEvent.title,
                               start: response.calendarEvent.time,
                               end  : null,
@@ -280,8 +289,15 @@
                               appointId: response.calendarEvent.appointId,
                               cancel: response.calendarEvent.cancel,
                               appointmentComment: response.calendarEvent.appointmentComment,
-                              residentGoing: response.calendarEvent.residentGoing
+                              residentGoing: response.calendarEvent.residentGoing,
+                              stick: true
                             };
+
+                            if(currEvent.cancel === true) {
+                              currEvent.color = "#f00";
+                            }
+
+                            vm.events[0][i] = currEvent;
 
                             break;
                         }

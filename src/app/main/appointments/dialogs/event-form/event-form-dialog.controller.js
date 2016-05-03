@@ -31,17 +31,23 @@
           vm.showCancel = true;
       }
 
+         vm.getMatches = function (text) {
+             var ret = vm.residentList.filter(function (d) {
+                 return d.display.startsWith(text);
+             });
+             return ret;
+         }
+
 
     vm.residentList = [];
-    vm.selectedUser = {
-      name: "Choose a resident",
-      id: "-1"
-    };
+    vm.selectedUser = {};
 
     apilaData.residentsList()
       .success(function(residentList) {
         //console.log(residentList);
-        vm.residentList = residentList;
+        vm.residentList = residentList.map(function(elem) {
+          return {value: elem._id, display: elem.firstName};
+        });
       })
       .error(function(residentList) {
         console.log("Error retriving the list of residents");
@@ -59,7 +65,11 @@
           vm.dayTimeSwitch = "AM";
         }
 
+        vm.selectedItem = {value: vm.calendarEvent.currentUser._id,
+                           display: vm.calendarEvent.currentUser.firstName};
+
         vm.selectedUser = vm.calendarEvent.currentUser;
+
       }
 
     /**
@@ -118,7 +128,8 @@
 
       //set up the date to proper fields before sending to the api
       vm.calendarEvent.transportation = vm.transportation;
-      vm.calendarEvent.residentId = vm.selectedUser._id;
+      vm.calendarEvent.residentId = vm.selectedItem.value;
+      console.log(vm.selectedItem.display);
       vm.calendarEvent.date = vm.date;
 
       vm.calendarEvent.cancel = vm.isCancel;
@@ -138,8 +149,6 @@
       // Update
       if (vm.dialogData.calendarEvent) {
 
-        console.log(vm.dialogData.calendarEvent);
-
         //update info
         vm.calendarEvent.modifiedBy = authentication.currentUser().name;
         vm.calendarEvent.modifiedDate = new Date();
@@ -150,18 +159,29 @@
           vm.calendarEvent.updateField = changedFields;
         }
 
+        var srcEvents = [];
+
+        if(vm.calendarEvent.source != undefined) {
+          srcEvents = vm.calendarEvent.source.events;
+          vm.calendarEvent.source.events.length = 0;
+        }
+
+
         apilaData.updateAppointment(vm.calendarEvent.appointId, vm.calendarEvent)
           .success(function(appoint) {
 
             var calId = vm.dialogData.calendarEvent._id;
-            var residentGoing = vm.dialogData.calendarEvent.residentGoing;
+          //  var residentGoing = vm.dialogData.calendarEvent.residentGoing;
+
+
 
             vm.calendarEvent = appoint;
-            vm.calendarEvent.residentGoing = residentGoing;
+            vm.calendarEvent.source = srcEvents;
+            vm.calendarEvent.residentGoing = appoint.residentGoing;
             vm.calendarEvent.appointId = appoint._id;
             vm.calendarEvent.title = appoint.reason;
             vm.calendarEvent.calId = calId;
-            vm.calendarEvent.currentUser = vm.selectedUser;
+            vm.calendarEvent.currentUser = appoint.residentGoing;
 
             var response = {
               type: vm.dialogData.type,
