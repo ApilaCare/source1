@@ -1,0 +1,44 @@
+<!-- MAIL LIST ITEMS -->
+<div class="mail-list-item" ng-repeat="mail in vm.residentList | filter: vm.search | filter: global.search"
+     md-ink-ripple
+     ng-click="vm.selectResident(mail)"
+     ng-class="{'starred': mail.starred, 'selected': vm.selectedMail === mail, 'checked': vm.isChecked(mail)}">
+
+    <div layout="row" layout-align="start center">
+        <md-checkbox class="no-label"
+                     ng-checked="vm.isChecked(mail)"
+                     ng-click="vm.toggleCheck(mail, $event)"
+                     aria-label="{{vm.isChecked(mail)? 'Uncheck':'check'}}">
+        </md-checkbox>
+
+
+        <div class="info" flex layout="column">
+            <div class="name" layout="row" layout-align="start center">
+                <img class="avatar" ng-if="mail.from.avatar" alt="{{mail.firstName}}" ng-src="{{mail.firstName}}"/>
+
+                <div class="avatar" ng-if="!mail.from.avatar" ms-random-class="vm.colors">
+                    {{mail.firstName}}
+                </div>
+
+                <span class="text-truncate">{{mail.firstName + " " + mail.lastName}}</span>
+
+                <md-icon md-font-icon="icon-paperclip" class="has-attachment s16" ng-if="mail.hasAttachments"></md-icon>
+            </div>
+
+            <div class="subject text-truncate">
+                {{mail.buildingStatus}}
+            </div>
+
+            <div class="message">
+                {{mail.birthDate | date}}
+            </div>
+        </div>
+
+        <div layout="column" layout-align="space-between end">
+            <div class="time">{{mail.time}}</div>
+
+             <md-button class="md-raised">Update</md-button>
+        </div>
+    </div>
+</div>
+<!-- / MAIL LIST ITEMS -->
