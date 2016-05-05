@@ -22,83 +22,12 @@
     </div>
 
     <div class="navigation-simple" layout="column">
-        <md-button class="item" aria-label="inbox">
+        <md-button ng-click="vm.switchCategory(category)" ng-class="vm.selectedCategory == category ? 'md-raised md-primary' : 'md-primary'" class="item" aria-label="inbox" ng-repeat="category in vm.categoryList">
             <div layout="row" layout-align="start center">
                 <md-icon md-font-icon="icon-inbox" class="s16"></md-icon>
-                <span class="title" flex>Administrative</span>
+                <span class="title" flex>{{ category }}</span>
             </div>
         </md-button>
-
-        <md-button class="item" aria-label="starred">
-            <div layout="row" layout-align="start center">
-                <md-icon md-font-icon="icon-star" class="s16"></md-icon>
-                <span class="title" flex>Allergy</span>
-            </div>
-        </md-button>
-
-        <md-button class="item" aria-label="important">
-            <div layout="row" layout-align="start center">
-                <md-icon md-font-icon="icon-alert-circle" class="s16"></md-icon>
-                <span class="title" flex>Bathing</span>
-            </div>
-        </md-button>
-
-        <md-button class="item" aria-label="sent">
-            <div layout="row" layout-align="start center">
-                <md-icon md-font-icon="icon-send" class="s16"></md-icon>
-                <span class="title" >Continent</span>
-            </div>
-        </md-button>
-
-        <md-button class="item" aria-label="drafts">
-            <div layout="row" layout-align="start center">
-                <md-icon md-font-icon="icon-email-open" class="s16"></md-icon>
-                <span class="title">Mobility</span>
-            </div>
-        </md-button>
-
-        <md-button class="item" aria-label="all mail">
-            <div layout="row" layout-align="start center">
-                <md-icon md-font-icon="icon-folder" class="s16"></md-icon>
-                <span class="title">Nutrition</span>
-            </div>
-        </md-button>
-
-        <md-button class="item" aria-label="spam">
-            <div layout="row" layout-align="start center">
-                <md-icon md-font-icon="icon-alert-octagon" class="s16"></md-icon>
-                <span class="title">Pain</span>
-            </div>
-        </md-button>
-
-        <md-button class="item" aria-label="trash">
-            <div layout="row" layout-align="start center">
-                <md-icon md-font-icon="icon-delete" class="s16"></md-icon>
-                <span class="title">Physical condition</span>
-            </div>
-        </md-button>
-
-        <md-button class="item" aria-label="trash">
-            <div layout="row" layout-align="start center">
-                <md-icon md-font-icon="icon-delete" class="s16"></md-icon>
-                <span class="title">Psychosocial</span>
-            </div>
-        </md-button>
-
-        <md-button class="item" aria-label="trash">
-            <div layout="row" layout-align="start center">
-                <md-icon md-font-icon="icon-delete" class="s16"></md-icon>
-                <span class="title">Sleep</span>
-            </div>
-        </md-button>
-
-        <md-button class="item" aria-label="trash">
-            <div layout="row" layout-align="start center">
-                <md-icon md-font-icon="icon-delete" class="s16"></md-icon>
-                <span class="title">Vitals</span>
-            </div>
-        </md-button>
-
 
     </div>
 

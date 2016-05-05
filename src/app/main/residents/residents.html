@@ -195,22 +195,88 @@
                     <md-tab>
                         <md-tab-label>Mails</md-tab-label>
                         <md-tab-body>
-                            <!-- MAIL LIST PANE -->
-                            <div class="content mail-list-pane"
-                                 ng-include="'app/main/residents/views/list/list-view.html'" ms-scroll>
-                            </div>
-                            <!-- / MAIL LIST PANE -->
+                            <!-- RESIDENT LIST PANE -->
+                              <div class="content mail-list-pane"
+                                   ng-include="'app/main/residents/views/list/list-view.html'" ms-scroll>
+                          </div>
+                            <!-- / RESIDENT LIST PANE -->
                         </md-tab-body>
                     </md-tab>
 
                     <md-tab>
-                        <md-tab-label>Read Pane</md-tab-label>
+                        <md-tab-label>Details Pane</md-tab-label>
                         <md-tab-body>
-                            <!-- MAIL READ PANE -->
-                            <div class="content mail-read-pane"
-                                 ng-include="'app/main/residents/views/read/read-view.html'" ms-scroll>
+                            <!-- RESIDENT DETAILS PANE -->
+                          <div ng-switch on="vm.selectedCategory">
+
+                            <div ng-switch-when="Administrative">
+                              <div class="content mail-read-pane"
+                                   ng-include="'app/main/residents/views/details/administartive.html'" ms-scroll>
+                              </div>
                             </div>
-                            <!-- / MAIL READ PANE -->
+
+                            <div ng-switch-when="Allergy">
+                              <div class="content mail-read-pane"
+                                   ng-include="'app/main/residents/views/details/allergy.html'" ms-scroll>
+                              </div>
+                            </div>
+
+                            <div ng-switch-when="Bathing">
+                              <div class="content mail-read-pane"
+                                   ng-include="'app/main/residents/views/details/bathing.html'" ms-scroll>
+                              </div>
+                            </div>
+
+                            <div ng-switch-when="Continent">
+                              <div class="content mail-read-pane"
+                                   ng-include="'app/main/residents/views/details/continent.html'" ms-scroll>
+                              </div>
+                            </div>
+
+                            <div ng-switch-when="Mobility">
+                              <div class="content mail-read-pane"
+                                   ng-include="'app/main/residents/views/details/mobility.html'" ms-scroll>
+                              </div>
+                            </div>
+
+                            <div ng-switch-when="Nutrition">
+                              <div class="content mail-read-pane"
+                                   ng-include="'app/main/residents/views/details/nutrition.html'" ms-scroll>
+                              </div>
+                            </div>
+
+                            <div ng-switch-when="Pain">
+                              <div class="content mail-read-pane"
+                                   ng-include="'app/main/residents/views/details/pain.html'" ms-scroll>
+                              </div>
+                            </div>
+
+                            <div ng-switch-when="Physical condition">
+                              <div class="content mail-read-pane"
+                                   ng-include="'app/main/residents/views/details/physicalcondition.html'" ms-scroll>
+                              </div>
+                            </div>
+
+                            <div ng-switch-when="Psychosocial">
+                              <div class="content mail-read-pane"
+                                   ng-include="'app/main/residents/views/details/psychosocial.html'" ms-scroll>
+                              </div>
+                            </div>
+
+                            <div ng-switch-when="Sleep">
+                              <div class="content mail-read-pane"
+                                   ng-include="'app/main/residents/views/details/sleep.html'" ms-scroll>
+                              </div>
+                            </div>
+
+                            <div ng-switch-when="Vitals">
+                              <div class="content mail-read-pane"
+                                   ng-include="'app/main/residents/views/details/vitals.html'" ms-scroll>
+                              </div>
+                            </div>
+
+                          </div>
+                            <!-- / RESIDENT DETAILS PANE -->
                         </md-tab-body>
                     </md-tab>
                 </md-tabs>

@@ -20,7 +20,7 @@
         vm.checked = [];
         vm.colors = ['blue-bg', 'blue-grey-bg', 'orange-bg', 'pink-bg', 'purple-bg'];
         vm.selectedAccount = 'creapond';
-        vm.selectedMail = {};
+        vm.selectedResident = null;
         vm.toggleSidenav = toggleSidenav;
 
         vm.responsiveReadPane = undefined;
@@ -31,8 +31,20 @@
         vm.scrollEl = angular.element('#content');
 
         vm.inbox = Inbox.data;
-        vm.selectedMail = vm.inbox[0];
+
         vm.selectedMailShowDetails = false;
+
+        vm.categoryList = ["Administrative",
+                           "Allergy",
+                           "Bathing",
+                           "Continent",
+                           "Mobility",
+                           "Nutrition",
+                           "Pain",
+                           "Physical condition",
+                           "Psychosocial",
+                           "Sleep",
+                           "Vitals"];
 
         // Methods
         vm.checkAll = checkAll;
@@ -43,7 +55,13 @@
         vm.selectResident = selectResident;
         vm.toggleStarred = toggleStarred;
         vm.toggleCheck = toggleCheck;
+        vm.updateResident = updateResident;
 
+        vm.selectedCategory = "Administrative";
+
+        vm.switchCategory = function(category) {
+          vm.selectedCategory = category;
+        }
 
        residentsService.getResidentsList().then(function(d) {
          vm.residentList = d.data;
@@ -79,7 +97,7 @@
         {
             console.log(resident);
 
-            vm.selectedMail = resident;
+            vm.selectedResident = resident;
 
             $timeout(function ()
             {
@@ -197,7 +215,7 @@
                 controller         : 'ComposeDialogController',
                 controllerAs       : 'vm',
                 locals             : {
-                    selectedMail: undefined
+                    selectedResident: undefined
                 },
                 templateUrl        : 'app/main/residents/dialogs/compose/compose-dialog.html',
                 parent             : angular.element($document.body),
@@ -217,9 +235,30 @@
                 controller         : 'ComposeDialogController',
                 controllerAs       : 'vm',
                 locals             : {
-                    selectedMail: vm.selectedMail
+                    selectedResident: vm.selectedResident
                 },
                 templateUrl        : 'app/main/residents/dialogs/compose/compose-dialog.html',
+                parent             : angular.element($document.body),
+                targetEvent        : ev,
+                clickOutsideToClose: true
+            });
+        }
+
+        function updateResident(ev)
+        {
+          var cat = vm.selectedCategory;
+
+          if(vm.selectedCategory === "Physical condition") {
+            cat = "PhysicalCondition";
+          }
+
+          var templateUrl = 'app/main/residents/dialogs/update/update-'
+                             + cat + '.html';
+
+            $mdDialog.show({
+                controller         : 'UpdateController',
+                controllerAs       : 'vm',
+                templateUrl        : templateUrl,
                 parent             : angular.element($document.body),
                 targetEvent        : ev,
                 clickOutsideToClose: true

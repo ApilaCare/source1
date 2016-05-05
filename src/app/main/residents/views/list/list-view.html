@@ -2,7 +2,7 @@
 <div class="mail-list-item" ng-repeat="mail in vm.residentList | filter: vm.search | filter: global.search"
      md-ink-ripple
      ng-click="vm.selectResident(mail)"
-     ng-class="{'starred': mail.starred, 'selected': vm.selectedMail === mail, 'checked': vm.isChecked(mail)}">
+     ng-class="{'starred': mail.starred, 'selected': vm.selectedResident === mail, 'checked': vm.isChecked(mail)}">
 
     <div layout="row" layout-align="start center">
         <md-checkbox class="no-label"
@@ -37,7 +37,7 @@
         <div layout="column" layout-align="space-between end">
             <div class="time">{{mail.time}}</div>
 
-             <md-button class="md-raised">Update</md-button>
+             <md-button class="md-raised" ng-click="vm.updateResident()">Update</md-button>
         </div>
     </div>
 </div>

@@ -7,7 +7,7 @@
         .controller('ComposeDialogController', ComposeDialogController);
 
     /** @ngInject */
-    function ComposeDialogController($mdDialog, selectedMail, apilaData, residentsService)
+    function ComposeDialogController($mdDialog, apilaData, residentsService)
     {
         var vm = this;
 

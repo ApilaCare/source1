@@ -1,0 +1,21 @@
+<div ng-if="vm.selectedResident === null">
+  <h3>Select a resident to view details </h3>
+</div>
+
+<div ng-if="vm.selectedResident !== null">
+<div class="mail-header">
+    <div class="subject" flex>{{vm.selectedCategory}}</div>
+</div>
+
+<div class="mail-content">
+    <div class="info" layout="row" layout-align="space-between start">
+
+        <div layout="column" layout-align="start start">
+              <!-- Add details content here -->
+
+        </div>
+
+    </div>
+
+</div>
+</div>

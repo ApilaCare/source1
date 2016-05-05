@@ -1,0 +1,66 @@
+<md-dialog class="compose-dialog" aria-label="Update">
+    <form class="md-inline-form">
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title" >Update resident - Administrative</span>
+                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
+                    <md-icon md-font-icon="icon-close"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+          <md-input-container class="md-block">
+              <label>First Name</label>
+              <input ng-model="vm.form.firstName" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Middle Name</label>
+              <input ng-model="vm.form.middleName" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Last Name</label>
+              <input ng-model="vm.form.lastName" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Maiden Name</label>
+              <input ng-model="vm.form.maidenName" type="text">
+          </md-input-container>
+
+
+          <md-datepicker ng-model="vm.form.birthDate" md-placeholder="Birth Date"></md-datepicker>
+          <md-datepicker ng-model="vm.form.admissionDate" md-placeholder="Admission Date"></md-datepicker>
+
+          <md-input-container class="md-block">
+              <md-select ng-model="vm.form.sex" placeholder="Sex">
+                <md-option>Male</md-option>
+                <md-option>Female</md-option>
+                <md-option>Other</md-option>
+              </md-select>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <md-select ng-model="vm.form.buildingStatus" placeholder="Building Status">
+                <md-option>In Building</md-option>
+                <md-option>Hospital</md-option>
+                <md-option>Rehab</md-option>
+                <md-option>Dead</md-option>
+                <md-option>Moved Out</md-option>
+              </md-select>
+          </md-input-container>
+
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <md-button ng-click="" class="send-button md-accent md-raised" aria-label="Add">
+                    UPDATE
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
