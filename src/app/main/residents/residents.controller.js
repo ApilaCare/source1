@@ -7,7 +7,8 @@
         .controller('MailController', MailController);
 
     /** @ngInject */
-    function MailController($scope, $document, $timeout, $mdDialog, $mdMedia, $mdSidenav, Inbox, apilaData)
+    function MailController($scope, $document, $timeout, $mdDialog, $mdMedia,
+                  $mdSidenav, Inbox, apilaData, residentsService)
     {
         var vm = this;
 
@@ -43,15 +44,11 @@
         vm.toggleStarred = toggleStarred;
         vm.toggleCheck = toggleCheck;
 
-        //Get data from the api
-        apilaData.residentsList()
-          .success(function(residentList) {
-            console.log(residentList);
-            vm.residentList = residentList;
-          })
-          .error(function(residentList) {
-            console.log("Error retriving the list of residents");
-          });
+
+       residentsService.getResidentsList().then(function(d) {
+         vm.residentList = d.data;
+       });
+
 
         //////////
 

@@ -275,7 +275,7 @@
 
         msNavigationServiceProvider.saveItem('fuse.residents', {
             title    : 'Residents',
-            icon     : 'icon-tile-four',
+            icon     : 'icon-home',
             state    : 'app.residents',
             /*stateParams: {
                 'param1': 'page'

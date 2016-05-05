@@ -7,34 +7,35 @@
         .controller('ComposeDialogController', ComposeDialogController);
 
     /** @ngInject */
-    function ComposeDialogController($mdDialog, selectedMail)
+    function ComposeDialogController($mdDialog, selectedMail, apilaData, residentsService)
     {
         var vm = this;
 
         // Data
-        vm.form = {
-            from: 'johndoe@creapond.com'
-        };
-
-        vm.hiddenCC = true;
-        vm.hiddenBCC = true;
-
-        // If replying
-        if ( angular.isDefined(selectedMail) )
-        {
-            vm.form.to = selectedMail.from.email;
-            vm.form.subject = 'RE: ' + selectedMail.subject;
-            vm.form.message = '<blockquote>' + selectedMail.message + '</blockquote>';
-        }
 
         // Methods
         vm.closeDialog = closeDialog;
+        vm.addResident = addResident;
 
         //////////
+        vm.residentList = residentsService.getResidentsList();
 
         function closeDialog()
         {
             $mdDialog.hide();
+        }
+
+        function addResident()
+        {
+
+          apilaData.addResident(vm.form)
+          .success(function(data) {
+                vm.residentList.push(data);
+                $mdDialog.hide();
+          })
+          .error(function() {
+            console.log("Error while adding resident");
+          });
         }
     }
 })();
