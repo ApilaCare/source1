@@ -46,6 +46,10 @@
                            "Sleep",
                            "Vitals"];
 
+        // vm.administrativeList = ['firstName', 'lastName', 'middleName'];
+        //
+        // vm.allergyList = ['foodAllergies', 'medicationAllergies'];
+
         // Methods
         vm.checkAll = checkAll;
         vm.closeReadPane = closeReadPane;
@@ -243,6 +247,7 @@
                 clickOutsideToClose: true
             });
         }
+
 
         function updateResident(ev)
         {
