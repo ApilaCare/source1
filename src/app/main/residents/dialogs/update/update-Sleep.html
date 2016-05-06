@@ -2,7 +2,7 @@
     <form class="md-inline-form">
         <md-toolbar class="md-accent md-hue-2">
             <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update resident - Sleep</span>
+                <span class="title" >Update Resident - Sleep</span>
                 <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
                     <md-icon md-font-icon="icon-close"></md-icon>
                 </md-button>
@@ -10,6 +10,38 @@
         </md-toolbar>
 
         <md-dialog-content ms-scroll>
+
+          <md-input-container class="md-block">
+              <label>Usual Bedtime</label>
+              <input ng-model="vm.form.usualBedtime" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Usual Arising Time</label>
+              <input ng-model="vm.form.usualArisingTime" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.nap" ng-hide="vm.showCancel" aria-label="Nap">
+             Nap
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Assistance to Bed</label>
+              <input ng-model="vm.form.assistanceToBed" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.sleepsThroughNight" ng-hide="vm.showCancel" aria-label="Sleeps Through Night">
+             Sleeps Through Night
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Sleep Disturbance</label>
+              <input ng-model="vm.form.sleepDisturbance" type="text">
+          </md-input-container>
 
 
         </md-dialog-content>

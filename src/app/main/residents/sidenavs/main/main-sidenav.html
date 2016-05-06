@@ -12,14 +12,14 @@
 </div>
 <!-- / SIDENAV HEADER -->
 
+<div class="compose-button">
+    <md-button class="md-accent md-raised" aria-label="compose"
+               ng-click="vm.composeDialog($event)" >Add resident
+    </md-button>
+</div>
+
 <!-- SIDENAV CONTENT -->
 <md-content ms-scroll class="content" flex>
-
-    <div class="compose-button">
-        <md-button class="md-accent md-raised" aria-label="compose"
-                   ng-click="vm.composeDialog($event)" >Add resident
-        </md-button>
-    </div>
 
     <div class="navigation-simple" layout="column">
         <md-button ng-click="vm.switchCategory(category)" ng-class="vm.selectedCategory == category ? 'md-raised md-primary' : 'md-primary'" class="item" aria-label="inbox" ng-repeat="category in vm.categoryList">

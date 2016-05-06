@@ -2,7 +2,7 @@
     <form class="md-inline-form">
         <md-toolbar class="md-accent md-hue-2">
             <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update resident - Psychosocial</span>
+                <span class="title" >Update Resident - Psychosocial</span>
                 <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
                     <md-icon md-font-icon="icon-close"></md-icon>
                 </md-button>
@@ -11,6 +11,82 @@
 
         <md-dialog-content ms-scroll>
 
+          <md-input-container class="md-block">
+              <label>Psychosocial Status</label>
+              <input ng-model="vm.form.newpsychosocialStatus" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Responsiveness</label>
+              <input ng-model="vm.form.psychosocialResponsiveness" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Mood</label>
+              <input ng-model="vm.form.mood" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Comprehension</label>
+              <input ng-model="vm.form.comprehension" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.teeth.smokes" ng-hide="vm.showCancel" aria-label="Smokes">
+             Smokes
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.teeth.alcohol" ng-hide="vm.showCancel" aria-label="Alcohol">
+             Alcohol
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Other</label>
+              <input ng-model="vm.form.personalHabits.other" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>General Activity Participation</label>
+              <input ng-model="vm.form.generalActivityParticipation" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Dining Room Participation</label>
+              <input ng-model="vm.form.diningRoomParticipation" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Bus Ride Participation</label>
+              <input ng-model="vm.form.busRideParticipation" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Fitness Class Participation</label>
+              <input ng-model="vm.form.fitnessClassParticipation" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Time In Room</label>
+              <input ng-model="vm.form.timeInRoom" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Prefered Activites</label>
+              <input ng-model="vm.form.preferedActivites" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Use Fitness Equipment Independently</label>
+              <input ng-model="vm.form.useFitnessEquipmentIndependently" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Family Involvement</label>
+              <input ng-model="vm.form.familyInvolvement" type="text">
+          </md-input-container>
 
         </md-dialog-content>
 

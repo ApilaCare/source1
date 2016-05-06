@@ -2,7 +2,7 @@
     <form class="md-inline-form">
         <md-toolbar class="md-accent md-hue-2">
             <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update resident - Physical Condition</span>
+                <span class="title" >Update Resident - Physical Condition</span>
                 <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
                     <md-icon md-font-icon="icon-close"></md-icon>
                 </md-button>
@@ -11,6 +11,67 @@
 
         <md-dialog-content ms-scroll>
 
+          <md-input-container class="md-block">
+              <label>Height</label>
+              <input ng-model="vm.form.height" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Skin Condition</label>
+              <input ng-model="vm.form.skinCondition" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Wears Hearing Aid</label>
+              <input ng-model="vm.form.wearsHearingAid" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Hearing in Right Ear</label>
+              <input ng-model="vm.form.hearing.rightEar" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Hearing in Left Ear</label>
+              <input ng-model="vm.form.hearing.leftEar" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Vision in Right Eye</label>
+              <input ng-model="vm.form.vision.rightEye" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Vision in Left Eye</label>
+              <input ng-model="vm.form.vision.leftEye" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.teeth.upperDentureFit" ng-hide="vm.showCancel" aria-label="Upper Denture Fit">
+             Upper Denture Fit
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Upper Teeth Status</label>
+              <input ng-model="vm.form.teeth.upperTeeth" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.teeth.lowerDentureFit" ng-hide="vm.showCancel" aria-label="Lower Denture Fit">
+             Lower Denture Fit
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Lower Teeth Status</label>
+              <input ng-model="vm.form.teeth.lowerTeeth" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Teeth Condition</label>
+              <input ng-model="vm.form.teethCondition" type="text">
+          </md-input-container>
 
         </md-dialog-content>
 

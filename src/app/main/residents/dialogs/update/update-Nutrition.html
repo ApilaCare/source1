@@ -2,7 +2,7 @@
     <form class="md-inline-form">
         <md-toolbar class="md-accent md-hue-2">
             <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update resident - Nutrition</span>
+                <span class="title" >Update Resident - Nutrition</span>
                 <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
                     <md-icon md-font-icon="icon-close"></md-icon>
                 </md-button>
@@ -11,6 +11,64 @@
 
         <md-dialog-content ms-scroll>
 
+          <md-input-container class="md-block">
+              <label>Overall Nutrition</label>
+              <input ng-model="vm.form.overallNutrition" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Poor Nutrition Intervention</label>
+              <input ng-model="vm.form.poorNutritionIntervention" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.diabetic" ng-hide="vm.showCancel" aria-label="Diabetic">
+              Diabetic
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Diabetic Type</label>
+              <input ng-model="vm.form.diabeticType" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.regularBloodSugarMonitoring" ng-hide="vm.showCancel" aria-label="Regular Blood Sugar Monitoring">
+              Regular Blood Sugar Monitoring
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.bedtimeSnack" ng-hide="vm.showCancel" aria-label="Bedtime Snack">
+              Bedtime Snack
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Adaptive Equipment</label>
+              <input ng-model="vm.form.adaptiveEquipment" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.needsFoodInSmallPeices" ng-hide="vm.showCancel" aria-label="Needs Food In Small Peices">
+              Needs Food In Small Peices
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Type of Diet</label>
+              <input ng-model="vm.form.typeOfDiet" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Food Likes</label>
+              <input ng-model="vm.form.newfoodLikes" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Food Dislikes</label>
+              <input ng-model="vm.form.newfoodDislikes" type="text">
+          </md-input-container>
 
         </md-dialog-content>
 

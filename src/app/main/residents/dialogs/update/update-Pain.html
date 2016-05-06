@@ -2,7 +2,7 @@
     <form class="md-inline-form">
         <md-toolbar class="md-accent md-hue-2">
             <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update resident - Pain</span>
+                <span class="title" >Update Resident - Pain</span>
                 <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
                     <md-icon md-font-icon="icon-close"></md-icon>
                 </md-button>
@@ -11,6 +11,36 @@
 
         <md-dialog-content ms-scroll>
 
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.hasPain" ng-hide="vm.showCancel" aria-label="Has Pain">
+             Has Pain
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Pain Location</label>
+              <input ng-model="vm.form.painLocation" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Pain Description</label>
+              <input ng-model="vm.form.painDescription" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Time of Max Pain</label>
+              <input ng-model="vm.form.maxPainTime" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Pain Increased By</label>
+              <input ng-model="vm.form.painIncreasedBy" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Pain Decreased By</label>
+              <input ng-model="vm.form.painDecreasedBy" type="text">
+          </md-input-container>
 
         </md-dialog-content>
 

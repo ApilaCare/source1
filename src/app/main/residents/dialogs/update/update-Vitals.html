@@ -2,7 +2,7 @@
     <form class="md-inline-form">
         <md-toolbar class="md-accent md-hue-2">
             <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update resident - Vitals</span>
+                <span class="title" >Update Resident - Vitals</span>
                 <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
                     <md-icon md-font-icon="icon-close"></md-icon>
                 </md-button>
@@ -11,6 +11,40 @@
 
         <md-dialog-content ms-scroll>
 
+          <md-input-container class="md-block">
+              <label>Temperature</label>
+              <input ng-model="vm.form.newtemperature" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Blood Pressure Systolic</label>
+              <input ng-model="vm.form.newbloodPressureSystolic" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Blood Pressure Diastolic</label>
+              <input ng-model="vm.form.newbloodPressureDiastolic" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Oxygen Saturation</label>
+              <input ng-model="vm.form.newoxygenSaturation" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Pulse</label>
+              <input ng-model="vm.form.newpulse" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Vitals Pain</label>
+              <input ng-model="vm.form.newvitalsPain" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Respiration</label>
+              <input ng-model="vm.form.newrespiration" type="text">
+          </md-input-container>
 
         </md-dialog-content>
 
