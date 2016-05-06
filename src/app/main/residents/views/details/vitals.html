@@ -12,7 +12,41 @@
 
         <div layout="column" layout-align="start start">
               <!-- Add details content here -->
-
+              <h4>Temperature :
+                <span ng-repeat="temperature in vm.selectedResident.temperature">
+                  {{ temperature }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
+              <h4>Blood Pressure Systolic :
+                <span ng-repeat="bloodPressureSystolic in vm.selectedResident.bloodPressureSystolic">
+                  {{ bloodPressureSystolic }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
+              <h4>Blood Pressure Diastolic :
+                <span ng-repeat="bloodPressureDiastolic in vm.selectedResident.bloodPressureDiastolic">
+                  {{ bloodPressureDiastolic }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
+              <h4>Oxygen Saturation :
+                <span ng-repeat="oxygenSaturation in vm.selectedResident.oxygenSaturation">
+                  {{ oxygenSaturation }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
+              <h4>Pulse :
+                <span ng-repeat="pulse in vm.selectedResident.pulse">
+                  {{ pulse }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
+              <h4>Vitals Pain :
+                <span ng-repeat="vitalsPain in vm.selectedResident.vitalsPain">
+                  {{ vitalsPain }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
+              <h4>Respiration :
+                <span ng-repeat="resp in vm.selectedResident.respiration">
+                  {{ resp }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
         </div>
 
     </div>

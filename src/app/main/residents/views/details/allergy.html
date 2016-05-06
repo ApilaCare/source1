@@ -12,8 +12,17 @@
 
         <div layout="column" layout-align="start start">
               <!-- Add details content here -->
-              <h4>Food Allergies : {{ vm.selectedResident.foodAllergies }}</h4>
-              <h4>Medication Allergies : {{ vm.selectedResident.medicationAllergies }}</h4>
+              <h4>Food Allergies :
+                <span ng-repeat="foodAllergy in vm.selectedResident.foodAllergies">
+                  {{ foodAllergy }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
+
+              <h4>Medication Allergies :
+                <span ng-repeat="medAllergy in vm.selectedResident.medicationAllergies">
+                  {{ medAllergy }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
         </div>
 
     </div>

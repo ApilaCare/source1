@@ -13,6 +13,26 @@
         <div layout="column" layout-align="start start">
               <!-- Add details content here -->
 
+              <h4>Psychosocial Status :
+                <span ng-repeat="psychosocialStatus in vm.selectedResident.psychosocialStatus">
+                  {{ psychosocialStatus }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
+
+              <h4>Responsiveness : {{ vm.selectedResident.psychosocialResponsiveness}}</h4>
+              <h4>Mood : {{ vm.selectedResident.mood }}</h4>
+              <h4>Comprehension : {{ vm.selectedResident.comprehension }}</h4>
+              <h4>Smokes : {{ vm.selectedResident.smokes }}</h4>
+              <h4>Alcohol : {{ vm.selectedResident.alcohol }}</h4>
+              <h4>Other : {{ vm.selectedResident.personalHabits.other }}</h4>
+              <h4>General Activity Participation : {{ vm.selectedResident.generalActivityParticipation }}</h4>
+              <h4>Dining Room Participation : {{ vm.selectedResident.diningRoomParticipation }}</h4>
+              <h4>Bus Ride Participation : {{ vm.selectedResident.busRideParticipation }}</h4>
+              <h4>Fitness Class Participation : {{ vm.selectedResident.fitnessClassParticipation }}</h4>
+              <h4>Time In Room : {{ vm.selectedResident.timeInRoom }}</h4>
+              <h4>Prefered Activites : {{ vm.selectedResident.preferedActivites }}</h4>
+              <h4>Use Fitness Equipment Independently : {{ vm.selectedResident.useFitnessEquipmentIndependently }}</h4>
+              <h4>Family Involvement : {{ vm.selectedResident.familyInvolvement }}</h4>
         </div>
 
     </div>

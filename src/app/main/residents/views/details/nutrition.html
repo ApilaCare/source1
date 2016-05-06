@@ -12,7 +12,27 @@
 
         <div layout="column" layout-align="start start">
               <!-- Add details content here -->
+              <h4>Overall Nutrition : {{ vm.selectedResident.overallNutrition }}</h4>
+              <h4>Poor Nutrition Intervention : {{ vm.selectedResident.poorNutritionIntervention }}</h4>
+              <h4>Diabetic : {{ vm.selectedResident.diabetic }}</h4>
+              <h4>Diabetic Type : {{ vm.selectedResident.diabeticType }}</h4>
+              <h4>Regular Blood Sugar Monitoring : {{ vm.selectedResident.regularBloodSugarMonitoring }}</h4>
+              <h4>Bedtime Snack : {{ vm.selectedResident.bedtimeSnack }}</h4>
+              <h4>Adaptive Equipment : {{ vm.selectedResident.adaptiveEquipment }}</h4>
+              <h4>Needs Food In Small Peices : {{ vm.selectedResident.needsFoodInSmallPeices }}</h4>
+              <h4>Type of Diet : {{ vm.selectedResident.typeOfDiet }}</h4>
 
+              <h4>Food Likes :
+                <span ng-repeat="food in vm.selectedResident.foodLikes">
+                  {{ food }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
+
+              <h4>Food Dislikes :
+                <span ng-repeat="food in vm.selectedResident.foodDislikes">
+                  {{ food }} <span ng-if="!$last">,</span>
+                </span>
+              </h4>
         </div>
 
     </div>
