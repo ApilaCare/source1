@@ -10,7 +10,16 @@
         </md-toolbar>
 
         <md-dialog-content ms-scroll>
+          
+          <md-input-container class="md-block">
+              <label>Food Allergies</label>
+              <input ng-model="vm.form.foodAllergies" type="text">
+          </md-input-container>
 
+          <md-input-container class="md-block">
+              <label>Medication Allergies</label>
+              <input ng-model="vm.form.medicationAllergies" type="text">
+          </md-input-container>
 
         </md-dialog-content>
 

@@ -2,7 +2,7 @@
     <form class="md-inline-form">
         <md-toolbar class="md-accent md-hue-2">
             <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update resident - Mobility</span>
+                <span class="title" >Update Resident - Mobility</span>
                 <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
                     <md-icon md-font-icon="icon-close"></md-icon>
                 </md-button>
@@ -10,6 +10,51 @@
         </md-toolbar>
 
         <md-dialog-content ms-scroll>
+
+          <md-input-container class="md-block">
+              <label>Use of Assistive Device</label>
+              <input ng-model="vm.form.insideApartment.useOfAssistiveDevice" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Assitance with Device</label>
+              <input ng-model="vm.form.insideApartment.assitanceWithDevice" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Special Ambulation Needs</label>
+              <input ng-model="vm.form.insideApartment.specialAmbulationNeeds" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Use of Assistive Device</label>
+              <input ng-model="vm.form.outsideApartment.useOfAssistiveDevice" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Assitance with Device</label>
+              <input ng-model="vm.form.outsideApartment.assitanceWithDevice" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Special Ambulation Needs</label>
+              <input ng-model="vm.form.outsideApartment.specialAmbulationNeeds" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Transfers</label>
+              <input ng-model="vm.form.transfers" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Fall Risk</label>
+              <input ng-model="vm.form.fallRisk" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Bed Reposition</label>
+              <input ng-model="vm.form.bedReposition" type="text">
+          </md-input-container>
 
 
         </md-dialog-content>
