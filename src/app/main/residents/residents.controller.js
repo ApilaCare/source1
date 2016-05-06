@@ -246,6 +246,7 @@
 
         function updateResident(ev)
         {
+
           var cat = vm.selectedCategory;
 
           if(vm.selectedCategory === "Physical condition") {
@@ -258,6 +259,9 @@
             $mdDialog.show({
                 controller         : 'UpdateController',
                 controllerAs       : 'vm',
+                locals             : {
+                  currAppointment: ev
+                },
                 templateUrl        : templateUrl,
                 parent             : angular.element($document.body),
                 targetEvent        : ev,
