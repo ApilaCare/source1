@@ -81,8 +81,8 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
             </div>
 
             <!-- Transportation -->
-            <div layout="row">
-                <md-input-container class="md-block">
+            <div layout="row" layout-align="space-between center">
+                <md-input-container class="md-block flex-66">
                     <label translate="CALENDAR.TRANSPORTATION">Transporation</label>
                     <input name="transportation" placeholder="We are transporting" ng-model="vm.transportation" required>
                     <div ng-messages="eventForm.transportation.$error" ng-show="eventForm.transportation.$touched" role="alert">
@@ -107,10 +107,6 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
                 SAVE
             </md-button>
 
-            <md-button class="md-icon-button" aria-label="Delete" translate translate-attr-aria-label="CALENDAR.DELETE">
-                <md-icon md-font-icon="icon-delete"></md-icon>
-                <md-tooltip><span translate="CALENDAR.DELETE">Delete</span></md-tooltip>
-            </md-button>
         </md-dialog-actions>
           </md-dialog-content>
     </form>
