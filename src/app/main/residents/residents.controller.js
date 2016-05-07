@@ -8,15 +8,11 @@
 
     /** @ngInject */
     function MailController($scope, $document, $timeout, $mdDialog, $mdMedia,
-                  $mdSidenav, Inbox, apilaData, residentsService)
+                  $mdSidenav, Inbox, apilaData)
     {
         var vm = this;
 
         // Data
-        vm.accounts = {
-            'creapond'    : 'johndoe@creapond.com',
-            'withinpixels': 'johndoe@withinpixels.com'
-        };
         vm.checked = [];
         vm.colors = ['blue-bg', 'blue-grey-bg', 'orange-bg', 'pink-bg', 'purple-bg'];
         vm.selectedAccount = 'creapond';
@@ -46,9 +42,14 @@
                            "Sleep",
                            "Vitals"];
 
-        // vm.administrativeList = ['firstName', 'lastName', 'middleName'];
-        //
-        // vm.allergyList = ['foodAllergies', 'medicationAllergies'];
+        //loading the list of residents
+        apilaData.residentsList()
+        .success(function(d) {
+            vm.residentList = d;
+            })
+            .error(function(d) {
+              console.log("Error retriving the list of residents");
+          });
 
         // Methods
         vm.checkAll = checkAll;
@@ -67,9 +68,9 @@
           vm.selectedCategory = category;
         }
 
-       residentsService.getResidentsList().then(function(d) {
-         vm.residentList = d.data;
-       });
+      //  residentsService.getResidentsList().then(function(d) {
+      //    vm.residentList = d.data;
+      //  });
 
 
         //////////
@@ -219,7 +220,7 @@
                 controller         : 'ComposeDialogController',
                 controllerAs       : 'vm',
                 locals             : {
-                    selectedResident: undefined
+                    resList        : vm.residentList
                 },
                 templateUrl        : 'app/main/residents/dialogs/compose/compose-dialog.html',
                 parent             : angular.element($document.body),

@@ -7,18 +7,16 @@
         .controller('ComposeDialogController', ComposeDialogController);
 
     /** @ngInject */
-    function ComposeDialogController($mdDialog, apilaData, residentsService)
+    function ComposeDialogController($mdDialog, apilaData, resList)
     {
         var vm = this;
-
-        // Data
 
         // Methods
         vm.closeDialog = closeDialog;
         vm.addResident = addResident;
 
         //////////
-        vm.residentList = residentsService.getResidentsList();
+         vm.residentList = resList;
 
         function closeDialog()
         {

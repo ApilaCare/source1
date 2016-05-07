@@ -51,6 +51,9 @@
         apilaData.updateResident(currAppointment._id, vm.form)
             .success(function(resident) {
 
+              currAppointment.updateInfo.push(
+                resident.updateInfo[resident.updateInfo.length-1]);
+
               pushNewValues();
               resetFields();
 
