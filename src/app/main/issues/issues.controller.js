@@ -7,7 +7,7 @@
         .controller('ScrumboardController', ScrumboardController);
 
     /** @ngInject */
-    function ScrumboardController($mdSidenav, BoardService, BoardList, CardFilters)
+    function ScrumboardController($mdSidenav, BoardService, BoardList, CardFilters, $mdDialog, $document)
     {
         var vm = this;
 
@@ -20,6 +20,7 @@
         // Methods
         vm.toggleSidenav = toggleSidenav;
         vm.updateBoardUri = updateBoardUri;
+        vm.addIssue = addIssue;
         vm.clearFilters = CardFilters.clear;
         vm.filteringIsOn = CardFilters.isOn;
 
@@ -38,6 +39,20 @@
                 vm.boardList.getById(vm.board.id).name = vm.board.name;
                 vm.boardList.getById(vm.board.id).uri = vm.board.uri = encodeURIComponent(vm.board.name).replace(/%20/g, '-').toLowerCase();
             }
+        }
+
+        function addIssue(ev) {
+          $mdDialog.show({
+              controller         : 'CreateIssueController',
+              controllerAs       : 'vm',
+              locals             : {
+                  board: vm.board
+              },
+              templateUrl        : 'app/main/issues/dialogs/createIssue/createIssue.html',
+              parent             : angular.element($document.body),
+              targetEvent        : ev,
+              clickOutsideToClose: true
+          });
         }
 
         /**

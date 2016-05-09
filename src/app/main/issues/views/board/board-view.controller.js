@@ -7,13 +7,17 @@
         .controller('BoardViewController', BoardViewController);
 
     /** @ngInject */
-    function BoardViewController($document, $window, $timeout, $mdDialog, msUtils, BoardList, BoardService, CardFilters, DialogService)
+    function BoardViewController($document, $window, $timeout, $mdDialog, msUtils,
+      BoardList, BoardService, CardFilters, DialogService, authentication, apilaData)
     {
         var vm = this;
 
         // Data
         vm.currentView = 'board';
         vm.board = BoardService.data.data;
+
+        var username = authentication.currentUser.name;
+        vm.issueList = BoardService.getIssueByUsername(username);
 
         vm.boardList = BoardList.data;
         vm.cardFilters = CardFilters;
@@ -118,6 +122,17 @@
 
         //////////
 
+        apilaData.listIssueByUsername(username)
+            .success(function(issues) {
+              console.log(issues);
+              //add card to first list
+              addCardsToList(issues, vm.board.lists[0]);
+            })
+            .error(function(issues) {
+                console.log("Error while loading list of issues for: " + username);
+            });
+
+
         init();
 
         /**
@@ -214,6 +229,19 @@
             {
                 // Canceled
             });
+
+        }
+
+        //adds a list of cards to a selected list
+        function addCardsToList(cards, list) {
+
+          angular.forEach(cards, function(v, key) {
+            v.id = v._id;
+            v.name = v.title;
+            vm.board.cards.push(v);
+            list.idCards.push(v.id);
+          });
+
 
         }
 

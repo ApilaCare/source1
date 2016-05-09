@@ -7,12 +7,14 @@
         .factory('BoardService', BoardService);
 
     /** @ngInject */
-    function BoardService($q, msApi)
+    function BoardService($q, msApi, apilaData)
     {
         var service = {
             data        : {},
             addNewBoard : addNewBoard,
-            getBoardData: getBoardData
+            getBoardData: getBoardData,
+            getIssueByUsername: getIssueByUsername
+
         };
 
         //load dummy data at begining
@@ -29,7 +31,7 @@
                 "lists": [
                     {
                         "id": "56027cf5a2ca3839a5d36103",
-                        "name": "Designs",
+                        "name": "My issues",
                         "idCards": [
                             "5603a2a3cab0c8300f6096b3"
                         ]
@@ -43,112 +45,7 @@
                     }
                 ],
                 "cards": [
-                    {
-                        "id": "5603a2a3cab0c8300f6096b3",
-                        "name": "Calendar App Design",
-                        "description": "",
-                        "idAttachmentCover": "56027cfcbe1b72ecf1fc452a",
-                        "idMembers": [
-                            "56027c1930450d8bf7b10758",
-                            "36027j1930450d8bf7b10158"
-                        ],
-                        "idLabels": [
-                            "56027e4119ad3a5dc28b36cd",
-                            "5640635e19ad3a5dc21416b2"
-                        ],
-                        "attachments": [
-                            {
-                                "id": "56027cfcbe1b72ecf1fc452a",
-                                "name": "calendar-app-design.jpg",
-                                "src": "assets/images/scrumboard/calendar-app-design.jpg",
-                                "time": "Added Nov 1 at 12:34PM",
-                                "type": "image"
-                            },
-                            {
-                                "id": "67027cahbe3b52ecf2dc631c",
-                                "url": "assets/images/scrumboard/calendar-app-design.jpg",
-                                "time": "Added Nov 3 at 15:22AM",
-                                "type": "link"
-                            }
-                        ],
-                        "subscribed": true,
-                        "checklists": [
-                            {
-                                "id": "63021cfdbe1x72wcf1fc451v",
-                                "name": "Checklist",
-                                "checkItemsChecked": 1,
-                                "checkItems": [
-                                    {
-                                        "name": "Implement a calendar library",
-                                        "checked": false
-                                    },
-                                    {
-                                        "name": "Replace event colors with Material Design colors",
-                                        "checked": true
-                                    },
-                                    {
-                                        "name": "Replace icons with Material Design icons",
-                                        "checked": false
-                                    },
-                                    {
-                                        "name": "Use moment.js",
-                                        "checked": false
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "Checklist 2",
-                                "id": "74031cfdbe1x72wcz1dc166z",
-                                "checkItemsChecked": 1,
-                                "checkItems": [
-                                    {
-                                        "name": "Replace event colors with Material Design colors",
-                                        "checked": true
-                                    },
-                                    {
-                                        "name": "Replace icons with Material Design icons",
-                                        "checked": false
-                                    },
-                                    {
-                                        "name": "Use moment.js",
-                                        "checked": false
-                                    }
-                                ]
-                            }
-                        ],
-                        "checkItems": 7,
-                        "checkItemsChecked": 2,
-                        "comments": [
-                            {
-                                "idMember": "56027c1930450d8bf7b10758",
-                                "message": "We should be able to add moment.js without any problems",
-                                "time": "12 mins. ago"
-                            },
-                            {
-                                "idMember": "36027j1930450d8bf7b10158",
-                                "message": "I added a link for a page that might help us deciding the colors",
-                                "time": "30 mins. ago"
-                            }
-                        ],
-                        "activities": [
-                            {
-                                "idMember": "56027c1930450d8bf7b10758",
-                                "message": "added a comment",
-                                "time": "12 mins. ago"
-                            },
-                            {
-                                "idMember": "36027j1930450d8bf7b10158",
-                                "message": "added a comment",
-                                "time": "30 mins. ago"
-                            },
-                            {
-                                "idMember": "36027j1930450d8bf7b10158",
-                                "message": "attached a link",
-                                "time": "45 mins. ago"
-                            }
-                        ],
-                        "due": null
-                    },
+                    
                     {
                         "id": "5637273da9b93bb84743a0f9",
                         "name": "Fix Splash Screen bugs",
@@ -217,6 +114,10 @@
                 ]
             }
         };
+
+      function getIssueByUsername(username) {
+
+        }
 
         /**
          * Get board data from the server

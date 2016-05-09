@@ -9,10 +9,10 @@
             <div layout="row" layout-align="center center" flex-order="1" flex-order-xs="2">
                 <md-button class="md-accent md-raised md-hue-2 header-boards-button"
                            ng-class="'md-'+vm.board.settings.color+'-700-bg'"
-                           ng-click="vm.boardSelectorVisible = !vm.boardSelectorVisible"
+                           ng-click="vm.addIssue()"
                            aria-label="boards button" translate translate-attr-aria-label="SB.BOARDS_BUTTON">
                     <md-icon md-font-icon="icon-trello" class="icon"></md-icon>
-                    <span translate="SB.BOARDS">BOARDS</span>
+                    <span>Add issue</span>
                 </md-button>
             </div>
             <!-- / BOARD SELECTION BUTTON -->

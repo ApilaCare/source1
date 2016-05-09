@@ -44,6 +44,10 @@
             return $http.get(apiUrl + '/api/issues/' + issueid);
         };
 
+        var listIssueByUsername = function(username) {
+          return $http.get(apiUrl + '/api/issues/' + username);
+        }
+
         //makes a call to the api to add a new issue
         var addIssue = function(data) {
             return $http.post(apiUrl + '/api/issues/new', data, {
@@ -143,7 +147,8 @@
             addResident : addResident,
             residentById : residentById,
             updateResident: updateResident,
-            appointmentsListByMonth: appointmentsListByMonth
+            appointmentsListByMonth: appointmentsListByMonth,
+            listIssueByUsername: listIssueByUsername
         };
     }
 
