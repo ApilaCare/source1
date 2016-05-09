@@ -94,6 +94,11 @@
 
         <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
         <!-- inject:js -->
+        <script src="app/main/issues/issues.module.js"></script>
+        <script src="app/main/issues/views/calendar/dialogs/event/event-dialog.controller.js"></script>
+        <script src="app/main/issues/sidenavs/settings/menus/members/members-menu.controller.js"></script>
+        <script src="app/main/issues/sidenavs/settings/menus/labels/labels-menu.controller.js"></script>
+        <script src="app/main/issues/sidenavs/settings/menus/color/color-menu.controller.js"></script>
         <script src="app/main/ui/theme-colors/theme-colors.module.js"></script>
         <script src="app/main/ui/theme-colors/dialogs/custom-theme/custom-theme-dialog.controller.js"></script>
         <script src="app/main/ui/page-layouts/simple/tabbed/tabbed.module.js"></script>
@@ -104,10 +109,10 @@
         <script src="app/main/ui/page-layouts/simple/right-sidenav/right-sidenav.controller.js"></script>
         <script src="app/main/ui/page-layouts/simple/left-sidenav-ii/left-sidenav-ii.module.js"></script>
         <script src="app/main/ui/page-layouts/simple/left-sidenav-ii/left-sidenav-ii.controller.js"></script>
-        <script src="app/main/ui/page-layouts/simple/fullwidth/fullwidth.module.js"></script>
-        <script src="app/main/ui/page-layouts/simple/fullwidth/fullwidth.controller.js"></script>
         <script src="app/main/ui/page-layouts/simple/left-sidenav/left-sidenav.module.js"></script>
         <script src="app/main/ui/page-layouts/simple/left-sidenav/left-sidenav.controller.js"></script>
+        <script src="app/main/ui/page-layouts/simple/fullwidth/fullwidth.module.js"></script>
+        <script src="app/main/ui/page-layouts/simple/fullwidth/fullwidth.controller.js"></script>
         <script src="app/main/ui/page-layouts/carded/right-sidenav-ii/right-sidenav-ii.module.js"></script>
         <script src="app/main/ui/page-layouts/carded/right-sidenav-ii/right-sidenav-ii.controller.js"></script>
         <script src="app/main/ui/page-layouts/carded/right-sidenav/right-sidenav.module.js"></script>
@@ -123,22 +128,32 @@
         <script src="app/main/ui/page-layouts/blank/blank.module.js"></script>
         <script src="app/main/ui/page-layouts/blank/blank.controller.js"></script>
         <script src="app/main/residents/residents.module.js"></script>
-        <script src="app/main/residents/dialogs/compose/compose-dialog.controller.js"></script>
         <script src="app/main/residents/dialogs/update/update.controller.js"></script>
+        <script src="app/main/residents/dialogs/compose/compose-dialog.controller.js"></script>
+        <script src="app/main/issues/views/calendar/calendar-view.controller.js"></script>
+        <script src="app/main/issues/views/boards/boards-view.controller.js"></script>
+        <script src="app/main/issues/views/board/board-view.controller.js"></script>
+        <script src="app/main/issues/sidenavs/settings/settings-sidenav.controller.js"></script>
+        <script src="app/main/issues/sidenavs/filters/filters-sidenav.controller.js"></script>
+        <script src="app/main/issues/directives/ms-sb-add-card/ms-sb-add-card.directive.js"></script>
+        <script src="app/main/issues/dialogs/card/card-dialog.controller.js"></script>
         <script src="app/main/appointments/appointments.module.js"></script>
-        <script src="app/main/appointments/dialogs/event-detail/event-detail-dialog.controller.js"></script>
         <script src="app/main/appointments/dialogs/event-form/event-form-dialog.controller.js"></script>
+        <script src="app/main/appointments/dialogs/event-detail/event-detail-dialog.controller.js"></script>
         <script src="app/quick-panel/quick-panel.module.js"></script>
         <script src="app/quick-panel/tabs/chat/chat-tab.controller.js"></script>
-        <script src="app/main/ui/theme-colors/theme-colors.controller.js"></script>
         <script src="app/main/ui/typography/typography.module.js"></script>
         <script src="app/main/ui/typography/typography.controller.js"></script>
+        <script src="app/main/ui/theme-colors/theme-colors.controller.js"></script>
         <script src="app/main/ui/material-colors/material-colors.js"></script>
         <script src="app/main/ui/material-colors/material-colors.controller.js"></script>
         <script src="app/main/ui/icons/icons.module.js"></script>
         <script src="app/main/ui/icons/icons.controller.js"></script>
         <script src="app/main/ui/forms/forms.module.js"></script>
         <script src="app/main/ui/forms/forms.controller.js"></script>
+        <script src="app/main/issues/services/filters.service.js"></script>
+        <script src="app/main/issues/services/dialog.service.js"></script>
+        <script src="app/main/issues/services/board.service.js"></script>
         <script src="app/main/auth/reset-password/reset-password.module.js"></script>
         <script src="app/main/auth/reset-password/reset-password.controller.js"></script>
         <script src="app/main/auth/register-v2/register-v2.module.js"></script>
@@ -165,11 +180,10 @@
         <script src="app/core/directives/ms-navigation/ms-navigation.directive.js"></script>
         <script src="app/core/directives/ms-nav/ms-nav.directive.js"></script>
         <script src="app/core/directives/ms-material-color-picker/ms-material-color-picker.directive.js"></script>
-        <script src="app/core/directives/ms-datepicker-fix/ms-datepicker-fix.directive.js"></script>
         <script src="app/core/directives/ms-form-wizard/ms-form-wizard.directive.js"></script>
+        <script src="app/core/directives/ms-datepicker-fix/ms-datepicker-fix.directive.js"></script>
         <script src="app/core/directives/ms-card/ms-card.directive.js"></script>
         <script src="app/main/residents/residents.controller.js"></script>
-        <script src="app/main/issues/issues.module.js"></script>
         <script src="app/main/issues/issues.controller.js"></script>
         <script src="app/main/appointments/appointments.controller.js"></script>
         <script src="app/core/theming/fuse-theming.provider.js"></script>
@@ -186,9 +200,9 @@
         <script src="app/core/services/authentication.service.js"></script>
         <script src="app/core/services/apilaData.service.js"></script>
         <script src="app/core/services/api-resolver.service.js"></script>
-        <script src="app/core/directives/highlight.directive.js"></script>
         <script src="app/core/filters/tag.filter.js"></script>
         <script src="app/core/filters/basic.filter.js"></script>
+        <script src="app/core/directives/highlight.directive.js"></script>
         <script src="app/core/config/fuse-config.provider.js"></script>
         <script src="app/common/services/wordCloud.service.js"></script>
         <script src="app/common/services/exportPdf.service.js"></script>
@@ -196,9 +210,9 @@
         <script src="app/common/services/apilaData.service.js"></script>
         <script src="app/toolbar/toolbar.module.js"></script>
         <script src="app/toolbar/toolbar.controller.js"></script>
+        <script src="app/quick-panel/quick-panel.controller.js"></script>
         <script src="app/navigation/navigation.module.js"></script>
         <script src="app/navigation/navigation.controller.js"></script>
-        <script src="app/quick-panel/quick-panel.controller.js"></script>
         <script src="app/index.module.js"></script>
         <script src="app/main/main.controller.js"></script>
         <script src="app/core/core.run.js"></script>

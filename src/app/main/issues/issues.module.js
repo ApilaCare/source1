@@ -9,14 +9,82 @@
     /** @ngInject */
     function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider)
     {
-        // State
         $stateProvider
             .state('app.issues', {
-                url    : '/issues',
-                views  : {
+                abstract : true,
+                url      : '/issues',
+                resolve  : {
+                    BoardList: function (msApi)
+                    {
+
+                             return msApi.resolve('issues.boardList@get');
+
+                          }
+                },
+            })
+
+            // Home
+            .state('app.issues.boards', {
+                url  : '/boards',
+                views: {
                     'content@app': {
-                        templateUrl: 'app/main/issues/issues.html',
-                        controller : 'IssuesController as vm'
+                        templateUrl: 'app/main/issues/views/boards/boards-view.html',
+                        controller : 'BoardsViewController as vm'
+                    }
+                }
+            })
+
+            // Board
+            .state('app.issues.boards.board', {
+                    url    : '/:id/:uri',
+                    views  : {
+                        'content@app'                                  : {
+                            templateUrl: 'app/main/issues/issues.html',
+                            controller : 'ScrumboardController as vm'
+                        },
+                        'issuesContent@app.issues.boards.board': {
+                            templateUrl: 'app/main/issues/views/board/board-view.html',
+                            controller : 'BoardViewController as vm'
+                        }
+                    },
+                    resolve: {
+                        BoardData: function ($stateParams, BoardService)
+                        {
+                            return {};
+                        }
+                    }
+                }
+            )
+
+            // Add board
+            .state('app.issues.boards.addBoard', {
+                    url    : '/add',
+                    views  : {
+                        'content@app'                                     : {
+                            templateUrl: 'app/main/issues/issues.html',
+                            controller : 'ScrumboardController as vm'
+                        },
+                        'issuesContent@app.issues.boards.addBoard': {
+                            templateUrl: 'app/main/issues/views/board/board-view.html',
+                            controller : 'BoardViewController as vm'
+                        }
+                    },
+                    resolve: {
+                        BoardData: function ($stateParams, BoardService)
+                        {
+                            return BoardService.addNewBoard();
+                        }
+                    }
+                }
+            )
+
+            // Calendar
+            .state('app.issues.boards.board.calendar', {
+                url  : '/calendar',
+                views: {
+                    'issuesContent@app.issues.boards.board': {
+                        templateUrl: 'app/main/issues/views/calendar/calendar-view.html',
+                        controller : 'CalendarViewController as vm'
                     }
                 }
             });
@@ -25,7 +93,8 @@
         $translatePartialLoaderProvider.addPart('app/main/issues');
 
         // Api
-        msApiProvider.register('issues', ['app/data/sample/sample.json']);
+        msApiProvider.register('issues.boardList', ['app/data/issues/board-list.json']);
+        msApiProvider.register('issues.board', ['app/data/issues/boards/:id.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('fuse', {
@@ -36,13 +105,12 @@
 
         msNavigationServiceProvider.saveItem('fuse.issues', {
             title    : 'Issues',
-            icon     : 'icon-tile-four',
-            state    : 'app.issues',
-            /*stateParams: {
-                'param1': 'page'
-             },*/
-            translate: 'ISSUES.ISSUES_NAV',
+            icon     : 'icon-trello',
+            state    : 'app.issues.boards.board',
             weight   : 1
         });
     }
+
+
+
 })();
