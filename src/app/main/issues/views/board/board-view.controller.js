@@ -16,7 +16,10 @@
         vm.currentView = 'board';
         vm.board = BoardService.data.data;
 
-        var username = authentication.currentUser.name;
+        var username = authentication.currentUser().name;
+
+        console.log(username);
+
         vm.issueList = BoardService.getIssueByUsername(username);
 
         vm.boardList = BoardList.data;
@@ -122,6 +125,7 @@
 
         //////////
 
+        //add our first list of issues for our current user
         apilaData.listIssueByUsername(username)
             .success(function(issues) {
               console.log(issues);
@@ -132,6 +136,34 @@
                 console.log("Error while loading list of issues for: " + username);
             });
 
+
+          //add all the other issues assigned to users
+          apilaData.issuesList()
+                .success(function(issues) {
+                  console.log(issues);
+
+                  angular.forEach(issues, function(v, k) {
+                    var currList = {
+                      id: msUtils.guidGenerator(),
+                      name: v._id,
+                      idCards: []
+                    };
+
+                    angular.forEach(v.issues, function(value, key) {
+                      value.id = msUtils.guidGenerator();
+                      value.name = value.title;
+                      vm.board.cards.push(value);
+                      currList.idCards.push(value.id);
+                    });
+
+                    vm.board.lists.push(currList);
+
+                  });
+
+                })
+                .error(function(issues) {
+                    console.log("Error while loading list of issues for: " + username);
+                });
 
         init();
 

@@ -15,10 +15,16 @@
               <input ng-model="vm.form.title" type="text">
           </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Responsible Party</label>
-              <input ng-model="vm.form.responsibleParty" type="text">
-          </md-input-container>
+          <md-autocomplete md-selected-item="vm.selectedItem" md-search-text="searchText"
+                md-items="item in vm.getMatches(searchText)" md-item-text="item.display"
+                md-min-length="0" placeholder="Responsible Party">
+            <md-item-template> <span md-highlight-text="searchText">{{item.display}}</span>
+
+            </md-item-template>
+            <md-not-found>
+              No residents found.
+            </md-not-found>
+          </md-autocomplete>
 
           <md-input-container class="md-block">
               <md-select ng-model="vm.form.resolutionTimeframe" placeholder="Time Frame">

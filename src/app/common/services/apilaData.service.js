@@ -45,6 +45,7 @@
         };
 
         var listIssueByUsername = function(username) {
+          console.log("List users");
           return $http.get(apiUrl + '/api/issues/' + username);
         }
 

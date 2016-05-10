@@ -35,43 +35,9 @@
                         "idCards": [
                             "5603a2a3cab0c8300f6096b3"
                         ]
-                    },
-                    {
-                        "id": "56127cf2a2ca3539g7d36103",
-                        "name": "Development",
-                        "idCards": [
-                            "5637273da9b93bb84743a0f9"
-                        ]
                     }
                 ],
                 "cards": [
-                    
-                    {
-                        "id": "5637273da9b93bb84743a0f9",
-                        "name": "Fix Splash Screen bugs",
-                        "description": "",
-                        "idAttachmentCover": "5603a2ae2bbd55bb2db57478",
-                        "idMembers": [
-                            "56027c1930450d8bf7b10758"
-                        ],
-                        "idLabels": [],
-                        "attachments": [
-                            {
-                                "id": "5603a2ae2bbd55bb2db57478",
-                                "name": "mail-app-design.jpg",
-                                "src": "assets/images/scrumboard/mail-app-design.jpg",
-                                "time": "Added Nov 1 at 12:34PM",
-                                "type": "image"
-                            }
-                        ],
-                        "subscribed": true,
-                        "checklists": [],
-                        "checkItems": 0,
-                        "checkItemsChecked": 0,
-                        "comments": [],
-                        "activities": [],
-                        "due": null
-                    }
                 ],
                 "members": [
                     {

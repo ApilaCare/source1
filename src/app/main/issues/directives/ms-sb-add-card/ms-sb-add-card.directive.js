@@ -8,7 +8,7 @@
         .directive('msSbAddCard', msSbAddCardDirective);
 
     /** @ngInject */
-    function msSbAddCardController($scope, $timeout, BoardService, msUtils)
+    function msSbAddCardController($scope, $timeout, BoardService, $mdDialog, $document, msUtils)
     {
         var vm = this;
 
@@ -22,6 +22,20 @@
         vm.addNewCard = addNewCard;
 
         /////
+
+        vm.addIssue = function(ev) {
+          $mdDialog.show({
+              controller         : 'CreateIssueController',
+              controllerAs       : 'vm',
+              locals             : {
+                  board: vm.board
+              },
+              templateUrl        : 'app/main/issues/dialogs/createIssue/createIssue.html',
+              parent             : angular.element($document.body),
+              targetEvent        : ev,
+              clickOutsideToClose: true
+          });
+        }
 
         /**
          * Add New Card
