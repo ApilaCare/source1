@@ -46,7 +46,8 @@
               controller         : 'CreateIssueController',
               controllerAs       : 'vm',
               locals             : {
-                  board: vm.board
+                  board: vm.board,
+                  name: null
               },
               templateUrl        : 'app/main/issues/dialogs/createIssue/createIssue.html',
               parent             : angular.element($document.body),

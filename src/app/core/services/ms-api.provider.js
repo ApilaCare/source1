@@ -105,7 +105,7 @@
                 getBaseUrl: getBaseUrl,
                 register  : register,
                 resolve   : resolve,
-                request   : request
+                request   : request,
             };
 
             return service;

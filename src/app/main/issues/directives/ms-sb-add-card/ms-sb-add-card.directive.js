@@ -24,11 +24,14 @@
         /////
 
         vm.addIssue = function(ev) {
+
+                console.log(vm.list.name);
           $mdDialog.show({
               controller         : 'CreateIssueController',
               controllerAs       : 'vm',
               locals             : {
-                  board: vm.board
+                  board: vm.board,
+                  name: vm.list.name
               },
               templateUrl        : 'app/main/issues/dialogs/createIssue/createIssue.html',
               parent             : angular.element($document.body),

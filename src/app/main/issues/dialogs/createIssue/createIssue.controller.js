@@ -7,13 +7,19 @@
         .controller('CreateIssueController', CreateIssueController);
 
     /** @ngInject */
-    function CreateIssueController($mdDialog, apilaData, board) {
+    function CreateIssueController($mdDialog, apilaData, board, name) {
 
       var vm = this;
 
       //Functions
       vm.closeDialog = closeDialog;
       vm.addIssue = addIssue;
+
+      if(name != null) {
+        vm.selectedItem = {value: name,
+                           display: name
+                             };
+      }
 
       function closeDialog()
       {
@@ -37,14 +43,13 @@
      vm.residentList = [];
      vm.selectedUser = {};
 
-     apilaData.residentsList()
-       .success(function(residentList) {
-         //console.log(residentList);
-         vm.residentList = residentList.map(function(elem) {
-           return {value: elem.firstName + " " + elem.lastName, display: elem.firstName + " " + elem.lastName};
+     apilaData.usersList()
+       .success(function(usersList) {
+         vm.residentList = usersList.map(function(elem) {
+           return {value: elem.name, display: elem.name};
          });
        })
-       .error(function(residentList) {
+       .error(function(usersList) {
          console.log("Error retriving the list of residents");
        });
 
@@ -57,15 +62,37 @@
 
               issue.id = issue._id;
               issue.name = issue.title;
-              board.data.cards.push(issue);
-              board.data.lists[0].idCards.push(issue.id);
 
-              console.log(vm.board);
+              if(board.data === undefined) {
+                board.data = board;
+              }
+
+              board.data.cards.push(issue);
+
+
+              for(var i = 0; i < board.data.lists.length;++i) {
+                if(board.data.lists[i].name === issue.responsibleParty) {
+                  board.data.lists[i].idCards.push(issue.id);
+                  break;
+                }
+
+              }
+
+
               closeDialog();
             })
             .error(function(issue) {
                 console.log("Error while adding issue");
             });
+      }
+
+      function findListByName(name, id) {
+        angular.forEach(board.data.lists, function(v, k) {
+          if(v.name === name){
+            v.idCards.push(id);
+            return;
+          }
+        });
       }
 
     }

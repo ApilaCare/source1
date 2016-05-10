@@ -7,8 +7,11 @@
         .config(config);
 
     /** @ngInject */
-    function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider)
+    function config($stateProvider, $translatePartialLoaderProvider, msApiProvider,
+       msNavigationServiceProvider)
     {
+        console.log(msApiProvider.issueCount);
+
         $stateProvider
             .state('app.issues', {
                 abstract : true,
@@ -107,6 +110,10 @@
             title    : 'Issues',
             icon     : 'icon-trello',
             state    : 'app.issues.boards.board',
+            badge : {
+              content: 0,
+              color  : '#F44336'
+            },
             weight   : 1
         });
     }

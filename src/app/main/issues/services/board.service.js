@@ -29,54 +29,12 @@
                     "cardCoverImages": true
                 },
                 "lists": [
-                    {
-                        "id": "56027cf5a2ca3839a5d36103",
-                        "name": "My issues",
-                        "idCards": [
-                            "5603a2a3cab0c8300f6096b3"
-                        ]
-                    }
                 ],
                 "cards": [
                 ],
-                "members": [
-                    {
-                        "id": "56027c1930450d8bf7b10758",
-                        "name": "Alice Freeman",
-                        "avatar": "assets/images/avatars/alice.jpg"
-                    },
-                    {
-                        "id": "26027s1930450d8bf7b10828",
-                        "name": "Danielle Obrien",
-                        "avatar": "assets/images/avatars/danielle.jpg"
-                    },
-                    {
-                        "id": "76027g1930450d8bf7b10958",
-                        "name": "James Lewis",
-                        "avatar": "assets/images/avatars/james.jpg"
-                    },
-                    {
-                        "id": "36027j1930450d8bf7b10158",
-                        "name": "Vincent Munoz",
-                        "avatar": "assets/images/avatars/vincent.jpg"
-                    }
+                "members": [  
                 ],
                 "labels": [
-                    {
-                        "id": "56027e4119ad3a5dc28b36cd",
-                        "name": "Design",
-                        "color": "red"
-                    },
-                    {
-                        "id": "5640635e19ad3a5dc21416b2",
-                        "name": "App",
-                        "color": "blue"
-                    },
-                    {
-                        "id": "6540635g19ad3s5dc31412b2",
-                        "name": "Feature",
-                        "color": "green"
-                    }
                 ]
             }
         };

@@ -130,6 +130,10 @@
 
         };
 
+        var usersList = function() {
+          return $http.get(apiUrl + '/api/users');
+        }
+
         return {
             locationByCoords : locationByCoords,
             locationById : locationById,
@@ -149,7 +153,8 @@
             residentById : residentById,
             updateResident: updateResident,
             appointmentsListByMonth: appointmentsListByMonth,
-            listIssueByUsername: listIssueByUsername
+            listIssueByUsername: listIssueByUsername,
+            usersList : usersList
         };
     }
 

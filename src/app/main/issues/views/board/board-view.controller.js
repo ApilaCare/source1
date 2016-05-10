@@ -12,13 +12,12 @@
     {
         var vm = this;
 
+
         // Data
         vm.currentView = 'board';
         vm.board = BoardService.data.data;
 
         var username = authentication.currentUser().name;
-
-        console.log(username);
 
         vm.issueList = BoardService.getIssueByUsername(username);
 
@@ -130,6 +129,11 @@
             .success(function(issues) {
               console.log(issues);
               //add card to first list
+              vm.board.lists.push(  {
+                    "id": msUtils.guidGenerator(),
+                    "name": username,
+                    "idCards": []
+                });
               addCardsToList(issues, vm.board.lists[0]);
             })
             .error(function(issues) {
@@ -143,22 +147,27 @@
                   console.log(issues);
 
                   angular.forEach(issues, function(v, k) {
+
                     var currList = {
                       id: msUtils.guidGenerator(),
                       name: v._id,
                       idCards: []
                     };
 
-                    angular.forEach(v.issues, function(value, key) {
-                      value.id = msUtils.guidGenerator();
-                      value.name = value.title;
-                      vm.board.cards.push(value);
-                      currList.idCards.push(value.id);
-                    });
+                    //we don't want to add ourself to the list, we are alreadt first
+                    if(currList.name !== username) {
 
-                    vm.board.lists.push(currList);
+                        angular.forEach(v.issues, function(value, key) {
+                          value.id = msUtils.guidGenerator();
+                          value.name = value.title;
+                          vm.board.cards.push(value);
+                          currList.idCards.push(value.id);
+                        });
 
-                  });
+                        vm.board.lists.push(currList);
+
+                      }
+                      });
 
                 })
                 .error(function(issues) {
