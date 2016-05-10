@@ -7,7 +7,8 @@
         .controller('ScrumboardCardDialogController', ScrumboardCardDialogController);
 
     /** @ngInject */
-    function ScrumboardCardDialogController($document, $mdDialog, fuseTheming, fuseGenerator, msUtils, BoardService, cardId)
+    function ScrumboardCardDialogController($document, $mdDialog, fuseTheming,
+      fuseGenerator, msUtils, BoardService, cardId, apilaData, authentication)
     {
         var vm = this;
 
@@ -314,13 +315,34 @@
          */
         function addNewComment(newCommentText)
         {
-            var newComment = {
-                idMember: '36027j1930450d8bf7b10158',
-                message : newCommentText,
-                time    : 'now'
+            //send the comment to the api
+
+            console.log(vm.card);
+
+            var issueid = vm.card._id;
+
+            var commentData = {
+              commentText: newCommentText,
+              author: authentication.currentUser().name
             };
 
-            vm.card.comments.unshift(newComment);
+            apilaData.addIssueCommentById(issueid, commentData)
+            .success(function(data) {
+              console.log(data);
+
+              var newComment = {
+                  idMember: '',
+                  commentText : newCommentText,
+                  author    : data.author
+              };
+
+              vm.card.comments.unshift(newComment);
+
+            }).error(function(data) {
+              console.log("Error while adding comment");
+            });
+
+
         }
 
         /**

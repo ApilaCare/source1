@@ -19,22 +19,6 @@
             </div>
             <!-- / DUE DATE -->
 
-            <md-menu ng-if="vm.card.due" md-offset="0 48" class="remove-due-date">
-                <md-button class="md-icon-button" aria-label="Members" ng-click="$mdOpenMenu($event)">
-                    <md-icon md-font-icon="icon-calendar"></md-icon>
-                </md-button>
-
-                <md-menu-content class="remove-due-date-menu-content" width="4" ms-scroll>
-                    <md-menu-item>
-                        <md-button ng-click="vm.card.due = ''" aria-label="remove due date"
-                                   translate-attr-aria-label="SB.REMOVE_DUE_DATE">
-                            <md-icon md-font-icon="icon-delete"></md-icon>
-                            <span translate="SB.REMOVE_DUE_DATE">Remove Due Date</span>
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-
             <!-- LABELS -->
             <md-menu md-offset="0 48" class="labels">
                 <md-button class="md-icon-button" aria-label="Label" translate translate-attr-aria-label="SB.LABEL"
@@ -309,7 +293,7 @@
 
                 <!-- BREADCRUMB -->
                 <div class="card-breadcrumb" layout="row" layout-align="start center">
-                    <span>{{vm.board.name}}</span>
+                    <span>Responsible Party</span>
                     <i class="icon-menu-right"></i>
                     <span>{{vm.getCardList().name}}</span>
                 </div>
@@ -349,9 +333,6 @@
                     </div>
                 </div>
 
-                <div class="remove-due-date" layout="row" layout-align="center center" ng-click="vm.card.due = ''">
-                    <i class="s16 icon icon-close"></i>
-                </div>
             </div>
             <!-- / DUE DATE -->
 
@@ -593,7 +574,7 @@
 
                     <div class="section-header" layout="row" layout-align="start center">
                         <i class="icon-comment s18"></i>
-                        <span class="section-title" translate="SB.COMMENTS">Comments</span>
+                        <span class="section-title">Comments</span>
                     </div>
 
                     <div class="section-content">
@@ -625,10 +606,9 @@
 
                             <div layout="column">
                                 <div class="comment-member-name">
-                                    {{vm.board.members.getById(comment.idMember).name}}
+                                    {{comment.author}}
                                 </div>
-                                <div class="comment-bubble">{{comment.message}}</div>
-                                <div class="comment-time secondary-text">{{comment.time}}</div>
+                                <div class="comment-bubble">{{comment.commentText}}</div>
                             </div>
                         </div>
                     </div>

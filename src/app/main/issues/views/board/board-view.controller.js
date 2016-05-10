@@ -124,16 +124,19 @@
 
         //////////
 
+        //push the first list for cuurent User, so it's always the first one
+        vm.board.lists.push(  {
+              "id": msUtils.guidGenerator(),
+              "name": username,
+              "idCards": []
+          });
+
         //add our first list of issues for our current user
         apilaData.listIssueByUsername(username)
             .success(function(issues) {
               console.log(issues);
               //add card to first list
-              vm.board.lists.push(  {
-                    "id": msUtils.guidGenerator(),
-                    "name": username,
-                    "idCards": []
-                });
+
               addCardsToList(issues, vm.board.lists[0]);
             })
             .error(function(issues) {
@@ -160,6 +163,9 @@
                         angular.forEach(v.issues, function(value, key) {
                           value.id = msUtils.guidGenerator();
                           value.name = value.title;
+
+                          value.due = value.submitDate;
+
                           vm.board.cards.push(value);
                           currList.idCards.push(value.id);
                         });
