@@ -134,7 +134,6 @@
         //add our first list of issues for our current user
         apilaData.listIssueByUsername(username)
             .success(function(issues) {
-              console.log(issues);
               //add card to first list
 
               addCardsToList(issues, vm.board.lists[0]);
@@ -147,7 +146,6 @@
           //add all the other issues assigned to users
           apilaData.issuesList()
                 .success(function(issues) {
-                  console.log(issues);
 
                   angular.forEach(issues, function(v, k) {
 

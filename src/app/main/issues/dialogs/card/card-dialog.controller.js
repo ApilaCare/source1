@@ -45,6 +45,7 @@
         vm.createCheckList = createCheckList;
         /* Comment */
         vm.addNewComment = addNewComment;
+        vm.updateIssue = updateIssue;
 
         //////////
 
@@ -344,6 +345,54 @@
 
 
         }
+
+        var oldData = angular.copy(vm.card);
+
+        function updateIssue() {
+          console.log(vm.card);
+
+          vm.card.title = vm.card.name;
+
+          //add updateInfo Data
+          vm.card.modifiedBy = authentication.currentUser().name;
+          vm.card.modifiedDate = new Date();
+
+          vm.card.updateField = checkChangedFields(oldData, vm.card);
+
+          apilaData.updateIssue(vm.card._id, vm.card)
+          .success(function(data) {
+            console.log("updated issue");
+            $mdDialog.hide();
+
+
+          }).error(function(data) {
+            console.log("Error while adding comment");
+          });
+        }
+
+
+        function checkChangedFields(oldData, newData) {
+
+          console.log(oldData);
+          console.log(newData);
+
+           var diff = [];
+           var attributeArr = ["title", "resolutionTimeframe", "description"];
+
+           for (var i = 0; i < attributeArr.length; ++i) {
+
+               if (oldData[attributeArr[i]] !== newData[attributeArr[i]]) {
+
+                   diff.push({
+                       "field": attributeArr[i],
+                       "old": oldData[attributeArr[i]],
+                       "new": newData[attributeArr[i]]
+                   });
+               }
+           }
+           return diff;
+       }
+
 
         /**
          * Filter for chips
