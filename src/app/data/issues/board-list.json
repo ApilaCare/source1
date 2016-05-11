@@ -1,0 +1,19 @@
+{
+    "data": [
+        {
+            "name": "Open Issues",
+            "uri": "open-issues",
+            "id": "32gfhaf2"
+        },
+        {
+            "name": "Shelved Issues",
+            "uri": "shelved-issues",
+            "id": "27cfcbe1"
+        },
+        {
+            "name": "Closed Issues",
+            "uri": "closed-issues",
+            "id": "fg56cbe1"
+        }
+    ]
+}

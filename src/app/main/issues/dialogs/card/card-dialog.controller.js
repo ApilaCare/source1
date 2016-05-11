@@ -19,6 +19,12 @@
         vm.members = vm.board.members;
         vm.labels = vm.board.labels;
 
+        vm.labelList = vm.card.labels.map(function(d) {
+          return d.name;
+        });
+
+
+
         // Methods
         vm.palettes = fuseTheming.getRegisteredPalettes();
         vm.rgba = fuseGenerator.rgba;
@@ -170,30 +176,54 @@
          */
         function addNewLabel()
         {
-            vm.board.labels.push({
+            var label = {
                 id   : msUtils.guidGenerator(),
                 name : vm.newLabelName,
-                color: vm.newLabelColor
+                color: vm.newLabelColor,
+                author: authentication.currentUser().name
+            };
+
+            //send data to the api
+            apilaData.addIssueLabelById(vm.card._id, label)
+            .success(function(data) {
+              vm.board.labels.push(label);
+
+              vm.newLabelName = '';
+
+            })
+            .error(function(data) {
+              console.log("Error while adding issue");
             });
 
-            vm.newLabelName = '';
         }
 
         /**
          * Remove label
          */
-        function removeLabel()
+        function removeLabel(id)
         {
             var arr = vm.board.labels;
             arr.splice(arr.indexOf(arr.getById(vm.editLabelId)), 1);
 
-            angular.forEach(vm.board.cards, function (card)
-            {
-                if ( card.idLabels && card.idLabels.indexOf(vm.editLabelId) > -1 )
-                {
-                    card.idLabels.splice(card.idLabels.indexOf(vm.editLabelId), 1);
-                }
+            console.log(vm.editLabelId);
+
+            apilaData.deleteIssueLabelById(vm.card._id, id)
+            .success(function(d) {
+
+              angular.forEach(vm.board.cards, function (card)
+              {
+                  if ( card.idLabels && card.idLabels.indexOf(vm.editLabelId) > -1 )
+                  {
+                      card.idLabels.splice(card.idLabels.indexOf(vm.editLabelId), 1);
+                  }
+              });
+
+            })
+            .error(function() {
+              console.log("Error while deleting label");
             });
+
+
 
             vm.newLabelName = '';
         }

@@ -37,6 +37,159 @@
             </md-menu>
             <!-- / OPTIONS -->
 
+            <!-- LABELS -->
+            <md-menu md-offset="0 48" class="labels">
+                <md-button class="md-icon-button" aria-label="Label" translate translate-attr-aria-label="SB.LABEL"
+                           ng-click="vm.labelTabIndex = 0;$mdOpenMenu($event)">
+                    <md-icon md-menu-origin md-font-icon="icon-label-outline"></md-icon>
+                </md-button>
+
+                <md-menu-content class="labels-menu-content" width="4" ms-scroll>
+                    <md-tabs md-selected="vm.labelTabIndex" md-dynamic-height>
+
+                        <!-- SELECT LABEL -->
+                        <md-tab>
+                            <md-tab-body>
+                                <md-menu-item>
+                                    <md-input-container class="no-errors-spacer" md-no-float>
+                                        <input placeholder="Search labels..." type="text"
+                                               ng-model="vm.labelSearchText" autocomplete="off"
+                                               translate-attr-palceholder="SB.SEARCH_LABELS">
+                                    </md-input-container>
+                                </md-menu-item>
+
+                                <md-menu-item class="label" ng-repeat="label in vm.card.labels | filter: vm.filterLabel">
+                                    <md-button class="label-toggle-button" md-prevent-menu-close
+                                               ng-class="'md-'+label.color+'-bg'"
+                                               ng-click="vm.toggleInArray(label.id, vm.card.labels)"
+                                               aria-label="Toggle Label" translate
+                                               translate-attr-aria-label="SB.TOGGLE_LABEL">
+                                        <div layout="row" layout-align="space-between center">
+                                            <span>{{label.name}}</span>
+                                            <i ng-if="vm.exists(label.id, vm.card.labels)" class="icon-check s16"></i>
+                                        </div>
+                                    </md-button>
+                                    <md-button class="md-icon-button label-edit-button" md-prevent-menu-close
+                                               ng-click="vm.editLabelId = label.id; vm.labelTabIndex = 2"
+                                               aria-label="Edit Label" translate
+                                               translate-attr-aria-label="SB.EDIT_LABEL">
+                                        <md-icon md-font-icon="icon-pencil" class="s16"></md-icon>
+                                    </md-button>
+                                </md-menu-item>
+
+                                <md-menu-divider></md-menu-divider>
+
+                                <md-menu-item>
+                                    <md-button class="add-label-button" md-prevent-menu-close
+                                               ng-click="vm.labelTabIndex = 1">
+                                        <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+                                        <span translate="SB.ADD_NEW_LABEL">Add new label</span>
+                                    </md-button>
+                                </md-menu-item>
+                            </md-tab-body>
+                        </md-tab>
+                        <!-- / SELECT LABEL -->
+
+                        <!-- ADD LABEL -->
+                        <md-tab>
+                            <md-tab-body>
+                                <div class="add-label-tab-content">
+                                    <div class="header" layout="row" layout-align="space-between center">
+                                        <md-button class="md-icon-button" md-prevent-menu-close
+                                                   ng-click="vm.labelTabIndex = 0" aria-label="Back"
+                                                   translate translate-attr-aria-label="SB.BACK">
+                                            <i class="icon-arrow-left s20"></i>
+                                        </md-button>
+                                        <span flex translate="SB.CREATE_LABEL">Create Label</span>
+                                    </div>
+
+                                    <div class="content" layout="column" layout-align="start stretch">
+                                        <form ng-submit="vm.addNewLabel(); vm.labelTabIndex = 0" layout="column">
+                                            <md-input-container class="no-errors-spacer" md-no-float>
+                                                <input placeholder="Label Name" type="text" ng-model="vm.newLabelName"
+                                                       translate translate-attr-placeholder="SB.LABEL_NAME">
+                                            </md-input-container>
+
+                                            <div class="label-color-picker" layout="row" layout-wrap>
+                                                <label class="color" ng-repeat="(palette, hues) in vm.palettes"
+                                                       ng-style="{'background-color': vm.rgba(hues['500'].value), 'color': vm.rgba(hues['500'].contrast, 1)}"
+                                                       layout="column" layout-align="center center">
+                                                    <input class="ng-hide" type="radio" ng-model="vm.newLabelColor"
+                                                           ng-value="palette" aria-label="{{palette}}">
+                                                    <i class="icon-check s18" ng-if="vm.newLabelColor === palette"></i>
+                                                </label>
+                                            </div>
+
+                                            <md-button type="submit" md-prevent-menu-close
+                                                       class="create-button md-accent md-raised"
+                                                       aria-label="Create" translate
+                                                       translate-attr-aria-label="SB.CREATE">
+                                                <span translate="SB.CREATE">Create</span>
+                                            </md-button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                        <!-- / ADD LABEL -->
+
+                        <!-- EDIT LABEL -->
+                        <md-tab>
+                            <md-tab-body>
+                                <div class="edit-label-tab-content">
+
+                                    <div class="header" layout="row" layout-align="space-between center">
+                                        <md-button class="md-icon-button" md-prevent-menu-close
+                                                   ng-click="vm.labelTabIndex = 0" aria-label="back"
+                                                   translate translate-attr-aria-label="SB.BACK">
+                                            <i class="icon-arrow-left s20"></i>
+                                        </md-button>
+                                        <span flex translate="SB.EDIT_LABEL">Edit Label</span>
+                                    </div>
+
+                                    <div class="content" layout="column" layout-align="start stretch">
+                                        <md-input-container class="no-errors-spacer" md-no-float>
+                                            <input placeholder="Label Name" type="text"
+                                                   ng-model="vm.board.labels.getById(vm.editLabelId).name"
+                                                   translate translate-attr-placeholder="SB.LABEL_NAME">
+                                        </md-input-container>
+
+                                        <div class="label-color-picker" layout="row" layout-wrap>
+                                            <label class="color" ng-repeat="(palette, hues) in vm.palettes"
+                                                   ng-style="{'background-color': vm.rgba(hues['500'].value), 'color': vm.rgba(hues['500'].contrast, 1)}"
+                                                   layout="column" layout-align="center center">
+                                                <input class="ng-hide" type="radio"
+                                                       ng-model="vm.board.labels.getById(vm.editLabelId).color"
+                                                       ng-value="palette"
+                                                       aria-label="{{palette}}">
+                                                <i ng-if="vm.board.labels.getById(vm.editLabelId).color === palette"
+                                                   class="icon-check s18"></i>
+                                            </label>
+                                        </div>
+
+                                        <div layout="row" layout-align="end center" flex>
+                                            <md-button class="remove-button md-icon-button"
+                                                       type="submit" md-prevent-menu-close
+                                                       ng-click="vm.removeLabel(); vm.labelTabIndex=0"
+                                                       aria-label="remove" translate
+                                                       translate-attr-aria-label="SB.REMOVE">
+                                                <md-icon md-font-icon="icon-delete"></md-icon>
+                                            </md-button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </md-tab-body>
+                        </md-tab>
+                        <!-- / EDIT LABEL -->
+
+                    </md-tabs>
+                </md-menu-content>
+            </md-menu>
+            <!-- / LABELS -->
+
+
             <span flex></span>
 
             <!-- CLOSE DIALOG BUTTON -->
@@ -95,9 +248,16 @@
             </div>
             <!-- / DUE DATE -->
 
+
+
+
         </div>
 
         <div class="sections">
+
+
+
+
       <div class="section">
         <md-input-container class="md-block">
             <label>Title</label>
@@ -138,8 +298,59 @@
         <!-- SECTIONS -->
 
 
+        <!-- LABELS SECTION -->
 
+                <div flex class="labels">
+                   <div class="section-header" layout="row" layout-align="start center">
+                       <i class="icon-label-outline s18"></i>
+                       <span class="section-title" translate="SB.LABELS">Labels</span>
+                   </div>
+                   <div class="section-content">
+                       <md-chips class="label-chips" ng-model="vm.card.labels" md-autocomplete-snap
+                                 md-require-match="true" md-transform-chip="$chip.id">
+                           <!-- <md-autocomplete
+                                   md-selected-item="vm.selectedLabel"
+                                   md-search-text="vm.searchLabelText"
+                                   md-items="label in vm.labelQuerySearch(vm.searchLabelText)"
+                                   md-item-text="label.name"
+                                   placeholder="Search for a label">
+                               <span md-highlight-text="vm.searchLabelText">{{label.name}}</span>
+                           </md-autocomplete> -->
+                           <md-chip-template class="label-chip"
+                                             ng-class="'md-'+$chip.color+'-bg'">
+                               <span>{{$chip.name}}</span>
+                           </md-chip-template>
+                           <button md-chip-remove class="md-primary" ng-click="vm.removeLabel($chip._id)">
+                               <md-icon md-font-icon="icon-close" class="s18"></md-icon>
+                           </button>
+                       </md-chips>
+                   </div>
+                 </div>
 
+                   <div class="section-header" layout="row" layout-align="start center">
+                       <i class="icon-account-multiple s18"></i>
+                       <span class="section-title" translate="SB.MEMBERS">Members</span>
+                   </div>
+                   <div class="section-content">
+                       <md-chips class="member-chips" ng-model="vm.card.idMembers" md-autocomplete-snap
+                                 md-require-match="true" md-transform-chip="$chip.id">
+                           <md-autocomplete
+                                   md-selected-item="vm.selectedMember"
+                                   md-search-text="vm.searchText"
+                                   md-items="member in vm.memberQuerySearch(vm.searchText)"
+                                   md-item-text="member.name"
+                                   placeholder="Search for a member">
+                               <span md-highlight-text="vm.searchText">{{member.name}}</span>
+                           </md-autocomplete>
+                           <md-chip-template class="member-chip">
+                               <img class="member-chip-avatar" ng-src="{{vm.board.members.getById($chip).avatar}}">
+                               <md-tooltip>{{vm.board.members.getById($chip).name}}</md-tooltip>
+                           </md-chip-template>
+                           <button md-chip-remove class="md-primary">
+                               <md-icon md-font-icon="icon-close" class="s18"></md-icon>
+                           </button>
+                       </md-chips>
+                   </div>
 
             <!-- COMMENTS SECTION -->
             <div class="section">

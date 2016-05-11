@@ -62,8 +62,28 @@
             return $http.put(apiUrl + '/api/issues/' + issueid, data);
         }
 
+        var deleteIssueLabelById = function(issueid, labelid) {
+          return $http.delete(apiUrl + '/issuesList/' + issueid + '/labels/' + labelid, {}, {
+          headers: {
+              Authorization: 'Bearer ' + authentication.getToken()
+          }
+        });
+        }
+
+        var updateIssueLabelById = function(issueId, labelid) {
+          return $http.put(apiUrl + '/issues/' + issueId + '/labels/' + labelid);
+        }
+
         var addIssueCommentById = function(issueid, data) {
             return $http.post(apiUrl + '/api/issues/' + issueid + '/comments/new', data, {
+                headers: {
+                    Authorization: 'Bearer ' + authentication.getToken()
+                }
+            });
+        };
+
+        var addIssueLabelById = function(issueid, data) {
+            return $http.post(apiUrl + '/api/issues/' + issueid + '/labels/new', data, {
                 headers: {
                     Authorization: 'Bearer ' + authentication.getToken()
                 }
@@ -154,7 +174,10 @@
             updateResident: updateResident,
             appointmentsListByMonth: appointmentsListByMonth,
             listIssueByUsername: listIssueByUsername,
-            usersList : usersList
+            usersList : usersList,
+            addIssueLabelById : addIssueLabelById,
+            deleteIssueLabelById: deleteIssueLabelById,
+            updateIssueLabelById: updateIssueLabelById
         };
     }
 

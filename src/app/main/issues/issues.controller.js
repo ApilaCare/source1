@@ -7,7 +7,7 @@
         .controller('ScrumboardController', ScrumboardController);
 
     /** @ngInject */
-    function ScrumboardController($mdSidenav, BoardService, CardFilters, $mdDialog, $document)
+    function ScrumboardController($mdSidenav, BoardService, CardFilters, $mdDialog, $document, $stateParams)
     {
         var vm = this;
 
@@ -16,6 +16,13 @@
         vm.board = BoardService.data;
         vm.boardList = BoardService.list.data;
         vm.boardSelectorVisible = false;
+
+
+        if($stateParams.uri === "") {
+          vm.boardName = "Open issues";
+        } else {
+          vm.boardName = $stateParams.uri;
+        }
 
         // Methods
         vm.toggleSidenav = toggleSidenav;

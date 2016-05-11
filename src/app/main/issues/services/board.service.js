@@ -37,6 +37,8 @@
             ]
         };
 
+        service.name = "";
+
 
         //load dummy data at begining
         service.data = {
