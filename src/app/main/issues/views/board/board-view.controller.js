@@ -7,21 +7,22 @@
         .controller('BoardViewController', BoardViewController);
 
     /** @ngInject */
-    function BoardViewController($document, $window, $timeout, $mdDialog, msUtils,
-      BoardList, BoardService, CardFilters, DialogService, authentication, apilaData)
+    function BoardViewController($document, $window, $timeout, $mdDialog, msUtils, $stateParams,
+       BoardService, CardFilters, DialogService, authentication, apilaData)
     {
         var vm = this;
-
 
         // Data
         vm.currentView = 'board';
         vm.board = BoardService.data.data;
+        vm.board.lists = [];
+        vm.board.cards = [];
 
         var username = authentication.currentUser().name;
 
         vm.issueList = BoardService.getIssueByUsername(username);
 
-        vm.boardList = BoardList.data;
+        vm.boardList = BoardService.list.data;
         vm.cardFilters = CardFilters;
         vm.card = {};
         vm.cardOptions = {};
@@ -123,7 +124,7 @@
         vm.isOverdue = isOverdue;
         vm.openWordCloud = openWordCloud;
 
-        //////////
+        //OUR DATA LOADING AD SETTING CODE
 
         //push the first list for cuurent User, so it's always the first one
         vm.board.lists.push(  {
@@ -132,8 +133,20 @@
               "idCards": []
           });
 
+          //get the current board we are on to load proper data
+          var status = "";
+
+          if($stateParams.uri === "open-issues" || $stateParams.uri === ""){
+            status="Open";
+          } else if($stateParams.uri === "shelved-issues") {
+            status = "Shelved";
+          } else if($stateParams.uri === "closed-issues") {
+            status = "Closed";
+          }
+
+
         //add our first list of issues for our current user
-        apilaData.listIssueByUsername(username)
+        apilaData.listIssueByUsername(username, status)
             .success(function(issues) {
               //add card to first list
 
@@ -143,10 +156,11 @@
                 console.log("Error while loading list of issues for: " + username);
             });
 
-
           //add all the other issues assigned to users
-          apilaData.issuesList()
+          apilaData.issuesList(status)
                 .success(function(issues) {
+
+                  console.log("Reload other users");
 
                   angular.forEach(issues, function(v, k) {
 
@@ -159,6 +173,7 @@
                     //we don't want to add ourself to the list, we are alreadt first
                     if(currList.name !== username) {
 
+                       //add all the cards
                         angular.forEach(v.issues, function(value, key) {
                           value.id = msUtils.guidGenerator();
                           value.name = value.title;

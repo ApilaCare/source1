@@ -7,12 +7,13 @@
         .controller('BoardsViewController', BoardsViewController);
 
     /** @ngInject */
-    function BoardsViewController(BoardList)
+    function BoardsViewController(BoardService)
     {
         var vm = this;
 
         // Data
-        vm.boardList = BoardList.data;
+        //vm.boardList = BoardList.data;
+        vm.boardList = BoardService.list.data;
 
         // Methods
 

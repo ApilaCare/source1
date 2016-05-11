@@ -17,6 +17,27 @@
 
         };
 
+        service.list = {
+             "data" : [
+                {
+                    "name": "Open Issues",
+                    "uri": "open-issues",
+                    "id": "32gfhaf2"
+                },
+                {
+                    "name": "Shelved Issues",
+                    "uri": "shelved-issues",
+                    "id": "27cfcbe1"
+                },
+                {
+                    "name": "Closed Issues",
+                    "uri": "closed-issues",
+                    "id": "fg56cbe1"
+                }
+            ]
+        };
+
+
         //load dummy data at begining
         service.data = {
             "data": {
@@ -32,7 +53,7 @@
                 ],
                 "cards": [
                 ],
-                "members": [  
+                "members": [
                 ],
                 "labels": [
                 ]
@@ -51,32 +72,34 @@
          */
         function getBoardData(boardId)
         {
+
+            console.log("poziva se bord id");
             // Create a new deferred object
-            var deferred = $q.defer();
-
-            msApi.request('issues.board@get', {id: boardId},
-
-                // SUCCESS
-                function (response)
-                {
-                    // Attach the data
-                    service.data = response.data;
-
-                    console.log(response.data);
-
-                    // Resolve the promise
-                    deferred.resolve(response);
-                },
-
-                // ERROR
-                function (response)
-                {
-                    // Reject the promise
-                    deferred.reject(response);
-                }
-            );
-
-            return deferred.promise;
+            // var deferred = $q.defer();
+            //
+            // msApi.request('issues.board@get', {id: boardId},
+            //
+            //     // SUCCESS
+            //     function (response)
+            //     {
+            //         // Attach the data
+            //         service.data = response.data;
+            //
+            //         console.log(response.data);
+            //
+            //         // Resolve the promise
+            //         deferred.resolve(response);
+            //     },
+            //
+            //     // ERROR
+            //     function (response)
+            //     {
+            //         // Reject the promise
+            //         deferred.reject(response);
+            //     }
+            // );
+            //
+            // return deferred.promise;
         }
 
         /**

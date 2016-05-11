@@ -36,17 +36,17 @@
             });
         };
 
-        var issuesList = function() {
-            return $http.get(apiUrl + '/api/issues');
+        var issuesList = function(status) {
+            return $http.get(apiUrl + '/api/issues/list/' + status);
         };
 
         var issueById = function(issueid) {
             return $http.get(apiUrl + '/api/issues/' + issueid);
         };
 
-        var listIssueByUsername = function(username) {
+        var listIssueByUsername = function(username, status) {
           console.log("List users");
-          return $http.get(apiUrl + '/api/issues/' + username);
+          return $http.get(apiUrl + '/api/issues/' + username + "/s/" + status);
         }
 
         //makes a call to the api to add a new issue

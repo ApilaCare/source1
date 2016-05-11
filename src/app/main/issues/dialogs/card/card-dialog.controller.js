@@ -349,7 +349,6 @@
         var oldData = angular.copy(vm.card);
 
         function updateIssue() {
-          console.log("Opalio update");
 
           vm.card.title = vm.card.name;
 

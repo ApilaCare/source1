@@ -16,14 +16,7 @@
             .state('app.issues', {
                 abstract : true,
                 url      : '/issues',
-                resolve  : {
-                    BoardList: function (msApi)
-                    {
 
-                             return msApi.resolve('issues.boardList@get');
-
-                          }
-                },
             })
 
             // Home
@@ -94,10 +87,6 @@
 
         // Translation
         $translatePartialLoaderProvider.addPart('app/main/issues');
-
-        // Api
-        msApiProvider.register('issues.boardList', ['app/data/issues/board-list.json']);
-        msApiProvider.register('issues.board', ['app/data/issues/boards/:id.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('fuse', {
