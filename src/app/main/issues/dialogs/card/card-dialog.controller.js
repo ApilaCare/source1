@@ -349,7 +349,7 @@
         var oldData = angular.copy(vm.card);
 
         function updateIssue() {
-          console.log(vm.card);
+          console.log("Opalio update");
 
           vm.card.title = vm.card.name;
 
@@ -362,7 +362,6 @@
           apilaData.updateIssue(vm.card._id, vm.card)
           .success(function(data) {
             console.log("updated issue");
-            $mdDialog.hide();
 
 
           }).error(function(data) {

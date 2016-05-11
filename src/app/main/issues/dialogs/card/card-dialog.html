@@ -101,7 +101,7 @@
       <div class="section">
         <md-input-container class="md-block">
             <label>Title</label>
-            <input ng-model="vm.card.name" type="text">
+            <input ng-model="vm.card.name" type="text" ng-blur="vm.updateIssue()" focus>
         </md-input-container>
 
 
@@ -109,14 +109,15 @@
         <div class="description">
             <md-input-container class="md-block">
                 <label translate="SB.DESCRIPTION">Description</label>
-                <textarea ng-model="vm.card.description" columns="1" md-maxlength="150" rows="5"></textarea>
+                <textarea ng-model="vm.card.description" columns="1" md-maxlength="150" rows="5"
+                 ng-blur="vm.updateIssue()"></textarea>
             </md-input-container>
         </div>
         <!-- / DESCRIPTION -->
 
         <!-- resolutionTimeframe -->
         <md-input-container class="md-block">
-            <md-select ng-model="vm.card.resolutionTimeframe" placeholder="Time Frame">
+            <md-select ng-model="vm.card.resolutionTimeframe" ng-change="vm.updateIssue()" placeholder="Time Frame">
               <md-option>Hours</md-option>
               <md-option>Days</md-option>
               <md-option>Weeks</md-option>
@@ -124,10 +125,15 @@
             </md-select>
         </md-input-container>
 
-        <md-button type="submit" class="md-raised md-accent" ng-click="vm.updateIssue()">
-            <span >Update</span>
-        </md-button>
-      </div>
+        <!-- resolutionTimeframe -->
+        <md-input-container class="md-block">
+            <md-select ng-model="vm.card.status" ng-change="vm.updateIssue()" placeholder="Card status">
+              <md-option>Open</md-option>
+              <md-option>Shelved</md-option>
+              <md-option>Closed</md-option>
+            </md-select>
+        </md-input-container>
+
 
         <!-- SECTIONS -->
 
@@ -201,7 +207,7 @@
                             <div class="activity-message">{{ update.updateDate | date}}</div>
 
                             <h5 ng-repeat="f in update.updateField ">
-                              
+
                                 <span>Field : {{ f.field }} |</span>
                                 <span>Old value : {{ f.old }} |</span>
                                 <span>New value : {{ f.new }} </span>

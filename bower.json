@@ -20,7 +20,8 @@
     "perfect-scrollbar": "0.6.10",
     "toastr": "2.1.2",
     "angular-material-datetimepicker": "latest",
-    "jspdf": "^1.2.61"
+    "jspdf": "^1.2.61",
+    "d3": "^3.5.17"
   },
   "devDependencies": {
     "angular-mocks": "1.5.0"

@@ -121,6 +121,7 @@
         vm.removeList = removeList;
         vm.cardFilter = cardFilter;
         vm.isOverdue = isOverdue;
+        vm.openWordCloud = openWordCloud;
 
         //////////
 
@@ -246,6 +247,23 @@
             });
 
             vm.newListName = '';
+        }
+
+        function openWordCloud(ev) {
+
+          console.log(ev);
+
+          $mdDialog.show({
+              controller         : 'WordCloudController',
+              controllerAs       : 'vm',
+              locals : {
+                issue: ev
+              },
+              templateUrl        : 'app/main/issues/dialogs/wordCloud/wordCloud.html',
+              parent             : angular.element($document.body),
+              targetEvent        : ev,
+              clickOutsideToClose: true
+          });
         }
 
         /**
