@@ -6,11 +6,11 @@
         .module('app.issues', [])
         .config(config);
 
+
     /** @ngInject */
     function config($stateProvider, $translatePartialLoaderProvider, msApiProvider,
        msNavigationServiceProvider)
     {
-        console.log(msApiProvider.issueCount);
 
         $stateProvider
             .state('app.issues', {

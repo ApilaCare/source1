@@ -1,6 +1,8 @@
 <!-- CARD DIALOG -->
 <md-dialog class="card-dialog" aria-label="Card Dialog" ng-cloak>
 
+
+
     <!-- DIALOG TOOLBAR -->
     <md-toolbar class="md-accent" ng-class="'md-'+vm.board.settings.color+'-bg'">
         <div class="md-toolbar-tools">
@@ -55,6 +57,8 @@
                   translate translate-attr-aria-label="SB.ATTACHMENT">
            <md-icon md-font-icon="icon-attachment"></md-icon>
        </md-button>
+
+
        <!-- / ATTACHMENT -->
 
        <!-- CHECKLIST -->
@@ -415,16 +419,29 @@
                    </div>
 
 
+                <h4>Upload on file select</h4>
+                 <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
+                         accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                     Select File</md-button>
+                 <br><br>
+                 File:
+                 <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                     <span class="progress" ng-show="f.progress >= 0">
+                         <div style="width:{{f.progress}}%"
+                              ng-bind="f.progress + '%'"></div>
+                     </span>
+                 </div>
+
                    <!-- ATTACHMENTS SECTION -->
-           <div class="section">
+           <!-- <div class="section">
                <div class="attachments">
 
                    <div class="section-header" layout="row" layout-align="start center">
                        <i class="icon-attachment s18"></i>
                        <span class="section-title" translate="SB.ATTACHMENTS">Attachments</span>
-                   </div>
+                   </div> -->
 
-                   <div class="section-content">
+                   <!-- <div class="section-content">
 
                        <div class="attachment" ng-repeat="item in vm.card.attachments" ng-switch="item.type">
 
@@ -493,7 +510,7 @@
                            </div>
                        </div>
 
-                       <md-button class="add-attachment-button" aria-label="add attachment">
+                        <md-button class="add-attachment-button" aria-label="add attachment">
                            <div layout="row" layout-align="start center">
                                <i class="icon-plus s20"></i>
                                <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
@@ -501,7 +518,7 @@
                        </md-button>
                    </div>
                </div>
-           </div>
+           </div> -->
            <!-- / ATTACHMENTS SECTION -->
 
            <!-- CHECKLISTS SECTION -->
