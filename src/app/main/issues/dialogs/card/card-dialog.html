@@ -19,23 +19,85 @@
             </div>
             <!-- / DUE DATE -->
 
-            <!-- OPTIONS -->
-            <md-menu md-offset="0 48px" class="options">
-                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Options"
-                           translate translate-attr-aria-label="SB.OPTIONS">
-                    <md-icon md-menu-origin md-font-icon="icon-dots-horizontal"></md-icon>
-                </md-button>
-                <md-menu-content class="options-menu-content" width="4">
-                    <md-menu-item>
-                        <md-button ng-click="vm.removeCard()" aria-label="Remove Card"
-                                   translate translate-attr-aria-label="SB.REMOVE_CARD">
-                            <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
-                            <span translate="SB.REMOVE_CARD">Remove Card</span>
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-            <!-- / OPTIONS -->
+            <!-- MEMBERS -->
+       <md-menu md-offset="0 48" class="members">
+           <md-button class="md-icon-button" aria-label="Members" ng-click="$mdOpenMenu($event)">
+               <md-icon md-menu-origin md-font-icon="icon-account-multiple"></md-icon>
+           </md-button>
+
+           <md-menu-content class="members-menu-content" width="4" ms-scroll>
+               <md-menu-item>
+                   <md-input-container class="no-errors-spacer" md-no-float>
+                       <input placeholder="Search members..." autocomplete="off" type="text"
+                              ng-model="vm.memberSearchText" translate
+                              translate-attr-placeholder="SB.SEARCH_MEMBERS">
+                   </md-input-container>
+               </md-menu-item>
+
+               <md-menu-item class="member" ng-repeat="member in vm.members  | filter: vm.filterMember">
+                   <md-button ng-click="vm.toggleInArray(member.id, vm.card.idMembers)" md-prevent-menu-close
+                              aria-label="toggle member" translate translate-attr-aria-label="SB.TOGGLE_MEMBER">
+                       <div layout="row" layout-align="space-between center">
+                           <div layout="row" layout-align="start center">
+                               <img alt="{{ member.name }}" ng-src="{{ member.avatar }}" class="avatar"/>
+                               <p class="member-name">{{ member.name }}</p>
+                           </div>
+                           <i class="icon-check s16" ng-if="vm.exists(member.id, vm.card.idMembers)"></i>
+                       </div>
+                   </md-button>
+               </md-menu-item>
+           </md-menu-content>
+       </md-menu>
+       <!-- / MEMBERS -->
+
+       <!-- ATTACHMENT -->
+       <md-button class="md-icon-button" ng-click="" aria-label="Attachment"
+                  translate translate-attr-aria-label="SB.ATTACHMENT">
+           <md-icon md-font-icon="icon-attachment"></md-icon>
+       </md-button>
+       <!-- / ATTACHMENT -->
+
+       <!-- CHECKLIST -->
+       <md-menu md-offset="0 48px" class="checklist">
+           <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="checklist"
+                      translate translate-attr-aria-label="SB.CHECKLIST">
+               <md-icon md-menu-origin md-font-icon="icon-checkbox-marked"></md-icon>
+           </md-button>
+
+           <md-menu-content class="checklist-menu-content" width="4">
+               <form ng-submit="vm.createCheckList()" layout="column" layout-align="start end">
+                   <md-input-container class="no-errors-spacer" md-no-float>
+                       <input placeholder="Checklist Title" autocomplete="off" type="text"
+                              ng-model="vm.newCheckListTitle" translate
+                              translate-attr-placeholder="SB.CHECKLIST_TITLE">
+                   </md-input-container>
+
+                   <md-button type="submit" class="md-raised md-accent" aria-label="Add Checklist"
+                              translate translate-attr-aria-label="SB.ADD_CHECKLIST">
+                       <span translate="SB.ADD_CHECKLIST">Add Checklist</span>
+                   </md-button>
+               </form>
+           </md-menu-content>
+       </md-menu>
+       <!-- / CHECKLIST -->
+
+       <!-- OPTIONS -->
+       <md-menu md-offset="0 48px" class="options">
+           <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Options"
+                      translate translate-attr-aria-label="SB.OPTIONS">
+               <md-icon md-menu-origin md-font-icon="icon-dots-horizontal"></md-icon>
+           </md-button>
+           <md-menu-content class="options-menu-content" width="4">
+               <md-menu-item>
+                   <md-button ng-click="vm.removeCard()" aria-label="Remove Card"
+                              translate translate-attr-aria-label="SB.REMOVE_CARD">
+                       <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
+                       <span translate="SB.REMOVE_CARD">Remove Card</span>
+                   </md-button>
+               </md-menu-item>
+           </md-menu-content>
+       </md-menu>
+       <!-- / OPTIONS -->
 
             <!-- LABELS -->
             <md-menu md-offset="0 48" class="labels">
@@ -351,6 +413,166 @@
                            </button>
                        </md-chips>
                    </div>
+
+
+                   <!-- ATTACHMENTS SECTION -->
+           <div class="section">
+               <div class="attachments">
+
+                   <div class="section-header" layout="row" layout-align="start center">
+                       <i class="icon-attachment s18"></i>
+                       <span class="section-title" translate="SB.ATTACHMENTS">Attachments</span>
+                   </div>
+
+                   <div class="section-content">
+
+                       <div class="attachment" ng-repeat="item in vm.card.attachments" ng-switch="item.type">
+
+                           <div ng-switch-when="image" layout="row">
+
+                               <div class="attachment-preview md-whiteframe-2dp"
+                                    ng-style="{'background-image': 'url({{item.src}})'}">
+                               </div>
+
+                               <div class="attachment-content" layout="column">
+
+                                   <div layout="row" layout-align="start center">
+                                       <span class="attachment-name">{{item.name}}</span>
+                                       <i ng-if="vm.card.idAttachmentCover === item.id"
+                                          class="icon-star yellow-700-fg attachment-is-cover s18"></i>
+                                   </div>
+
+                                   <span class="attachment-time">{{item.time}}</span>
+
+                                   <md-menu>
+
+                                       <md-button class="md-raised attachment-actions-button"
+                                                  ng-click="$mdOpenMenu($event)" aria-label="attachment actions">
+                                           <span layout="row" layout-align="center center">
+                                               <span translate="SB.ACTIONS">Actions</span>
+                                               <i class="icon-chevron-down s20"></i>
+                                           </span>
+                                       </md-button>
+
+                                       <md-menu-content>
+
+                                           <md-menu-item>
+                                               <md-button ng-click="vm.toggleCoverImage(item.id)"
+                                                          aria-label="Toggle Cover Image"
+                                                          translate translate-attr-aria-label="SB.TOGGLE_COVER_IMAGE">
+                                                   <span ng-if="vm.card.idAttachmentCover !== item.id"
+                                                         translate translate="SB.MAKE_COVER">Make Cover</span>
+                                                   <span ng-if="vm.card.idAttachmentCover === item.id"
+                                                         translate translate="SB.REMOVE_COVER">Remove Cover</span>
+                                               </md-button>
+                                           </md-menu-item>
+
+                                           <md-menu-item>
+                                               <md-button ng-click="vm.removeAttachment(item)"
+                                                          aria-label="Remove Attachment"
+                                                          translate translate-attr-aria-label="SB.REMOVE_ATTACHMENT">
+                                                   <span translate="SB.REMOVE_ATTACHMENT">Remove Attachment</span>
+                                               </md-button>
+                                           </md-menu-item>
+
+                                       </md-menu-content>
+
+                                   </md-menu>
+                               </div>
+                           </div>
+
+                           <div ng-switch-when="link" layout="row">
+                               <div class="attachment-preview md-whiteframe-2dp" layout="column"
+                                    layout-align="center center">
+                                   <span translate="SB.LINK">LINK</span>
+                               </div>
+                               <div class="attachment-content" layout="column">
+                                   <span class="attachment-url">{{item.url}}</span>
+                                   <span class="attachment-time">{{item.time}}</span>
+                               </div>
+                           </div>
+                       </div>
+
+                       <md-button class="add-attachment-button" aria-label="add attachment">
+                           <div layout="row" layout-align="start center">
+                               <i class="icon-plus s20"></i>
+                               <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
+                           </div>
+                       </md-button>
+                   </div>
+               </div>
+           </div>
+           <!-- / ATTACHMENTS SECTION -->
+
+           <!-- CHECKLISTS SECTION -->
+           <div class="section" ng-repeat="checklist in vm.card.checklists">
+               <div class="checklist">
+                   <div class="section-header" layout="row" layout-align="start center">
+                       <i class="icon-checkbox-marked s18"></i>
+                       <span flex class="section-title" editable-text="checklist.checklistName">{{checklist.checklistName}}</span>
+
+                       <md-menu md-position-mode="target-right target" class="options">
+                           <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="options"
+                                      translate translate-attr-aria-label="SB.OPTIONS">
+                               <md-icon md-menu-origin md-font-icon="icon-dots-vertical"></md-icon>
+                           </md-button>
+
+                           <md-menu-content class="options-menu-content" width="4">
+                               <md-menu-item>
+                                   <md-button ng-click="vm.removeChecklist(checklist)" aria-label="Remove Checklist"
+                                              translate translate-attr-aria-label="SB.REMOVE_CHECKLIST">
+                                       <md-icon md-font-icon="icon-delete"></md-icon>
+                                       <span translate="SB.REMOVE_CHECKLIST">Remove Checklist</span>
+                                   </md-button>
+                               </md-menu-item>
+                           </md-menu-content>
+                       </md-menu>
+                   </div>
+
+                   <div class="section-content">
+
+                       <div class="checklist-progress" layout="row" layout-align="start center">
+                           <span class="checklist-progress-value">
+                               {{checklist.checkItemsChecked}} / {{checklist.checkItems.length}}
+                           </span>
+
+                           <md-progress-linear class="md-accent checklist-progressbar" md-mode="determinate"
+                                               value="{{100 * checklist.checkItemsChecked / checklist.checkItems.length}}">
+                           </md-progress-linear>
+                       </div>
+
+                       <div class="check-items">
+                           <div class="check-item" ng-repeat="checkItem in checklist.checkItems">
+                               <md-checkbox ng-model="checkItem.checked"
+                                            ng-change="vm.updateCheckedCount(checklist)"
+                                            aria-label="{{checkItem.name}}">
+                                   {{checkItem.name}}
+                               </md-checkbox>
+                           </div>
+                       </div>
+
+                       <form name="newCheckItemForm" class="new-check-item-form"
+                             ng-submit="vm.addCheckItem(vm[checklist.id].newCheckItem, checklist);vm[checklist.id].newCheckItem = ''"
+                             layout="row" layout-align="start center">
+
+                           <md-input-container class="no-errors-spacer" flex>
+                               <label layout="row" layout-align="center">
+                                   <i class="icon-plus s18"></i>
+                                   <span translate="SB.ADD_AN_ITEM">Add an item</span>
+                               </label>
+                               <input type="text" autocomplete="off" ng-model="vm[checklist.id].newCheckItem">
+                           </md-input-container>
+
+                           <md-button type="submit" class="md-raised md-accent" aria-label="Add"
+                                      translate translate-attr-aria-label="SB.ADD">
+                               <span translate="SB.ADD">Add</span>
+                           </md-button>
+                       </form>
+
+                   </div>
+               </div>
+           </div>
+           <!-- / CHECKLISTS SECTION -->
 
             <!-- COMMENTS SECTION -->
             <div class="section">

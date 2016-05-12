@@ -154,6 +154,31 @@
           return $http.get(apiUrl + '/api/users');
         }
 
+        var addCheckList = function(issueid, data) {
+          return $http.post(apiUrl + '/api/issues/'+ issueid + '/checklists/new', data, {
+              headers: {
+                  Authorization: 'Bearer ' + authentication.getToken()
+              }
+          });
+        }
+
+        var updateCheckList = function(issueid, checklistid, data) {
+            return $http.put(apiUrl + '/api/issues/' + issueid + '/checklists/' + checklistid,
+                data,   {headers: {
+                      Authorization: 'Bearer ' + authentication.getToken()
+                  }});
+
+        };
+
+
+        var deleteCheckList = function(issueid, checklistid) {
+          return $http.delete(apiUrl + '/api/issues/' + issueid + '/checklists/' + checklistid, {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+          });
+        }
+
         return {
             locationByCoords : locationByCoords,
             locationById : locationById,
@@ -177,7 +202,10 @@
             usersList : usersList,
             addIssueLabelById : addIssueLabelById,
             deleteIssueLabelById: deleteIssueLabelById,
-            updateIssueLabelById: updateIssueLabelById
+            updateIssueLabelById: updateIssueLabelById,
+            addCheckList : addCheckList,
+            updateCheckList: updateCheckList,
+            deleteCheckList: deleteCheckList
         };
     }
 

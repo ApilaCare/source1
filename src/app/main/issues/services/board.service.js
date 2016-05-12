@@ -58,6 +58,30 @@
                 "members": [
                 ],
                 "labels": [
+
+                    {
+                        "id": "63021cfdbe1x72wcf1fc451v",
+                        "name": "Checklist",
+                        "checkItemsChecked": 1,
+                        "checkItems": [
+                            {
+                                "name": "Implement a calendar library",
+                                "checked": false
+                            },
+                            {
+                                "name": "Replace event colors with Material Design colors",
+                                "checked": true
+                            },
+                            {
+                                "name": "Replace icons with Material Design icons",
+                                "checked": false
+                            },
+                            {
+                                "name": "Use moment.js",
+                                "checked": false
+                            }
+                        ]
+                    }
                 ]
             }
         };

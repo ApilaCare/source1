@@ -23,7 +23,7 @@
           return d.name;
         });
 
-
+        console.log(vm.card.checklists);
 
         // Methods
         vm.palettes = fuseTheming.getRegisteredPalettes();
@@ -284,6 +284,14 @@
 
             vm.card.checkItems = allCheckItems;
             vm.card.checkItemsChecked = allCheckedItems;
+
+            apilaData.updateCheckList(vm.card._id, list._id, list)
+            .success(function(d) {
+
+            })
+            .error(function() {
+              console.log("Error while updateing checklist");
+            });
         }
 
         /**
@@ -305,8 +313,18 @@
             };
 
             checkList.checkItems.push(newCheckItem);
+            console.log(checkList);
 
-            updateCheckedCount(checkList);
+            apilaData.updateCheckList(vm.card._id, checkList._id, checkList)
+            .success(function(d) {
+
+                updateCheckedCount(checkList);
+
+            })
+            .error(function() {
+              console.log("Error while updateing checklist");
+            });
+
         }
 
         /**
@@ -316,12 +334,20 @@
          */
         function removeChecklist(item)
         {
-            vm.card.checklists.splice(vm.card.checklists.indexOf(item), 1);
+            //send remove request to the api
+            apilaData.deleteCheckList(vm.card._id, item._id)
+            .success(function(d) {
+              vm.card.checklists.splice(vm.card.checklists.indexOf(item), 1);
 
-            angular.forEach(vm.card.checklists, function (list)
-            {
-                updateCheckedCount(list);
+              angular.forEach(vm.card.checklists, function (list)
+              {
+                  updateCheckedCount(list);
+              });
+            })
+            .error(function(d){
+              console.log("Error while removing checklist");
             });
+
         }
 
         /**
@@ -329,14 +355,25 @@
          */
         function createCheckList()
         {
-            vm.card.checklists.push({
+
+            var data = {
                 id               : msUtils.guidGenerator(),
                 name             : vm.newCheckListTitle,
+                checklistName    : vm.newCheckListTitle,
                 checkItemsChecked: 0,
                 checkItems       : []
-            });
+            };
 
             vm.newCheckListTitle = '';
+
+            apilaData.addCheckList(vm.card._id, data)
+            .success(function(d) {
+                vm.card.checklists.push(d);
+                console.log(vm.card.checklists);
+            })
+            .error(function(d) {
+              console.log("Error while adding checklist");
+            });
         }
 
         /**
