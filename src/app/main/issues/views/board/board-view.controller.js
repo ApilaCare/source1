@@ -156,43 +156,81 @@
                 console.log("Error while loading list of issues for: " + username);
             });
 
-          //add all the other issues assigned to users
-          apilaData.issuesList(status)
-                .success(function(issues) {
 
-                  console.log("Reload other users");
+          function populateIssues() {
+            apilaData.usersList()
+              .success(function(d) {
 
-                  angular.forEach(issues, function(v, k) {
-
-                    var currList = {
-                      id: msUtils.guidGenerator(),
-                      name: v._id,
-                      idCards: []
-                    };
-
-                    //we don't want to add ourself to the list, we are alreadt first
-                    if(currList.name !== username) {
-
-                       //add all the cards
-                        angular.forEach(v.issues, function(value, key) {
-                          value.id = msUtils.guidGenerator();
-                          value.name = value.title;
-
-                          value.due = value.submitDate;
-
-                          vm.board.cards.push(value);
-                          currList.idCards.push(value.id);
-                        });
-
-                        vm.board.lists.push(currList);
-
+                //foreach user make them a list
+                angular.forEach(d, function(v, k) {
+                    var inList = false;
+                    angular.forEach(vm.board.lists, function(value, key) {
+                      if(value.name === v.name) {
+                        inList = true;
                       }
-                      });
+                    });
+                    if(inList === false) {
+                      var currList = {
+                        id: msUtils.guidGenerator(),
+                        name: v.name,
+                        idCards: []
+                      };
 
-                })
-                .error(function(issues) {
-                    console.log("Error while loading list of issues for: " + username);
+                      if(currList.name !== username) {
+                          vm.board.lists.push(currList);
+                        }
+                    }
+
+
                 });
+
+              })
+              .error(function(d) {
+                console.log("error while loading users");
+              });
+            }
+
+
+              //add all the other issues assigned to users
+              apilaData.issuesList(status)
+                    .success(function(issues) {
+
+                      console.log("Reload other users");
+
+                      angular.forEach(issues, function(v, k) {
+
+                        var currList = {
+                          id: msUtils.guidGenerator(),
+                          name: v._id,
+                          idCards: []
+                        };
+
+
+                        //we don't want to add ourself to the list, we are alreadt first
+                        if(currList.name !== username) {
+
+                           //add all the cards
+                            angular.forEach(v.issues, function(value, key) {
+                              value.id = msUtils.guidGenerator();
+                              value.name = value.title;
+
+                              value.due = value.submitDate;
+
+                              vm.board.cards.push(value);
+                              currList.idCards.push(value.id);
+                            });
+                              vm.board.lists.push(currList);
+                          }
+                          });
+
+                          //add empty lists with users with no issues
+                          populateIssues();
+
+                    })
+                    .error(function(issues) {
+                        console.log("Error while loading list of issues for: " + username);
+                    });
+
 
         init();
 
