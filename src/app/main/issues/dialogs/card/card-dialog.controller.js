@@ -20,18 +20,26 @@
         vm.labels = vm.board.labels;
 
 
-        vm.uploadFiles = function(file, errFiles) {
-      $scope.f = file;
-      $scope.errFile = errFiles && errFiles[0];
+      vm.uploadFiles = function(file, errFiles) {
+        $scope.f = file;
+        $scope.errFile = errFiles && errFiles[0];
+
+        var uploadUrl = 'http://localhost:3300/api/issues/'+ vm.card._id + '/attachments/new';
+
       if (file) {
           file.upload = Upload.upload({
-              url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-              data: {file: file}
+              url: uploadUrl,
+              data: {file: file },
+              headers: {
+                  Authorization: 'Bearer ' + authentication.getToken()
+              }
           });
 
           file.upload.then(function (response) {
               $timeout(function () {
                   file.result = response.data;
+                  vm.card.attachments.push(response.data);
+                  console.log(response.data);
               });
           }, function (response) {
               if (response.status > 0)
@@ -155,11 +163,21 @@
          */
         function removeAttachment(item)
         {
+
             if ( vm.card.idAttachmentCover === item.id )
             {
                 vm.card.idAttachmentCover = '';
             }
-            vm.card.attachments.splice(vm.card.attachments.indexOf(item), 1);
+
+            apilaData.deleteAttachment(vm.card._id, item._id)
+            .success(function(d) {
+              vm.card.attachments.splice(vm.card.attachments.indexOf(item), 1);
+            })
+            .error(function(d) {
+              console.log("Error removing attachment");
+            });
+
+
         }
 
         /**

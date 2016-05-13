@@ -53,13 +53,24 @@
        <!-- / MEMBERS -->
 
        <!-- ATTACHMENT -->
-       <md-button class="md-icon-button" ng-click="" aria-label="Attachment"
-                  translate translate-attr-aria-label="SB.ATTACHMENT">
-           <md-icon md-font-icon="icon-attachment"></md-icon>
-       </md-button>
+        <md-menu md-offset="0 48px" class="options">
+         <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Attachment"
+                    translate translate-attr-aria-label="SB.ATTACHMENT">
+             <md-icon md-font-icon="icon-attachment"></md-icon>
+         </md-button>
+         <md-menu-content class="options-menu-content" width="4">
+             <md-menu-item>
+                 <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
+                        accept="image/*" ngf-max-height="1000" ngf-max-size="3MB" >
+                     <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
+                     <span>Add attachment</span>
+                 </md-button>
+             </md-menu-item>
+         </md-menu-content>
+       </md-menu>
 
 
-       <!-- / ATTACHMENT -->
+       <!--  ATTACHMENT -->
 
        <!-- CHECKLIST -->
        <md-menu md-offset="0 48px" class="checklist">
@@ -86,7 +97,7 @@
        <!-- / CHECKLIST -->
 
        <!-- OPTIONS -->
-       <md-menu md-offset="0 48px" class="options">
+        <md-menu md-offset="0 48px" class="options">
            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Options"
                       translate translate-attr-aria-label="SB.OPTIONS">
                <md-icon md-menu-origin md-font-icon="icon-dots-horizontal"></md-icon>
@@ -419,7 +430,7 @@
                    </div>
 
 
-                <h4>Upload on file select</h4>
+                <!-- <h4>Upload on file select</h4>
                  <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
                          accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
                      Select File</md-button>
@@ -430,25 +441,32 @@
                          <div style="width:{{f.progress}}%"
                               ng-bind="f.progress + '%'"></div>
                      </span>
-                 </div>
+                 </div> -->
 
                    <!-- ATTACHMENTS SECTION -->
-           <!-- <div class="section">
+            <div class="section">
                <div class="attachments">
 
                    <div class="section-header" layout="row" layout-align="start center">
                        <i class="icon-attachment s18"></i>
                        <span class="section-title" translate="SB.ATTACHMENTS">Attachments</span>
-                   </div> -->
+                   </div>
 
-                   <!-- <div class="section-content">
+                    <div class="section-content">
 
-                       <div class="attachment" ng-repeat="item in vm.card.attachments" ng-switch="item.type">
+                      <!-- <div class="attachment" ng-repeat="item in vm.card.attachments">
+                        <div class="attachment-content" layout="column">
+                            <span class="attachment-url">{{item.url}}</span>
+                            <span class="attachment-time">{{item.type}}</span>
+                        </div>
+                      </div> -->
 
-                           <div ng-switch-when="image" layout="row">
+                        <div class="attachment" ng-repeat="item in vm.card.attachments">
 
-                               <div class="attachment-preview md-whiteframe-2dp"
-                                    ng-style="{'background-image': 'url({{item.src}})'}">
+                           <div layout="row">
+
+                                <div class="attachment-preview md-whiteframe-2dp"
+                                    ng-style="{'background-image': 'url({{item.url}})'}">
                                </div>
 
                                <div class="attachment-content" layout="column">
@@ -473,7 +491,7 @@
 
                                        <md-menu-content>
 
-                                           <md-menu-item>
+                                           <!-- <md-menu-item>
                                                <md-button ng-click="vm.toggleCoverImage(item.id)"
                                                           aria-label="Toggle Cover Image"
                                                           translate translate-attr-aria-label="SB.TOGGLE_COVER_IMAGE">
@@ -482,9 +500,10 @@
                                                    <span ng-if="vm.card.idAttachmentCover === item.id"
                                                          translate translate="SB.REMOVE_COVER">Remove Cover</span>
                                                </md-button>
-                                           </md-menu-item>
+                                           </md-menu-item> -->
 
                                            <md-menu-item>
+
                                                <md-button ng-click="vm.removeAttachment(item)"
                                                           aria-label="Remove Attachment"
                                                           translate translate-attr-aria-label="SB.REMOVE_ATTACHMENT">
@@ -497,8 +516,9 @@
                                    </md-menu>
                                </div>
                            </div>
+                         </div>
 
-                           <div ng-switch-when="link" layout="row">
+                           <!-- <div ng-switch-when="link" layout="row">
                                <div class="attachment-preview md-whiteframe-2dp" layout="column"
                                     layout-align="center center">
                                    <span translate="SB.LINK">LINK</span>
@@ -508,17 +528,26 @@
                                    <span class="attachment-time">{{item.time}}</span>
                                </div>
                            </div>
-                       </div>
+                       </div>  -->
 
-                        <md-button class="add-attachment-button" aria-label="add attachment">
+                       <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)" class="add-attachment-button" aria-label="add attachment"
+                               accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
+
+                               <div layout="row" layout-align="start center">
+                                   <i class="icon-plus s20"></i>
+                                   <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
+                               </div>
+                        </md-button>
+
+                        <!-- <md-button class="add-attachment-button" aria-label="add attachment">
                            <div layout="row" layout-align="start center">
                                <i class="icon-plus s20"></i>
                                <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
                            </div>
-                       </md-button>
+                       </md-button> -->
                    </div>
                </div>
-           </div> -->
+           </div>
            <!-- / ATTACHMENTS SECTION -->
 
            <!-- CHECKLISTS SECTION -->

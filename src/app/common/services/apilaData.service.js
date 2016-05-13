@@ -179,6 +179,14 @@
           });
         }
 
+        var deleteAttachment = function(issueid, attachmentid) {
+          return $http.delete(apiUrl + '/api/issues/' + issueid + '/attachments/' + attachmentid, {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+          });
+        }
+
         return {
             locationByCoords : locationByCoords,
             locationById : locationById,
@@ -205,7 +213,8 @@
             updateIssueLabelById: updateIssueLabelById,
             addCheckList : addCheckList,
             updateCheckList: updateCheckList,
-            deleteCheckList: deleteCheckList
+            deleteCheckList: deleteCheckList,
+            deleteAttachment: deleteAttachment
         };
     }
 
