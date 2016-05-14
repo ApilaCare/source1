@@ -82,18 +82,9 @@
 
         vm.memberUpdate = function(selectedMember) {
 
-          console.log(selectedMember);
-          console.log(vm.card.idMembers.length);
+          console.log(vm.card.idMembers);
 
-
-          var newArr = [];
-          angular.forEach(vm.card.idMembers, function(v, k) {
-            if(v.name != selectedMember) {
-              newArr.push(v);
-            }
-          });
-
-          vm.card.idMembers = newArr;
+          vm.card.deletedMember = selectedMember;
 
           apilaData.updateIssue(vm.card._id, vm.card)
           .success(function(d) {
@@ -341,15 +332,17 @@
 
         function addMembers(item, array) {
 
-          msUtils.toggleInArray(item, array);
+          console.log(item);
 
-          apilaData.updateIssue(vm.card._id, vm.card)
-          .success(function(d) {
-            console.log("Member updated");
-          })
-          .error(function(d) {
-            console.log("Error while adding memebers to issue");
-          });
+            msUtils.toggleInArray(item, array);
+
+            apilaData.updateIssue(vm.card._id, vm.card)
+            .success(function(d) {
+              console.log("Member updated");
+            })
+            .error(function(d) {
+              console.log("Error while adding memebers to issue");
+            });
 
         }
 

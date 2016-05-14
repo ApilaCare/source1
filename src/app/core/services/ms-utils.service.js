@@ -262,7 +262,9 @@
             }
             else
             {
+
                 array.splice(array.map(function(d){return d._id;}).indexOf(item._id), 1);
+                console.log(array);
             }
         }
     }
