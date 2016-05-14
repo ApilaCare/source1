@@ -40,17 +40,6 @@
             baseUrl = url;
         }
 
-
-        /**
-         * Return the base url
-         *
-         * @returns {string}
-         */
-        function vrednost()
-        {
-            return "vrednost";
-        }
-
         /**
          * Return the base url
          *
@@ -116,7 +105,7 @@
                 getBaseUrl: getBaseUrl,
                 register  : register,
                 resolve   : resolve,
-                request   : request,
+                request   : request
             };
 
             return service;

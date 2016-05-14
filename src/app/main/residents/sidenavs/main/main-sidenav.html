@@ -5,18 +5,21 @@
         <span class="logo-icon">
             <md-icon md-font-icon="icon-home" class="icon"></md-icon>
         </span>
-        <span class="logo-text" >Residents</span>
+        <span class="logo-text">Residents</span>
+    </div>
+
+    <div class="logo" layout="row" layout-align="space-between center">
+      <span class="logo-icon">
+          <md-icon md-font-icon="icon-account-plus" class="icon"></md-icon>
+      </span>
+      <md-button class="md-raised" aria-label="compose"
+                 ng-click="vm.composeDialog($event)" >Add Resident
+      </md-button>
     </div>
 
 
 </div>
 <!-- / SIDENAV HEADER -->
-
-<div class="compose-button">
-    <md-button class="md-accent md-raised" aria-label="compose"
-               ng-click="vm.composeDialog($event)" >Add Resident
-    </md-button>
-</div>
 
 <!-- SIDENAV CONTENT -->
 <md-content ms-scroll class="content" flex>

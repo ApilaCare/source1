@@ -170,19 +170,48 @@
                 </div>
 
                 <div layout="row" layout-align="start center" translate-attr-aria-label="MAIL.REFRESH">
-                    <span class="page-info" hide-sm>1 - 100 of 980</span>
 
-                    <md-button class="md-icon-button arrow" aria-label="Previous" translate
-                               translate-attr-aria-label="MAIL.PREVIOUS">
-                        <md-icon md-font-icon="icon-chevron-left"></md-icon>
-                        <md-tooltip><span translate="MAIL.PREVIOUS">Previous</span></md-tooltip>
-                    </md-button>
-
-                    <md-button class="md-icon-button arrow" aria-label="Next" translate
-                               translate-attr-aria-label="MAIL.NEXT">
-                        <md-icon md-font-icon="icon-chevron-right"></md-icon>
-                        <md-tooltip><span translate="MAIL.NEXT">Next</span></md-tooltip>
-                    </md-button>
+                    <md-menu>
+                        <md-button class="md-icon-button"
+                                   ng-click="$mdOpenMenu($event)"
+                                   aria-label="Filters"
+                                   translate translate-attr-aria-label="MAIL.FILTERS">
+                            <md-icon md-font-icon="icon-note-text"></md-icon>
+                            <md-tooltip><span>Care Plans</span></md-tooltip>
+                        </md-button>
+                        <md-menu-content width="3">
+                            <md-menu-item>
+                                <md-button aria-label="Care Plan 0">
+                                    Care Plan 0
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button aria-label="Care Plan 1">
+                                    Care Plan 1
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button aria-label="Care Plan 2" translate="MAIL.READ"
+                                           translate-attr-aria-label="MAIL.READ">Care Plan 2
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button aria-label="Care Plan 3" translate="MAIL.UNREAD"
+                                           translate-attr-aria-label="MAIL.UNREAD">Care Plan 3
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button aria-label="Care Plan 4" translate="MAIL.STARRED"
+                                           translate-attr-aria-label="MAIL.STARRED">Care Plan 4
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button aria-label="Care Plan 5" translate="MAIL.UNSTARRED"
+                                           translate-attr-aria-label="MAIL.UNSTARRED">Care Plan 5
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
                 </div>
             </div>
             <!-- / CONTENT TOOLBAR -->
