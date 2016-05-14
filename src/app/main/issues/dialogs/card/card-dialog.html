@@ -44,7 +44,7 @@
                             <img class="avatar" alt="{{member.name}}" ng-src="http://a3.mzstatic.com/us/r30/Purple6/v4/75/87/fe/7587fe05-83c5-4127-48ce-2a213151d321/icon175x175.png"/>
                                <p class="member-name">{{ member.name }}</p>
                            </div>
-                           <i class="icon-check s16" ng-if="vm.exists(member, vm.card.idMembers)"></i>
+                           <i class="icon-check s16" ng-if="vm.existsMembers(member, vm.card.idMembers)"></i>
                        </div>
                    </md-button>
                </md-menu-item>
@@ -228,7 +228,7 @@
                                     <div class="content" layout="column" layout-align="start stretch">
                                         <md-input-container class="no-errors-spacer" md-no-float>
                                             <input placeholder="Label Name" type="text"
-                                                   ng-model="vm.board.labels.getById(vm.editLabelId).name"
+                                                   ng-model="vm.card.labels.getById(vm.editLabelId).name"
                                                    translate translate-attr-placeholder="SB.LABEL_NAME">
                                         </md-input-container>
 
@@ -237,10 +237,10 @@
                                                    ng-style="{'background-color': vm.rgba(hues['500'].value), 'color': vm.rgba(hues['500'].contrast, 1)}"
                                                    layout="column" layout-align="center center">
                                                 <input class="ng-hide" type="radio"
-                                                       ng-model="vm.board.labels.getById(vm.editLabelId).color"
+                                                       ng-model="vm.card.labels.getById(vm.editLabelId).color"
                                                        ng-value="palette"
                                                        aria-label="{{palette}}">
-                                                <i ng-if="vm.board.labels.getById(vm.editLabelId).color === palette"
+                                                <i ng-if="vm.card.labels.getById(vm.editLabelId).color === palette"
                                                    class="icon-check s18"></i>
                                             </label>
                                         </div>
@@ -383,9 +383,8 @@
                        <span class="section-title" translate="SB.LABELS">Labels</span>
                    </div>
                    <div class="section-content">
-                       <md-chips class="label-chips" ng-model="vm.card.labels" md-autocomplete-snap
-                                 md-require-match="true" md-transform-chip="$chip.id">
-                           <!-- <md-autocomplete
+                       <md-chips class="label-chips" ng-model="vm.card.labels" md-transform-chip="$chip.id">
+                            <!-- <md-autocomplete
                                    md-selected-item="vm.selectedLabel"
                                    md-search-text="vm.searchLabelText"
                                    md-items="label in vm.labelQuerySearch(vm.searchLabelText)"
@@ -397,7 +396,7 @@
                                              ng-class="'md-'+$chip.color+'-bg'">
                                <span>{{$chip.name}}</span>
                            </md-chip-template>
-                           <button md-chip-remove class="md-primary" ng-click="vm.removeLabel($chip._id)">
+                           <button md-chip-remove class="md-primary" ng-click="vm.removeLabel($chip)">
                                <md-icon md-font-icon="icon-close" class="s18"></md-icon>
                            </button>
                        </md-chips>

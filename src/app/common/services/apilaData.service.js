@@ -63,7 +63,7 @@
         }
 
         var deleteIssueLabelById = function(issueid, labelid) {
-          return $http.delete(apiUrl + '/issuesList/' + issueid + '/labels/' + labelid, {}, {
+          return $http.delete(apiUrl + '/api/issues/' + issueid + '/labels/' + labelid, {
           headers: {
               Authorization: 'Bearer ' + authentication.getToken()
           }
@@ -162,6 +162,10 @@
           });
         }
 
+        var issueLabelList = function(issueid, labelid) {
+
+        }
+
         var updateCheckList = function(issueid, checklistid, data) {
             return $http.put(apiUrl + '/api/issues/' + issueid + '/checklists/' + checklistid,
                 data,   {headers: {
@@ -219,6 +223,7 @@
             addIssueLabelById : addIssueLabelById,
             deleteIssueLabelById: deleteIssueLabelById,
             updateIssueLabelById: updateIssueLabelById,
+            issueLabelList: issueLabelList,
             addCheckList : addCheckList,
             updateCheckList: updateCheckList,
             deleteCheckList: deleteCheckList,

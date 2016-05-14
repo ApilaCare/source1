@@ -32,7 +32,7 @@
 
             // Board
             .state('app.issues.boards.board', {
-                    url    : '/:id/:uri',
+                    url    : ':id/:uri',
                     views  : {
                         'content@app'                                  : {
                             templateUrl: 'app/main/issues/issues.html',

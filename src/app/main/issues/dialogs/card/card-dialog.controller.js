@@ -15,6 +15,9 @@
         // Data
         vm.board = BoardService.data.data;
         vm.card = vm.board.cards.getById(cardId);
+
+        vm.card.labels.map(function(d){d.id = d._id; return d;});
+
         vm.newLabelColor = 'red';
         vm.members = vm.board.members;
         vm.labels = vm.board.labels;
@@ -56,6 +59,7 @@
         vm.rgba = fuseGenerator.rgba;
         vm.toggleInArray = msUtils.toggleInArray;
         vm.exists = msUtils.exists;
+        vm.existsMembers = msUtils.existsMembers;
         vm.closeDialog = closeDialog;
         vm.getCardList = getCardList;
         vm.removeCard = removeCard;
@@ -86,25 +90,22 @@
 
           vm.card.deletedMember = selectedMember;
 
-          apilaData.updateIssue(vm.card._id, vm.card)
-          .success(function(d) {
-            console.log("Member updated");
-          })
-          .error(function(d) {
-            console.log("Error while adding memebers to issue");
-          });
+          // apilaData.updateIssue(vm.card._id, vm.card)
+          // .success(function(d) {
+          //   console.log("Member updated");
+          // })
+          // .error(function(d) {
+          //   console.log("Error while adding memebers to issue");
+          // });
+
+          updateIssue();
+
         }
 
         vm.selectedItemChange = function(selectedMember) {
 
           if(selectedMember !== null) {
-            apilaData.updateIssue(vm.card._id, vm.card)
-            .success(function(d) {
-              console.log("Member updated");
-            })
-            .error(function(d) {
-              console.log("Error while adding memebers to issue");
-            });
+            updateIssue();
           }
         }
 
@@ -261,13 +262,14 @@
             //send data to the api
             apilaData.addIssueLabelById(vm.card._id, label)
             .success(function(data) {
-              vm.board.labels.push(label);
+              data.id = data._id;
+              vm.card.labels.push(data);
 
               vm.newLabelName = '';
 
             })
             .error(function(data) {
-              console.log("Error while adding issue");
+              console.log("Error while adding label");
             });
 
         }
@@ -280,9 +282,9 @@
             var arr = vm.board.labels;
             arr.splice(arr.indexOf(arr.getById(vm.editLabelId)), 1);
 
-            console.log(vm.editLabelId);
+            console.log(id);
 
-            apilaData.deleteIssueLabelById(vm.card._id, id)
+            apilaData.deleteIssueLabelById(vm.card._id, id._id)
             .success(function(d) {
 
               angular.forEach(vm.board.cards, function (card)
@@ -334,15 +336,9 @@
 
           console.log(item);
 
-            msUtils.toggleInArray(item, array);
+            msUtils.toggleInMembersArray(item, array);
 
-            apilaData.updateIssue(vm.card._id, vm.card)
-            .success(function(d) {
-              console.log("Member updated");
-            })
-            .error(function(d) {
-              console.log("Error while adding memebers to issue");
-            });
+            updateIssue();
 
         }
 
