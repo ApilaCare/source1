@@ -34,7 +34,7 @@
          */
         function exists(item, list)
         {
-            return list.indexOf(item) > -1;
+            return list.map(function(d){return d._id;}).indexOf(item._id) > -1;
         }
 
         /**
@@ -256,13 +256,13 @@
          */
         function toggleInArray(item, array)
         {
-            if ( array.indexOf(item) === -1 )
+            if ( array.map(function(d){return d._id;}).indexOf(item._id) === -1 )
             {
                 array.push(item);
             }
             else
             {
-                array.splice(array.indexOf(item), 1);
+                array.splice(array.map(function(d){return d._id;}).indexOf(item._id), 1);
             }
         }
     }

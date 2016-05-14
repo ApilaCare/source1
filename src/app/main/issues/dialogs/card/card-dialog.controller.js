@@ -26,29 +26,29 @@
 
         var uploadUrl = 'http://localhost:3300/api/issues/'+ vm.card._id + '/attachments/new';
 
-      if (file) {
-          file.upload = Upload.upload({
-              url: uploadUrl,
-              data: {file: file },
-              headers: {
-                  Authorization: 'Bearer ' + authentication.getToken()
-              }
-          });
+        if (file) {
+            file.upload = Upload.upload({
+                url: uploadUrl,
+                data: {file: file },
+                headers: {
+                    Authorization: 'Bearer ' + authentication.getToken()
+                }
+            });
 
-          file.upload.then(function (response) {
-              $timeout(function () {
-                  file.result = response.data;
-                  vm.card.attachments.push(response.data);
-                  console.log(response.data);
-              });
-          }, function (response) {
-              if (response.status > 0)
-                  $scope.errorMsg = response.status + ': ' + response.data;
-          }, function (evt) {
-              file.progress = Math.min(100, parseInt(100.0 *
-                                       evt.loaded / evt.total));
-          });
-      }
+            file.upload.then(function (response) {
+                $timeout(function () {
+                    file.result = response.data;
+                    vm.card.attachments.push(response.data);
+                    console.log(response.data);
+                });
+            }, function (response) {
+                if (response.status > 0)
+                    $scope.errorMsg = response.status + ': ' + response.data;
+            }, function (evt) {
+                file.progress = Math.min(100, parseInt(100.0 *
+                                         evt.loaded / evt.total));
+            });
+        }
   }
 
         // Methods
@@ -70,6 +70,7 @@
         /* Members */
         vm.memberQuerySearch = memberQuerySearch;
         vm.filterMember = filterMember;
+        vm.addMembers = addMembers;
         /* Checklist */
         vm.updateCheckedCount = updateCheckedCount;
         vm.addCheckItem = addCheckItem;
@@ -78,6 +79,53 @@
         /* Comment */
         vm.addNewComment = addNewComment;
         vm.updateIssue = updateIssue;
+
+        vm.memberUpdate = function(selectedMember) {
+
+          console.log(selectedMember);
+          console.log(vm.card.idMembers.length);
+
+
+          var newArr = [];
+          angular.forEach(vm.card.idMembers, function(v, k) {
+            if(v.name != selectedMember) {
+              newArr.push(v);
+            }
+          });
+
+          vm.card.idMembers = newArr;
+
+          apilaData.updateIssue(vm.card._id, vm.card)
+          .success(function(d) {
+            console.log("Member updated");
+          })
+          .error(function(d) {
+            console.log("Error while adding memebers to issue");
+          });
+        }
+
+        vm.selectedItemChange = function(selectedMember) {
+
+          if(selectedMember !== null) {
+            apilaData.updateIssue(vm.card._id, vm.card)
+            .success(function(d) {
+              console.log("Member updated");
+            })
+            .error(function(d) {
+              console.log("Error while adding memebers to issue");
+            });
+          }
+        }
+
+        //load member list
+        apilaData.usersList()
+            .success(function(d) {
+              vm.members = d;
+            })
+            .error(function(d) {
+              console.log("error while loading users");
+            });
+
 
         //////////
 
@@ -289,6 +337,20 @@
             }
 
             return angular.lowercase(member.name).indexOf(angular.lowercase(vm.memberSearchText)) >= 0;
+        }
+
+        function addMembers(item, array) {
+
+          msUtils.toggleInArray(item, array);
+
+          apilaData.updateIssue(vm.card._id, vm.card)
+          .success(function(d) {
+            console.log("Member updated");
+          })
+          .error(function(d) {
+            console.log("Error while adding memebers to issue");
+          });
+
         }
 
         /**

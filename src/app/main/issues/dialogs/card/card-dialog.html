@@ -37,14 +37,15 @@
                </md-menu-item>
 
                <md-menu-item class="member" ng-repeat="member in vm.members  | filter: vm.filterMember">
-                   <md-button ng-click="vm.toggleInArray(member.id, vm.card.idMembers)" md-prevent-menu-close
+                   <md-button ng-click="vm.addMembers(member, vm.card.idMembers)" md-prevent-menu-close
                               aria-label="toggle member" translate translate-attr-aria-label="SB.TOGGLE_MEMBER">
                        <div layout="row" layout-align="space-between center">
                            <div layout="row" layout-align="start center">
-                               <img alt="{{ member.name }}" ng-src="{{ member.avatar }}" class="avatar"/>
+                            <img class="avatar" alt="{{member.name}}" ng-src="http://a3.mzstatic.com/us/r30/Purple6/v4/75/87/fe/7587fe05-83c5-4127-48ce-2a213151d321/icon175x175.png"
+                            ms-random-class="vm.colors"/>
                                <p class="member-name">{{ member.name }}</p>
                            </div>
-                           <i class="icon-check s16" ng-if="vm.exists(member.id, vm.card.idMembers)"></i>
+                           <i class="icon-check s16" ng-if="vm.exists(member, vm.card.idMembers)"></i>
                        </div>
                    </md-button>
                </md-menu-item>
@@ -409,39 +410,26 @@
                        <span class="section-title" translate="SB.MEMBERS">Members</span>
                    </div>
                    <div class="section-content">
-                       <md-chips class="member-chips" ng-model="vm.card.idMembers" md-autocomplete-snap
-                                 md-require-match="true" md-transform-chip="$chip.id">
+                       <md-chips class="member-chips" ng-model="vm.card.idMembers"
+                                 md-transform-chip="$chip.id">
                            <md-autocomplete
                                    md-selected-item="vm.selectedMember"
                                    md-search-text="vm.searchText"
                                    md-items="member in vm.memberQuerySearch(vm.searchText)"
                                    md-item-text="member.name"
-                                   placeholder="Search for a member">
+                                   placeholder="Search for a member"
+                                   md-selected-item-change="vm.selectedItemChange(vm.selectedMember)">
                                <span md-highlight-text="vm.searchText">{{member.name}}</span>
                            </md-autocomplete>
                            <md-chip-template class="member-chip">
-                               <img class="member-chip-avatar" ng-src="{{vm.board.members.getById($chip).avatar}}">
-                               <md-tooltip>{{vm.board.members.getById($chip).name}}</md-tooltip>
+                              <!-- <img class="member-chip-avatar"  alt="Kek"> -->
+                              <span>{{ $chip.name }}</span>
                            </md-chip-template>
-                           <button md-chip-remove class="md-primary">
+                           <button md-chip-remove class="md-primary" ng-click="vm.memberUpdate($chip.name)">
                                <md-icon md-font-icon="icon-close" class="s18"></md-icon>
                            </button>
                        </md-chips>
                    </div>
-
-
-                <!-- <h4>Upload on file select</h4>
-                 <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
-                         accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-                     Select File</md-button>
-                 <br><br>
-                 File:
-                 <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
-                     <span class="progress" ng-show="f.progress >= 0">
-                         <div style="width:{{f.progress}}%"
-                              ng-bind="f.progress + '%'"></div>
-                     </span>
-                 </div> -->
 
                    <!-- ATTACHMENTS SECTION -->
             <div class="section">
@@ -668,7 +656,7 @@
             </div>
             <!-- / COMMENTS SECTION -->
 
-            <!-- ACTIVITIES SECTION -->
+            <!-- UPDATES SECTION -->
             <div class="section">
 
                 <div class="activities">
@@ -688,7 +676,7 @@
                             <h5 ng-repeat="f in update.updateField ">
                               <div layout="row" layout-align="space-between center">
                                 <p>
-                                  {{ f.field }}: 
+                                  {{ f.field }}:
                                   <span>old: {{ f.old }}</span>
                                   <span>new: {{ f.new }}</span>
                                 </p>
@@ -699,7 +687,7 @@
 
                 </div>
             </div>
-            <!-- / ACTIVITIES SECTION -->
+            <!-- / UPDATES SECTION -->
 
         </div>
         <!-- / SECTIONS -->

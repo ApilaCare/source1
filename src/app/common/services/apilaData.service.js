@@ -187,6 +187,14 @@
           });
         }
 
+        var updateIssue = function(issueid, data) {
+          return $http.put(apiUrl + '/api/issues/' + issueid, data, {
+              headers: {
+                  Authorization: 'Bearer ' + authentication.getToken()
+              }
+          });
+        }
+
         return {
             locationByCoords : locationByCoords,
             locationById : locationById,
@@ -214,7 +222,8 @@
             addCheckList : addCheckList,
             updateCheckList: updateCheckList,
             deleteCheckList: deleteCheckList,
-            deleteAttachment: deleteAttachment
+            deleteAttachment: deleteAttachment,
+            updateIssue: updateIssue
         };
     }
 
