@@ -70,8 +70,12 @@
         });
         }
 
-        var updateIssueLabelById = function(issueId, labelid) {
-          return $http.put(apiUrl + '/issues/' + issueId + '/labels/' + labelid);
+        var updateIssueLabelById = function(issueId, labelid, data) {
+          return $http.put(apiUrl + '/api/issues/' + issueId + '/labels/' + labelid, data, {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+          });
         }
 
         var addIssueCommentById = function(issueid, data) {

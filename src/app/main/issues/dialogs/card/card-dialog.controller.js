@@ -20,6 +20,7 @@
 
         vm.newLabelColor = 'red';
         vm.members = vm.board.members;
+
         vm.labels = vm.board.labels;
 
 
@@ -84,22 +85,27 @@
         vm.addNewComment = addNewComment;
         vm.updateIssue = updateIssue;
 
+        //deleting a member
         vm.memberUpdate = function(selectedMember) {
 
           console.log(vm.card.idMembers);
 
           vm.card.deletedMember = selectedMember;
 
-          // apilaData.updateIssue(vm.card._id, vm.card)
-          // .success(function(d) {
-          //   console.log("Member updated");
-          // })
-          // .error(function(d) {
-          //   console.log("Error while adding memebers to issue");
-          // });
-
           updateIssue();
 
+        }
+
+        vm.updateLabel = function(labelid) {
+
+          apilaData.updateIssueLabelById(vm.card._id, labelid,
+          vm.card.labels.getById(labelid))
+          .success(function(d) {
+
+          })
+          .error(function(d) {
+            console.log("Error updating label");
+          });
         }
 
         vm.selectedItemChange = function(selectedMember) {
@@ -542,6 +548,36 @@
                    });
                }
            }
+
+           var memDiff = null;
+
+           //member updates, deleted
+           if(oldData.idMembers.length > newData.idMembers.length) {
+             memDiff = _.differenceBy(oldData.idMembers,
+                  newData.idMembers, "name");
+
+             if(memDiff.length > 0) {
+               diff.push({
+                 "field" : "idMemebers",
+                 "old" : memDiff[0].name,
+                 "new" : ""
+               });
+             }
+           }
+           //added some member
+           else if(oldData.idMembers.length < newData.idMembers.length) {
+             memDiff = _.differenceBy(newData.idMembers,
+                  oldData.idMembers, "name");
+
+             if(memDiff.length > 0) {
+               diff.push({
+                 "field" : "idMemebers",
+                 "old" : "",
+                 "new" : memDiff[0].name
+               });
+             }
+         }
+
            return diff;
        }
 

@@ -138,7 +138,7 @@
                                 <md-menu-item class="label" ng-repeat="label in vm.card.labels | filter: vm.filterLabel">
                                     <md-button class="label-toggle-button" md-prevent-menu-close
                                                ng-class="'md-'+label.color+'-bg'"
-                                               ng-click="vm.toggleInArray(label.id, vm.card.labels)"
+                                              
                                                aria-label="Toggle Label" translate
                                                translate-attr-aria-label="SB.TOGGLE_LABEL">
                                         <div layout="row" layout-align="space-between center">
@@ -228,6 +228,7 @@
                                     <div class="content" layout="column" layout-align="start stretch">
                                         <md-input-container class="no-errors-spacer" md-no-float>
                                             <input placeholder="Label Name" type="text"
+                                                   ng-blur="vm.updateLabel(vm.editLabelId)"
                                                    ng-model="vm.card.labels.getById(vm.editLabelId).name"
                                                    translate translate-attr-placeholder="SB.LABEL_NAME">
                                         </md-input-container>
@@ -239,6 +240,7 @@
                                                 <input class="ng-hide" type="radio"
                                                        ng-model="vm.card.labels.getById(vm.editLabelId).color"
                                                        ng-value="palette"
+                                                       ng-click="vm.updateLabel(vm.editLabelId)"
                                                        aria-label="{{palette}}">
                                                 <i ng-if="vm.card.labels.getById(vm.editLabelId).color === palette"
                                                    class="icon-check s18"></i>

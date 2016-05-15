@@ -149,8 +149,11 @@
         apilaData.listIssueByUsername(username, status)
             .success(function(issues) {
               //add card to first list
+              var currUserIssues = _.filter(issues, {"responsibleParty" : username})
 
-              addCardsToList(issues, vm.board.lists[0]);
+              vm.board.labels =  _.flatten(_.map(issues, "labels"));
+
+              addCardsToList(currUserIssues, vm.board.lists[0]);
             })
             .error(function(issues) {
                 console.log("Error while loading list of issues for: " + username);
@@ -160,6 +163,7 @@
           function populateIssues() {
             apilaData.usersList()
               .success(function(d) {
+
 
                 //foreach user make them a list
                 angular.forEach(d, function(v, k) {
@@ -195,7 +199,7 @@
               apilaData.issuesList(status)
                     .success(function(issues) {
 
-                      console.log("Reload other users");
+                    //  console.log(issues);
 
                       angular.forEach(issues, function(v, k) {
 
