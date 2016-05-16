@@ -35,7 +35,7 @@
         if (file) {
             file.upload = Upload.upload({
                 url: uploadUrl,
-                data: {file: file, updateInfo},
+                data: {file: file, updateInfo: updateInfo},
                 headers: {
                     Authorization: 'Bearer ' + authentication.getToken()
                 }
