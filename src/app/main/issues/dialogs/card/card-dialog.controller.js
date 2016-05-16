@@ -273,11 +273,14 @@
                 author: authentication.currentUser().name
             };
 
+            label.updateInfo = setUpdateInfo('labels', label.name, "");
+
             //send data to the api
             apilaData.addIssueLabelById(vm.card._id, label)
             .success(function(data) {
               data.id = data._id;
               vm.card.labels.push(data);
+              vm.card.updateInfo.push(label.updateInfo);
 
               vm.newLabelName = '';
 
@@ -298,8 +301,12 @@
 
             console.log(id);
 
+            var updateInfo = setUpdateInfo('labels', "", id.name);
+
             apilaData.deleteIssueLabelById(vm.card._id, id._id)
             .success(function(d) {
+
+              vm.card.updateInfo.push(updateInfo);
 
               angular.forEach(vm.board.cards, function (card)
               {
@@ -386,6 +393,8 @@
             vm.card.checkItems = allCheckItems;
             vm.card.checkItemsChecked = allCheckedItems;
 
+            console.log(list);
+
             apilaData.updateCheckList(vm.card._id, list._id, list)
             .success(function(d) {
 
@@ -416,9 +425,12 @@
             checkList.checkItems.push(newCheckItem);
             console.log(checkList);
 
+            checkList.updateInfo = setUpdateInfo('checkitem', newCheckItem.name, "");
+
             apilaData.updateCheckList(vm.card._id, checkList._id, checkList)
             .success(function(d) {
 
+                vm.card.updateInfo.push(checkList.updateInfo);
                 updateCheckedCount(checkList);
 
             })
@@ -435,10 +447,15 @@
          */
         function removeChecklist(item)
         {
+
+           var updateInfo = setUpdateInfo("checklists", "", item.checklistName);
+
             //send remove request to the api
             apilaData.deleteCheckList(vm.card._id, item._id)
             .success(function(d) {
               vm.card.checklists.splice(vm.card.checklists.indexOf(item), 1);
+
+              vm.card.updateInfo.push(updateInfo);
 
               angular.forEach(vm.card.checklists, function (list)
               {
@@ -465,11 +482,14 @@
                 checkItems       : []
             };
 
+            data.updateInfo = setUpdateInfo('checklists', data.name, "");
+
             vm.newCheckListTitle = '';
 
             apilaData.addCheckList(vm.card._id, data)
             .success(function(d) {
                 vm.card.checklists.push(d);
+                vm.card.updateInfo.push(data.updateInfo);
                 console.log(vm.card.checklists);
             })
             .error(function(d) {
@@ -610,6 +630,33 @@
               v.infoFormated = updatedBy + " uploaded attachment " + v.new;
             } else {
               v.infoFormated = updatedBy + " removed attachment " + v.old;
+            }
+          }
+
+          //formating for labels
+          if(v.field === "labels") {
+            if(v.old === "") {
+              v.infoFormated = updatedBy + " added label " + v.new;
+            } else {
+              v.infoFormated = updatedBy + " removed label " + v.old;
+            }
+          }
+
+          //formating for checklists
+          if(v.field === "checklists") {
+            if(v.old === "") {
+              v.infoFormated = updatedBy + " added checklist " + v.new;
+            } else {
+              v.infoFormated = updatedBy + " removed checklist " + v.old;
+            }
+          }
+
+          //formating for checklists item
+          if(v.field === "checkitem") {
+            if(v.old === "") {
+              v.infoFormated = updatedBy + " added checklist item " + v.new;
+            } else {
+              v.infoFormated = updatedBy + " removed checklist item" + v.old;
             }
           }
 
