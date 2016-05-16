@@ -30,10 +30,12 @@
 
         var uploadUrl = 'http://localhost:3300/api/issues/'+ vm.card._id + '/attachments/new';
 
+        var updateInfo = setUpdateInfo('attachments',file.name , "");
+
         if (file) {
             file.upload = Upload.upload({
                 url: uploadUrl,
-                data: {file: file },
+                data: {file: file, updateInfo},
                 headers: {
                     Authorization: 'Bearer ' + authentication.getToken()
                 }
@@ -44,6 +46,7 @@
                     file.result = response.data;
                     vm.card.attachments.push(response.data);
                     console.log(response.data);
+                    vm.card.updateInfo.push(updateInfo);
                 });
             }, function (response) {
                 if (response.status > 0)
@@ -85,6 +88,8 @@
         vm.addNewComment = addNewComment;
         vm.updateIssue = updateIssue;
 
+        vm.formatUpdateArray = formatUpdateArray;
+
         //deleting a member
         vm.memberUpdate = function(selectedMember) {
 
@@ -92,7 +97,7 @@
 
           vm.card.deletedMember = selectedMember;
 
-          updateIssue();
+          updateIssue(selectedMember);
 
         }
 
@@ -215,9 +220,12 @@
                 vm.card.idAttachmentCover = '';
             }
 
-            apilaData.deleteAttachment(vm.card._id, item._id)
+            var updateInfo = setUpdateInfo('attachments', "" , item.name);
+
+            apilaData.deleteAttachment(vm.card._id, item._id, vm.card)
             .success(function(d) {
               vm.card.attachments.splice(vm.card.attachments.indexOf(item), 1);
+              vm.card.updateInfo.push(updateInfo);
             })
             .error(function(d) {
               console.log("Error removing attachment");
@@ -340,7 +348,7 @@
 
         function addMembers(item, array) {
 
-          console.log(item);
+          console.log("Dodo");
 
             msUtils.toggleInMembersArray(item, array);
 
@@ -508,7 +516,7 @@
 
         var oldData = angular.copy(vm.card);
 
-        function updateIssue() {
+        function updateIssue(deletedMember) {
 
           vm.card.title = vm.card.name;
 
@@ -516,12 +524,13 @@
           vm.card.modifiedBy = authentication.currentUser().name;
           vm.card.modifiedDate = new Date();
 
-          vm.card.updateField = checkChangedFields(oldData, vm.card);
+
+          vm.card.updateField = checkChangedFields(oldData, vm.card, deletedMember);
 
           apilaData.updateIssue(vm.card._id, vm.card)
           .success(function(data) {
             console.log("updated issue");
-
+            vm.card.updateInfo = data.updateInfo;
 
           }).error(function(data) {
             console.log("Error while adding comment");
@@ -529,7 +538,7 @@
         }
 
 
-        function checkChangedFields(oldData, newData) {
+        function checkChangedFields(oldData, newData, selectedMember) {
 
           console.log(oldData);
           console.log(newData);
@@ -552,17 +561,13 @@
            var memDiff = null;
 
            //member updates, deleted
-           if(oldData.idMembers.length > newData.idMembers.length) {
-             memDiff = _.differenceBy(oldData.idMembers,
-                  newData.idMembers, "name");
+           if(selectedMember !== undefined) {
 
-             if(memDiff.length > 0) {
                diff.push({
                  "field" : "idMemebers",
-                 "old" : memDiff[0].name,
+                 "old" : selectedMember,
                  "new" : ""
                });
-             }
            }
            //added some member
            else if(oldData.idMembers.length < newData.idMembers.length) {
@@ -582,6 +587,37 @@
        }
 
 
+       /**
+       * Gets an array of updateFields and formates them from proper display
+       */
+       function formatUpdateArray(updateInfo, updatedBy) {
+         _.forEach(updateInfo, function(v, k) {
+           v.infoFormated = updatedBy + " changed " + v.field
+                            + " from " + v.old + " to " + v.new;
+
+          //formating for members
+          if(v.field === "idMemebers") {
+            if(v.old === "") {
+              v.infoFormated = updatedBy + " added member " + v.new;
+            } else {
+              v.infoFormated = updatedBy + " removed member " + v.old;
+            }
+          }
+
+          //formating for attachemnts
+          if(v.field === "attachments") {
+            if(v.old === "") {
+              v.infoFormated = updatedBy + " uploaded attachment " + v.new;
+            } else {
+              v.infoFormated = updatedBy + " removed attachment " + v.old;
+            }
+          }
+
+         });
+
+         return updateInfo;
+       }
+
         /**
          * Filter for chips
          *
@@ -595,6 +631,26 @@
             {
                 return angular.lowercase(item.name).indexOf(lowercaseQuery) >= 0;
             };
+        }
+
+
+        /**
+        * Private function the set the update info for updating label/attachemnts/checklists
+        */
+
+        function setUpdateInfo(fieldName, newField, oldField) {
+          var updateInfo = {};
+
+          updateInfo.updateBy = authentication.currentUser().name;
+          updateInfo.updateDate = new Date();
+          updateInfo.updateField = [];
+          updateInfo.updateField.push({
+            "field": fieldName,
+            "new": newField,
+            "old": oldField
+          });
+
+          return updateInfo;
         }
     }
 })();

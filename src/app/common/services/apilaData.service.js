@@ -187,7 +187,7 @@
           });
         }
 
-        var deleteAttachment = function(issueid, attachmentid) {
+        var deleteAttachment = function(issueid, attachmentid, data) {
           return $http.delete(apiUrl + '/api/issues/' + issueid + '/attachments/' + attachmentid, {
             headers: {
                 Authorization: 'Bearer ' + authentication.getToken()

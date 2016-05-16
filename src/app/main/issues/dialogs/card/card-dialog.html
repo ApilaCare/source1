@@ -138,7 +138,7 @@
                                 <md-menu-item class="label" ng-repeat="label in vm.card.labels | filter: vm.filterLabel">
                                     <md-button class="label-toggle-button" md-prevent-menu-close
                                                ng-class="'md-'+label.color+'-bg'"
-                                              
+
                                                aria-label="Toggle Label" translate
                                                translate-attr-aria-label="SB.TOGGLE_LABEL">
                                         <div layout="row" layout-align="space-between center">
@@ -674,12 +674,10 @@
                             <div class="activity-member-name">{{ update.updateBy }}</div>
                             <div class="activity-message">{{ update.updateDate | date}}</div>
 
-                            <h5 ng-repeat="f in update.updateField ">
+                            <h5 ng-repeat="f in vm.formatUpdateArray(update.updateField, update.updateBy) ">
                               <div layout="row" layout-align="space-between center">
                                 <p>
-                                  {{ f.field }}:
-                                  <span>old: {{ f.old }}</span>
-                                  <span>new: {{ f.new }}</span>
+                                    <span>{{ f.infoFormated }} </span>
                                 </p>
                               </div>
                             </h5>
