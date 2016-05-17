@@ -544,7 +544,6 @@
           vm.card.modifiedBy = authentication.currentUser().name;
           vm.card.modifiedDate = new Date();
 
-
           vm.card.updateField = checkChangedFields(oldData, vm.card, deletedMember);
 
           apilaData.updateIssue(vm.card._id, vm.card)
@@ -598,7 +597,7 @@
                diff.push({
                  "field" : "idMemebers",
                  "old" : "",
-                 "new" : memDiff[0].name
+                 "new" : newData.idMembers[newData.idMembers.length-1].name
                });
              }
          }

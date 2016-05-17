@@ -115,7 +115,7 @@
        <!-- / OPTIONS -->
 
             <!-- LABELS -->
-            <md-menu md-offset="0 48" class="labels">
+            <!-- <md-menu md-offset="0 48" class="labels">
                 <md-button class="md-icon-button" aria-label="Label" translate translate-attr-aria-label="SB.LABEL"
                            ng-click="vm.labelTabIndex = 0;$mdOpenMenu($event)">
                     <md-icon md-menu-origin md-font-icon="icon-label-outline"></md-icon>
@@ -124,7 +124,6 @@
                 <md-menu-content class="labels-menu-content" width="4" ms-scroll>
                     <md-tabs md-selected="vm.labelTabIndex" md-dynamic-height>
 
-                        <!-- SELECT LABEL -->
                         <md-tab>
                             <md-tab-body>
                                 <md-menu-item>
@@ -165,9 +164,7 @@
                                 </md-menu-item>
                             </md-tab-body>
                         </md-tab>
-                        <!-- / SELECT LABEL -->
 
-                        <!-- ADD LABEL -->
                         <md-tab>
                             <md-tab-body>
                                 <div class="add-label-tab-content">
@@ -209,9 +206,8 @@
                                 </div>
                             </md-tab-body>
                         </md-tab>
-                        <!-- / ADD LABEL -->
 
-                        <!-- EDIT LABEL -->
+
                         <md-tab>
                             <md-tab-body>
                                 <div class="edit-label-tab-content">
@@ -261,11 +257,11 @@
 
                             </md-tab-body>
                         </md-tab>
-                        <!-- / EDIT LABEL -->
+
 
                     </md-tabs>
                 </md-menu-content>
-            </md-menu>
+            </md-menu> -->
             <!-- / LABELS -->
 
 
@@ -379,21 +375,21 @@
 
         <!-- LABELS SECTION -->
 
-                <div flex class="labels">
+                <!-- <div flex class="labels">
                    <div class="section-header" layout="row" layout-align="start center">
                        <i class="icon-label-outline s18"></i>
                        <span class="section-title" translate="SB.LABELS">Labels</span>
                    </div>
                    <div class="section-content">
                        <md-chips class="label-chips" ng-model="vm.card.labels" md-transform-chip="$chip.id">
-                            <!-- <md-autocomplete
+                          <md-autocomplete
                                    md-selected-item="vm.selectedLabel"
                                    md-search-text="vm.searchLabelText"
                                    md-items="label in vm.labelQuerySearch(vm.searchLabelText)"
                                    md-item-text="label.name"
                                    placeholder="Search for a label">
                                <span md-highlight-text="vm.searchLabelText">{{label.name}}</span>
-                           </md-autocomplete> -->
+                           </md-autocomplete>
                            <md-chip-template class="label-chip"
                                              ng-class="'md-'+$chip.color+'-bg'">
                                <span>{{$chip.name}}</span>
@@ -403,7 +399,7 @@
                            </button>
                        </md-chips>
                    </div>
-                 </div>
+                 </div> -->
 
                    <div class="section-header" layout="row" layout-align="start center">
                        <i class="icon-account-multiple s18"></i>
