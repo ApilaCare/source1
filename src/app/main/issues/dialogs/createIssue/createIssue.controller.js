@@ -7,7 +7,7 @@
         .controller('CreateIssueController', CreateIssueController);
 
     /** @ngInject */
-    function CreateIssueController($mdDialog, apilaData, board, name) {
+    function CreateIssueController($mdDialog, apilaData, board, name, authentication, msNavigationService) {
 
       var vm = this;
 
@@ -68,6 +68,20 @@
               }
 
               board.data.cards.push(issue);
+
+              var username = authentication.currentUser().name;
+
+              apilaData.openIssuesCount(username)
+                .success(function(count) {
+                  msNavigationService.saveItem('fuse.issues', {
+                    badge: {
+                      content:  count,
+                      color  : '#F44336'
+                    }
+                  });
+                })
+                .error(function(count) {
+                })
 
 
               for(var i = 0; i < board.data.lists.length;++i) {

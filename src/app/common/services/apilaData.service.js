@@ -203,6 +203,18 @@
           });
         }
 
+        var openIssuesCount = function(username) {
+          return $http.get(apiUrl + '/api/issues/count/' + username);
+        }
+
+        var deleteIssue = function(issueid) {
+          return $http.delete(apiUrl + '/api/issues/' + issueid, {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+          });
+        }
+
         return {
             locationByCoords : locationByCoords,
             locationById : locationById,
@@ -232,7 +244,9 @@
             updateCheckList: updateCheckList,
             deleteCheckList: deleteCheckList,
             deleteAttachment: deleteAttachment,
-            updateIssue: updateIssue
+            updateIssue: updateIssue,
+            openIssuesCount : openIssuesCount,
+            deleteIssue : deleteIssue
         };
     }
 

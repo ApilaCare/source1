@@ -8,7 +8,7 @@
 
     /** @ngInject */
     function ScrumboardCardDialogController($document, $mdDialog, fuseTheming, $scope, $timeout,
-      fuseGenerator, msUtils, BoardService, cardId, apilaData, authentication, Upload)
+      fuseGenerator, msUtils, BoardService, cardId, apilaData, authentication, Upload, msNavigationService)
     {
         var vm = this;
 
@@ -183,6 +183,29 @@
                 cardList.idCards.splice(cardList.idCards.indexOf(vm.card.id), 1);
 
                 vm.board.cards.splice(vm.board.cards.indexOf(vm.card), 1);
+
+                //delete that issue
+                apilaData.deleteIssue(vm.card._id)
+                .success(function(d) {
+
+                  var username = authentication.currentUser().name;
+
+                  apilaData.openIssuesCount(username)
+                    .success(function(count) {
+                      msNavigationService.saveItem('fuse.issues', {
+                        badge: {
+                          content:  count,
+                          color  : '#F44336'
+                        }
+                      });
+                    })
+                    .error(function(count) {
+                    })
+
+                })
+                .error(function(d) {
+
+                });
 
             }, function ()
             {

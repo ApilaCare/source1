@@ -7,7 +7,7 @@
         .controller('AppoitmentsController', AppoitmentsController);
 
     /** @ngInject */
-    function AppoitmentsController($mdDialog, $document, apilaData)
+    function AppoitmentsController($mdDialog, $document, apilaData, msNavigationService, authentication)
     {
         var vm = this;
 
@@ -17,6 +17,20 @@
         var m = date.getMonth();
         var y = date.getFullYear();
 
+
+        var username = authentication.currentUser().name;
+
+        apilaData.openIssuesCount(username)
+          .success(function(count) {
+            msNavigationService.saveItem('fuse.issues', {
+              badge: {
+                content:  count,
+                color  : '#F44336'
+              }
+            });
+          })
+          .error(function(count) {
+          })
 
       var loadAppoitnments = function() {
 

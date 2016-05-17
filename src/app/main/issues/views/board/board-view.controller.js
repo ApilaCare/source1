@@ -8,7 +8,7 @@
 
     /** @ngInject */
     function BoardViewController($document, $window, $timeout, $mdDialog, msUtils, $stateParams,
-       BoardService, CardFilters, DialogService, authentication, apilaData)
+       BoardService, CardFilters, DialogService, authentication, apilaData, msNavigationService)
     {
         var vm = this;
 
@@ -19,6 +19,18 @@
         vm.board.cards = [];
 
         var username = authentication.currentUser().name;
+
+        apilaData.openIssuesCount(username)
+          .success(function(count) {
+            msNavigationService.saveItem('fuse.issues', {
+              badge: {
+                content:  count,
+                color  : '#F44336'
+              }
+            });
+          })
+          .error(function(count) {
+          })
 
         vm.issueList = BoardService.getIssueByUsername(username);
 
