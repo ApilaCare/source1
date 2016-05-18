@@ -29,53 +29,8 @@
             <!-- TOOLBAR -->
             <div class="toolbar" layout="row" layout-align="space-between center" flex-order="3">
 
-                <!-- CALENDAR BUTTON -->
-                <md-button ui-sref-active-eq="ng-hide"
-                           class="md-icon-button"
-                           ui-sref="app.issues.boards.board.calendar"
-                           aria-label="Calendar" translate translate-attr-aria-label="SB.CALENDAR">
-                    <md-icon md-font-icon="icon-calendar"></md-icon>
-                    <md-tooltip><span translate="SB.CALENDAR">Calendar</span></md-tooltip>
-                </md-button>
-                <!-- / CALENDAR BUTTON -->
-
-                <!-- BOARD BUTTON -->
-                <md-button ui-sref-active-eq="ng-hide"
-                           class="md-icon-button"
-                           ui-sref="app.issues.boards.board"
-                           aria-label="Board" translate translate-attr-aria-label="SB.BOARD">
-                    <md-icon md-font-icon="icon-trello"></md-icon>
-                    <md-tooltip><span translate="SB.BOARD">Board</span></md-tooltip>
-                </md-button>
-                <!-- / BOARD BUTTON -->
-
-                <!-- CLEAR FILTERS BUTTON -->
-                <md-button ng-if="vm.filteringIsOn()"
-                           class="md-icon-button"
-                           ng-click="vm.clearFilters()"
-                           aria-label="Clear Filters" translate translate-attr-aria-label="SB.CLEAR_FILTERS">
-                    <md-icon md-font-icon="icon-filter-remove"></md-icon>
-                    <md-tooltip SB.CLEAR_FILTERS>Clear Filters</md-tooltip>
-                </md-button>
-                <!-- / CLEAR FILTERS BUTTON -->
-
-                <!-- FILTERS SIDENAV BUTTON -->
-                <md-button class="md-icon-button"
-                           ng-click="vm.toggleSidenav('filters-sidenav')"
-                           aria-label="Filter Cards" translate translate-attr-aria-label="SB.FILTER_CARDS">
-                    <md-icon md-font-icon="icon-filter-variant"></md-icon>
-                    <md-tooltip><span translate="SB.FILTER_CARDS">Filter Cards</span></md-tooltip>
-                </md-button>
-                <!-- / FILTERS SIDENAV BUTTON -->
-
-                <!-- BOARD SETTINGS BUTTON -->
-                <md-button class="md-icon-button"
-                           ng-click="vm.toggleSidenav('settings-sidenav')"
-                           aria-label="Settings" translate translate-attr-aria-label="SB.SETTINGS">
-                    <md-icon md-font-icon="icon-cog"></md-icon>
-                    <md-tooltip><span translate="SB.SETTINGS">Settings</span></md-tooltip>
-                </md-button>
-                <!-- / BOARD SETTINGS BUTTON -->
+             <!-- not using any toolbar buttons -->
+             
             </div>
             <!-- / TOOLBAR -->
 
