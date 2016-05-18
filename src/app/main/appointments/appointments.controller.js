@@ -72,7 +72,7 @@
                      }
 
                      if(value.cancel === true) {
-                       calEvent.color = "#f00";
+                       calEvent.color = "#f24438";
                      }
 
                      i++;

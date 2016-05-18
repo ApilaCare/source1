@@ -3,119 +3,99 @@
 
 
 
-    <!-- DIALOG TOOLBAR -->
-    <md-toolbar class="md-accent" ng-class="'md-'+vm.board.settings.color+'-bg'">
-        <div class="md-toolbar-tools">
+  <!-- DIALOG TOOLBAR -->
+  <md-toolbar class="md-accent" ng-class="'md-'+vm.board.settings.color+'-bg'">
+    <div class="md-toolbar-tools">
 
-            <!-- DUE DATE -->
-            <div class="due-date">
-                <div ng-if="!vm.card.due" moment-picker="vm.card.due" format="x" min-view="year"
-                     max-view="hour"
-                     start-view="month">
-                    <md-button class="md-icon-button" aria-label="Due date" translate
-                               translate-attr-aria-label="SB.DUE_DATE"
-                               ng-click="$mdOpenMenu($event)">
-                        <md-icon md-font-icon="icon-calendar"></md-icon>
-                    </md-button>
+      <!-- MEMBERS -->
+      <md-menu md-offset="0 48" class="members">
+        <md-button class="md-icon-button" aria-label="Members" ng-click="$mdOpenMenu($event)">
+          <md-icon md-menu-origin md-font-icon="icon-account-multiple"></md-icon>
+        </md-button>
+
+        <md-menu-content class="members-menu-content" width="4" ms-scroll>
+          <md-menu-item>
+            <md-input-container class="no-errors-spacer" md-no-float>
+              <input placeholder="Search members..." autocomplete="off" type="text" ng-model="vm.memberSearchText" translate translate-attr-placeholder="SB.SEARCH_MEMBERS">
+            </md-input-container>
+          </md-menu-item>
+
+          <md-menu-item class="member" ng-repeat="member in vm.members  | filter: vm.filterMember">
+            <md-button ng-click="vm.addMembers(member, vm.card.idMembers)" md-prevent-menu-close aria-label="toggle member" translate translate-attr-aria-label="SB.TOGGLE_MEMBER">
+              <div layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center">
+                  <img class="avatar" alt="{{member.name}}" ng-src="http://a3.mzstatic.com/us/r30/Purple6/v4/75/87/fe/7587fe05-83c5-4127-48ce-2a213151d321/icon175x175.png" />
+                  <p class="member-name">{{ member.name }}</p>
                 </div>
-            </div>
-            <!-- / DUE DATE -->
+                <i class="icon-check s16" ng-if="vm.existsMembers(member, vm.card.idMembers)"></i>
+              </div>
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+      <!-- / MEMBERS -->
 
-            <!-- MEMBERS -->
-       <md-menu md-offset="0 48" class="members">
-           <md-button class="md-icon-button" aria-label="Members" ng-click="$mdOpenMenu($event)">
-               <md-icon md-menu-origin md-font-icon="icon-account-multiple"></md-icon>
-           </md-button>
+      <!-- ATTACHMENT -->
+      <md-menu md-offset="0 48px" class="options">
+        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Attachment" translate translate-attr-aria-label="SB.ATTACHMENT">
+          <md-icon md-font-icon="icon-attachment"></md-icon>
+        </md-button>
+        <md-menu-content class="options-menu-content" width="4">
+          <md-menu-item>
+            <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
+              <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
+              <span>Add attachment</span>
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+      <!-- / ATTACHMENT -->
 
-           <md-menu-content class="members-menu-content" width="4" ms-scroll>
-               <md-menu-item>
-                   <md-input-container class="no-errors-spacer" md-no-float>
-                       <input placeholder="Search members..." autocomplete="off" type="text"
-                              ng-model="vm.memberSearchText" translate
-                              translate-attr-placeholder="SB.SEARCH_MEMBERS">
-                   </md-input-container>
-               </md-menu-item>
+      <!-- CHECKLIST -->
+      <md-menu md-offset="0 48px" class="checklist">
+        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="checklist" translate translate-attr-aria-label="SB.CHECKLIST">
+          <md-icon md-menu-origin md-font-icon="icon-checkbox-marked"></md-icon>
+        </md-button>
 
-               <md-menu-item class="member" ng-repeat="member in vm.members  | filter: vm.filterMember">
-                   <md-button ng-click="vm.addMembers(member, vm.card.idMembers)" md-prevent-menu-close
-                              aria-label="toggle member" translate translate-attr-aria-label="SB.TOGGLE_MEMBER">
-                       <div layout="row" layout-align="space-between center">
-                           <div layout="row" layout-align="start center">
-                            <img class="avatar" alt="{{member.name}}" ng-src="http://a3.mzstatic.com/us/r30/Purple6/v4/75/87/fe/7587fe05-83c5-4127-48ce-2a213151d321/icon175x175.png"/>
-                               <p class="member-name">{{ member.name }}</p>
-                           </div>
-                           <i class="icon-check s16" ng-if="vm.existsMembers(member, vm.card.idMembers)"></i>
-                       </div>
-                   </md-button>
-               </md-menu-item>
-           </md-menu-content>
-       </md-menu>
-       <!-- / MEMBERS -->
+        <md-menu-content class="checklist-menu-content" width="4">
+          <form ng-submit="vm.createCheckList()" layout="column" layout-align="start end">
+            <md-input-container class="no-errors-spacer" md-no-float>
+              <input placeholder="Checklist Title" autocomplete="off" type="text" ng-model="vm.newCheckListTitle" translate translate-attr-placeholder="SB.CHECKLIST_TITLE">
+            </md-input-container>
 
-       <!-- ATTACHMENT -->
-        <md-menu md-offset="0 48px" class="options">
-         <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Attachment"
-                    translate translate-attr-aria-label="SB.ATTACHMENT">
-             <md-icon md-font-icon="icon-attachment"></md-icon>
-         </md-button>
-         <md-menu-content class="options-menu-content" width="4">
-             <md-menu-item>
-                 <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
-                        accept="image/*" ngf-max-height="1000" ngf-max-size="3MB" >
-                     <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
-                     <span>Add attachment</span>
-                 </md-button>
-             </md-menu-item>
-         </md-menu-content>
-       </md-menu>
+            <md-button type="submit" class="md-raised md-accent" aria-label="Add Checklist" translate translate-attr-aria-label="SB.ADD_CHECKLIST">
+              <span translate="SB.ADD_CHECKLIST">Add Checklist</span>
+            </md-button>
+          </form>
+        </md-menu-content>
+      </md-menu>
+      <!-- / CHECKLIST -->
 
+      <!-- OPTIONS -->
+      <md-menu md-offset="0 48px" class="options">
+        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Options" translate translate-attr-aria-label="SB.OPTIONS">
+          <md-icon md-menu-origin md-font-icon="icon-dots-horizontal"></md-icon>
+        </md-button>
+        <md-menu-content class="options-menu-content" width="4">
+          <md-menu-item>
 
-       <!--  ATTACHMENT -->
-
-       <!-- CHECKLIST -->
-       <md-menu md-offset="0 48px" class="checklist">
-           <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="checklist"
-                      translate translate-attr-aria-label="SB.CHECKLIST">
-               <md-icon md-menu-origin md-font-icon="icon-checkbox-marked"></md-icon>
-           </md-button>
-
-           <md-menu-content class="checklist-menu-content" width="4">
-               <form ng-submit="vm.createCheckList()" layout="column" layout-align="start end">
-                   <md-input-container class="no-errors-spacer" md-no-float>
-                       <input placeholder="Checklist Title" autocomplete="off" type="text"
-                              ng-model="vm.newCheckListTitle" translate
-                              translate-attr-placeholder="SB.CHECKLIST_TITLE">
-                   </md-input-container>
-
-                   <md-button type="submit" class="md-raised md-accent" aria-label="Add Checklist"
-                              translate translate-attr-aria-label="SB.ADD_CHECKLIST">
-                       <span translate="SB.ADD_CHECKLIST">Add Checklist</span>
-                   </md-button>
-               </form>
-           </md-menu-content>
-       </md-menu>
-       <!-- / CHECKLIST -->
-
-       <!-- OPTIONS -->
-        <md-menu md-offset="0 48px" class="options">
-           <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Options"
-                      translate translate-attr-aria-label="SB.OPTIONS">
-               <md-icon md-menu-origin md-font-icon="icon-dots-horizontal"></md-icon>
-           </md-button>
-           <md-menu-content class="options-menu-content" width="4">
-               <md-menu-item>
+            <!-- commenting out the ability to remove issues
                    <md-button ng-click="vm.removeCard()" aria-label="Remove Card"
                               translate translate-attr-aria-label="SB.REMOVE_CARD">
                        <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
                        <span translate="SB.REMOVE_CARD">Remove Card</span>
                    </md-button>
-               </md-menu-item>
-           </md-menu-content>
-       </md-menu>
-       <!-- / OPTIONS -->
+                -->
 
-            <!-- LABELS -->
-            <!-- <md-menu md-offset="0 48" class="labels">
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+      <!-- / OPTIONS -->
+
+      <!-- LABELS -->
+      <!-- commenting out labels to come back later.
+
+            <md-menu md-offset="0 48" class="labels">
                 <md-button class="md-icon-button" aria-label="Label" translate translate-attr-aria-label="SB.LABEL"
                            ng-click="vm.labelTabIndex = 0;$mdOpenMenu($event)">
                     <md-icon md-menu-origin md-font-icon="icon-label-outline"></md-icon>
@@ -262,107 +242,64 @@
                     </md-tabs>
                 </md-menu-content>
             </md-menu> -->
-            <!-- / LABELS -->
+      <!-- / LABELS -->
 
 
-            <span flex></span>
+      <span flex></span>
 
-            <!-- CLOSE DIALOG BUTTON -->
-            <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close Dialog"
-                       translate translate-attr-aria-label="SB.CLOSE_DIALOG">
-                <md-icon md-font-icon="icon-close"></md-icon>
-            </md-button>
-            <!-- / CLOSE DIALOG BUTTON -->
+      <!-- CLOSE DIALOG BUTTON -->
+      <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close Dialog" translate translate-attr-aria-label="SB.CLOSE_DIALOG">
+        <md-icon md-font-icon="icon-close"></md-icon>
+      </md-button>
+      <!-- / CLOSE DIALOG BUTTON -->
 
-        </div>
-    </md-toolbar>
-    <!-- / DIALOG TOOLBAR -->
+    </div>
+  </md-toolbar>
+  <!-- / DIALOG TOOLBAR -->
 
-    <!-- DIALOG CONTENT -->
-    <md-dialog-content ms-scroll>
-
-        <div layout="row" layout-align="space-between start">
-
-            <div layout="column" layout-align="start start">
-
-                <!-- BREADCRUMB -->
-                <div class="card-breadcrumb" layout="row" layout-align="start center">
-                    <span>Responsible Party</span>
-                    <i class="icon-menu-right"></i>
-                    <span>{{vm.getCardList().name}}</span>
-                </div>
-                <!-- / BREADCRUMB -->
-
-                <!-- CARD NAME -->
-
-
-
-
-                <!-- / CARD NAME -->
-
-            </div>
-
-            <!-- DUE DATE -->
-            <div ng-if="vm.card.due" class="due-date" layout="row" layout-align="start center">
-                <div class="picker day-picker" moment-picker="vm.card.due" format="x" min-view="year" max-view="month"
-                     start-view="month">
-                    <div layout="row" layout-align="start center">
-                        <i class="s18 icon icon-calendar"></i>
-                        <span>{{vm.card.due | date:'mediumDate'}}</span>
-                    </div>
-                </div>
-
-                <div class="picker hour-picker" moment-picker="vm.card.due" format="x" min-view="day" max-view="hour"
-                     start-view="day">
-                    <div layout="row" layout-align="start center">
-                        <i class="s18 icon icon-clock"></i>
-                        <span>{{vm.card.due | date:'shortTime'}}</span>
-                    </div>
-                </div>
-
-            </div>
-            <!-- / DUE DATE -->
-
-
-
-
-        </div>
-
-        <div class="sections">
-
-
-
-
+  <!-- DIALOG CONTENT -->
+  <md-dialog-content ms-scroll>
+    <div class="sections">
       <div class="section">
         <md-input-container class="md-block">
-            <label>Title</label>
-            <input ng-model="vm.card.name" type="text" ng-blur="vm.updateIssue()" focus>
+          <label>Title</label>
+          <input ng-model="vm.card.name" type="text" ng-blur="vm.updateIssue()" focus>
         </md-input-container>
 
 
         <!-- DESCRIPTION` -->
-        <div class="description">
-            <md-input-container class="md-block">
-                <label translate="SB.DESCRIPTION">Description</label>
-                <textarea ng-model="vm.card.description" columns="1" md-maxlength="150" rows="5"
-                 ng-blur="vm.updateIssue()"></textarea>
-            </md-input-container>
+        <div class="section-header" layout="row" layout-align="start center">
+          <i class="icon-clipboard-text s18"></i>
+          <span class="section-title" translate="SB.DESCRIPTION">Description</span>
+        </div>
+        <div layout="row">
+          <md-input-container flex md-no-float>
+            <textarea ms-scroll placeholder="" ng-model="vm.card.description" required></textarea>
+          </md-input-container>
         </div>
         <!-- / DESCRIPTION -->
 
         <!-- resolutionTimeframe -->
+        <div class="section-header" layout="row" layout-align="start center">
+          <i class="icon-timetable s18"></i>
+          <span class="section-title" translate="SB.RESOLUTION_TIMEFRAME">Resolution Timeframe</span>
+        </div>
         <md-input-container class="md-block">
-            <md-select ng-model="vm.card.resolutionTimeframe" ng-change="vm.updateIssue()" placeholder="Time Frame">
-              <md-option>Hours</md-option>
-              <md-option>Days</md-option>
-              <md-option>Weeks</md-option>
-              <md-option>Months</md-option>
-            </md-select>
+          <md-select ng-model="vm.card.resolutionTimeframe" ng-change="vm.updateIssue()" placeholder="Time Frame" required>
+            <md-option>Hours</md-option>
+            <md-option>Days</md-option>
+            <md-option>Weeks</md-option>
+            <md-option>Months</md-option>
+          </md-select>
         </md-input-container>
 
-        <!-- resolutionTimeframe -->
+        <!-- issue status -->
+        <div class="section-header" layout="row" layout-align="start center">
+          <i class="icon-clipboard-check s18"></i>
+          <span class="section-title" translate="SB.ISSUE_STATUS">Issue Status</span>
+        </div>
         <md-input-container class="md-block">
-            <md-select ng-model="vm.card.status" ng-change="vm.changeStatus()" placeholder="Card status">
+            <md-select ng-model="vm.card.status" ng-change="vm.changeStatus()" placeholder="Issue status">
               <md-option>Open</md-option>
               <md-option>Shelved</md-option>
               <md-option>Closed</md-option>
@@ -372,10 +309,9 @@
 
         <!-- SECTIONS -->
 
-
         <!-- LABELS SECTION -->
 
-                <!-- <div flex class="labels">
+        <!-- <div flex class="labels">
                    <div class="section-header" layout="row" layout-align="start center">
                        <i class="icon-label-outline s18"></i>
                        <span class="section-title" translate="SB.LABELS">Labels</span>
@@ -401,82 +337,71 @@
                    </div>
                  </div> -->
 
-                   <div class="section-header" layout="row" layout-align="start center">
-                       <i class="icon-account-multiple s18"></i>
-                       <span class="section-title" translate="SB.MEMBERS">Members</span>
-                   </div>
-                   <div class="section-content">
-                       <md-chips class="member-chips" ng-model="vm.card.idMembers"
-                                 md-transform-chip="$chip.id" md-autocomplete-snap
-                                           md-require-match="true">
-                           <md-autocomplete
-                                   md-selected-item="vm.selectedMember"
-                                   md-search-text="vm.searchText"
-                                   md-items="member in vm.memberQuerySearch(vm.searchText)"
-                                   md-item-text="member.name"
-                                   placeholder="Search for a member"
-                                   md-selected-item-change="vm.selectedItemChange(vm.selectedMember)">
-                               <span md-highlight-text="vm.searchText">{{member.name}}</span>
-                           </md-autocomplete>
-                           <md-chip-template class="member-chip">
-                              <!-- <img class="member-chip-avatar"  alt="Kek"> -->
-                              <span>{{ $chip.name }}</span>
-                           </md-chip-template>
-                           <button md-chip-remove class="md-primary" ng-click="vm.memberUpdate($chip.name)">
-                               <md-icon md-font-icon="icon-close" class="s18"></md-icon>
-                           </button>
-                       </md-chips>
-                   </div>
+        <div class="section-header" layout="row" layout-align="start center">
+          <i class="icon-account-multiple s18"></i>
+          <span class="section-title" translate="SB.MEMBERS">Members</span>
+        </div>
+        <div class="section-content">
+          <md-chips class="member-chips" ng-model="vm.card.idMembers" md-transform-chip="$chip.id" md-autocomplete-snap md-require-match="true">
+            <md-autocomplete md-selected-item="vm.selectedMember" md-search-text="vm.searchText" md-items="member in vm.memberQuerySearch(vm.searchText)" md-item-text="member.name" placeholder="Search for a member" md-selected-item-change="vm.selectedItemChange(vm.selectedMember)">
+              <span md-highlight-text="vm.searchText">{{member.name}}</span>
+            </md-autocomplete>
+            <md-chip-template class="member-chip">
+              <!-- <img class="member-chip-avatar"  alt="Kek"> -->
+              <span>{{ $chip.name }}</span>
+            </md-chip-template>
+            <button md-chip-remove class="md-primary" ng-click="vm.memberUpdate($chip.name)">
+              <md-icon md-font-icon="icon-close" class="s18"></md-icon>
+            </button>
+          </md-chips>
+        </div>
 
-                   <!-- ATTACHMENTS SECTION -->
-            <div class="section">
-               <div class="attachments">
+        <!-- ATTACHMENTS SECTION -->
+        <div class="section">
+          <div class="attachments">
 
-                   <div class="section-header" layout="row" layout-align="start center">
-                       <i class="icon-attachment s18"></i>
-                       <span class="section-title" translate="SB.ATTACHMENTS">Attachments</span>
-                   </div>
+            <div class="section-header" layout="row" layout-align="start center">
+              <i class="icon-attachment s18"></i>
+              <span class="section-title" translate="SB.ATTACHMENTS">Attachments</span>
+            </div>
 
-                    <div class="section-content">
+            <div class="section-content">
 
-                      <!-- <div class="attachment" ng-repeat="item in vm.card.attachments">
+              <!-- <div class="attachment" ng-repeat="item in vm.card.attachments">
                         <div class="attachment-content" layout="column">
                             <span class="attachment-url">{{item.url}}</span>
                             <span class="attachment-time">{{item.type}}</span>
                         </div>
                       </div> -->
 
-                        <div class="attachment" ng-repeat="item in vm.card.attachments">
+              <div class="attachment" ng-repeat="item in vm.card.attachments">
 
-                           <div layout="row">
+                <div layout="row">
 
-                                <div class="attachment-preview md-whiteframe-2dp"
-                                    ng-style="{'background-image': 'url({{item.url}})'}">
-                               </div>
+                  <div class="attachment-preview md-whiteframe-2dp" ng-style="{'background-image': 'url({{item.url}})'}">
+                  </div>
 
-                               <div class="attachment-content" layout="column">
+                  <div class="attachment-content" layout="column">
 
-                                   <div layout="row" layout-align="start center">
-                                       <span class="attachment-name">{{item.name}}</span>
-                                       <i ng-if="vm.card.idAttachmentCover === item.id"
-                                          class="icon-star yellow-700-fg attachment-is-cover s18"></i>
-                                   </div>
+                    <div layout="row" layout-align="start center">
+                      <span class="attachment-name">{{item.name}}</span>
+                      <i ng-if="vm.card.idAttachmentCover === item.id" class="icon-star yellow-700-fg attachment-is-cover s18"></i>
+                    </div>
 
-                                   <span class="attachment-time">{{item.time}}</span>
+                    <span class="attachment-time">{{item.time}}</span>
 
-                                   <md-menu>
+                    <md-menu>
 
-                                       <md-button class="md-raised attachment-actions-button"
-                                                  ng-click="$mdOpenMenu($event)" aria-label="attachment actions">
-                                           <span layout="row" layout-align="center center">
+                      <md-button class="md-raised attachment-actions-button" ng-click="$mdOpenMenu($event)" aria-label="attachment actions">
+                        <span layout="row" layout-align="center center">
                                                <span translate="SB.ACTIONS">Actions</span>
-                                               <i class="icon-chevron-down s20"></i>
-                                           </span>
-                                       </md-button>
+                        <i class="icon-chevron-down s20"></i>
+                        </span>
+                      </md-button>
 
-                                       <md-menu-content>
+                      <md-menu-content>
 
-                                           <!-- <md-menu-item>
+                        <!-- <md-menu-item>
                                                <md-button ng-click="vm.toggleCoverImage(item.id)"
                                                           aria-label="Toggle Cover Image"
                                                           translate translate-attr-aria-label="SB.TOGGLE_COVER_IMAGE">
@@ -487,23 +412,21 @@
                                                </md-button>
                                            </md-menu-item> -->
 
-                                           <md-menu-item>
+                        <md-menu-item>
 
-                                               <md-button ng-click="vm.removeAttachment(item)"
-                                                          aria-label="Remove Attachment"
-                                                          translate translate-attr-aria-label="SB.REMOVE_ATTACHMENT">
-                                                   <span translate="SB.REMOVE_ATTACHMENT">Remove Attachment</span>
-                                               </md-button>
-                                           </md-menu-item>
+                          <md-button ng-click="vm.removeAttachment(item)" aria-label="Remove Attachment" translate translate-attr-aria-label="SB.REMOVE_ATTACHMENT">
+                            <span translate="SB.REMOVE_ATTACHMENT">Remove Attachment</span>
+                          </md-button>
+                        </md-menu-item>
 
-                                       </md-menu-content>
+                      </md-menu-content>
 
-                                   </md-menu>
-                               </div>
-                           </div>
-                         </div>
+                    </md-menu>
+                  </div>
+                </div>
+              </div>
 
-                           <!-- <div ng-switch-when="link" layout="row">
+              <!-- <div ng-switch-when="link" layout="row">
                                <div class="attachment-preview md-whiteframe-2dp" layout="column"
                                     layout-align="center center">
                                    <span translate="SB.LINK">LINK</span>
@@ -515,180 +438,163 @@
                            </div>
                        </div>  -->
 
-                       <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)" class="add-attachment-button" aria-label="add attachment"
-                               accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
+              <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)" class="add-attachment-button" aria-label="add attachment" accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
 
-                               <div layout="row" layout-align="start center">
-                                   <i class="icon-plus s20"></i>
-                                   <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
-                               </div>
-                        </md-button>
+                <div layout="row" layout-align="start center">
+                  <i class="icon-plus s20"></i>
+                  <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
+                </div>
+              </md-button>
 
-                        <!-- <md-button class="add-attachment-button" aria-label="add attachment">
+              <!-- <md-button class="add-attachment-button" aria-label="add attachment">
                            <div layout="row" layout-align="start center">
                                <i class="icon-plus s20"></i>
                                <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
                            </div>
                        </md-button> -->
-                   </div>
-               </div>
-           </div>
-           <!-- / ATTACHMENTS SECTION -->
+            </div>
+          </div>
+        </div>
+        <!-- / ATTACHMENTS SECTION -->
 
-           <!-- CHECKLISTS SECTION -->
-           <div class="section" ng-repeat="checklist in vm.card.checklists">
-               <div class="checklist">
-                   <div class="section-header" layout="row" layout-align="start center">
-                       <i class="icon-checkbox-marked s18"></i>
-                       <span flex class="section-title" editable-text="checklist.checklistName">{{checklist.checklistName}}</span>
+        <!-- CHECKLISTS SECTION -->
+        <div class="section" ng-repeat="checklist in vm.card.checklists">
+          <div class="checklist">
+            <div class="section-header" layout="row" layout-align="start center">
+              <i class="icon-checkbox-marked s18"></i>
+              <span flex class="section-title" editable-text="checklist.checklistName">{{checklist.checklistName}}</span>
 
-                       <md-menu md-position-mode="target-right target" class="options">
-                           <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="options"
-                                      translate translate-attr-aria-label="SB.OPTIONS">
-                               <md-icon md-menu-origin md-font-icon="icon-dots-vertical"></md-icon>
-                           </md-button>
+              <md-menu md-position-mode="target-right target" class="options">
+                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="options" translate translate-attr-aria-label="SB.OPTIONS">
+                  <md-icon md-menu-origin md-font-icon="icon-dots-vertical"></md-icon>
+                </md-button>
 
-                           <md-menu-content class="options-menu-content" width="4">
-                               <md-menu-item>
-                                   <md-button ng-click="vm.removeChecklist(checklist)" aria-label="Remove Checklist"
-                                              translate translate-attr-aria-label="SB.REMOVE_CHECKLIST">
-                                       <md-icon md-font-icon="icon-delete"></md-icon>
-                                       <span translate="SB.REMOVE_CHECKLIST">Remove Checklist</span>
-                                   </md-button>
-                               </md-menu-item>
-                           </md-menu-content>
-                       </md-menu>
-                   </div>
+                <md-menu-content class="options-menu-content" width="4">
+                  <md-menu-item>
+                    <md-button ng-click="vm.removeChecklist(checklist)" aria-label="Remove Checklist" translate translate-attr-aria-label="SB.REMOVE_CHECKLIST">
+                      <md-icon md-font-icon="icon-delete"></md-icon>
+                      <span translate="SB.REMOVE_CHECKLIST">Remove Checklist</span>
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </div>
 
-                   <div class="section-content">
+            <div class="section-content">
 
-                       <div class="checklist-progress" layout="row" layout-align="start center">
-                           <span class="checklist-progress-value">
+              <div class="checklist-progress" layout="row" layout-align="start center">
+                <span class="checklist-progress-value">
                                {{checklist.checkItemsChecked}} / {{checklist.checkItems.length}}
                            </span>
 
-                           <md-progress-linear class="md-accent checklist-progressbar" md-mode="determinate"
-                                               value="{{100 * checklist.checkItemsChecked / checklist.checkItems.length}}">
-                           </md-progress-linear>
-                       </div>
+                <md-progress-linear class="md-accent checklist-progressbar" md-mode="determinate" value="{{100 * checklist.checkItemsChecked / checklist.checkItems.length}}">
+                </md-progress-linear>
+              </div>
 
-                       <div class="check-items">
-                           <div class="check-item" ng-repeat="checkItem in checklist.checkItems">
-                               <md-checkbox ng-model="checkItem.checked"
-                                            ng-change="vm.updateCheckedCount(checklist)"
-                                            aria-label="{{checkItem.name}}">
-                                   {{checkItem.name}}
-                               </md-checkbox>
-                           </div>
-                       </div>
-
-                       <form name="newCheckItemForm" class="new-check-item-form"
-                             ng-submit="vm.addCheckItem(vm[checklist.id].newCheckItem, checklist);vm[checklist.id].newCheckItem = ''"
-                             layout="row" layout-align="start center">
-
-                           <md-input-container class="no-errors-spacer" flex>
-                               <label layout="row" layout-align="center">
-                                   <i class="icon-plus s18"></i>
-                                   <span translate="SB.ADD_AN_ITEM">Add an item</span>
-                               </label>
-                               <input type="text" autocomplete="off" ng-model="vm[checklist.id].newCheckItem">
-                           </md-input-container>
-
-                           <md-button type="submit" class="md-raised md-accent" aria-label="Add"
-                                      translate translate-attr-aria-label="SB.ADD">
-                               <span translate="SB.ADD">Add</span>
-                           </md-button>
-                       </form>
-
-                   </div>
-               </div>
-           </div>
-           <!-- / CHECKLISTS SECTION -->
-
-            <!-- COMMENTS SECTION -->
-            <div class="section">
-                <div class="comments">
-
-                    <div class="section-header" layout="row" layout-align="start center">
-                        <i class="icon-comment s18"></i>
-                        <span class="section-title">Comments</span>
-                    </div>
-
-                    <div class="section-content">
-                        <form name="cardCommentForm"
-                              ng-submit="vm.addNewComment(vm.newCommentText); vm.newCommentText =''"
-                              class="comment new-comment" layout="column" layout-align="start" no-validate>
-
-                            <div layout="row">
-                                <img class="comment-member-avatar" src="assets/images/avatars/profile.jpg">
-                                <md-input-container flex md-no-float>
-                                <textarea ms-scroll placeholder="Write a comment.."
-                                          ng-model="vm.newCommentText" required
-                                          translate translate-attr-placeholder="SB.WRITE_A_COMMENT"></textarea>
-                                </md-input-container>
-                            </div>
-
-                            <div layout="row" layout-align="end center">
-                                <md-button type="submit" class="md-raised md-accent"
-                                           ng-disabled="cardCommentForm.$invalid || cardCommentForm.$pristine"
-                                           aria-label="Add">
-                                    <span translate="SB.ADD">Add</span>
-                                </md-button>
-                            </div>
-                        </form>
-
-                        <div class="comment" layout="row" ng-repeat="comment in vm.card.comments">
-                            <img class="comment-member-avatar"
-                                 ng-src="{{vm.board.members.getById(comment.idMember).avatar}}">
-
-                            <div layout="column">
-                                <div class="comment-member-name">
-                                    {{comment.author}}
-                                </div>
-                                <div class="comment-bubble">{{comment.commentText}}</div>
-                            </div>
-                        </div>
-                    </div>
+              <div class="check-items">
+                <div class="check-item" ng-repeat="checkItem in checklist.checkItems">
+                  <md-checkbox ng-model="checkItem.checked" ng-change="vm.updateCheckedCount(checklist)" aria-label="{{checkItem.name}}">
+                    {{checkItem.name}}
+                  </md-checkbox>
                 </div>
+              </div>
+
+              <form name="newCheckItemForm" class="new-check-item-form" ng-submit="vm.addCheckItem(vm[checklist.id].newCheckItem, checklist);vm[checklist.id].newCheckItem = ''" layout="row" layout-align="start center">
+
+                <md-input-container class="no-errors-spacer" flex>
+                  <label layout="row" layout-align="center">
+                    <i class="icon-plus s18"></i>
+                    <span translate="SB.ADD_AN_ITEM">Add an item</span>
+                  </label>
+                  <input type="text" autocomplete="off" ng-model="vm[checklist.id].newCheckItem">
+                </md-input-container>
+
+                <md-button type="submit" class="md-raised md-accent" aria-label="Add" translate translate-attr-aria-label="SB.ADD">
+                  <span translate="SB.ADD">Add</span>
+                </md-button>
+              </form>
+
             </div>
-            <!-- / COMMENTS SECTION -->
+          </div>
+        </div>
+        <!-- / CHECKLISTS SECTION -->
 
-            <!-- UPDATES SECTION -->
-            <div class="section">
+        <!-- COMMENTS SECTION -->
+        <div class="section">
+          <div class="comments">
 
-                <div class="activities">
+            <div class="section-header" layout="row" layout-align="start center">
+              <i class="icon-comment s18"></i>
+              <span class="section-title">Comments</span>
+            </div>
 
-                    <div class="section-header" layout="row" layout-align="start center">
-                        <i class="icon-format-list-bulleted s18"></i>
-                        <span class="section-title">Update info</span>
-                    </div>
+            <div class="section-content">
+              <form name="cardCommentForm" ng-submit="vm.addNewComment(vm.newCommentText); vm.newCommentText =''" class="comment new-comment" layout="column" layout-align="start" no-validate>
 
-                    <div class="section-content">
-                        <div class="activity" layout="row" layout-align="start center"
-                             ng-repeat="update in vm.card.updateInfo">
+                <div layout="row">
+                  <img class="comment-member-avatar" src="assets/images/avatars/profile.jpg">
+                  <md-input-container flex md-no-float>
+                    <textarea ms-scroll placeholder="Write a comment.." ng-model="vm.newCommentText" required translate translate-attr-placeholder="SB.WRITE_A_COMMENT"></textarea>
+                  </md-input-container>
+                </div>
 
-                            <div class="activity-member-name">{{ update.updateBy }}</div>
-                            <div class="activity-message">{{ update.updateDate | date}}</div>
+                <div layout="row" layout-align="end center">
+                  <md-button type="submit" class="md-raised md-accent" ng-disabled="cardCommentForm.$invalid || cardCommentForm.$pristine" aria-label="Add">
+                    <span translate="SB.ADD">Add</span>
+                  </md-button>
+                </div>
+              </form>
 
-                            <h5 ng-repeat="f in vm.formatUpdateArray(update.updateField, update.updateBy) ">
+              <div class="comment" layout="row" ng-repeat="comment in vm.card.comments">
+                <img class="comment-member-avatar" ng-src="{{vm.board.members.getById(comment.idMember).avatar}}">
+
+                <div layout="column">
+                  <div class="comment-member-name">
+                    {{comment.author}}
+                  </div>
+                  <div class="comment-bubble">{{comment.commentText}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- / COMMENTS SECTION -->
+
+        <!-- UPDATES SECTION -->
+        <div class="section">
+
+          <div class="activities">
+
+            <div class="section-header" layout="row" layout-align="start center">
+              <i class="icon-format-list-bulleted s18"></i>
+              <span class="section-title">Update info</span>
+            </div>
+
+            <div class="section-content">
+              <div class="activity" layout="row" layout-align="start center" ng-repeat="update in vm.card.updateInfo">
+
+                <div class="activity-member-name">{{ update.updateBy }}</div>
+                <div class="activity-message">{{ update.updateDate | date}}</div>
+
+                <h5 ng-repeat="f in vm.formatUpdateArray(update.updateField, update.updateBy) ">
                               <div layout="row" layout-align="space-between center">
                                 <p>
                                     <span>{{ f.infoFormated }} </span>
                                 </p>
                               </div>
                             </h5>
-                        </div>
-                    </div>
-
-                </div>
+              </div>
             </div>
-            <!-- / UPDATES SECTION -->
 
+          </div>
         </div>
-        <!-- / SECTIONS -->
+        <!-- / UPDATES SECTION -->
 
-    </md-dialog-content>
-    <!-- / DIALOG CONTENT -->
+      </div>
+      <!-- / SECTIONS -->
+
+  </md-dialog-content>
+  <!-- / DIALOG CONTENT -->
 
 </md-dialog>
 <!-- / CARD DIALOG -->

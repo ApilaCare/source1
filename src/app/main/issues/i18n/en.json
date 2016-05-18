@@ -43,6 +43,8 @@
         "SEARCH_FOR_A_LABEL": "Search for a label",
         "SEARCH_FOR_A_MEMBER": "Search for a member",
         "MEMBERS": "Members",
+        "RESOLUTION_TIMEFRAME": "Resolution Timeframe",
+        "ISSUE_STATUS": "Issue Status",
         "ATTACHMENTS": "Attachments",
         "ACTIONS": "Actions",
         "TOGGLE_COVER_IMAGE": "Toggle Cover Image",
