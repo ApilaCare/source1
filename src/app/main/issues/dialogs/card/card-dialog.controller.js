@@ -89,6 +89,7 @@
         vm.updateIssue = updateIssue;
 
         vm.formatUpdateArray = formatUpdateArray;
+        vm.changeStatus = changeStatus;
 
         //deleting a member
         vm.memberUpdate = function(selectedMember) {
@@ -720,6 +721,20 @@
           });
 
           return updateInfo;
+        }
+
+        function changeStatus() {
+          vm.updateIssue();
+
+          //delete card
+          var cardList = getCardList();
+
+          cardList.idCards.splice(cardList.idCards.indexOf(vm.card.id), 1);
+
+          vm.board.cards.splice(vm.board.cards.indexOf(vm.card), 1);
+
+          $mdDialog.hide();
+
         }
     }
 })();
